@@ -168,37 +168,34 @@ function listable_scripts() {
 		wp_enqueue_style( 'listable-style', get_stylesheet_uri(), $main_style_deps, $theme->get( 'Version' ) );
 	}
 
-	if ( class_exists( 'LoginWithAjax' ) ) {
-		wp_enqueue_style( 'listable-login-with-ajax', get_template_directory_uri() . '/assets/css/login-with-ajax.css', $main_style_deps, $theme->get( 'Version' ) );
-	}
-
 	global $post;
 	$listable_scripts_deps = array('jquery');
-	if ( ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'jobs' ) && true === listable_jobs_shortcode_get_show_map_param( $post->post_content ) )
-		     || ( is_single() && 'job_listing' == $post->post_type )
-		     || is_search()
-	         || ( isset( $post->post_content ) && is_archive() && 'job_listing' == $post->post_type )
-		     || is_tax( array( 'job_listing_category', 'job_listing_tag', 'job_listing_region' ) )
-		     || ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'submit_job_form' ) )
-		) {
-
-		wp_enqueue_script( 'leafletjs', get_template_directory_uri() . '/assets/js/plugins/leaflet.js', array( 'jquery' ), '1.0.0', true );
-		$listable_scripts_deps[] = 'leafletjs';
-	}
-
 	wp_enqueue_script( 'tween-lite', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js', array( 'jquery' ) );
 	$listable_scripts_deps[] = 'tween-lite';
 	wp_enqueue_script( 'scroll-to-plugin', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/ScrollToPlugin.min.js', array( 'jquery' ) );
 	$listable_scripts_deps[] = 'scroll-to-plugin';
 	wp_enqueue_script( 'cssplugin', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/CSSPlugin.min.js', array( 'jquery' ) );
 	$listable_scripts_deps[] = 'cssplugin';
-	
-	wp_enqueue_script( 'listable-scripts', get_template_directory_uri() . '/assets/js/main.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
-
-	if ( is_singular( array( 'post', 'job_listing' ) ) && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-
+	wp_enqueue_script( 'mousewheel', '//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js', array( 'jquery' ) );
+	$listable_scripts_deps[] = 'mousewheel';
+	wp_enqueue_script( 'magnific', '//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js', array( 'jquery' ) );
+	$listable_scripts_deps[] = 'magnific';
+	wp_enqueue_script( 'modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array( 'jquery' ) );
+	$listable_scripts_deps[] = 'modernizr';
+	wp_enqueue_script( 'system', get_template_directory_uri() . '/assets/js/system.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
+	$listable_scripts_deps[] = 'system';
+	$template = get_template_directory_uri();
+	$systemjs_modules = json_encode(array('test.js', 'test1.js', 'main.js'));
+	wp_add_inline_script('system', "$systemjs_modules.reduce(
+        async (chain, module) => {
+          await chain;
+          return SystemJS.import(`$template/assets/js/systemjs/\${module}`);
+        },
+        Promise.resolve() 
+      )");
+	wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
+	wp_enqueue_script( 'test1', get_template_directory_uri() . '/assets/js/systemjs/test1.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
+	wp_enqueue_script( 'listable-scripts', get_template_directory_uri() . '/assets/js/systemjs/main.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
 	wp_localize_script( 'listable-scripts', 'listable_params', array(
 		'login_url' => rtrim( esc_url( wp_login_url() ) , '/'),
 		'listings_page_url' => listable_get_listings_page_url(),
@@ -211,9 +208,10 @@ function listable_scripts() {
 			'no_results_match' => esc_html__( 'No results match', 'listable' ),
 			'social_login_string' => esc_html__( 'or', 'listable' ),
 		)
-	) );
+	) ); 
 
 }
+
 
 add_action( 'wp_enqueue_scripts', 'listable_scripts' );
 
@@ -222,13 +220,9 @@ function listable_admin_scripts() {
 	if ( listable_is_edit_page() ) {
 		wp_enqueue_script( 'listable-admin-edit-scripts', get_template_directory_uri() . '/assets/js/admin/edit-page.js', array( 'jquery' ), '1.0.0', true );
 
-		if ( get_post_type() === 'job_listing' ) {
-			wp_enqueue_style( 'listable-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/edit-listing.css' );
-		} elseif ( get_post_type() === 'page' ) {
+		if ( get_post_type() === 'page' ) {
 			wp_enqueue_style( 'listable-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/edit-page.css' );
 		}
-	} else if ( is_post_type_archive( 'job_listing' ) ) {
-		wp_enqueue_style( 'listable-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/edit-listing.css' );
 	}
 
 	if ( listable_is_nav_menus_page() ) {
@@ -262,11 +256,6 @@ function listable_admin_scripts() {
 
 add_action( 'admin_enqueue_scripts', 'listable_admin_scripts' );
 
-function listable_login_scripts() {
-	wp_enqueue_style( 'listable-custom-login', get_template_directory_uri() . '/assets/css/admin/login-page.css' );
-}
-
-add_action( 'login_enqueue_scripts', 'listable_login_scripts' );
 
 /**
  * Load custom javascript set by theme options

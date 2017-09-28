@@ -1,5 +1,5 @@
 surmblog.dev:8443 {
-  proxy / pwp:80 {
+  proxy / wp:80 {
     header_upstream X-Forwarded-For {remote}
     header_upstream X-Forwarded-Proto {scheme}
     header_upstream Host {host}
@@ -8,7 +8,7 @@ surmblog.dev:8443 {
 }
 
 localhost:8080 {
-  proxy / pwp:80 {
+  proxy / wp:80 {
     header_upstream X-Forwarded-For {remote}
     header_upstream X-Forwarded-Proto {scheme}
     header_upstream Host {host}

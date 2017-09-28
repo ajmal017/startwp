@@ -11,11 +11,12 @@
 FROM wordpress:4.8-php7.0-apache
 
 # Gotta fix HTTPS >.>
-RUN echo "<? if (\$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') { \$_SERVER['HTTPS'] = 'on'; } ?>" >> /tmp/file && \
+RUN echo "<? if (\$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') { \$_SERVER['HTTPS'] = 'on'; }?>" >> /tmp/file && \
     cat /usr/src/wordpress/wp-config-sample.php >> /tmp/file && \
+    echo " define('WP_DEBUG', true);" >> /tmp/file && \
     cp /tmp/file /usr/src/wordpress/wp-config-sample.php
-COPY dist/theme /var/www/html/wp-content/themes/surmblog
-RUN mkdir /var/www/html/wp-content/themes/surmblog_dev
+COPY dist/theme /var/www/html/wp-content/themes/bitcoin
+RUN mkdir /var/www/html/wp-content/themes/bitcoin_dev
 COPY dist/pwp-lazy-image-plugin /var/www/html/wp-content/plugins/pwp-lazy-image
-VOLUME /var/www/html/wp-content/themes/surmblog_dev
+VOLUME /var/www/html/wp-content/themes/bitcoin_dev
 VOLUME /var/www/html/wp-content/plugins/pwp-lazy-image-plugin

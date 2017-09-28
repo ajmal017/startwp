@@ -58,5 +58,5 @@
 		</nav>
 		<?php endif; ?>
 	</header><!-- #masthead -->
-
+	
 	<div id="content" class="site-content js-header-height-padding-top">

@@ -1,0 +1,52 @@
+{
+  "name": "WPT",
+  "version": "1.0.76",
+  "description": "Wordpress, JS, Compile",
+  "main": "index.js",
+  "author": "IONDIGITAL",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm version --no-git-tag-version -f patch && mkdir -p dist; node build.js",
+    "watch": "npm-watch",
+    "copy-static": "node build.js copyStatic",
+    "watch-js": "node build.js watchJS",
+    "watch-css": "node build.js watchCSS",
+    "watch-static": "node build.js copyStatic"
+  },
+  "watch": {
+    "watch-static": {
+      "patterns": [
+        "src/**/*",
+        "build.js"
+      ],
+      "extensions": "php,json,html"
+    },
+    "watch-css": {
+      "patterns": [
+        "src/**/*",
+        "build.js"
+      ],
+      "extensions": "css"
+    },
+    "watch-js": {
+      "patterns": [
+        "src/**/*",
+        "build.js"
+      ],
+      "extensions": "js"
+    }
+  },
+  "dependencies": {
+    "@webcomponents/custom-elements": "^1.0.4",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-systemjs": "^6.24.1",
+    "babili": "^0.1.4",
+    "csso": "^3.2.0",
+    "glob": "^7.1.2",
+    "mz": "^2.7.0",
+    "npm-watch": "^0.2.0",
+    "path": "^0.12.7",
+    "systemjs": "^0.20.19",
+    "webcomponentsjs": "^1.0.2"
+  }
+}

@@ -18,22 +18,6 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 		$pixtypes_conf_settings = array(
 			'first_activation' => true,
 			'metaboxes'        => array(
-				'_listing_the_aside' => array(
-					'id'         => 'listing_aside',
-					'title'      => esc_html__( 'Gallery Images', 'listable' ),
-					'pages'      => array( 'job_listing' ), // Post type
-					'context'    => 'side',
-					'priority'   => 'low',
-					'show_names' => true, // Show field names on the left
-					'fields'     => array(
-						array(
-							'name' => esc_html__( 'Gallery Image', 'listable' ),
-							'id'   => 'main_image',
-							'type' => 'gallery',
-						),
-					)
-				),
-
 				'_page_background' => array(
 					'id'         => '_page_background',
 					'title'      => sprintf(
@@ -62,10 +46,22 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 
 						),
 						array(
+							'name' => esc_html__( 'Gallery Image', 'listable' ),
+							'id'   => 'image_backgrounds1',
+							'type' => 'gallery',
+
+						),
+						array(
 							'name' => esc_html__( 'Playlist', 'listable' ),
 							'id'   => 'videos_backgrounds',
 							'type' => 'playlist',
 						),
+						array(
+						'name'    => 'Test Color Picker',
+						'id'      => 'wiki_test_colorpicker',
+						'type'    => 'colorpicker',
+						'default' => '#ffffff',
+						'std' => '#ffffff')
 					)
 				),
 				'_page_frontpage_search_fields' => array(
@@ -111,6 +107,36 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 						),
 					)
 				),
+				'_test' => array(
+					'id'         => '_test_',
+					'title'      => 'Test',
+					'pages'      => array( 'page' ), // Post type
+					'priority'   => 'high',
+					'show_names' => true, // Show field names on the left
+					'show_on'    => array(
+						'key'   => 'page-template',
+						'value' => array( 'page-templates/front_page.php' ),
+					),
+					'fields'     => array(
+						array(
+							'name' => esc_html__( 'Frontend', 'listable' ),
+							'id'   => 'frontpage_multicheck',
+							'type' => 'multicheck',
+							'options' => array(
+								'keywords' => esc_html__( 'Keywords', 'listable' ),
+								'location' => esc_html__( 'Location', 'listable' ),
+								'categories' => esc_html__( 'Categories', 'listable' ),
+							),
+							'std' =>  array('keywords'),
+						),
+						array(
+							'name'    => 'Test Color Picker',
+							'id'      => 'wiki_test_colorpicker1',
+							'type'    => 'colorpicker',
+							'default' => '#ffffff',
+							'std' => '#ffffff')
+					)
+				)
 			),
 		);
 
@@ -206,7 +232,7 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 		}
 	}
 endif; // end listable_config_getting_active
-
+listable_config_getting_active();
 add_action( 'after_switch_theme', 'listable_config_getting_active' );
 
 

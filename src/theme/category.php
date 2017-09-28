@@ -14,7 +14,7 @@ get_header(); ?>
 		<header class="page-header">
 			<h1 class="page-title"><?php single_cat_title( esc_html__('Category: ', 'listable') ); ?></h1>
 		</header>
-
+ 
 		<?php if ( have_posts() ) : ?>
 
 			<?php /* Start the Loop */ ?>

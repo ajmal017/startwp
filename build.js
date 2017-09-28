@@ -6,6 +6,43 @@ const path = require('path');
 const AsyncArray = require('./async_array.js')
 const package = require('./package.json');
 
+const cssoConfig = {
+  restructure: false,
+  sourceMap: true,
+};
+
+const babelConfig = {
+  presets: ["babili"],
+};
+
+const funcTable = {
+  "copyStatic": copyStatic,
+  "watchJS": minifyJs,
+  "watchCSS": minifyCss,
+}
+
+const templateData = {
+  'VERSION': package.version,
+};
+
+const call = function(fn, ...opt){
+  fn = funcTable[fn];
+  if(typeof fn != "function" ){
+    console.warn('Function not found')
+    return 0
+  }
+
+  fn(...opt)
+  .then(_ => console.log('Done'))
+  .catch(err => console.log(err.stack,'\nError while building'));;
+}
+
+
+if (process.argv.length > 2){
+ call(process.argv.slice(2));
+ return 0
+}
+
 Promise.all([
   copyStatic(),
   copySystemJS(),
@@ -14,59 +51,62 @@ Promise.all([
   minifyJs(),
 ])
   .then(_ => console.log('Done'))
-  .catch(err => console.log(err.stack));
-
-const cssoConfig = {
-  restructure: true,
-  sourceMap: true,
-};
-
-const babelConfig = {
-  presets: ["babili"],
-};
-
-const templateData = {
-  'VERSION': package.version,
-};
+  .catch(err => console.log(err.stack,'\nError while building'));
 
 async function copyStatic() {
-  filesWithPatterns([/\.php$/i, /\.htaccess$/i, /\.(png|jpe?g|svg)$/i, /\.woff$/i])
+  console.time('copyStatic');
+  filesWithPatterns([/\.php$/i, /\.htaccess$/i, /\.(png|jpe?g|svg)$/i, /\.(woff?2|eot|ttf|otf)$/i, /\.xml$/i])
     .map(async file => copy(`src/${file}`, `dist/${file}`))
     .array;
+  console.timeEnd('copyStatic')
 }
 
 async function copySystemJS() {
+  console.time('copySystemJS');
   const file = await fs.readFile('./node_modules/systemjs/dist/system-production.js');
   const contents = file.toString('utf-8');
   const {code} = babel.transform(contents, babelConfig);
-  await fs.writeFile('dist/theme/scripts/system.js', code);
+  const SystemJsDir = 'dist/theme/assets/js/system.js';
+  await mkdirAll(path.dirname(SystemJsDir));
+  await fs.writeFile(`${path.dirname(SystemJsDir)}/${path.basename(SystemJsDir)}`, code);
+  console.timeEnd('copySystemJS')
 }
 
 async function copyCustomElements() {
+  console.time('copyCustomElements');
   const file = await fs.readFile('./node_modules/@webcomponents/custom-elements/custom-elements.min.js');
   const contents = file.toString('utf-8');
   const {code} = babel.transform(contents, babelConfig);
-  await fs.writeFile('dist/theme/scripts/custom-elements.js', code);
+  await fs.writeFile('dist/theme/assets/js/custom-elements.js', code);
+  console.timeEnd('copyCustomElements')
 }
 
+
 async function minifyCss() {
+  console.time('minifyCss');
   filesWithPatterns([/\.css$/i])
     .map(async file => ({name: file, contents: await fs.readFile(`src/${file}`)}))
     .map(async file => Object.assign(file, {contents: file.contents.toString('utf-8')}))
     .map(async file => {
-      const cssoConfigCopy = Object.assign({}, cssoConfig, {filename: file.name});
-      return Object.assign(file, {csso: csso.minify(file.contents, cssoConfigCopy)});
+      for(const [key, val] of Object.entries(templateData)) {
+        file.contents = file.contents.replace(`{%${key}%}`, val);
+      }
+      return file
+      //const cssoConfigCopy = Object.assign({}, cssoConfig, {filename: file.name});
+      //return Object.assign(file, {csso: csso.minify(file.contents, cssoConfigCopy)});
     })
     .map(async file => {
       await mkdirAll(path.dirname(`dist/${file.name}`));
-      await fs.writeFile(`dist/${file.name}`, `${file.csso.css}/*# sourceMappingURL=${file.name}.map */`);
-      await fs.writeFile(`dist/${file.name}.map`, file.csso.map.toString());
+      await fs.writeFile(`dist/${file.name}`, `${file.contents}`);
+      //await fs.writeFile(`dist/${file.name}.map`, file.csso.map.toString());
     })
     .array;
+    console.timeEnd('minifyCss')
 }
 
 async function minifyJs() {
-  const orig = filesWithPatterns([/\.js$/i])
+  console.time('minifyJs');
+  const orig = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
     .map(async file => ({name: file, contents: await fs.readFile(`src/${file}`)}))
     .map(async file => Object.assign(file, {contents: file.contents.toString('utf-8')}))
     .map(async file => {
@@ -84,7 +124,7 @@ async function minifyJs() {
     })
     .array;
 
-  const trans = filesWithPatterns([/\.js$/i])
+  const trans = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
     .map(async file => ({name: file, contents: await fs.readFile(`src/${file}`)}))
     .map(async file => Object.assign(file, {contents: file.contents.toString('utf-8')}))
     .map(async file => {
@@ -108,6 +148,7 @@ async function minifyJs() {
     })
     .array;
 
+    console.timeEnd('minifyJs')
     return await Promise.all([orig, trans]);
 }
 
@@ -132,7 +173,7 @@ async function copy(from, to) {
 }
 
 async function mkdirAll(dir) {
-  const elems = dir.split(path.delimiter);
+  const elems = dir.split(path.sep);
   await elems.reduce(async (p, newPath) => {
     const oldPath = await p;
     const newDir = path.join(oldPath, newPath);

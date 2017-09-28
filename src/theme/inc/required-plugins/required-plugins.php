@@ -39,11 +39,6 @@ function listable_register_required_plugins() {
 			'slug'               => 'customify',
 			'required'           => true
 		),
-		array(
-			'name'               => 'Category Icon',
-			'slug'               => 'category-icon',
-			'required'  		 => false
-		),
 
 		array(
 			'name'      		 => 'Jetpack',

@@ -1,0 +1,1421 @@
+
+/**
+ * 3.0 - Base
+ *   3.1 - Blockquote
+ */
+ .entry-content blockquote,
+ .comment-content blockquote,
+ .listing-sidebar .widget_listing_content blockquote {
+     font-size: 1.25rem;
+     font-weight: bold;
+     line-height: 1.5; 
+     position: relative;
+ }
+ .entry-content blockquote p,
+ .comment-content blockquote p,
+ .listing-sidebar .widget_listing_content blockquote p {
+     font-family: inherit;
+     font-size: inherit;
+     font-weight: inherit; 
+     line-height: inherit;
+ }
+ .entry-content blockquote + p,
+ .entry-content .comment-content blockquote + p,
+ .entry-content .listing-sidebar .widget_listing_content blockquote + p,
+ .listing-sidebar .widget_listing_content .entry-content blockquote + p {
+     margin-top: -0.5rem;
+ }
+ .entry-content blockquote.alignleft,
+ .comment-content blockquote.alignleft,
+ .listing-sidebar .widget_listing_content blockquote.alignleft,
+ .entry-content blockquote.alignright,
+ .comment-content blockquote.alignright,
+ .listing-sidebar .widget_listing_content blockquote.alignright {
+     margin-bottom: 0;
+ }
+ @media only screen and (min-width: 740px) {
+     .entry-content blockquote.alignleft,
+     .comment-content blockquote.alignleft,
+     .listing-sidebar .widget_listing_content blockquote.alignleft,
+     .entry-content blockquote.alignright,
+     .comment-content blockquote.alignright,
+     .listing-sidebar .widget_listing_content blockquote.alignright {
+         max-width: calc(50% - 20px);
+     }
+ }
+ .entry-content blockquote.alignleft,
+ .comment-content blockquote.alignleft,
+ .listing-sidebar .widget_listing_content blockquote.alignleft {
+     margin-left: 0;
+     margin-right: 20px;
+ }
+ .entry-content blockquote.alignright,
+ .comment-content blockquote.alignright,
+ .listing-sidebar .widget_listing_content blockquote.alignright {
+     margin-left: 0px; 
+     margin-right: 0;
+ }
+ @media only screen and (min-width: 740px) {
+     .entry-content blockquote.alignright,
+     .comment-content blockquote.alignright,
+     .listing-sidebar .widget_listing_content blockquote.alignright {
+         margin-left: 20px;
+     }
+ }
+ 
+ /**
+  *   3.2 - Lists
+  */
+ /* Definition Lists */
+ .entry-content dl,
+ .comment-content dl,
+ .listing-sidebar .widget_listing_content dl {
+     display: -webkit-flex;
+     display: -ms-flexbox;
+     display: flex;
+ 
+     -webkit-flex-wrap: wrap;
+     -ms-flex-wrap: wrap;
+     flex-wrap: wrap;
+ }
+ .entry-content dl dt,
+ .comment-content dl dt,
+ .listing-sidebar .widget_listing_content dl dt,
+ .entry-content dl dd,
+ .comment-content dl dd,
+ .listing-sidebar .widget_listing_content dl dd {
+     border-bottom: 1px dashed rgba(0, 0, 0, 0.1); 
+     padding: 0.5em 0;
+ }
+ .entry-content dl dt:last-of-type,
+ .comment-content dl dt:last-of-type,
+ .listing-sidebar .widget_listing_content dl dt:last-of-type,
+ .entry-content dl dd:last-of-type,
+ .comment-content dl dd:last-of-type,
+ .listing-sidebar .widget_listing_content dl dd:last-of-type {
+     border-bottom: 0;
+ }
+ .entry-content dl dt,
+ .comment-content dl dt,
+ .listing-sidebar .widget_listing_content dl dt {
+     font-weight: bold;
+ 
+     -webkit-flex-basis: 33%;
+     flex-basis: 33%; 
+     -ms-flex-preferred-size: 33%;
+ }
+ .entry-content dl dd,
+ .comment-content dl dd,
+ .listing-sidebar .widget_listing_content dl dd {
+     -webkit-flex-basis: 66%;
+     flex-basis: 66%; 
+     -ms-flex-preferred-size: 66%;
+ }
+ 
+ /* Unordered Lists */
+ .entry-content ul,
+ .comment-content ul,
+ .listing-sidebar .widget_listing_content ul,
+ .entry-content ol,
+ .comment-content ol,
+ .listing-sidebar .widget_listing_content ol {
+     padding-left: 1.375rem;
+ }
+ .entry-content ul ul,
+ .comment-content ul ul,
+ .listing-sidebar .widget_listing_content ul ul,
+ .entry-content ul ol,
+ .comment-content ul ol,
+ .listing-sidebar .widget_listing_content ul ol,
+ .entry-content ol ul,
+ .comment-content ol ul,
+ .listing-sidebar .widget_listing_content ol ul,
+ .entry-content ol ol,
+ .comment-content ol ol,
+ .listing-sidebar .widget_listing_content ol ol {
+     list-style: initial;
+     margin: 0 0 -0.5em;
+     padding-left: 2em;
+ }
+ .entry-content ul li,
+ .comment-content ul li,
+ .listing-sidebar .widget_listing_content ul li,
+ .entry-content ol li,
+ .comment-content ol li,
+ .listing-sidebar .widget_listing_content ol li {
+     display: list-item; 
+     padding: 0.25em 0;
+     position: relative;
+ }
+ @media not screen and (min-width: 740px) {
+     .entry-content ul li,
+     .comment-content ul li,
+     .listing-sidebar .widget_listing_content ul li,
+     .entry-content ol li,
+     .comment-content ol li,
+     .listing-sidebar .widget_listing_content ol li {
+         margin-left: 0; 
+         padding-left: 0;
+     }
+ }
+ .entry-content ul li:last-child,
+ .comment-content ul li:last-child,
+ .listing-sidebar .widget_listing_content ul li:last-child,
+ .entry-content ol li:last-child,
+ .comment-content ol li:last-child,
+ .listing-sidebar .widget_listing_content ol li:last-child {
+     border-bottom: 0;
+ }
+ 
+ .entry-content ul,
+ .comment-content ul,
+ .listing-sidebar .widget_listing_content ul {
+     list-style: initial;
+ }
+ 
+ .entry-content ol,
+ .comment-content ol,
+ .listing-sidebar .widget_listing_content ol {
+     list-style: decimal;
+ }
+ 
+ /**
+  *   3.3 - Tables
+  */
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar),
+ #job-manager-job-dashboard table {
+     background: white;
+     border: 1px solid rgba(0, 0, 0, 0.075);
+     border-collapse: separate;
+     border-radius: 8px;
+     border-spacing: 0;
+     font-size: 14px; 
+     table-layout: auto;
+     width: 100%;
+ }
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) th,
+ #job-manager-job-dashboard table th {
+     text-align: left;
+     white-space: nowrap;
+ }
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) tr,
+ #job-manager-job-dashboard table tr {
+     border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+ }
+ table > .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) tr:last-child,
+ table > :last-child > .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) tr:last-child,
+ table > #job-manager-job-dashboard table tr:last-child,
+ table > :last-child > #job-manager-job-dashboard table tr:last-child {
+     border-bottom: 0;
+ }
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) td,
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) th,
+ #job-manager-job-dashboard table td,
+ #job-manager-job-dashboard table th {
+     font-size: 14px;
+     padding: 18px 10px;
+     vertical-align: middle;
+ }
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) td:first-child,
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) th:first-child,
+ #job-manager-job-dashboard table td:first-child,
+ #job-manager-job-dashboard table th:first-child {
+     padding-left: 20px;
+ }
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) td:last-child,
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) th:last-child,
+ #job-manager-job-dashboard table td:last-child,
+ #job-manager-job-dashboard table th:last-child {
+     padding-right: 20px;
+ }
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) .order-actions,
+ #job-manager-job-dashboard table .order-actions {
+     padding-bottom: 10px; 
+     padding-top: 10px;
+ }
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) td,
+ #job-manager-job-dashboard table td {
+     color: #919191;
+     height: 60px;
+ }
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) td a:not([class*="job-dashboard-action"]),
+ #job-manager-job-dashboard table td a:not([class*="job-dashboard-action"]) {
+     color: #484848;
+ }
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) thead th,
+ #job-manager-job-dashboard table thead th {
+     font-size: 16px;
+     font-weight: 600; 
+     padding-bottom: 11px;
+     padding-top: 22px;
+ }
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) tr + tr td,
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) tr + tr th,
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) thead + tbody tr:first-child td,
+ .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) thead + tbody tr:first-child th,
+ #job-manager-job-dashboard table tr + tr td,
+ #job-manager-job-dashboard table tr + tr th,
+ #job-manager-job-dashboard table thead + tbody tr:first-child td,
+ #job-manager-job-dashboard table thead + tbody tr:first-child th {
+     border-top: 1px solid rgba(0, 0, 0, 0.075);
+ }
+ @media not screen and (min-width: 900px) {
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar),
+     #job-manager-job-dashboard table {
+         border-collapse: collapse;
+     }
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) thead,
+     #job-manager-job-dashboard table thead {
+         display: none;
+     }
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) tr,
+     #job-manager-job-dashboard table tr {
+         display: block;
+         margin-bottom: 20px;
+         padding-bottom: 10px;
+     }
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) tr:last-child,
+     #job-manager-job-dashboard table tr:last-child {
+         border-bottom: 0; 
+         margin-bottom: 0;
+     }
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) td,
+     #job-manager-job-dashboard table td {
+         display: block;
+         height: auto; 
+         text-align: left !important;
+     }
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) td:empty,
+     #job-manager-job-dashboard table td:empty {
+         display: none;
+     }
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) td[data-label]:before,
+     #job-manager-job-dashboard table td[data-label]:before {
+         color: #484848;
+         content: attr(data-label) ":  ";
+         font-weight: 600;
+     }
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) td,
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) th,
+     #job-manager-job-dashboard table td,
+     #job-manager-job-dashboard table th {
+         padding-left: 20px;
+         padding-right: 20px;
+     }
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) tr + tr td,
+     .entry-content table:not(.cart-totals):not(.ui-datepicker-calendar) thead + tbody tr:first-child td,
+     #job-manager-job-dashboard table tr + tr td,
+     #job-manager-job-dashboard table thead + tbody tr:first-child td {
+         border-top: 0;
+     }
+ }
+ 
+ /**
+  *   3.4 - Titles
+  */
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+     color: #5d5c5c; 
+ 
+     font-feature-settings: "dlig" 1, "liga" 1, "lnum" 1, "kern" 1;
+ }
+ h1 + h1,
+ h2 + h1,
+ h3 + h1,
+ h4 + h1,
+ h5 + h1,
+ h6 + h1,
+ h1 + h2,
+ h2 + h2,
+ h3 + h2,
+ h4 + h2,
+ h5 + h2,
+ h6 + h2,
+ h1 + h3,
+ h2 + h3,
+ h3 + h3,
+ h4 + h3,
+ h5 + h3,
+ h6 + h3,
+ h1 + h4,
+ h2 + h4,
+ h3 + h4,
+ h4 + h4,
+ h5 + h4,
+ h6 + h4,
+ h1 + h5,
+ h2 + h5,
+ h3 + h5,
+ h4 + h5,
+ h5 + h5,
+ h6 + h5,
+ h1 + h6,
+ h2 + h6,
+ h3 + h6,
+ h4 + h6,
+ h5 + h6,
+ h6 + h6 {
+     margin-top: 0;
+ }
+ 
+ .entry-title,
+ .archive-title,
+ h1 {
+     font-size: 3rem;
+     font-weight: normal;
+     line-height: 1.27;
+ }
+ 
+ h2 {
+     font-size: 2.25rem;
+     font-weight: normal;
+     line-height: 1.33;
+ }
+ 
+ h3 {
+     font-size: 1.5rem;
+     font-weight: normal;
+     margin-bottom: 1rem;
+ }
+ 
+ h4,
+ .entry-content blockquote cite,
+ .comment-content blockquote cite,
+ .listing-sidebar .widget_listing_content blockquote cite {
+     font-size: 1.125rem;
+     font-weight: bold;
+     letter-spacing: 1px;
+     margin-bottom: 0.5rem; 
+     text-transform: uppercase;
+ }
+ 
+ h5 {
+     font-size: 15px;
+     line-height: 1.66667;
+ }
+ 
+ h6 {
+     font-size: 0.8125rem;
+     font-weight: normal;
+     margin-bottom: 0.5rem; 
+     text-transform: uppercase;
+ }
+ 
+ .entry-title,
+ .archive-title,
+ h1 {
+     font-size: 1.5rem;
+ }
+ 
+ @media only screen and (min-width: 740px) {
+     .entry-title,
+     .archive-title,
+     h1 {
+         font-size: 3rem;
+     }
+ }
+ 
+ /**
+  *   3.5 - Links
+  */
+ .entry-content a,
+ .comment-content a,
+ .listing-sidebar .widget_listing_content a {
+     color: #ff4d55;
+     transition: color 0.1s linear, background-color 0.1s ease-out;
+ }
+ .entry-content a:hover,
+ .comment-content a:hover,
+ .listing-sidebar .widget_listing_content a:hover {
+     color: #484848;
+ }
+ 
+ @media only screen and (min-width: 900px) {
+     a[href*="jpg"] img,
+     a[href*="png"] img,
+     a[href*="instagram"] img {
+         transition: opacity 0.3s;
+ 
+         will-change: opacity;
+     }
+     a[href*="jpg"]:hover img,
+     a[href*="png"]:hover img,
+     a[href*="instagram"]:hover img {
+         opacity: 0.85;
+     }
+     .gallery a[href*="jpg"]:hover img,
+     .widget a[href*="jpg"]:hover img,
+     .gallery a[href*="png"]:hover img,
+     .widget a[href*="png"]:hover img,
+     .gallery a[href*="instagram"]:hover img,
+     .widget a[href*="instagram"]:hover img {
+         opacity: 0.75;
+     }
+ }
+ 
+ /**
+  *   3.6 - Forms
+  */
+ /*----------------------------------------*INPUTS / FORMS
+ 
+ [Table of contents]
+ 
+ 1. $Common form controls
+ 2. $Checkboxes and radios
+ 3. $Inline forms
+ 4. $Input groups
+ ------------------------------------------*/
+ /*------------------------------------*	1. $Common form controls
+ \*------------------------------------*/
+ /**
+  *
+  * Shared size and type resets for form controls. Apply `.form-control` to any
+  * of the following form controls:
+  */
+ select,
+ textarea,
+ input[type="text"],
+ input[type="password"],
+ input[type="datetime"],
+ input[type="datetime-local"],
+ input[type="date"],
+ input[type="month"],
+ input[type="time"],
+ input[type="week"],
+ input[type="number"],
+ input[type="email"],
+ input[type="url"],
+ input[type="search"],
+ input[type="tel"],
+ input[type="color"],
+ .form-control,
+ .select2-container .select2-choice,
+ .select2-container--default .select2-selection--single .select2-selection__rendered {
+     border: 1px solid rgba(0, 0, 0, 0.075);
+     border-radius: 3px;
+     display: block;
+     outline: 0;
+     padding: 0.8125rem 0.9375rem;
+     vertical-align: middle;
+     width: 100%;
+ 
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+ }
+ .lt-ie9 select input,
+ .lt-ie9
+   textarea input,
+ .lt-ie9
+   input[type="text"] input,
+ .lt-ie9
+   input[type="password"] input,
+ .lt-ie9
+   input[type="datetime"] input,
+ .lt-ie9
+   input[type="datetime-local"] input,
+ .lt-ie9
+   input[type="date"] input,
+ .lt-ie9
+   input[type="month"] input,
+ .lt-ie9
+   input[type="time"] input,
+ .lt-ie9
+   input[type="week"] input,
+ .lt-ie9
+   input[type="number"] input,
+ .lt-ie9
+   input[type="email"] input,
+ .lt-ie9
+   input[type="url"] input,
+ .lt-ie9
+   input[type="search"] input,
+ .lt-ie9
+   input[type="tel"] input,
+ .lt-ie9
+   input[type="color"] input,
+ .lt-ie9
+   .form-control input,
+ .lt-ie9
+   .select2-container .select2-choice input,
+ .lt-ie9
+   .select2-container--default .select2-selection--single .select2-selection__rendered input {
+     outline: 0; 
+     padding: 12px 0;
+     width: 100%;
+ }
+ 
+ input[type="file"] {
+     border: 0;
+ }
+ 
+ fieldset {
+     border: 0;
+     margin: 0; 
+     padding: 0;
+ }
+ 
+ input,
+ select,
+ textarea,
+ .select2-container--default .select2-selection--single .select2-selection__rendered {
+     background: white;
+     border: 1px solid rgba(0, 0, 0, 0.075); 
+     border-radius: 3px;
+     box-shadow: none;
+     font-size: 14.95px;
+     line-height: normal;
+ }
+ input::-webkit-input-placeholder,
+ select::-webkit-input-placeholder,
+ textarea::-webkit-input-placeholder,
+ .select2-container--default .select2-selection--single .select2-selection__rendered::-webkit-input-placeholder {
+     color: #919191; 
+     font-style: normal;
+     font-weight: 300;
+     opacity: 1;
+ }
+ input:-moz-placeholder,
+ select:-moz-placeholder,
+ textarea:-moz-placeholder,
+ .select2-container--default .select2-selection--single .select2-selection__rendered:-moz-placeholder {
+     color: #919191; 
+     font-style: normal;
+     font-weight: 300;
+     opacity: 1;
+ }
+ input::-moz-placeholder,
+ select::-moz-placeholder,
+ textarea::-moz-placeholder,
+ .select2-container--default .select2-selection--single .select2-selection__rendered::-moz-placeholder {
+     color: #919191; 
+     font-style: normal;
+     font-weight: 300;
+     opacity: 1;
+ }
+ input:-ms-input-placeholder,
+ select:-ms-input-placeholder,
+ textarea:-ms-input-placeholder,
+ .select2-container--default .select2-selection--single .select2-selection__rendered:-ms-input-placeholder {
+     color: #919191; 
+     font-style: normal;
+     font-weight: 300;
+     opacity: 1;
+ }
+ 
+ select {
+     background-image: url("assets/img/select-arrow.svg");
+     background-position: calc(100% - 10px) 15px;
+     background-repeat: no-repeat;
+     cursor: pointer; 
+     padding-right: 32px;
+     white-space: nowrap;
+ }
+ 
+ label {
+     color: #484848;
+     font-size: 14.95px;
+     font-weight: 600; 
+     line-height: 1.67;
+ }
+ 
+ input[type="checkbox"] {
+     border: 1px solid rgba(0, 0, 0, 0.075); 
+     cursor: pointer;
+     height: 22px;
+     position: relative;
+     vertical-align: middle;
+     width: 22px;
+ 
+     -webkit-appearance: none;
+ }
+ input[type="checkbox"]:checked:before {
+     content: "";
+     left: 50%;
+     position: absolute;
+     top: 50%;
+     -webkit-transform: translateX(-50%) translateY(-50%);
+     -ms-transform: translateX(-50%) translateY(-50%);
+     transform: translateX(-50%) translateY(-50%);
+ }
+ input[type="checkbox"]:focus {
+     border-color: #484848;
+ }
+ 
+ /*------------------------------------*	2. $Checkboxes and radios
+ \*------------------------------------*/
+ /**
+  *
+  * Indent the labels to position radios/checkboxes as hanging controls.
+  */
+ .radio,
+ .checkbox {
+     display: block;
+     margin-bottom: 6px;
+     margin-top: 6px;
+     padding-left: 3px;
+     vertical-align: middle;
+ }
+ .radio label,
+ .checkbox label {
+     cursor: pointer; 
+     display: inline;
+     font-weight: normal;
+     margin-bottom: 0;
+ }
+ 
+ .radio input[type="radio"],
+ .radio-inline input[type="radio"],
+ .checkbox input[type="checkbox"],
+ .checkbox-inline input[type="checkbox"] {
+     float: left;
+     margin-left: 12px;
+ }
+ 
+ .radio + .radio,
+ .checkbox + .checkbox {
+     margin-top: -6px;
+ }
+ 
+ .radio-inline,
+ .checkbox-inline {
+     cursor: pointer; 
+     display: inline-block;
+     font-weight: normal;
+     margin-bottom: 0;
+     padding-left: 12px;
+     vertical-align: middle;
+ }
+ 
+ .radio-inline + .radio-inline,
+ .checkbox-inline + .checkbox-inline {
+     margin-left: 6px; 
+     margin-top: 0;
+ }
+ 
+ /*------------------------------------*	3. $Inline forms
+ \*------------------------------------*/
+ /**
+   *
+   * Make forms appear inline(-block) by adding the `.form-inline` class. Inline
+   * forms begin stacked on extra small (mobile) devices and then go inline when
+   * viewports reach <768px.
+   *
+   * Requires wrapping inputs and labels with `.form-group` for proper display of
+   * default HTML form controls and our custom form controls (e.g., input groups).
+   */
+ @media (min-width: 768px) {
+     .form-inline .form-group {
+         display: inline-block;
+         margin-bottom: 0;
+         vertical-align: middle;
+     }
+     .form-inline .form-control {
+         display: inline-block;
+     }
+     .form-inline .radio,
+     .form-inline .checkbox {
+         display: inline-block;
+         margin-bottom: 0;
+         margin-top: 0;
+         padding-left: 0;
+     }
+     .form-inline .radio input[type="radio"],
+     .form-inline .checkbox input[type="checkbox"] {
+         float: none;
+         margin-left: 0;
+     }
+ }
+ 
+ /*------------------------------------*	4. $Input groups
+ \*------------------------------------*/
+ .input-group {
+     border-collapse: separate; 
+     display: table;
+     position: relative;
+ }
+ .input-group.col {
+     float: none;
+     padding-left: 0;
+     padding-right: 0;
+ }
+ .input-group .form-control {
+     margin-bottom: 0; 
+     width: 100%;
+ }
+ 
+ .input-group-addon,
+ .input-group-btn,
+ .input-group .form-control {
+     display: table-cell;
+ }
+ .input-group-addon:not(:first-child):not(:last-child),
+ .input-group-btn:not(:first-child):not(:last-child),
+ .input-group .form-control:not(:first-child):not(:last-child) {
+     border-radius: 0;
+ }
+ 
+ .input-group-addon,
+ .input-group-btn {
+     vertical-align: middle; 
+     white-space: nowrap;
+     width: 1%;
+ }
+ 
+ /*------------------------------------*	5. $select2
+ \*------------------------------------*/
+ .select2-choice .select2-chosen {
+     font-size: 14.95px;
+     line-height: normal;
+ }
+ 
+ .select2-container--default .select2-selection--single .select2-selection__rendered {
+     border: 0;
+ }
+ 
+ .select2-container .select2-selection--single {
+     border: 1px solid rgba(0, 0, 0, 0.075); 
+     height: auto;
+ }
+ 
+ .select2-dropdown {
+     border-color: rgba(0, 0, 0, 0.075);
+ }
+ 
+ .select2-container--open.select2-container--below .select2-selection--single {
+     border-bottom: 0;
+ }
+ 
+ .select2-container--open.select2-container--above .select2-selection--single {
+     border-top: 0;
+ }
+ 
+ .select2-dropdown--above .select2-search--dropdown {
+     padding-top: 0.8125rem;
+ }
+ 
+ .select2-results[class] li {
+     margin: 0;
+ }
+ 
+ .select2-container--default .select2-selection--single .select2-selection__arrow {
+     right: 7px; 
+     top: 10px;
+ }
+ 
+ 
+ .listing_sidebar_sticky_title {
+     color: #484848;
+     font-size: 16px;
+     margin-bottom: 20px; 
+     text-align: center;
+ }
+ 
+ .listing-sidebar--secondary form input:not([type="submit"]),
+ .listing-sidebar--secondary form select,
+ .listing-sidebar--secondary form textarea {
+     background-color: white;
+     color: #484848; 
+     font-size: 14px;
+     line-height: 1.3;
+     margin-bottom: 0.5em;
+     padding: 8px 13px;
+ }
+ 
+ .listing-sidebar label {
+     display: block;
+ }
+ 
+ .listing-sidebar--secondary form label {
+     display: block;
+     font-size: 14px;
+     font-weight: normal;
+ }
+ .listing-sidebar--secondary form label[for="wc_bookings_field_start_date"] {
+     font-weight: 600;
+     text-align: center;
+ }
+ 
+ .listing-sidebar--secondary form select,
+ .listing-sidebar--secondary form textarea,
+ .listing-sidebar--secondary form input[type="text"],
+ .listing-sidebar--secondary form input[type="password"],
+ .listing-sidebar--secondary form input[type="datetime"],
+ .listing-sidebar--secondary form input[type="datetime-local"],
+ .listing-sidebar--secondary form input[type="date"],
+ .listing-sidebar--secondary form input[type="month"],
+ .listing-sidebar--secondary form input[type="time"],
+ .listing-sidebar--secondary form input[type="week"],
+ .listing-sidebar--secondary form input[type="number"],
+ .listing-sidebar--secondary form input[type="email"],
+ .listing-sidebar--secondary form input[type="url"],
+ .listing-sidebar--secondary form input[type="search"],
+ .listing-sidebar--secondary form input[type="tel"],
+ .listing-sidebar--secondary form input[type="color"],
+ .listing-sidebar--secondary form .form-control {
+     border-radius: 2px;
+ }
+ 
+ .listing-sidebar--secondary form select {
+     padding-right: 32px;
+ }
+ 
+ .listing-sidebar--secondary form button,
+ .listing-sidebar--secondary form input[type="submit"] {
+     width: 100%;
+ }
+ 
+ .listing-sidebar--secondary form input[type="file"] {
+     line-height: 1; 
+     padding: 0;
+ }
+ 
+ .listing-sidebar--secondary form input[type="number"] {
+     padding-right: 8px;
+ }
+ 
+ .listing-sidebar--secondary form input[type="checkbox"] {
+     height: 28px;
+ }
+ 
+ .listing-sidebar--secondary form .search-submit {
+     z-index: -1;
+ }
+ 
+ /**
+  *   3rd Party Contact Forms Plugins
+  */
+ .listing-sidebar--secondary .gform_wrapper .gform_ajax_spinner,
+ .listing-sidebar--secondary .wpcf7 .ajax-loader {
+     background: white;
+     border-radius: 50%; 
+     left: 3%;
+     padding: 0.2em;
+     position: absolute;
+     top: 50%;
+     -webkit-transform: translateY(-50%);
+     -ms-transform: translateY(-50%);
+     transform: translateY(-50%);
+ }
+ 
+ /**
+  *   Gravity Forms
+  */
+ .listing-sidebar--secondary .gform_wrapper {
+     margin: 0;
+     max-width: 100%;
+ }
+ .listing-sidebar--secondary .gform_wrapper .gform_footer {
+     margin: 0; 
+     padding: 0;
+     position: relative;
+ }
+ .listing-sidebar--secondary .gform_wrapper .gform_footer input[type=submit] {
+     width: 100%;
+ }
+ .listing-sidebar--secondary .gform_wrapper .top_label input.medium,
+ .listing-sidebar--secondary .gform_wrapper .top_label input.large,
+ .listing-sidebar--secondary .gform_wrapper .top_label select.medium,
+ .listing-sidebar--secondary .gform_wrapper .top_label select.large,
+ .listing-sidebar--secondary .gform_wrapper .top_label textarea.medium,
+ .listing-sidebar--secondary .gform_wrapper .top_label textarea.large {
+     width: 100%;
+ }
+ .listing-sidebar--secondary .gform_wrapper .gfield_checkbox li label {
+     margin-left: 40px; 
+     margin-top: 8px;
+ }
+ .listing-sidebar--secondary .gform_wrapper div.validation_error {
+     font-size: 1em;
+     line-height: 1.25;
+ }
+ .listing-sidebar--secondary .gform_wrapper .top_label .gfield_error {
+     width: 100%;
+ }
+ .listing-sidebar--secondary .gform_wrapper li.gfield.gfield_error,
+ .listing-sidebar--secondary .gform_wrapper li.gfield.gfield_error.gfield_contains_required.gfield_creditcard_warning {
+     background: transparent;
+ }
+ .listing-sidebar--secondary .gform_wrapper li.gfield.gfield_error.gfield_contains_required {
+     border: none;
+ }
+ .listing-sidebar--secondary .gform_wrapper li.gfield.gfield_error.gfield_contains_required div.gfield_description,
+ .listing-sidebar--secondary .gform_wrapper li.gfield.gfield_error.gfield_contains_required div.ginput_container,
+ .listing-sidebar--secondary .gform_wrapper li.gfield.gfield_error.gfield_contains_required fieldset legend.gfield_label,
+ .listing-sidebar--secondary .gform_wrapper li.gfield.gfield_error.gfield_contains_required label.gfield_label {
+     margin-left: 0;
+ }
+ .listing-sidebar--secondary .gform_wrapper li.gfield_error input[type=email],
+ .listing-sidebar--secondary .gform_wrapper li.gfield_error input[type=number],
+ .listing-sidebar--secondary .gform_wrapper li.gfield_error input[type=password],
+ .listing-sidebar--secondary .gform_wrapper li.gfield_error input[type=tel],
+ .listing-sidebar--secondary .gform_wrapper li.gfield_error input[type=text],
+ .listing-sidebar--secondary .gform_wrapper li.gfield_error input[type=url],
+ .listing-sidebar--secondary .gform_wrapper li.gfield_error textarea {
+     border-color: rgba(0, 0, 0, 0.075);
+ }
+ .listing-sidebar--secondary .gform_wrapper .validation_message {
+     color: #ff4d55;
+     font-weight: normal;
+ }
+ .listing-sidebar--secondary .gform_wrapper .gfield_description + .gform_wrapper .gfield_description.validation_message,
+ .listing-sidebar--secondary .gform_wrapper .ginput_container + .gfield_description.validation_message {
+     margin-top: 0;
+     padding: 0 !important;
+ }
+ .listing-sidebar--secondary .gform_wrapper li.gfield.gfield_error.gfield_contains_required div.ginput_container,
+ .listing-sidebar--secondary .gform_wrapper li.gfield_html {
+     max-width: 100%;
+ }
+ .listing-sidebar--secondary .gform_wrapper div.validation_error {
+     border: none;
+     color: #484848; 
+     font-size: 14px;
+     font-weight: normal;
+     line-height: 1.5;
+     margin-bottom: 1em;
+     padding: 0;
+ }
+ 
+ /**
+  *   Contact Form 7
+  */
+ .listing-sidebar--secondary .wpcf7 p {
+     position: relative;
+ }
+ 
+ .listing-sidebar--secondary .wpcf7 div.wpcf7-response-output {
+     border-radius: 4px; 
+     font-size: 14px;
+     line-height: 1.3;
+     margin: 0;
+     padding: 8px 13px;
+ }
+ 
+ .listing-sidebar--secondary .wpcf7 span.wpcf7-not-valid-tip {
+     font-size: 14px;
+     position: relative; 
+     top: -4px;
+ }
+ 
+ span.wpcf7-list-item {
+     margin-left: 0;
+     margin-right: 1em;
+ }
+ 
+ /**
+  *   3.7 - Typography
+  */
+ @font-face {
+     font-family: "Hanken";
+     font-weight: 700; 
+     src: url("assets/fonts/hanken/hanken-book-webfont.eot");
+     src: url("assets/fonts/hanken/hanken-book-webfont.eot?#iefix") format("embedded-opentype"), url("assets/fonts/hanken/hanken-book-webfont.woff2") format("woff2"), url("assets/fonts/hanken/hanken-book-webfont.woff") format("woff"), url("assets/fonts/hanken/hanken-book-webfont.ttf") format("truetype"), url("assets/fonts/hanken/hanken-book-webfont.svg#Hanken") format("svg");
+ }
+ 
+ @font-face {
+     font-family: "Hanken";
+     font-weight: 400; 
+     src: url("assets/fonts/hanken/hanken-light-webfont.eot");
+     src: url("assets/fonts/hanken/hanken-light-webfont.eot?#iefix") format("embedded-opentype"), url("assets/fonts/hanken/hanken-light-webfont.woff2") format("woff2"), url("assets/fonts/hanken/hanken-light-webfont.woff") format("woff"), url("assets/fonts/hanken/hanken-light-webfont.ttf") format("truetype"), url("assets/fonts/hanken/hanken-light-webfont.svg#Hanken") format("svg");
+ }
+ 
+ input,
+ select,
+ textarea,
+ .select2-container--default .select2-selection--single .select2-selection__rendered,
+ label,
+ .listing_sidebar_sticky_title,
+ html,
+ .entry-content blockquote cite,
+ .comment-content blockquote cite,
+ .listing-sidebar .widget_listing_content blockquote cite,
+ .card--feature .card__content,
+ .widget--footer .search-form .search-field,
+ .rating,
+ .featured-label,
+ .package__description,
+ .wpjmcl_form_claim_package .job-package .p1,
+ .search-suggestions-menu .menu-item-description,
+ .chosen-container-multi .chosen-choices,
+ .chosen-container-single .chosen-single,
+ .select2-drop,
+ .job_filters .facetwp-facet input,
+ .job_filters .facetwp-facet select,
+ .job_filters .facetwp-facet .facetwp-type-fselect .fs-label,
+ .job_filters .facetwp-type-fselect .fs-label,
+ .pac-container .pac-item-query + span,
+ .footer-text-area,
+ .listing-sidebar .widget_sidebar_title,
+ .listing-sidebar .widget:not(.widget_listing_content) h2,
+ .listing-sidebar .widget:not(.widget_listing_content) h3,
+ .addon-name,
+ .widget_listing_sidebar_claim_listing h2.widget_sidebar_title,
+ .widget_listing_comments .pixrating_title,
+ body.registration .entry-content #buddypress .standard-form input[type="text"],
+ body.registration .entry-content #buddypress .standard-form input[type="email"],
+ body.registration .entry-content #buddypress .standard-form input[type="password"],
+ .wc-bookings-date-picker .ui-datepicker-title,
+ .wc-bookings-date-picker .ui-datepicker th,
+ .wc-bookings-date-picker .ui-datepicker .ui-state-default,
+ .product .product__price,
+ .product .product__tag,
+ .product .onsale,
+ .woocommerce-account.logged-in .address h3 {
+     font-family: Source Sans Pro, Helvetica, sans-serif;
+ }
+ 
+ .entry-title,
+ .archive-title,
+ h1,
+ h2,
+ h3,
+ .card--feature .card__title,
+ ul.categories--widget .category-count,
+ ul.categories--widget .category-text,
+ .primary-menu > ul,
+ .secondary-menu > ul,
+ ul.primary-menu,
+ ul.secondary-menu,
+ .page-title,
+ .search_location input,
+ .package__title,
+ .package__price,
+ .wpjmcl_form_claim_package .job-package .amount,
+ .package__subscription-period,
+ .search-suggestions-menu li a,
+ .search_jobs--frontpage .chosen-container .chosen-results li,
+ .search_jobs--frontpage-facetwp .fs-dropdown .fs-option,
+ .pac-container .pac-item,
+ .chosen-container-multi .chosen-choices li.search-field input[type=text],
+ .chosen-container-single .chosen-single span,
+ .search_jobs--frontpage-facetwp,
+ .search_jobs--frontpage-facetwp input,
+ .search_jobs--frontpage-facetwp select,
+ .search_jobs--frontpage-facetwp .facetwp-filter-title,
+ .header-facet-wrapper .facetwp-facet input,
+ .header-facet-wrapper .facetwp-facet select,
+ .header-facet-wrapper .facetwp-facet label,
+ .site-header .site-title,
+ h2.comments-title,
+ .single:not(.single-job_listing) .entry-meta,
+ .page .entry-meta,
+ .single:not(.single-job_listing) div.sd-social.sd-social > div.sd-content.sd-content ul li > a,
+ .page div.sd-social.sd-social > div.sd-content.sd-content ul li > a,
+ .search_jobs select,
+ .active-tag,
+ .chosen-results,
+ .results,
+ .page-add-listing fieldset:first-child label,
+ .page-job-dashboard fieldset:first-child label,
+ .page-add-listing .chosen-container-multi .chosen-choices li.search-choice,
+ .page-job-dashboard .chosen-container-multi .chosen-choices li.search-choice,
+ .product-content .price,
+ .listing-products__items [itemprop="description"] {
+     font-family: "Hanken", sans-serif;
+ }
+ 
+ .intro,
+ .description,
+ .tabs.wc-tabs,
+ .btn,
+ input[type="submit"],
+ button[type="submit"],
+ .page-template-front_page .search_jobs--frontpage .search-submit,
+ .job-manager-form fieldset .job-manager-uploaded-files .job-manager-uploaded-file .job-manager-uploaded-file-preview a,
+ .woocommerce-account:not(.logged-in) .woocommerce form.login input[type="submit"],
+ body.registration .entry-content #buddypress .standard-form input#signup_submit[type="submit"],
+ .woocommerce .button,
+ .woocommerce-message > a,
+ .card,
+ .widget_subtitle--frontpage,
+ .category-list a,
+ .search-form .search-field,
+ .single:not(.single-job_listing) .entry-subtitle,
+ .page .entry-subtitle,
+ .single-job_listing .entry-subtitle {
+     font-family: "Hanken", sans-serif;
+     font-weight: normal;
+ }
+ 
+ html {
+     color: #484848; 
+     font-size: 100%;
+     line-height: 1.5;
+ }
+ 
+ p,
+ .entry-content li,
+ .comment-content li,
+ .listing-sidebar .widget_listing_content li {
+     font-feature-settings: "kern" 1, "onum" 1, "liga" 1;
+ }
+ 
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+     margin-bottom: 0.3125rem;
+ }
+ 
+ hr {
+     background-clip: content-box;
+     background-color: rgba(0, 0, 0, 0.075);
+     border: 0;
+     border-bottom: 50px solid transparent;
+     border-top: 50px solid transparent;
+     box-sizing: border-box; 
+     clear: both;
+     display: block;
+     height: 101px;
+     margin: 0;
+ }
+ hr:first-child,
+ hr:last-child {
+     height: 51px;
+ }
+ hr:first-child {
+     border-top: 0;
+ }
+ hr:last-child {
+     border-bottom: 0;
+ }
+ .entry-content hr.clear {
+     background-color: transparent;
+     border: 0;
+     height: 1px; 
+     margin: 10px 0;
+ }
+ .entry-content hr.clear:first-child {
+     margin-top: 0;
+ }
+ .entry-content hr.clear:last-child {
+     margin-bottom: 0;
+ }
+ 
+ .intro {
+     color: #484848; 
+     font-size: 1.25rem;
+     margin-bottom: 2.8125rem;
+ }
+ 
+ p.intro {
+     font-weight: 600;
+ }
+ 
+ .description,
+ .tabs.wc-tabs {
+     color: #919191;
+     display: block;
+     font-size: 1.125rem;
+     text-align: center;
+ }
+ 
+ .wp-caption-text,
+ .gallery-caption {
+     font-size: 85%;
+     font-weight: lighter;
+ }
+ 
+ .entry-title {
+     margin-bottom: 1.125rem;
+ }
+ 
+ @media only screen and (min-width: 740px) {
+     .entry-title {
+         margin-bottom: 1.25rem;
+     }
+ }
+ 
+ .entry-content,
+ .comment-content,
+ .listing-sidebar .widget_listing_content {
+     line-height: 1.7;
+ }
+ .entry-content blockquote cite,
+ .comment-content blockquote cite,
+ .listing-sidebar .widget_listing_content blockquote cite {
+     display: block;
+     font-style: normal; 
+     margin-top: 0.75rem;
+ }
+ .entry-content h1,
+ .entry-content h2,
+ .entry-content h3,
+ .entry-content h4,
+ .entry-content h5,
+ .entry-content h6,
+ .comment-content h1,
+ .comment-content h2,
+ .comment-content h3,
+ .comment-content h4,
+ .comment-content h5,
+ .comment-content h6,
+ .listing-sidebar .widget_listing_content h1,
+ .listing-sidebar .widget_listing_content h2,
+ .listing-sidebar .widget_listing_content h3,
+ .listing-sidebar .widget_listing_content h4,
+ .listing-sidebar .widget_listing_content h5,
+ .listing-sidebar .widget_listing_content h6 {
+     margin-top: 3.5rem;
+ }
+ .entry-content > *:first-child,
+ .comment-content > *:first-child,
+ .listing-sidebar .widget_listing_content > *:first-child {
+     margin-top: 0;
+ }
+ 
+ body {
+     font-size: 0.875rem;
+ }
+ 
+ @media only screen and (min-width: 740px) {
+     body {
+         font-size: 0.93437rem;
+     }
+ }
+ 
+ @media only screen and (min-width: 900px) {
+     body {
+         font-size: 1rem;
+     }
+ }
+ 
+ /**
+  *   3.8 - WP Align
+  */
+ .alignleft,
+ .alignright {
+     margin-bottom: 0.78125rem; 
+     position: relative;
+     z-index: 1;
+ }
+ @media not screen and (min-width: 640px) {
+     .alignleft,
+     .alignright {
+         display: block; 
+         max-width: 100%;
+     }
+ }
+ @media only screen and (min-width: 900px) {
+     .alignleft,
+     .alignright {
+         max-width: calc(50% + 150px - 20px);
+     }
+ }
+ 
+ .alignleft {
+     float: left;
+     margin-right: 1.5625rem;
+ }
+ @media only screen and (min-width: 900px) {
+     .alignleft {
+         margin-right: 3.125rem;
+     }
+ }
+ @media not screen and (min-width: 900px) {
+     .alignleft.wp-caption {
+         margin-left: 0;
+     }
+ }
+ 
+ .alignright {
+     float: right;
+     margin-left: 1.5625rem;
+ }
+ @media only screen and (min-width: 900px) {
+     .alignright {
+         margin-left: 3.125rem;
+     }
+ }
+ @media not screen and (min-width: 900px) {
+     .alignright.wp-caption {
+         margin-right: 0;
+     }
+ }
+ 
+ .aligncenter,
+ .alignnone {
+     display: block;
+     margin-bottom: 3.125rem;
+     margin-top: 3.125rem;
+     width: auto !important;
+ }
+ .aligncenter img,
+ .alignnone img {
+     display: block;
+     height: auto; 
+     max-width: 100%;
+ }
+ 
+ .aligncenter img,
+ .alignnone img {
+     margin: 0 auto;
+ }
+ 
+ .alignnone .wp-caption-text {
+     text-align: center;
+ }
+ 
+ @media not screen and (min-width: 900px) {
+     figure.aligncenter,
+     figure.alignnone {
+         margin-left: 0;
+         margin-right: 0;
+     }
+ }
+ 
+ .aligncenter {
+     text-align: center;
+ }
+ 
+ @media only screen and (min-width: 1200px) {
+     .alignnone,
+     .aligncenter {
+         margin-left: -200px;
+         margin-right: -200px;
+     }
+     .alignleft {
+         margin-left: -5.625rem;
+     }
+     .single-post .alignleft {
+         margin-left: -200px;
+     }
+     .alignright {
+         margin-right: -5.625rem;
+     }
+     .single-post .alignright {
+         margin-right: -200px;
+     }
+ }
+ 
+ .widget .alignleft,
+ .widget .alignright,
+ .widget .alignnone {
+     margin: 0;
+ }
+ 
+ .blog .alignleft,
+ .archive .alignleft,
+ .blog .alignright,
+ .archive .alignright,
+ .blog .alignnone,
+ .archive .alignnone {
+     margin: 0;
+ }
+ 
+ .widget .aligncenter {
+     margin: 0 auto;
+ }
+ 
+ .blog .aligncenter,
+ .archive .aligncenter {
+     margin: 0 auto;
+ }
+ 

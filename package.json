@@ -26,7 +26,7 @@
         "src/**/*",
         "build.js"
       ],
-      "extensions": "css"
+      "extensions": "css,sass,scss"
     },
     "watch-js": {
       "patterns": [
@@ -44,6 +44,7 @@
     "csso": "^3.2.0",
     "glob": "^7.1.2",
     "mz": "^2.7.0",
+    "node-sass": "^4.5.3",
     "npm-watch": "^0.2.0",
     "path": "^0.12.7",
     "systemjs": "^0.20.19",

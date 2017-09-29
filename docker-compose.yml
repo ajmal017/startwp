@@ -15,6 +15,7 @@ services:
       - ./dist/theme:/var/www/html/wp-content/themes/bitcoin_dev
       - ./dist/pwp-lazy-image-plugin:/var/www/html/wp-content/plugins/pwp-lazy-image-plugin
       - ./tmp/uploads:/var/www/html/wp-content/uploads
+      - ./dist/wp:/var/www/html/
   caddy:
     build: ./caddy
     volumes:

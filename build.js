@@ -1,4 +1,4 @@
-const csso = require('csso');
+const sass = require('node-sass');
 const fs = require('mz/fs');
 const babel = require('babel-core');
 const glob = require('glob');
@@ -16,9 +16,9 @@ const babelConfig = {
 };
 
 const funcTable = {
-  "copyStatic": copyStatic,
-  "watchJS": minifyJs,
-  "watchCSS": minifyCss,
+  "copyStatic": [copyStatic],
+  "watchJS": [minifyJs],
+  "watchCSS": [minifyCss, handleSass],
 }
 
 const templateData = {
@@ -26,13 +26,12 @@ const templateData = {
 };
 
 const call = function(fn, ...opt){
-  fn = funcTable[fn];
-  if(typeof fn != "function" ){
-    console.warn('Function not found')
-    return 0
-  }
+  fnStack = funcTable[fn];
 
-  fn(...opt)
+  fnStack.reduce(async (p, fn)=> {
+    await p;
+    return fn(...opt)
+  }, Promise.resolve())
   .then(_ => console.log('Done'))
   .catch(err => console.log(err.stack,'\nError while building'));;
 }
@@ -102,6 +101,29 @@ async function minifyCss() {
     })
     .array;
     console.timeEnd('minifyCss')
+}
+
+async function handleSass() {
+  console.time('handleSass');
+  filesWithPatterns([/^(?:(?!\/\_.*\.scss$).)*\.scss$/i])
+    .map(async file => ({name: file, contents: await fs.readFile(`src/${file}`)}))
+    .map(async file => Object.assign(file, {contents: file.contents.toString('utf-8')}))
+    .map(async file => {
+      for(const [key, val] of Object.entries(templateData)) {
+        file.contents = file.contents.replace(`{%${key}%}`, val);
+      }
+      return { name: file.name, contents: sass.renderSync({
+          data: file.contents,
+          includePaths: [ `${process.cwd()}/src/${path.dirname(file.name)}` ],
+          outputStyle: 'expanded'
+        })
+      }
+    })
+    .map(async file => {
+      await fs.writeFile(`dist/theme/${path.basename(file.name).split('.')[0]}.css`, `${file.contents.css.toString()}`);
+    })
+
+    console.timeEnd('handleSass')
 }
 
 async function minifyJs() {

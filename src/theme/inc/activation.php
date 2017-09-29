@@ -119,7 +119,7 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 					),
 					'fields'     => array(
 						array(
-							'name' => esc_html__( 'Frontend', 'listable' ),
+							'name' => esc_html__( 'Frontenddd', 'listable' ),
 							'id'   => 'frontpage_multicheck',
 							'type' => 'multicheck',
 							'options' => array(
@@ -130,16 +130,21 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 							'std' =>  array('keywords'),
 						),
 						array(
-							'name'    => 'Test Color Picker',
+							'name'    => 'Test Color Picksser',
 							'id'      => 'wiki_test_colorpicker1',
 							'type'    => 'colorpicker',
-							'default' => '#ffffff',
-							'std' => '#ffffff')
+							'default' => '#eee',
+							'std' => '#eee'),
+						array(
+							'name'    => 'Test Color Picksser',
+							'id'      => 'wiki_test_colorpicker2',
+							'type'    => 'colorpicker',
+							'default' => '#eee',
+							'std' => '#eee')
 					)
 				)
 			),
 		);
-
 		/**
 		 * After this line we won't config nothing.
 		 * Let's add these settings into WordPress's options db
@@ -150,40 +155,10 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 		if ( empty( $types_options ) ) {
 			$types_options = array();
 		}
+
 		$types_options['listable_pixtypes_theme'] = $pixtypes_conf_settings;
 		update_option( 'pixtypes_themes_settings', $types_options );
 
-		// force  settings for comments ratings settings
-		$pixreviews_settings = get_option( 'pixreviews_settings' );
-		if ( ! isset( $pixreviews_settings['settings_saved_once'] ) || $pixreviews_settings['settings_saved_once'] !== '1' ) {
-
-			$pixreviews_settings['enable_selective_ratings'] = true;
-			$pixreviews_settings['display_on_post_types']    = array(
-				'job_listing' => 'on'
-			);
-			$pixreviews_settings['settings_saved_once']      = '1';
-			update_option( 'pixreviews_settings', $pixreviews_settings );
-		}
-
-		// force  settings for category icon settings
-		$category_icons = get_option( 'category-icon' );
-		if ( ! isset( $category_icons['settings_saved_once'] ) || $category_icons['settings_saved_once'] !== '1' ) {
-			$category_icons['taxonomies']          = array(
-				'category'             => 'on',
-				'post_tag'             => 'on',
-				'job_listing_category' => 'on',
-				'job_listing_region'   => 'on',
-				'job_listing_tag'      => 'on'
-			);
-			$category_icons['settings_saved_once'] = '1';
-			update_option( 'category-icon', $category_icons );
-
-			// also at the first activation adjust a few settings for wp-job manager
-			update_option( 'job_manager_enable_categories', '1' );
-			update_option( 'job_manager_enable_tag_archive', '1' );
-			update_option( 'job_manager_tag_input', 'multiselect' );
-			update_option( 'job_manager_paid_listings_flow', 'before' );
-		}
 
 		// add defaults widgets
 		$already_added = get_option( 'listable_default_widgets_added' );
@@ -196,9 +171,6 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 				'listing_actions-2',
 				'listing_content-2',
 				'listing_comments-2'
-			);
-			$current_widgets['listing__sticky_sidebar'] = array(
-				'listing_sidebar_map-2'
 			);
 			$current_widgets['listing_sidebar']         = array(
 				'listing_sidebar_categories-2',
@@ -218,8 +190,6 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 			update_option( 'widget_listing_content', array( '2' => array(), '_multiwidget' => 1 ) );
 			update_option( 'widget_listing_actions', array( '2' => array(), '_multiwidget' => 1 ) );
 			update_option( 'widget_listing_comments', array( '2' => array(), '_multiwidget' => 1 ) );
-
-			update_option( 'widget_listing_sidebar_map', array( '2' => array(), '_multiwidget' => 1 ) );
 
 			update_option( 'widget_listing_sidebar_categories', array( '2' => array(), '_multiwidget' => 1 ) );
 			update_option( 'widget_listing_sidebar_hours', array( '2' => array(), '_multiwidget' => 1 ) );

@@ -1,0 +1,108 @@
+@charset "UTF-8";
+/*
+Theme Name: 
+Theme URI: https://demos.pixelgrade.com/listable/
+Author: Pixelgrade
+Author URI: https://pixelgrade.com/
+Description: A directory WordPress theme that will help you create and manage a local or global listings site.
+Version: {%VERSION%}
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: listable
+Tags: light, white, red 
+Requires at least: 4.7
+Tested up to: 4.8.0
+ 
+This theme, like WordPress, is licensed under the GPL.
+Use it to make somethin g cool, have fun, and share what you've learned with others.
+
+Listable is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+*/
+/**
+ *
+ * Table of Contents
+ * -------------------------------------------------
+ * 1.0 - Tools
+ *   1.1 - Clearfix
+ *   1.2 - Queries
+ *   1.3 - WP Offset
+ *   1.4 - Helpers
+ *   1.5 - Icon fonts
+ *
+ * 2.0 - Resets
+ *
+ * 3.0 - Base
+ *   3.1 - Blockquote
+ *   3.2 - Lists
+ *   3.3 - Tables
+ *   3.4 - Titles
+ *   3.5 - Links
+ *   3.6 - Forms
+ *   3.7 - Typography
+ *   3.8 - WP Align
+ *
+ * 4.0 - Components
+ *   4.1 - Bar
+ *   4.2 - Buttons
+ *   4.3 - Card
+ *   4.4 - Popup
+ *   4.5 - Postcard
+ *   4.6 - Carousel
+ *   4.7 - Grid
+ *   4.8 - Front page section
+ *   4.9 - Leaflet
+ *   4.10 - Leaflet cluster
+ *   4.11 - List
+ *   4.12 - Pin
+ *   4.13 - Map
+ *   4.14 - Menu primary
+ *   4.15 - Menu social
+ *   4.16 - Page header
+ *   4.17 - Page title
+ *   4.18 - Search form
+ *   4.19 - Site branding
+ *   4.20 - Widget
+ *   4.21 - Single categories
+ *   4.22 - Single meta
+ *   4.23 - Single action buttons
+ *   4.24 - Tooltip
+ *   4.25 - Jetpack share
+ *   4.26 - Search by location
+ *   4.27 - Tags
+ *   4.28 - Loader
+ *
+ * 5.0 - Objects
+ *   5.1 - Site header
+ *   5.2 - Site footer
+ *   5.3 - Listing single sidebars
+ *   5.4 - Gallery
+ *   5.5 - Gallery
+ *
+ * 6.0 - Pages 
+ *   6.1 - Single post, page
+ *   6.2 - Single listing
+ *   6.3 - Listings page
+ *   6.4 - Front page
+ *   6.5 - Job manager
+ *   6.6 - Add listing
+ *   6.7 - WooCommerce login
+ *
+ * 7.0 - Vendor
+ *   7.1 - Magnific popup
+ *
+ * 8.0 - Overrides
+ *   8.1 - Widths
+ *   8.2 - Winners
+ */
+ 
+@import '_tools.scss';
+@import '_reset.scss';
+@import '_tools.scss';
+@import '_base.scss';
+@import '_components.scss';
+@import '_objects.scss';
+@import '_pages.scss';
+@import '_vendors.scss';
+@import '_overrides.scss';
+

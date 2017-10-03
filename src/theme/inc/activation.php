@@ -35,8 +35,9 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 					'priority'   => 'low',
 					'show_names' => false, // Show field names on the left
 					'show_on'    => array(
-						'key'   => 'page-template',
-						'value' => array( 'page-templates/front_page.php' ),
+						'0' => array('key'   => 'page-template',
+							 'value' => array( 'page-templates/front_page.php', '' ),
+						)
 					),
 					'fields'     => array(
 						array(
@@ -89,62 +90,63 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 						),
 					)
 				),
-				'_page_frontpage_categories' => array(
-					'id'         => '_page_frontpage_listing_categories',
-					'title'      => '&#x1f535; ' . esc_html__( 'Front Page &raquo; Highlighted Categories', 'listable' ) . ' <a class="tooltip" title="' . esc_html__( '<p>You can select which categories to highlight, by adding their <em>slugs</em>, separated by a comma: <em>food, hotels, restaurants</em></p><p> You can change their <em>shown name</em> (in case it is too long) with this pattern: <em>slug (My Custom Name)</em></p>', 'listable' ) . '"></a>',
-					'pages'      => array( 'page' ), // Post type
-					'priority'   => 'high',
-					'show_names' => false, // Show field names on the left
-					'show_on'    => array(
-						'key'   => 'page-template',
-						'value' => array( 'page-templates/front_page.php' ),
-					),
-					'fields'     => array(
-						array(
-							'name' => esc_html__( 'Frontend Categories', 'listable' ),
-							'id'   => 'frontpage_listing_categories',
-							'type' => 'text',
-						),
-					)
-				),
-				'_test' => array(
-					'id'         => '_test_',
-					'title'      => 'Test',
+				// '_page_frontpage_categories' => array(
+				// 	'id'         => '_page_frontpage_listing_categories',
+				// 	'title'      => '&#x1f535; ' . esc_html__( 'Front Page &raquo; Highlighted Categories', 'listable' ) . ' <a class="tooltip" title="' . esc_html__( '<p>You can select which categories to highlight, by adding their <em>slugs</em>, separated by a comma: <em>food, hotels, restaurants</em></p><p> You can change their <em>shown name</em> (in case it is too long) with this pattern: <em>slug (My Custom Name)</em></p>', 'listable' ) . '"></a>',
+				// 	'pages'      => array( 'page' ), // Post type
+				// 	'priority'   => 'high',
+				// 	'show_names' => false, // Show field names on the left
+				// 	'show_on'    => array(
+				// 		'key'   => 'page-template',
+				// 		'value' => array( 'page-templates/front_page.php' ),
+				// 	),
+				// 	'fields'     => array(
+				// 		array(
+				// 			'name' => esc_html__( 'Frontend Categories', 'listable' ),
+				// 			'id'   => 'frontpage_listing_categories',
+				// 			'type' => 'text',
+				// 		),
+				// 	)
+				// ),
+				'_page_blogpage' => array(
+					'id'         => '_page_blogpage',
+					'title'      => esc_html__( 'Posts Page Options', 'listable' ),
 					'pages'      => array( 'page' ), // Post type
 					'priority'   => 'high',
 					'show_names' => true, // Show field names on the left
 					'show_on'    => array(
-						'key'   => 'page-template',
-						'value' => array( 'page-templates/front_page.php' ),
+						'key'   => 'id',
+						'value' => get_option( 'page_for_posts' ),
 					),
-					'fields'     => array(
+					'fields'    =>  array(
 						array(
-							'name' => esc_html__( 'Frontenddd', 'listable' ),
-							'id'   => 'frontpage_multicheck',
-							'type' => 'multicheck',
+							'name' => esc_html__( 'View Posts Type', 'listable' ) . ' <a class="tooltip" title="' . esc_html__( '<p>Choose how the blog posts visualy displays in the Blog Posts page.</p>', 'listable' ) . '"></a>',
+							'desc' => '',
+							'id'   => 'blogpage_type',
+							'type' => 'radio_inline',
 							'options' => array(
-								'keywords' => esc_html__( 'Keywords', 'listable' ),
-								'location' => esc_html__( 'Location', 'listable' ),
-								'categories' => esc_html__( 'Categories', 'listable' ),
+								array(
+									'id' => esc_html__( 'radio-list', 'listable' ),
+									'value' =>esc_html__( 'list', 'listable' ),
+									'name' => esc_html__( 'List', 'listable' )
+								),
+								array(
+									'id' => esc_html__( 'radio-tile', 'listable' ),
+									'value' =>esc_html__( 'tile', 'listable' ),
+									'name' => esc_html__( 'Tile', 'listable' )
+								)
 							),
-							'std' =>  array('keywords'),
-						),
+							'std' => 'tile'),
 						array(
-							'name'    => 'Test Color Picksser',
-							'id'      => 'wiki_test_colorpicker1',
-							'type'    => 'colorpicker',
-							'default' => '#eee',
-							'std' => '#eee'),
-						array(
-							'name'    => 'Test Color Picksser',
-							'id'      => 'wiki_test_colorpicker2',
-							'type'    => 'colorpicker',
-							'default' => '#eee',
-							'std' => '#eee')
+							'name' => esc_html__( 'Blog Categories', 'listable' ) . ' <a class="tooltip" title="' . esc_html__( '<p>Write what post categoty to show in the Blog Posts page.</p>', 'listable' ) . '"></a>',
+							'id'   => 'blogpage_categories',
+							'type' => 'text'),
 					)
 				)
 			),
 		);
+
+
 		/**
 		 * After this line we won't config nothing.
 		 * Let's add these settings into WordPress's options db

@@ -15,33 +15,48 @@
 get_header(); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main facetwp-template" role="main">
+		<main id="main" class="site-main" role="main">
 
 			<?php
 			$page_for_posts = get_option( 'page_for_posts' );
-			$blog_has_featured_image = has_post_thumbnail( $page_for_posts );
-
-			if ( $blog_has_featured_image ) {
-				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $page_for_posts ), 'listable-featured-image' );
-				$image = esc_url($image[0]);
-			}
+			$the_random_hero = listable_get_random_hero_object( $page_for_posts );
+			$has_image       = false;	
 			?>
-			<header class="page-header<?php if($blog_has_featured_image) echo ' has-featured-image'; ?>">
-				<?php if($blog_has_featured_image): ?><div class="page-header-background" style="background-image: url('<?php echo listable_get_inline_background_image( $image ); ?>')"></div><?php endif; ?>
+
+			<?php if ( ( empty( $the_random_hero ) || property_exists( $the_random_hero, 'post_mime_type' ) || strpos( $the_random_hero->post_mime_type, 'video' ) !== false ) && is_object( $the_random_hero ) && property_exists( $the_random_hero, 'post_mime_type' ) && strpos( $the_random_hero->post_mime_type, 'image' ) !== false ) {
+					$has_image = wp_get_attachment_url( $the_random_hero->ID );
+				} ?>
+
+			<header class="page-header<?php if($has_image) echo ' has-featured-image'; ?>" >
+				<div class="page-header-background"<?php if ( ! empty( $has_image ) ) {
+					echo ' style="background-image: url(' . listable_get_inline_background_image( $has_image ) . ');"';
+				} ?>>
+					<?php if ( ! empty( $the_random_hero ) && property_exists( $the_random_hero, 'post_mime_type' ) && strpos( $the_random_hero->post_mime_type, 'video' ) !== false ) {
+						$mimetype = str_replace( 'video/', '', $the_random_hero->post_mime_type );
+						if ( has_post_thumbnail( $the_random_hero->ID ) ) {
+							$image = wp_get_attachment_url( get_post_thumbnail_id( $the_random_hero->ID ) );
+							$poster = ' poster="' . $image . '" ';
+						} else {
+							$poster = ' ';
+						}
+						echo do_shortcode( '[video ' . $mimetype . '="' . wp_get_attachment_url( $the_random_hero->ID ) . '"' . $poster . 'loop="true" autoplay="true"][/video]' );
+					} ?>
+				</div>
+				
 				<div class="header-content">
-				<h1 class="page-title"><?php echo get_the_title( $page_for_posts ); ?></h1>
+					<h1 class="page-title"><?php echo get_the_title( $page_for_posts ); ?></h1>
 
-				<?php
-				$categories = get_categories();
-				if( $categories ):
-					echo '<ul class="category-list">';
+					<?php
+					$categories = get_categories();
+					if( $categories ):
+						echo '<ul class="category-list">';
 
-					foreach ( $categories as $category ): ?>
-						<li><a href="<?php echo esc_sql( get_category_link( $category->cat_ID ) ); ?>"><?php echo $category->cat_name; ?></a></li>
-					<?php endforeach;
+						foreach ( $categories as $category ): ?>
+							<li><a href="<?php echo esc_sql( get_category_link( $category->cat_ID ) ); ?>"><?php echo $category->cat_name; ?></a></li>
+						<?php endforeach;
 
-					echo '</ul>';
-				endif; ?>
+						echo '</ul>';
+					endif; ?>
 				</div>
 			</header>
 		

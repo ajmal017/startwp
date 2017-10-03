@@ -12,8 +12,9 @@ global $post; ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+				
 			<?php
-
+		
 			while ( have_posts() ) : the_post();
 				// we'll return a random attachment from image and videos background lists, if one is present
 				$the_random_hero = listable_get_random_hero_object();
@@ -77,6 +78,6 @@ global $post; ?>
 		</main>
 		<!-- #main -->
 	</div><!-- #primary -->
-
+	
 <?php
 get_footer();

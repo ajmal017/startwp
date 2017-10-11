@@ -9,7 +9,6 @@
 if ( ! function_exists( 'listable_config_getting_active' ) ) :
 	function listable_config_getting_active() {
 
-
 		/**
 		 * ACTIVATION SETTINGS
 		 * These settings will be needed when the theme will get active
@@ -36,7 +35,7 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 					'show_names' => false, // Show field names on the left
 					'show_on'    => array(
 						'0' => array('key'   => 'page-template',
-							 'value' => array( 'page-templates/front_page.php', '' ),
+							 'value' => array( 'page-templates/front_page.php', '' ), // test empty
 						)
 					),
 					'fields'     => array(
@@ -56,13 +55,7 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 							'name' => esc_html__( 'Playlist', 'listable' ),
 							'id'   => 'videos_backgrounds',
 							'type' => 'playlist',
-						),
-						array(
-						'name'    => 'Test Color Picker',
-						'id'      => 'wiki_test_colorpicker',
-						'type'    => 'colorpicker',
-						'default' => '#ffffff',
-						'std' => '#ffffff')
+						)
 					)
 				),
 				'_page_frontpage_search_fields' => array(
@@ -204,7 +197,6 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 		}
 	}
 endif; // end listable_config_getting_active
-listable_config_getting_active();
 add_action( 'after_switch_theme', 'listable_config_getting_active' );
 
 

@@ -90,6 +90,8 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
  * 8.0 - Overrides
  *   8.1 - Widths
  *   8.2 - Winners
+ *
+ * 9.0 - Flex Classes
  */
  
 @import '_tools.scss';
@@ -101,4 +103,4 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 @import '_pages.scss';
 @import '_vendors.scss';
 @import '_overrides.scss';
- 
+@import '_flex.sass';

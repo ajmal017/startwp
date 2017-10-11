@@ -31,6 +31,39 @@ get_header(); ?>
 				<div class="page-header-background"<?php if ( ! empty( $has_image ) ) {
 					echo ' style="background-image: url(' . listable_get_inline_background_image( $has_image ) . ');"';
 				} ?>>
+ 
+					<?php if ( pixelgrade_option( 'site_blogheroarea_transparent', true ) == true ):?>
+					
+						<div class="page-header__overlay1">
+							<svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+								<defs>
+									<linearGradient id="Gradient1" x1="0" y1="0" x2="1" y2="1">
+										<stop offset="0" stop-color="white" stop-opacity="1" />
+										<stop offset="1" stop-color="transparent" stop-opacity="0" />
+									</linearGradient>
+									<mask id="Mask1">
+										<rect x="0" y="0" width="100%" height="100%" fill="url(#Gradient1)"  />
+									</mask>
+								</defs>
+								<rect id="page-header__overlay1" x="0" y="0" width="100%" height="100%"  mask="url(#Mask1)" />
+							</svg>
+						</div>
+						<div class="page-header__overlay2">
+						<svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+								<defs>
+									<linearGradient id="Gradient2" x1="0" y1="0" x2="1" y2="1">
+										<stop offset="0" stop-color="transparent" stop-opacity="0" />
+										<stop offset="1" stop-color="white" stop-opacity="1" />
+									</linearGradient>
+									<mask id="Mask2">
+										<rect x="0" y="0" width="100%" height="100%" fill="url(#Gradient2)"  />
+									</mask>
+								</defs>
+								<rect id="page-header__overlay2" x="0" y="0" width="100%" height="100%" mask="url(#Mask2)" />
+							</svg>
+						</div>
+					<?php endif; ?>
+
 					<?php if ( ! empty( $the_random_hero ) && property_exists( $the_random_hero, 'post_mime_type' ) && strpos( $the_random_hero->post_mime_type, 'video' ) !== false ) {
 						$mimetype = str_replace( 'video/', '', $the_random_hero->post_mime_type );
 						if ( has_post_thumbnail( $the_random_hero->ID ) ) {

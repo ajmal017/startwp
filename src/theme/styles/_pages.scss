@@ -327,7 +327,7 @@
  .entry-content .post-password-form {
      margin-top: 60px;
  }
- 
+  
  /**
   *   6.2 - Front page
   */
@@ -658,4 +658,12 @@
 .blog .site-header {
     box-shadow: none; 
     position: absolute;
+}
+.page-header__overlay1,
+.page-header__overlay2{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }

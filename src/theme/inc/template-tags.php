@@ -583,24 +583,6 @@ function listable_display_frontpage_listing_categories( $default_count = 7 ) {
 	}
 }
 
-function listabe_get_the_password_form( $post = 0 ) {
-	$post = get_post( $post );
-	$label = 'pwbox-' . ( empty($post->ID) ? rand() : $post->ID );
-	$check_pass = listable_is_password_protected();
-
-	if ( ! empty( $check_pass['error'] ) ) {
-		echo '<h4 class="text--error">';
-		echo  $check_pass['error'];
-		echo '</h4>';
-	}
-
-	$output = '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="post-password-form" method="post">
-	<p>' . esc_html__( 'This content is password protected. To view it please enter your password below:', 'listable' ) . '</p>
-	<p><label for="' . $label . '">' . esc_html__( 'Password:', 'listable' ) . ' <input name="post_password" id="' . $label . '" type="password" size="20" /></label> <input type="submit" name="Submit" value="' . esc_attr__( 'Submit', 'listable' ) . '" /></p></form>
-	';
-
-	return $output;
-}
 
 /**
  * Filter the HTML output for the protected post password form.

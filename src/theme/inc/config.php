@@ -19,6 +19,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 		// Recommended Fonts List
 		// Headings
 		$recommended_headings_fonts = array(
+			'Noto Sans',
 			'Playfair Display',
 			'Oswald',
 			'Lato',
@@ -37,11 +38,12 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 			'Pacifico',
 			'Handlee',
 			'Satify',
-			'Pompiere'
+			'Pompiere',
 		);
 
 		// Body
 		$recommended_body_fonts = array(
+			'Noto Sans',
 			'Source Sans Pro',
 			'Lato',
 			'Open Sans',
@@ -73,8 +75,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								'color-text'       => '#ffffff',
 								'background-card'  => '#ff4d55',
 								'background-label' => '#f13d46',
-								'font-main'        => 'Hanken',
-								'font-alt'         => 'Source Sans Pro',
+								'font-main'        => 'Noto Sans',
+								'font-alt'         => 'Open Sans',
 							),
 							'options' => array(
 
@@ -124,7 +126,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 								// FONTS
 								'site_title_font'             => array(
-									'font_family'       => 'Hanken',
+									'font_family'       => 'Noto Sans',
 									'selected_variants' => '400'
 								),
 								'site_title_font_size'        => '24',
@@ -132,7 +134,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								'site_title_letter-spacing'   => '0',
 
 								'navigation_font'           => array(
-									'font_family'       => 'Hanken',
+									'font_family'       => 'Noto Sans',
 									'selected_variants' => '400'
 								),
 								'navigation_font_size'      => '14.95',
@@ -140,24 +142,24 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								'navigation_letter-spacing' => '0',
 
 								'body_font'           => array(
-									'font_family'       => 'Source Sans Pro',
+									'font_family'       => 'Noto Sans',
 									'selected_variants' => 'regular'
 								),
-								'page_titles_font'    => array( 'font_family'       => 'Hanken',
+								'page_titles_font'    => array( 'font_family'       => 'Noto Sans',
 								                                'selected_variants' => '700'
 								),
-								'page_subtitles_font' => array( 'font_family'       => 'Hanken',
+								'page_subtitles_font' => array( 'font_family'       => 'Noto Sans',
 								                                'selected_variants' => '400'
 								),
-								'meta_font'           => array( 'font_family'       => 'Hanken',
+								'meta_font'           => array( 'font_family'       => 'Noto Sans',
 								                                'selected_variants' => '400'
 								),
-								'card_font'           => array( 'font_family'       => 'Hanken',
+								'card_font'           => array( 'font_family'       => 'Noto Sans',
 								                                'selected_variants' => '400'
 								),
 
 								'card_title_font'           => array(
-									'font_family'       => 'Hanken',
+									'font_family'       => 'Noto Sans',
 									'selected_variants' => '700'
 								),
 								'card_title_font_size'      => '24',
@@ -1234,6 +1236,41 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 					)
 				),
 
+				'site_blogheroarea' => array(
+					'title'   => esc_html__( 'Blog Hero Area', 'bitcoin' ),
+					'options' => array(
+						'site_blogheroarea_transparent' => array(
+							'type'    => 'checkbox',
+							'default' => true,
+							'label'   => esc_html__( 'Apply Overlay', 'bitcoin' ),
+						),
+						'site_blogheroarea_color1' => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Header Background Color', 'bitcoin' ),
+							'live'    => true,
+							'default' => '#6d42ef',
+							'css'     => array(
+								array(
+									'property' => 'fill',
+									'selector' => '#page-header__overlay1'						
+								)
+							)
+						),
+						'site_blogheroarea_color2' => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Header Background Color', 'bitcoin' ),
+							'live'    => true,
+							'default' => '#00eaf8',
+							'css'     => array(
+								array(
+									'property' => 'fill',
+									'selector' => '#page-header__overlay2'								
+								)
+							)
+						),
+					)
+				),
+
 				'main_content' => array(
 					'title'   => esc_html__( 'Main Content', 'bitcoin' ),
 					'options' => array(
@@ -1869,7 +1906,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							// 'label'            => esc_html__( 'Site Title', 'bitcoin' ),
 							'desc'        => __( 'The font used for Site Title when you do not have a Logo image.', 'bitcoin' ),
 							'selector'    => '.site-header .site-title',
-							'default'     => array( 'Hanken', '700' ),
+							'default'     => array( 'Noto Sans', '700' ),
 							'recommended' => $recommended_headings_fonts
 						),
 
@@ -1946,7 +1983,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'selector'         => '.primary-menu > ul, ul.primary-menu a',
 							'load_all_weights' => false,
 							'subsets'          => false,
-							'default'          => array( 'Hanken', '400' ),
+							'default'          => array( 'Noto Sans', '400' ),
 							'recommended'      => $recommended_body_fonts
 						),
 
@@ -2043,7 +2080,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'load_all_weights' => true,
 							'default'          => array(
 								'type'        => 'google',
-								'font_family' => 'Source Sans Pro',
+								'font_family' => 'Noto Sans',
 								'variants'    => 'regular'
 							),
 							'recommended'      => $recommended_body_fonts
@@ -2071,7 +2108,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									.product-content .price',
 							'load_all_weights' => false,
 							'subsets'          => true,
-							'default'          => array( 'Hanken', '700' ),
+							'default'          => array( 'Noto Sans', '700' ),
 							'recommended'      => $recommended_headings_fonts
 						),
 					)
@@ -2094,7 +2131,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									.single-job_listing .entry-subtitle',
 							'load_all_weights' => false,
 							'subsets'          => false,
-							'default'          => array( 'Hanken', '400' ),
+							'default'          => array( 'Noto Sans', '400' ),
 							'recommended'      => $recommended_headings_fonts
 						),
 					)
@@ -2109,7 +2146,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'selector'         => '.card__title.card__title, ul.categories--widget .category-count,
 									ul.categories--widget .category-text',
 							'load_all_weights' => false,
-							'default'          => array( 'Hanken', '700' ),
+							'default'          => array( 'Noto Sans', '700' ),
 							'recommended'      => $recommended_headings_fonts
 						),
 						// Font Size
@@ -2187,7 +2224,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'label'            => esc_html__( 'Card Font', 'bitcoin' ),
 							'selector'         => '.card',
 							'load_all_weights' => false,
-							'default'          => array( 'Hanken', '400' ),
+							'default'          => array( 'Noto Sans', '400' ),
 							'recommended'      => $recommended_body_fonts
 						),
 					)
@@ -2230,7 +2267,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								.woocommerce .button,
 								.search_jobs--frontpage #search_location',
 							'load_all_weights' => false,
-							'default'          => array( 'Hanken', '400' ),
+							'default'          => array( 'Noto Sans', '400' ),
 							'subsets'          => false,
 							'recommended'      => $recommended_body_fonts
 						),
@@ -2292,6 +2329,19 @@ if ( ! function_exists( 'isLight' ) ) {
 	}
 }
 
+if ( ! function_exists( 'bitcoin_getRGB' ) ) {
+	function bitcoin_getRGB( $color = '#ffffff' ) {
+		// Get our color
+		$color = ( $color ) ? $color : '#ffffff';
+		// Calculate straight from rbg
+		$r = hexdec( $color[1] . $color[2] );
+		$g = hexdec( $color[3] . $color[4] );
+		$b = hexdec( $color[5] . $color[6] );
+
+		return $r . ',' . $g . ',' . $b . ',';
+	}
+}
+
 if ( ! function_exists( 'bitcoin_color_darken' ) ) {
 	function bitcoin_color_darken( $color, $dif = 20 ) {
 
@@ -2323,10 +2373,30 @@ if ( ! function_exists( 'bitcoin_customify_darker_callback' ) ) {
 	}
 }
 
+
+
+if ( ! function_exists( 'bitcoin_site_blogheroarea_color1_callback' ) ) {
+	function bitcoin_site_blogheroarea_color1_callback( $value, $selector, $property, $unit ) {
+
+		$output = $selector . ' { '. $property .': '. 'linear-gradient(-38deg, rgba(' . bitcoin_getRGB( $value ) . '0.9) 0%, rgba(255, 255, 255, 0) 100%)'. '; } \n';
+	
+		return $output;
+	}
+}
+
+if ( ! function_exists( 'bitcoin_site_blogheroarea_color2_callback' ) ) {
+	function bitcoin_site_blogheroarea_color2_callback( $value, $selector, $property, $unit ) {
+	
+		$output = $selector . ' { '. $property .': '. 'linear-gradient(-38deg, rgba(255, 255, 255, 0) 0%, rgba(' . bitcoin_getRGB( $value ) . ' 0.9) 100%)'. '; } \n';
+	
+		return $output;
+	}
+}
+
 function bitcoin_add_customify_font_std_font( $fonts ) {
 	$new_fonts           = array();
-	$new_fonts['Hanken'] = array(
-		'font_family' => 'Hanken',
+	$new_fonts['Noto Sans'] = array(
+		'font_family' => 'Noto Sans',
 		'variants'    => array( '400', '700' )
 	);
 

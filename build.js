@@ -105,24 +105,21 @@ async function minifyCss() {
 
 async function handleSass() {
   console.time('handleSass');
-  filesWithPatterns([/^(?:(?!\/\_.*\.scss$).)*\.scss$/i])
-    .map(async file => ({name: file, contents: await fs.readFile(`src/${file}`)}))
-    .map(async file => Object.assign(file, {contents: file.contents.toString('utf-8')}))
+  filesWithPatterns([/^(?:(?!\/\_.*\.scss$).)*\.scss$/i, /^(?:(?!\/\_.*\.sass$).)*\.sass$/i])
     .map(async file => {
-      for(const [key, val] of Object.entries(templateData)) {
-        file.contents = file.contents.replace(`{%${key}%}`, val);
-      }
-      return { name: file.name, contents: sass.renderSync({
-          data: file.contents,
-          includePaths: [ `${process.cwd()}/src/${path.dirname(file.name)}` ],
+      return { name: file, contents: sass.renderSync({
+          file: `${process.cwd()}/src/${file}`,
+          includePaths: [ `${process.cwd()}/src/${file}` ],
           outputStyle: 'expanded'
         })
       }
     })
     .map(async file => {
-      await fs.writeFile(`dist/theme/${path.basename(file.name).split('.')[0]}.css`, `${file.contents.css.toString()}`);
+      for(const [key, val] of Object.entries(templateData)) {
+        file.contents = file.contents.css.toString().replace(`{%${key}%}`, val);
+      }
+      await fs.writeFile(`dist/theme/${path.basename(file.name).split('.')[0]}.css`, file.contents);
     })
-
     console.timeEnd('handleSass')
 }
 

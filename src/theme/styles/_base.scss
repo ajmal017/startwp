@@ -1010,26 +1010,49 @@
  /**
   *   3.7 - Typography
   */
- @font-face {
-     font-family: "Hanken";
-     font-weight: 700; 
-     src: url("assets/fonts/hanken/hanken-book-webfont.eot");
-     src: url("assets/fonts/hanken/hanken-book-webfont.eot?#iefix") format("embedded-opentype"), url("assets/fonts/hanken/hanken-book-webfont.woff2") format("woff2"), url("assets/fonts/hanken/hanken-book-webfont.woff") format("woff"), url("assets/fonts/hanken/hanken-book-webfont.ttf") format("truetype"), url("assets/fonts/hanken/hanken-book-webfont.svg#Hanken") format("svg");
- }
+@font-face {
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+src: url('assets/fonts/roboto/roboto-v16-latin-regular.eot'); /* IE9 Compat Modes */
+src: local('Roboto'), local('Roboto-Regular'),
+        url('assets/fonts/roboto/roboto-v16-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('assets/fonts/roboto/roboto-v16-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('assets/fonts/roboto/roboto-v16-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('assets/fonts/roboto/roboto-v16-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('assets/fonts/roboto/roboto-v16-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+}
  
- @font-face {
-     font-family: "Hanken";
-     font-weight: 400; 
-     src: url("assets/fonts/hanken/hanken-light-webfont.eot");
-     src: url("assets/fonts/hanken/hanken-light-webfont.eot?#iefix") format("embedded-opentype"), url("assets/fonts/hanken/hanken-light-webfont.woff2") format("woff2"), url("assets/fonts/hanken/hanken-light-webfont.woff") format("woff"), url("assets/fonts/hanken/hanken-light-webfont.ttf") format("truetype"), url("assets/fonts/hanken/hanken-light-webfont.svg#Hanken") format("svg");
- }
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('assets/fonts/noto-sans/noto-sans-v6-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Noto Sans'), local('NotoSans'),
+         url('assets/fonts/noto-sans/noto-sans-v6-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('assets/fonts/noto-sans/noto-sans-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('assets/fonts/noto-sans/noto-sans-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('assets/fonts/noto-sans/noto-sans-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('assets/fonts/noto-sans/noto-sans-v6-latin-regular.svg#NotoSans') format('svg'); /* Legacy iOS */
+}
  
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('assets/fonts/open-sans/open-sans-v14-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Open Sans Regular'), local('OpenSans-Regular'),
+         url('assets/fonts/open-sansopen-sans-v14-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('assets/fonts/open-sans/open-sans-v14-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('assets/fonts/open-sans/open-sans-v14-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('assets/fonts/open-sans/open-sans-v14-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('assets/fonts/open-sans/open-sans-v14-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
  input,
  select,
  textarea,
- .select2-container--default .select2-selection--single .select2-selection__rendered,
  label,
- .listing_sidebar_sticky_title,
  html,
  .entry-content blockquote cite,
  .comment-content blockquote cite,
@@ -1043,11 +1066,6 @@
  .search-suggestions-menu .menu-item-description,
  .chosen-container-multi .chosen-choices,
  .chosen-container-single .chosen-single,
- .select2-drop,
- .job_filters .facetwp-facet input,
- .job_filters .facetwp-facet select,
- .job_filters .facetwp-facet .facetwp-type-fselect .fs-label,
- .job_filters .facetwp-type-fselect .fs-label,
  .pac-container .pac-item-query + span,
  .footer-text-area,
  .listing-sidebar .widget_sidebar_title,
@@ -1066,7 +1084,7 @@
  .product .product__tag,
  .product .onsale,
  .woocommerce-account.logged-in .address h3 {
-     font-family: Source Sans Pro, Helvetica, sans-serif;
+     font-family: 'Noto Sans', Helvetica, sans-serif;
  }
  
  .entry-title,
@@ -1116,7 +1134,7 @@
  .page-job-dashboard .chosen-container-multi .chosen-choices li.search-choice,
  .product-content .price,
  .listing-products__items [itemprop="description"] {
-     font-family: "Hanken", sans-serif;
+     font-family: 'Noto Sans', sans-serif;
  }
  
  .intro,
@@ -1135,10 +1153,8 @@
  .widget_subtitle--frontpage,
  .category-list a,
  .search-form .search-field,
- .single:not(.single-job_listing) .entry-subtitle,
- .page .entry-subtitle,
- .single-job_listing .entry-subtitle {
-     font-family: "Hanken", sans-serif;
+ .page .entry-subtitle{
+     font-family: "Noto Sans", sans-serif;
      font-weight: normal;
  }
  

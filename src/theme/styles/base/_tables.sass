@@ -1,0 +1,40 @@
+
+ /**
+  *   3.3 - Tables
+  */
+
+
+.entry-content table:not(.ui-datepicker-calendar)
+    background: white
+    border: 1px solid rgba(0, 0, 0, 0.075)
+    border-collapse: separate
+    border-radius: 8px
+    border-spacing: 0
+    font-size: 14px
+    table-layout: auto
+    width: 100%
+    tr,td
+        vertical-align: middle
+    th:first-child,td:first-child
+        padding-left: 20px
+    td:last-child,th:last-child
+        padding-right: 20px
+    th
+        text-align: left
+        white-space: nowrap
+        padding-left: 10px
+        padding-right: 10px
+    td
+        color: #919191
+        height: 60px
+        padding-left: 10px
+        padding-right: 10px
+        &:empty
+            display: none
+        
+    thead
+        font-size: 16px
+        font-weight: 600
+        + tbody tr:first-child td,
+        + tbody tr:first-child th
+            border-top: 1px solid rgba(0, 0, 0, 0.075)

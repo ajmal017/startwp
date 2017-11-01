@@ -43,7 +43,7 @@
 			<div class="theme-info">
 				<a href="<?php echo esc_url( esc_html__( 'https://wordpress.org/', 'listable' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'listable' ), 'WordPress' ); ?></a>
 				<span class="sep"> <?php _e( 'and', 'listable' ) ?> </span>
-				<?php printf( esc_html__( '%1$s by %2$s.', 'listable' ), '<a href="http://themeforest.net/item/listable-a-friendly-directory-wordpress-theme/13398377?ref=pixelgrade" rel="theme">Listable</a>', '<a href="https://pixelgrade.com/" rel="designer">PixelGrade</a>' ); ?>
+				<?php printf( esc_html__( '%1$s by %2$s.', 'listable' ), '<a href="http://themeforest.net/item/listable-a-friendly-directory-wordpress-theme/13398377?ref=pixelgrade" rel="theme">Bitcoin</a>', '<a href="https://pixelgrade.com/" rel="designer">Iondigital</a>' ); ?>
 			</div>
 		</div>
 	</footer><!-- #colophon -->

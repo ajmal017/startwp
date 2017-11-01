@@ -1,0 +1,107 @@
+
+ /**
+  *   3.8 - WP Align
+  */
+.alignleft,
+.alignright
+    margin-bottom: 0.78125rem 
+    position: relative
+    z-index: 1
+    +rmin(640)
+        display: block 
+        max-width: 100%
+    +rmin(900)
+        display: block 
+        max-width: calc(50% + 150px - 20px)
+
+.alignleft
+    float: left
+    margin-right: 1.5625rem
+    +rmin(900)
+        margin-right: 3.125rem
+        &.wp-caption
+            margin-left: 0
+    
+
+
+.alignright
+    float: right
+    margin-left: 1.5625rem
+    +rmin(900)
+        margin-left: 3.125rem
+        &.wp-caption
+            margin-right: 0
+
+    
+
+
+.aligncenter,
+.alignnone
+    display: block
+    margin-bottom: 3.125rem
+    margin-top: 3.125rem
+    width: auto !important
+    img
+        display: block
+        height: auto 
+        max-width: 100%
+        margin: 0 auto
+    .wp-caption-text
+        text-align: center
+    +rmin(900)
+
+
+@media not screen and (min-width: 900px)
+    figure.aligncenter,
+    figure.alignnone
+        margin-left: 0
+        margin-right: 0
+    
+
+
+.aligncenter
+    text-align: center
+
+
+@media only screen and (min-width: 1200px)
+    .alignnone,
+    .aligncenter
+        margin-left: -200px
+        margin-right: -200px
+    
+    .alignleft
+        margin-left: -5.625rem
+    
+    .single-post .alignleft
+        margin-left: -200px
+    
+    .alignright
+        margin-right: -5.625rem
+    
+    .single-post .alignright
+        margin-right: -200px
+    
+
+
+.widget .alignleft,
+.widget .alignright,
+.widget .alignnone
+    margin: 0
+
+
+.blog .alignleft,
+.archive .alignleft,
+.blog .alignright,
+.archive .alignright,
+.blog .alignnone,
+.archive .alignnone
+    margin: 0
+
+
+.widget .aligncenter
+    margin: 0 auto
+
+
+.blog .aligncenter,
+.archive .aligncenter
+    margin: 0 auto

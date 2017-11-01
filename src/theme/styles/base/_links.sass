@@ -1,0 +1,39 @@
+
+/**
+ *   3.5 - Links
+ *
+ */
+
+a
+    text-decoration: none
+
+.entry-content a,
+.comment-content a,
+.bitcoin-sidebar .widget_bitcoin_content a:hover
+    text-decoration: none
+    transition: all 0.2s 
+    color: #ff4d55
+    transition: color 0.1s linear, background-color 0.1s ease-out
+    &:hover
+        color: #484848
+
+
+@media only screen and (min-width: 900px) 
+    a[href*="jpg"] img,
+    a[href*="png"] img,
+    a[href*="instagram"] img 
+        transition: opacity 0.3s
+        will-change: opacity
+    
+    a[href*="jpg"]:hover img,
+    a[href*="png"]:hover img,
+    a[href*="instagram"]:hover img 
+        opacity: 0.85
+    
+    .gallery a[href*="jpg"]:hover img,
+    .widget a[href*="jpg"]:hover img,
+    .gallery a[href*="png"]:hover img,
+    .widget a[href*="png"]:hover img,
+    .gallery a[href*="instagram"]:hover img,
+    .widget a[href*="instagram"]:hover img
+        opacity: 0.75

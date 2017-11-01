@@ -1,12 +1,12 @@
 {
   "name": "WPT",
-  "version": "1.0.76",
+  "version": "1.0.102",
   "description": "Wordpress, JS, Compile",
   "main": "index.js",
   "author": "IONDIGITAL",
   "license": "MIT",
   "scripts": {
-    "build": "npm version --no-git-tag-version -f patch && mkdir -p dist; node build.js",
+    "build": "npm version --no-git-tag-version -f patch && node build.js",
     "watch": "npm-watch",
     "copy-static": "node build.js copyStatic",
     "watch-js": "node build.js watchJS",
@@ -45,7 +45,7 @@
     "glob": "^7.1.2",
     "mz": "^2.7.0",
     "node-sass": "^4.5.3",
-    "npm-watch": "^0.2.0",
+    "npm-watch": "^0.3.0",
     "path": "^0.12.7",
     "systemjs": "^0.20.19",
     "webcomponentsjs": "^1.0.2"

@@ -1,0 +1,40 @@
+ /**
+  *   3.2 - Lists
+  */
+ /* Definition Lists */
+.entry-content dl,
+.comment-content dl,
+.bitcoin-sidebar .widget_bitcoin_content dl
+    display: flex
+    flex-wrap: wrap
+    dt, dd
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.1)
+        padding: 0.5em 0
+        &:last-of-type
+            border-bottom: 0
+    dt
+        font-weight: bold
+        flex-basis: 33%
+    dd
+        flex-basis: 66%
+
+/* Unordered Lists */
+.entry-content,
+.comment-content,
+.bitcoin-sidebar .widget_bitcoin_content
+    ol
+        padding-left: 1.9rem
+        margin: 0 0 0.5em
+    ul, ul ul, ul ol, ol ul, ol ol
+        list-style: initial
+        margin: 0 0 0.5em
+        padding-left: 2em
+    ul li, ol li
+        display: list-item 
+        padding: 0.25em 0
+        position: relative
+        +rmin(740)
+            margin-left: 0 
+            padding-left: 0
+            &:last-child
+                border-bottom: 0

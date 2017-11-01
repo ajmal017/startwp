@@ -701,22 +701,18 @@
 
     // /* ====== ON WINDOW LOAD ====== */
     $window.load(function() {
-
         $('html').addClass('is--loaded');
-
+ 
         Carousel.init();
 
-
         tooltipTrigger();
-        keepSubmenusInViewport();
+        keepSubmenusInViewport(); 
         $('.js-menu-trigger').on('touchstart click', toggleMenu);
 
-        if (Modernizr.touchevents) {
-            if (windowWidth < 900) {
-                HandleSubmenusOnTouch.initSidebarMenu();
-            } else {
-                HandleSubmenusOnTouch.initHorizontalMenu();
-            }
+        if (windowWidth < 900) {
+            HandleSubmenusOnTouch.initSidebarMenu();
+        } else {
+            HandleSubmenusOnTouch.initHorizontalMenu();
         }
 
         if ($('.site-header .search-form').is(':visible')) {
@@ -1275,7 +1271,7 @@
 
     var HandleSubmenusOnTouch = (
         function() {
-
+         
             var $theUsualSuspects,
                 $theUsualAnchors,
                 initialInit = false,
@@ -1340,12 +1336,10 @@
                 unbind();
 
                 $theUsualAnchors.on('touchstart click', function(e) {
-                    var posX = e.originalEvent.touches[0].pageX ? e.originalEvent.touches[0].pageX : e.pageX;
+                    var posX = e.originalEvent.touches && e.originalEvent.touches[0].pageX ? e.originalEvent.touches[0].pageX : e.pageX;
                     var width = $(this).outerWidth();
 
-                    if ((
-                            width - posX
-                        ) < 60) {
+                    if ((width - posX) < 60) {
 
                         e.preventDefault();
                         e.stopPropagation();

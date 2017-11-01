@@ -11,14 +11,17 @@ const cssoConfig = {
   sourceMap: true,
 };
 
+
 const babelConfig = {
   presets: ["babili"],
+  sourceMaps: true
 };
 
 const funcTable = {
   "copyStatic": [copyStatic],
   "watchJS": [minifyJs],
   "watchCSS": [minifyCss, handleSass],
+  "wpDev": [wpDev]
 }
 
 const templateData = {
@@ -123,6 +126,7 @@ async function handleSass() {
     console.timeEnd('handleSass')
 }
 
+
 async function minifyJs() {
   console.time('minifyJs');
   const orig = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
@@ -134,12 +138,13 @@ async function minifyJs() {
       }
       return file;
     })
-    .map(async file => Object.assign(file, {code: babel.transform(file.contents, babelConfig).code}))
-    // .map(async file => Object.assign(file, {code: file.contents, map: ''}))
+    .map(async file => Object.assign(file, {code, map} = babel.transform(file.contents, babelConfig)))
+    //.map(async file => Object.assign(file, {code: file.contents, map: ''}))
     .map(async file => {
       const dir = path.dirname(file.name);
       await mkdirAll(`dist/${dir}`);
-      await fs.writeFile(`dist/${file.name}`, file.code);
+      await fs.writeFile(`dist/${file.name}`, file.code + `\n//# sourceMappingURL=${path.basename(file.name)}.map`);
+      await fs.writeFile(`dist/${file.name}.map`, JSON.stringify(file.map));
     })
     .array;
 
@@ -158,12 +163,13 @@ async function minifyJs() {
       file.name = `${path.dirname(file.name)}/systemjs/${path.basename(file.name)}`;
       return file;
     })
-    .map(async file => Object.assign(file, {code: babel.transform(file.contents, babelConfig).code}))
+    .map(async file => Object.assign(file, {code, map} =  babel.transform(file.contents, {  presets: ["babili"], sourceMaps: true, sourceMapTarget: file.name, sourceType: "script", sourceRoot: './../'})))
     // .map(async file => Object.assign(file, {code: file.contents, map: ''}))
     .map(async file => {
       const dir = path.dirname(file.name);
       await mkdirAll(`dist/${dir}`);
-      await fs.writeFile(`dist/${file.name}`, file.code);
+      await fs.writeFile(`dist/${file.name}`, file.code + `\n//# sourceMappingURL=${path.basename(file.name)}.map`);
+      await fs.writeFile(`dist/${file.name}.map`, JSON.stringify(file.map));
     })
     .array;
 
@@ -192,7 +198,7 @@ async function copy(from, to) {
 }
 
 async function mkdirAll(dir) {
-  const elems = dir.split(path.sep);
+  const elems = dir.split('/');
   await elems.reduce(async (p, newPath) => {
     const oldPath = await p;
     const newDir = path.join(oldPath, newPath);
@@ -200,3 +206,28 @@ async function mkdirAll(dir) {
     return newDir;
   }, Promise.resolve(''));
 }
+
+
+var filesDist;
+function filesWithPatternsDist(regexps) {
+  if(!filesDist) {
+    filesDist = AsyncArray.from(new Promise((resolve, reject) => glob('dist/**', {dot: true}, (err, f) => err ? reject(err) : resolve(f))))
+      .map(async file => file.substr(4));
+  }
+  return filesDist.filter(async file => regexps.some(regexp => regexp.test(file)));
+}
+
+async function wpDev() {
+  let paths = await filesWithPatternsDist([/theme\/.*\..{2,4}$/])
+                      .map(async filePath => {
+                        return `ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/${filePath.substr(7)} d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/${path.dirname(filePath.substr(7))} \n`
+                      })
+                      .array;
+  let pre = `rm -rf d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/
+             mkdir d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin
+              
+            ln -fs d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/* d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/ \n`; // hack to create dir
+
+  await fs.writeFile('wp-dev.sh', paths.reduce((acc, val) => acc.concat(val) , pre));
+  
+} 

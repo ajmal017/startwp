@@ -1,0 +1,96 @@
+// /* General */
+
++font('Roboto', 'assets/fonts/roboto/roboto-v16-latin-regular')
++font('Noto Sans', 'assets/fonts/noto-sans/noto-sans-v6-latin-regular')
++font('Open Sans', 'assets/fonts/open-sans/open-sans-v14-latin-regular')
+
+%roboto
+    font-family: 'Roboto', serif Helvetica, Arial, Sans-Serif
+%noto
+    font-family: 'Noto Sans', serif Helvetica, Arial, Sans-Serif
+%open
+    font-family: 'Open Sans', serif Helvetica, Arial, Sans-Serif
+
+html 
+    font-size: percentage($base-font-size / 16px)
+    line-height: $base-line-height / $base-font-size
+
+body 
+    @extend %roboto
+    color: $main-text-color
+    font-size: 1rem
+    +r(768)
+        font-size: 0.8rem
+
+.entry-content,
+.comment-content,
+.bitcoin-sidebar .widget_bitcoin_content 
+    line-height: 1.4
+
+.entry-content > *:first-child,
+.comment-content > *:first-child,
+.bitcoin-sidebar .widget_bitcoin_content > *:first-child 
+    margin-top: 0
+
+
+/* Headings */
+/**
+  *   3.4 - Titles
+ */
+
+@for $i from 1 through 6
+    @for $j from 1 through 6
+        .h#{$j} + .h#{$i}
+            margin-top: 0
+
+h1, %h1, h2, %h2, h3, %h3, h4, %h4, h5, %h5, h6 
+    color: $main-text-color
+    font-feature-settings: "dlig" 1, "liga" 1, "lnum" 1, "kern" 1   
+    font-weight: normal
+    margin-bottom: rhythm(.8)
+    @extend %roboto
+
+h1
+   font-size: rem(40px)
+h2
+   font-size: rem(30px)
+h3
+   font-size: rem(26px)
+h4
+   font-size: rem(22px)
+h5
+   font-size: rem(17px)
+h6
+   font-size: rem(14px)
+
+p
+    font-size: 1rem
+    margin-top: 0
+    margin-bottom: rhythm(.5)
+
+b,
+strong 
+    font-weight: 800
+    color: $black
+
+hr
+    background-clip: content-box
+    background-color: rgba(0, 0, 0, 0.075)
+    border: 0
+    border-bottom: 50px solid transparent
+    border-top: 50px solid transparent
+    box-sizing: border-box 
+    clear: both
+    display: block
+    height: 101px
+    margin: 0
+ 
+    &:first-child,
+    &:last-child 
+        height: 51px
+
+    &:first-child 
+        border-top: 0
+
+    &:last-child 
+        border-bottom: 0

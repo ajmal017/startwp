@@ -48,8 +48,6 @@ global $post; ?>
 								} ?>
 							</div>
 
-							<?php get_template_part( 'job_manager/job-filters-hero' ); ?>
-
 						</div>
 
 						<div class="top-categories">

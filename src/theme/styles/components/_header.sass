@@ -1,0 +1,335 @@
+.site-header,
+.site-header .site-branding,
+.site-header .menu-wrapper
+    display: flex
+
+.site-header
+    background-color: white
+    flex-direction: row
+    width: 100%
+    min-height: 60px
+    flex-basis: 60px 
+    flex-shrink: 0
+    flex-wrap: wrap
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25)
+    position: relative
+    z-index: 1100
+    justify-content: space-between
+    &__in
+        display: flex
+        flex: 1 0 auto
+        justify-content: space-between
+        flex-wrap: nowrap
+        margin: 0 auto
+    .menu-wrapper
+        flex-grow: 1
+        justify-content: flex-end
+        align-items: center
+        top: 0
+        +rmin(900)
+            padding-top: 0
+        +r(900)
+            background-color: white
+            color: #6b7c93
+            display: block !important
+            font-size: 1.12rem
+            height: 100%
+            right: 0
+            overflow-x: hidden
+            overflow-y: auto
+            -webkit-overflow-scrolling: touch 
+            padding-top: 60px
+            position: fixed
+            text-align: left
+            transform: translateX(100%) translateZ(0)
+            transition: all 0.3s ease-in-out
+            width: 300px
+            z-index: 999
+            & li 
+                border-top: 1px solid rgba(0, 0, 0, 0.075) 
+                display: block
+            & li:last-child
+                border-bottom: 1px solid rgba(0, 0, 0, 0.075)
+            & a 
+                color: #6b7c93 
+                padding: 19px 60px
+                padding-left: 20px
+            .nav-is-open &
+                box-shadow: 0px 0 40px 2px rgba(0, 0, 0, 0.3) 
+                transform: translateZ(0)
+        .admin-bar &
+            top: 32px
+            +r(782)
+                top: 46px
+                height: calc(100% - 46px)
+        +rmin(900)
+            margin: 0
+            flex: 1 1 50%
+            &.has--long-menu 
+                align-items: center 
+                justify-content: flex-start
+                .primary-menu > ul,
+                ul.primary-menu
+                    display: flex
+                    align-items: center 
+                    flex-shrink: 0
+                .primary-menu > ul > li,
+                ul.primary-menu > li
+                    flex-shrink: 0
+                .primary-menu > ul .cta,
+                ul.primary-menu .cta
+                    height: 36px
+    &.header--transparent
+        background-color: transparent
+    .site-branding
+        padding: 0 20px
+        flex-wrap: nowrap
+        flex-basis: auto
+        flex-shrink: 0
+        align-items: center
+        &--image a
+            display: flex
+    +r(786)
+        min-height: 60px
+        height: 60px
+        flex-basis: 60px 
+
+    .site-title
+        color: #6b7c93
+        display: block
+        font-size: 1.5rem
+        text-align: center 
+        width: 100%
+        +r(900)
+            position: relative
+            z-index: 1
+        .site-header.header--transparent &
+            color: white
+        a
+            color: inherit
+            text-decoration: none
+
+.header-content
+    position: relative
+    width: 100%
+    height: auto
+    margin: auto
+    .hero__title 
+        position: relative
+  
+.menu-trigger
+    display: block
+    height: 50px
+    right: 0
+    position: absolute
+    top: 5px
+    width: 50px
+    border: none
+    background-color: transparent
+    +rmin(900)
+         display: none
+    +rmin(480)
+        .menu-trigger
+            height: 60px
+            width: 60px
+    svg
+        fill: #6b7c93
+        left: 50%
+        position: absolute
+        top: 50%
+        transform: translateX(-50%) translateY(-50%) scale(0.75)
+        +rmin(480)
+            transform: translateX(-50%) translateY(-50%) scale(1)
+
+    .page-template-front_page .header--transparent &
+        border-right-color: transparent
+    .page-template-front_page .header--transparent &.menu--open
+        -webkit-filter: invert(1)
+        filter: invert(1)
+
+
+.primary-menu,
+ul.primary-menu
+    font-size: 0
+    > li
+        height: 60px
+    li.current_page_item > a
+        color: #2d7df0
+    a
+        display: block
+        font-size: 16px
+        font-weight: 300
+        color: #919191
+        padding: 19px 22px 
+        width: 100%
+        height: 100%
+        +rmin(900)
+            font-weight: 700
+            color: #6b7c93
+        &:hover
+            opacity: .6
+        .children
+    > .page_item,
+    > .menu-item
+        +rmin(900)
+            display: inline-block
+        position: relative
+        .header--transparent & > a
+            color: white !important
+        .header--transparent &:after
+            color: white !important
+        &:first-child:before
+            content: none
+        &.cta
+            border: 2px solid rgba(0, 0, 0, 0.075)
+            border-radius: 5px
+            border-color: white
+            height: auto
+            &:hover
+                border-color: rgba(0, 0, 0, 0.15)
+            .header--transparent &
+                background: rgba(255, 255, 255, 0.15)
+                border: 2px solid rgba(255, 255, 255, 0.1)
+                margin-left: 20px
+                margin-right: 20px
+            a
+                padding: 5px 32px 4px 18px
+            &:before
+                content: none
+            &:after
+                font: normal normal normal 14px/1 FontAwesome
+                content: $fa-var-angle-down
+                display: block
+                height: 4px
+                position: absolute
+                right: 14px
+                top: 50%
+                transform: translateY(-50%) rotate(-90deg) 
+                width: 10px
+                .header--transparent &
+                    border-top-color: white
+            + .menu-item:before
+                content: none
+                
+    .menu-item-has-children,
+    .page_item_has_children
+        position: relative
+        +rmin(900)
+            padding-right: 20px 
+        > a
+            position: relative
+        .menu-item-has-children,
+        .page_item_has_children
+            +rmin(900)
+                padding-right: 0px 
+        +rmin(900)
+            &:hover
+                > a,
+                &:after
+                    opacity: .6
+                > .children,
+                > .sub-menu
+                    display: block
+                > *
+                    opacity: 1
+                    pointer-events: auto
+                    display: block
+        +r(900)
+            &.hover
+                > a,
+                &:after,
+                &:before
+                    opacity: .6
+                &:after
+                    transform: rotate(180deg)
+                > .children,
+                > .sub-menu
+                    display: block
+                > *
+                    opacity: 1
+                    pointer-events: auto
+                    display: block
+            &:before
+                content: ""
+                display: block
+                height: 30px
+                width: 30px
+                position: absolute
+                right: 10px
+                top: 16px
+                border-radius: 50%
+                background: transparent
+                border: 1px #919191 solid
+                opacity: .8
+        &:after
+            font: normal normal normal 14px/1 FontAwesome
+            content: $fa-var-angle-down
+            display: block
+            position: absolute
+            right: 20px
+            top: 24px
+            transform: rotate(0)
+            transform-origin: center
+            transition: all 0.1s linear 
+            pointer-events: none
+            backface-visibility: hidden
+        > .children
+            border-top: 1px solid rgba(0, 0, 0, 0.075) 
+            left: 50%
+            transform: translateX(-50%)
+
+
+    .children,
+    .sub-menu
+        +r(900)
+            display: none
+        +rmin(900)
+            position: absolute
+            top: 100%
+            border-radius: 4px
+            background-color: white
+            font-size: 16px
+            left: 0
+            min-width: 13.75rem
+            opacity: 0
+            padding: 18px 0
+            pointer-events: none
+            transition: opacity 0.1s linear
+            z-index: 1001
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1)
+            .sub-menu
+                left: 95% 
+                top: 0
+            .menu-item-has-children
+                .sub-menu.is--forced-placed
+                    right: 100% !important
+                    top: 0 !important
+                    transform: translateX(5px) !important
+                &:after
+                    right: 25px
+                    top: 50%
+                    transform: translateY(-50%) rotate(-90deg) 
+
+            &.is--forced-placed
+                left: auto !important
+                right: 0 !important
+                top: 100% !important
+                -webkit-transform: none !important
+                -ms-transform: none !important
+                transform: none !important
+                .sub-menu
+                    right: 100% !important
+                    top: 0 !important
+                    transform: translateX(5px) !important
+            .header--transparent &
+                border-top: none
+                color: #6b7c93
+            li
+                border: 0 
+                position: relative
+                display: block
+                // &:not(:first-child)
+                //     border-top: #eee solid 1px
+                a
+                    padding: 0.375rem 1.5rem
+                    padding-right: 2.1875rem

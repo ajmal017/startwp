@@ -911,19 +911,19 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'media'           => ' screen and (min-width: 900px)',
 									'callback_filter' => 'bitcoin_update_header_height'
 								),
-//								array(
-//									'property' => 'padding-bottom',
-//									'selector' => '.site-header',
-//									'unit'     => 'px',
-//									'media'    => 'screen and (min-width: 900px) '
-//								)
+								array(
+									'property' => 'padding-bottom',
+									'selector' => '.site-header',
+									'unit'     => 'px',
+									'media'    => 'screen and (min-width: 900px) '
+								)
 							)
 						),
 
 						'navigation_menu_items_spacing' => array(
 							'type'        => 'range',
 							'label'       => __( 'Menu Items Spacing', 'bitcoin' ),
-							'default'     => 24,
+							'default'     => 20,
 							'live'        => true,
 							'input_attrs' => array(
 								'min'          => 12,
@@ -1088,135 +1088,84 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'     => array(
 								array(
 									'property' => 'background-color',
-									'selector' => '.bar, .bar--fixed, .site-header,
-									.primary-menu ul .children, ul.primary-menu .sub-menu, .search-suggestions-menu,
-									.search-suggestions-menu .sub-menu,
-									.site-header .search-form .search-field,
-									.site-header .search-form.is--active,
-									.search_jobs--frontpage .chosen-container .chosen-results,
-									.header-facet-wrapper .facet-wrapper input, .header-facet-wrapper .facet-wrapper select'
-								),
-								array(
-									'property' => 'border-top-color',
-									'selector' => 'ul.primary-menu > .menu-item.menu-item-has-children > .sub-menu:before,
-												  .site-header .search-suggestions-menu:before',
-								),
-								array(
-									'property'        => 'border-top-color',
-									'media'           => 'only screen and  (min-width: 900px)',
-									'selector'        => '.primary-menu ul .children, ul.primary-menu .sub-menu',
-									'callback_filter' => 'bitcoin_customify_darker_callback'
+									'selector' => '.site-header,
+									.primary-menu ul .children, ul.primary-menu .sub-menu'
 								),
 								array(
 									'property' => 'background-color',
 									'media'    => 'not screen and (min-width: 900px)',
-									'selector' => '.menu-wrapper, .search-form input.search-field',
+									'selector' => '.menu-wrapper',
 								),
 								array(
-									'property'        => 'background-color',
-									'media'           => 'not screen  and (min-width: 900px)',
-									'selector'        => '.primary-menu ul .children, ul.primary-menu .sub-menu',
+									'property' => 'background-color',
+									'media'    => 'not screen and (min-width: 900px)',
+									'selector' => '.primary-menu ul .children, ul.primary-menu .sub-menu',
 									'callback_filter' => 'bitcoin_customify_darker_callback'
-								),
+								)
 							)
 						),
 						'site_title_color'        => array(
 							'type'    => 'color',
 							'label'   => __( 'Site Title Color', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#484848',
+							'default' => '#32325d',
 							'css'     => array(
 								array(
 									'property' => 'color',
 									'selector' => '.site-header .site-title,
 									.menu-trigger, .search-trigger--mobile, 
-									ul.primary-menu a, .menu-wrapper a,  ul.primary-menu .menu-item a'
+									ul.primary-menu li a, .menu-wrapper a,  ul.primary-menu .menu-item a, ul.primary-menu > .menu-item-has-children'
 								),
-							),
-						),
-						'search_color'            => array(
-							'type'    => 'color',
-							'label'   => __( 'Search Color', 'bitcoin' ),
-							'live'    => true,
-							'default' => '#484848',
-							'css'     => array(
 								array(
-									'property' => 'color',
-									'selector' => '.search-form .search-field,
-									.search-form .search-submit',
+									'property' => 'fill',
+									'selector' => '.menu-trigger svg',
 								),
-							)
+								array(
+									'property' => 'border-color',
+									'selector' => 'ul.primary-menu > .menu-item-has-children:before',
+									'media'    => ' only screen and (max-width: 900px)'
+								)
+							),
 						),
 						'nav_link_color'          => array(
 							'type'    => 'color',
 							'label'   => __( 'Nav Link Color', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#919191',
+							'default' => '#6b7c93',
 							'css'     => array(
 								array(
 									'property' => 'color',
-									'selector' => '.header--transparent .primary-menu ul .children a,
-										.primary-menu ul .header--transparent .children a,
-										.header--transparent ul.primary-menu .sub-menu a,
-										ul.primary-menu .header--transparent .sub-menu a,
-										div.sd-social.sd-social .inner a span'
-								),
-								array(
-									'property' => 'color',
-									'selector' => '.primary-menu ul a, ul.primary-menu a, .menu-wrapper a,
+									'selector' => '.header--transparent .primary-menu ul .children a, .header--transparent ul.primary-menu .sub-menu a,    .primary-menu ul .header--transparent .children a,
+										.primary-menu ul a, .menu-wrapper a,
 										.primary-menu ul .page_item a,
-										ul.primary-menu .menu-item a,
+										ul.primary-menu ul .menu-item a,
 										.primary-menu ul .page_item_has_children > a,
-										ul.primary-menu .menu-item-has-children > a'
+										ul.primary-menu ul .menu-item-has-children > a,
+										ul.primary-menu ul .menu-item-has-children'
 								),
 								array(
-									'property' => 'border-top-color',
-									'selector' => '.sub-menu .primary-menu ul .page_item_has_children:after,
-										.primary-menu ul .sub-menu .page_item_has_children:after,
-										.sub-menu ul.primary-menu .menu-item-has-children:after,
-										ul.primary-menu .sub-menu .menu-item-has-children:after,
-										.primary-menu ul .page_item_has_children:after,
-										ul.primary-menu .menu-item-has-children:after,
-										.primary-menu ul > .cta.page_item:after,
-										ul.primary-menu > .cta.menu-item:after',
-								),
+									'property' => 'border-color',
+									'selector' => 'ul.primary-menu ul .menu-item-has-children:before',
+									'media'    => ' only screen and (max-width: 900px)'
+								)
+								// array(
+								// 	'property'        => 'border-color',
+								// 	'media'           => 'only screen and  (min-width: 900px)',
+								// 	'selector'        => '.primary-menu ul .children, ul.primary-menu .sub-menu',
+								// 	'callback_filter' => 'bitcoin_customify_lighter_callback'
+								// ),
 							)
 						),
 						'nav_active_color'        => array(
 							'type'    => 'color',
 							'label'   => __( 'Nav Active Color', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#FF4D55',
+							'default' => '#2d7df0',
 							'css'     => array(
 								array(
-									'property' => 'border-top-color',
-									'selector' => '.primary-menu.primary-menu ul .page_item_has_children:hover:after,
-													ul.primary-menu.primary-menu .menu-item-has-children:hover:after,
-													.hover.menu-item-has-children > a:after, .hover.page_item_has_children > a:after,
-													.page-template-front_page .is--active .search-field-wrapper:after',
-								),
-								array(
-									'property' => 'border-top-color',
-									'selector' => 'ul.primary-menu .hover.menu-item-has-children > a:after, .primary-menu > ul .hover.page_item_has_children > a:after',
-									'media'    => 'not screen and (min-width: 900px)'
-								),
-								array(
-									'property' => 'border-left-color',
-									'selector' => '.search-suggestions-menu .menu-item-has-children:hover:after',
-								),
-								array(
 									'property' => 'color',
-									'selector' => '.primary-menu > ul li:hover > a, ul.primary-menu li:hover > a,
-														.search-suggestions-menu li:hover > a,
-														.header--transparent .primary-menu ul .page_item_has_children:hover > a,
-														.header--transparent .primary-menu ul .page_item:hover > a,
-														.header--transparent ul.primary-menu .menu-item-has-children:hover > a,
-														.header--transparent ul.primary-menu .menu-item:hover > a'
-								),
-								array(
-									'property' => 'background-color',
-									'selector' => '.page-template-front_page .search-suggestions-menu > .menu-item:hover > a,
-									.search_jobs--frontpage .chosen-container .chosen-results li:hover'
+									'selector' => '
+												 .primary-menu li.current_page_item a, ul.primary-menu li.current_page_item a'
 								)
 							)
 						),
@@ -1246,7 +1195,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'site_blogheroarea_color1' => array(
 							'type'    => 'color',
-							'label'   => esc_html__( 'Header Background Color', 'bitcoin' ),
+							'label'   => esc_html__( 'Header Background Color From Left Top Corner', 'bitcoin' ),
 							'live'    => true,
 							'default' => '#6d42ef',
 							'css'     => array(
@@ -1258,7 +1207,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'site_blogheroarea_color2' => array(
 							'type'    => 'color',
-							'label'   => esc_html__( 'Header Background Color', 'bitcoin' ),
+							'label'   => esc_html__( 'Header Background Color From Right Bottom Corner', 'bitcoin' ),
 							'live'    => true,
 							'default' => '#00eaf8',
 							'css'     => array(
@@ -1992,7 +1941,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'        => 'range',
 							'label'       => __( 'Font Size', 'bitcoin' ),
 							'live'        => true,
-							'default'     => 14.95,
+							'default'     => 16,
 							'input_attrs' => array(
 								'min'          => 10,
 								'max'          => 20,
@@ -2373,6 +2322,17 @@ if ( ! function_exists( 'bitcoin_customify_darker_callback' ) ) {
 	}
 }
 
+if ( ! function_exists( 'bitcoin_customify_lighter_callback' ) ) {
+	function bitcoin_customify_lighter_callback( $value, $selector, $property, $unit ) {
+		$lighenValue = -100;
+		if ( $value == '#ffffff' ) {
+			$lighenValue = -100;
+		} // #FFFFFF -> #F9F9F9
+		$output = $selector . '{' . $property . ': ' . bitcoin_color_darken( $value, $lighenValue ) . '}';
+
+		return $output;
+	}
+}
 
 
 if ( ! function_exists( 'bitcoin_site_blogheroarea_color1_callback' ) ) {
@@ -2426,27 +2386,8 @@ function bitcoin_update_header_height_customizer_preview() {
 
 		function bitcoin_update_header_height( value, selector, property, unit ) {
 			(function ( $ ) {
-				var headerPaddingBottom = parseInt($('.site-header').css('paddingTop')) + $('.secondary-menu').outerHeight();
+				var headerPaddingBottom = parseInt($('.site-header').css('paddingTop'));
 				$('.site-header').css('paddingBottom', headerPaddingBottom);
-
-				var $updatable = $('.page-listings .js-header-height-padding-top'),
-					$map = $('.map'),
-					$jobFilters = $(' .job_filters .search_jobs div.search_location'),
-					$findMeButton = $('.findme'),
-					headerHeight = $('.site-header').outerHeight();
-
-				// set padding top to certain elements which is equal to the header height
-
-				$updatable.css('paddingTop', '');
-				$updatable.css('paddingTop', headerHeight);
-
-				if ($('#wpadminbar').length) {
-					headerHeight += $('#wpadminbar').outerHeight();
-				}
-
-				$map.css('top', headerHeight);
-				$jobFilters.css('top', headerHeight);
-				$findMeButton.css('top', headerHeight + 70);
 			})( jQuery );
 		}
 	</script>

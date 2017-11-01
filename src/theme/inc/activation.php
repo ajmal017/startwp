@@ -2,12 +2,14 @@
 /**
  * Theme activation hook
  *
- * @package listable
- * @since listable 1.0
+ * @package bitcoin
+ * @since bitcoin 1.0
  */
 
-if ( ! function_exists( 'listable_config_getting_active' ) ) :
-	function listable_config_getting_active() {
+
+
+if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
+	function bitcoin_config_getting_active() {
 
 		/**
 		 * ACTIVATION SETTINGS
@@ -21,71 +23,43 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 					'id'         => '_page_background',
 					'title'      => sprintf(
 							'%s <a class="tooltip" title="%s.<p>%s <strong>%s</strong>, %s <strong>%s</strong> %s.</p>"></a>',
-							esc_html__( 'Hero Area', 'listable' ) ,
-							esc_html__( 'Add an image or a video to be used as a Background for the Hero Area on the Front Page', 'listable' ),
-							esc_html__( 'Tip: Uploading', 'listable' ),
-							esc_html__( 'multiple images and/or videos', 'listable' ),
-							esc_html__( 'will', 'listable' ),
-							esc_html__( 'randomly', 'listable' ),
-							esc_html__( 'pick one when page is loaded', 'listable' )
+							esc_html__( 'Hero Area', 'bitcoin' ) ,
+							esc_html__( 'Add an image or a video to be used as a Background for the Hero Area on the Front Page', 'bitcoin' ),
+							esc_html__( 'Tip: Uploading', 'bitcoin' ),
+							esc_html__( 'multiple images and/or videos', 'bitcoin' ),
+							esc_html__( 'will', 'bitcoin' ),
+							esc_html__( 'randomly', 'bitcoin' ),
+							esc_html__( 'pick one when page is loaded', 'bitcoin' )
 					),
 					'pages'      => array( 'page' ), // Post type
 					'context'    => 'side',
 					'priority'   => 'low',
 					'show_names' => false, // Show field names on the left
-					'show_on'    => array(
-						'0' => array('key'   => 'page-template',
-							 'value' => array( 'page-templates/front_page.php', '' ), // test empty
-						)
-					),
+					'show_on'    => array('key'   => 'id',
+											'value' => get_option('page_for_posts')),
 					'fields'     => array(
 						array(
-							'name' => esc_html__( 'Gallery Image', 'listable' ),
+							'name' => esc_html__( 'Gallery Image', 'bitcoin' ),
 							'id'   => 'image_backgrounds',
 							'type' => 'gallery',
 
 						),
 						array(
-							'name' => esc_html__( 'Gallery Image', 'listable' ),
+							'name' => esc_html__( 'Gallery Image', 'bitcoin' ),
 							'id'   => 'image_backgrounds1',
 							'type' => 'gallery',
 
 						),
 						array(
-							'name' => esc_html__( 'Playlist', 'listable' ),
+							'name' => esc_html__( 'Playlist', 'bitcoin' ),
 							'id'   => 'videos_backgrounds',
 							'type' => 'playlist',
 						)
 					)
-				),
-				'_page_frontpage_search_fields' => array(
-					'id'         => '_page_frontpage_search_fields',
-					'title'      => '&#x1f535; ' . esc_html__( 'Front Page &raquo; Search Fields', 'listable' ) . ' <a class="tooltip" title="' . esc_html__( '<p>Choose what fields to show in the hero area of this front page.</p>', 'listable' ) . '"></a>',
-					'pages'      => array( 'page' ), // Post type
-					'priority'   => 'high',
-					'show_names' => true, // Show field names on the left
-					'show_on'    => array(
-						'key'   => 'page-template',
-						'value' => array( 'page-templates/front_page.php' ),
-					),
-					'fields'     => array(
-						array(
-							'name' => esc_html__( 'Search Fields', 'listable' ),
-							'desc' => '',
-							'id'   => 'frontpage_search_fields',
-							'type' => 'multicheck',
-							'options' => array(
-								'keywords' => esc_html__( 'Keywords', 'listable' ),
-								'location' => esc_html__( 'Location', 'listable' ),
-								'categories' => esc_html__( 'Categories', 'listable' ),
-							),
-							'std' => array('keywords'),
-						),
-					)
-				),
+				)
 				// '_page_frontpage_categories' => array(
 				// 	'id'         => '_page_frontpage_listing_categories',
-				// 	'title'      => '&#x1f535; ' . esc_html__( 'Front Page &raquo; Highlighted Categories', 'listable' ) . ' <a class="tooltip" title="' . esc_html__( '<p>You can select which categories to highlight, by adding their <em>slugs</em>, separated by a comma: <em>food, hotels, restaurants</em></p><p> You can change their <em>shown name</em> (in case it is too long) with this pattern: <em>slug (My Custom Name)</em></p>', 'listable' ) . '"></a>',
+				// 	'title'      => '&#x1f535; ' . esc_html__( 'Front Page &raquo; Highlighted Categories', 'bitcoin' ) . ' <a class="tooltip" title="' . esc_html__( '<p>You can select which categories to highlight, by adding their <em>slugs</em>, separated by a comma: <em>food, hotels, restaurants</em></p><p> You can change their <em>shown name</em> (in case it is too long) with this pattern: <em>slug (My Custom Name)</em></p>', 'bitcoin' ) . '"></a>',
 				// 	'pages'      => array( 'page' ), // Post type
 				// 	'priority'   => 'high',
 				// 	'show_names' => false, // Show field names on the left
@@ -95,48 +69,14 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 				// 	),
 				// 	'fields'     => array(
 				// 		array(
-				// 			'name' => esc_html__( 'Frontend Categories', 'listable' ),
+				// 			'name' => esc_html__( 'Frontend Categories', 'bitcoin' ),
 				// 			'id'   => 'frontpage_listing_categories',
 				// 			'type' => 'text',
 				// 		),
 				// 	)
 				// ),
-				'_page_blogpage' => array(
-					'id'         => '_page_blogpage',
-					'title'      => esc_html__( 'Posts Page Options', 'listable' ),
-					'pages'      => array( 'page' ), // Post type
-					'priority'   => 'high',
-					'show_names' => true, // Show field names on the left
-					'show_on'    => array(
-						'key'   => 'id',
-						'value' => get_option( 'page_for_posts' ),
-					),
-					'fields'    =>  array(
-						array(
-							'name' => esc_html__( 'View Posts Type', 'listable' ) . ' <a class="tooltip" title="' . esc_html__( '<p>Choose how the blog posts visualy displays in the Blog Posts page.</p>', 'listable' ) . '"></a>',
-							'desc' => '',
-							'id'   => 'blogpage_type',
-							'type' => 'radio_inline',
-							'options' => array(
-								array(
-									'id' => esc_html__( 'radio-list', 'listable' ),
-									'value' =>esc_html__( 'list', 'listable' ),
-									'name' => esc_html__( 'List', 'listable' )
-								),
-								array(
-									'id' => esc_html__( 'radio-tile', 'listable' ),
-									'value' =>esc_html__( 'tile', 'listable' ),
-									'name' => esc_html__( 'Tile', 'listable' )
-								)
-							),
-							'std' => 'tile'),
-						array(
-							'name' => esc_html__( 'Blog Categories', 'listable' ) . ' <a class="tooltip" title="' . esc_html__( '<p>Write what post categoty to show in the Blog Posts page.</p>', 'listable' ) . '"></a>',
-							'id'   => 'blogpage_categories',
-							'type' => 'text'),
-					)
-				)
-			),
+
+			)
 		);
 
 
@@ -151,12 +91,12 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 			$types_options = array();
 		}
 
-		$types_options['listable_pixtypes_theme'] = $pixtypes_conf_settings;
+		$types_options['bitcoin_pixtypes_theme'] = $pixtypes_conf_settings;
 		update_option( 'pixtypes_themes_settings', $types_options );
 
 
 		// add defaults widgets
-		$already_added = get_option( 'listable_default_widgets_added' );
+		$already_added = get_option( 'bitcoin_default_widgets_added' );
 		if ( empty( $already_added ) || $already_added !== '1' ) {
 
 			$current_widgets = get_option( 'sidebars_widgets' );
@@ -180,7 +120,7 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 			);
 
 			update_option( 'sidebars_widgets', $current_widgets );
-			update_option( 'listable_default_widgets_added', '1' );
+			update_option( 'bitcoin_default_widgets_added', '1' );
 
 			update_option( 'widget_listing_content', array( '2' => array(), '_multiwidget' => 1 ) );
 			update_option( 'widget_listing_actions', array( '2' => array(), '_multiwidget' => 1 ) );
@@ -196,8 +136,9 @@ if ( ! function_exists( 'listable_config_getting_active' ) ) :
 			update_option( 'widget_front_page_recent_posts', array( '2' => array(), '_multiwidget' => 1 ) );
 		}
 	}
-endif; // end listable_config_getting_active
-add_action( 'after_switch_theme', 'listable_config_getting_active' );
+endif; // end bitcoin_config_getting_active
+bitcoin_config_getting_active();
+add_action( 'after_switch_theme', 'bitcoin_config_getting_active' );
 
 
 // pixtypes requires these things below for a pixelgrade theme
@@ -205,7 +146,7 @@ add_action( 'after_switch_theme', 'listable_config_getting_active' );
 if ( ! class_exists( 'wpgrade' ) ) :
 	class wpgrade {
 		static function shortname() {
-			return 'listable';
+			return 'bitcoin';
 		}
 
 		/** @var WP_Theme */
@@ -236,7 +177,7 @@ if ( ! class_exists( 'wpgrade' ) ) :
 	}
 
 	function wpgrade_callback_geting_active() {
-		listable_config_getting_active();
+		bitcoin_config_getting_active();
 	}
 
 endif;

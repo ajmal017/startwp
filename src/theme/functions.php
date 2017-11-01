@@ -57,8 +57,6 @@ if ( ! function_exists( 'listable_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'primary'            => esc_html__( 'Primary Menu', 'listable' ),
-			'secondary'          => esc_html__( 'Secondary Menu', 'listable' ),
-			'search_suggestions' => esc_html__( 'Search Menu', 'listable' ),
 			'footer_menu'        => esc_html__( 'Footer Menu', 'listable' ),
 		) );
 
@@ -186,16 +184,17 @@ function listable_scripts() {
 	$listable_scripts_deps[] = 'system';
 	$template = get_template_directory_uri();
 	$systemjs_modules = json_encode(array('test.js', 'test1.js', 'main.js'));
-	wp_add_inline_script('system', "$systemjs_modules.reduce(
-        async (chain, module) => {
-          await chain;
-          return SystemJS.import(`$template/assets/js/systemjs/\${module}`);
-        },
-        Promise.resolve() 
-      )");
-	wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
-	wp_enqueue_script( 'test1', get_template_directory_uri() . '/assets/js/systemjs/test1.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
-	wp_enqueue_script( 'listable-scripts', get_template_directory_uri() . '/assets/js/systemjs/main.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
+	// wp_add_inline_script('system', "$systemjs_modules.reduce(
+    //     async (chain, module) => {
+    //       await chain;
+    //       return SystemJS.import(`$template/assets/js/systemjs/\${module}`);
+    //     },
+    //     Promise.resolve() 
+    //   )");
+	// wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
+	// wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
+	wp_enqueue_script( 'listable-scripts', get_template_directory_uri() . '/assets/js/main.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
+
 	wp_localize_script( 'listable-scripts', 'listable_params', array(
 		'login_url' => rtrim( esc_url( wp_login_url() ) , '/'),
 		'listings_page_url' => listable_get_listings_page_url(),

@@ -107,11 +107,11 @@ if ( ! function_exists( 'listable_display_logo' ) ) {
 }
 
 
-if ( ! function_exists( 'listable_posted_on' ) ) :
+if ( ! function_exists( 'bitcoin_posted_on' ) ) :
 	/**
-	 * Prints HTML with meta information for the current post-date/time and author.
+	 * Prints HTML with meta information for the current post-date/time.
 	 */
-	function listable_posted_on() {
+	function bitcoin_posted_on() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 
 		$time_string = sprintf( $time_string,
@@ -127,6 +127,22 @@ if ( ! function_exists( 'listable_posted_on' ) ) :
 			$time_string
 		);
 		echo '<span class="posted-on">' . $posted_on . '</span>'; // WPCS: XSS OK.
+	}
+endif;
+
+
+if ( ! function_exists( 'bitcoin_posted_by' ) ) :
+	/**
+	 * Prints HTML with meta information for the current author.
+	 */
+	function bitcoin_posted_by() {
+
+		$posted_by = sprintf(
+			'<a href="%1$s" rel="bookmark">%2$s</a>',
+			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ) ),
+			esc_html( get_the_author() )
+		);
+		echo '<span class="posted-by">' . $posted_by . '</span>'; // WPCS: XSS OK.
 	}
 endif;
 
@@ -586,31 +602,7 @@ function listable_display_frontpage_listing_categories( $default_count = 7 ) {
 }
 
 
-/**
- * Filter the HTML output for the protected post password form.
- *
- * If modifying the password field, please note that the core database schema
- * limits the password field to 20 characters regardless of the value of the
- * size attribute in the form input.
- *
- * @since 2.7.0
- *
- * @param string $output The password form HTML output.
- */
-add_filter( 'the_password_form', 'listabe_get_the_password_form' );
 
-function listable_get_listings_page_url( $default_link = null  ) {
-	//if there is a page set in the Listings settings use that
-	$listings_page_id = get_option( 'job_manager_jobs_page_id', false );
-	if ( ! empty( $listings_page_id ) ) {
-		return get_permalink( $listings_page_id );
-	}
-
-	if ( $default_link !== null ) {
-		return $default_link;
-	}
-	return get_post_type_archive_link( 'job_listing' );
-}
 
 function listable_single_post_style () {
 	echo apply_filters( 'listable_single_post_image', '');

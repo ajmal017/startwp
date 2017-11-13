@@ -20,11 +20,9 @@
 		</a>
 	<?php } ?>
 	<div class="card__content">
-		<?php the_title( sprintf( '<h2 class="card__title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 		<?php if ( 'post' === get_post_type() ) { ?>
-			<div class="card__meta">
-				<?php listable_posted_on();
-				$categories = get_the_category();
+			<div class="card__categories">
+				<?php $categories = get_the_category();
 				if ( count( $categories ) ) { ?>
 					<ul class="card__links">
 						<?php foreach ( $categories as $category ) { ?>
@@ -32,6 +30,20 @@
 						<?php } ?>
 					</ul>
 				<?php } ?>
+			</div><!-- .card__categories -->
+		<?php } ?>
+		<?php the_title( sprintf( '<h2 class="card__title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+		<?php the_excerpt(); ?>
+		<!-- READ MORE-->
+		<a href="<?php the_permalink(); ?>">
+			<?php _e('READ MORE','bitcoin'); ?>
+		</a>
+
+		<?php if ( 'post' === get_post_type() ) { ?>
+			<div class="card__meta">
+				<?php bitcoin_posted_by(); ?>
+				<span> | </span>
+				<?php bitcoin_posted_on(); ?>
 			</div><!-- .entry-meta -->
 		<?php } ?>
 	</div>

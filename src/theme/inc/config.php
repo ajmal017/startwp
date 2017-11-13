@@ -1030,7 +1030,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'label'       => __( 'Container Width', 'bitcoin' ),
 							// 'desc'        => __( 'Set the width of the container.', 'bitcoin' ),
 							'live'        => true,
-							'default'     => 760,
+							'default'     => 1140,
 							'input_attrs' => array(
 								'min'          => 600,
 								'max'          => 2700,
@@ -1040,22 +1040,34 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'         => array(
 								array(
 									'property' => 'max-width',
-									'selector' => '
-									    .single:not(.single-job_listing) .header-content, 
-									    .single:not(.single-job_listing) .entry-content, 
-									    .single:not(.single-job_listing) .entry-footer, 
-									    .single:not(.single-job_listing) .comments-area, 
-									    .single:not(.single-job_listing) .post-navigation,
-									    .page .header-content, 
-									    body:not(.woocommerce-checkout):not(.page-template-full_width) .entry-content, 
-									    .page .entry-footer, 
-									    .page .comments-area, 
-									    .page .post-navigation,
-									    .secondary-menu,
-									    .error404 .header-content, .error404 .entry-content,
-									    .search-no-results .header-content, .search-no-results .entry-content,
-									    .upsells, .related',
+									'selector' => '.site-content__wrapper',
 									'unit'     => 'px',
+								)
+							)
+						),
+						'sections_vertical_margins' => array(
+							'type'        => 'range',
+							'label'       => __( 'Sections Vertical Margins', 'bitcoin' ),
+							'live'        => true,
+							'default'     => 60,
+							'input_attrs' => array(
+								'min'          => 30,
+								'max'          => 120,
+								'step'         => 6,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'padding-top',
+									'selector' => '.postcards',
+									'unit'     => 'px',
+									'media'    => ' only screen and (min-width: 900px)',
+								),
+								array(
+									'property' => 'padding-bottom',
+									'selector' => '.postcards',
+									'unit'     => 'px',
+									'media'    => 'only screen and (min-width: 900px) ',
 								)
 							)
 						),
@@ -1101,7 +1113,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'media'    => 'not screen and (min-width: 900px)',
 									'selector' => '.primary-menu ul .children, ul.primary-menu .sub-menu',
 									'callback_filter' => 'bitcoin_customify_darker_callback'
-								)
+								),
 							)
 						),
 						'site_title_color'        => array(
@@ -1114,7 +1126,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'property' => 'color',
 									'selector' => '.site-header .site-title,
 									.menu-trigger, .search-trigger--mobile, 
-									ul.primary-menu li a, .menu-wrapper a,  ul.primary-menu .menu-item a, ul.primary-menu > .menu-item-has-children'
+									ul.primary-menu li a, .menu-wrapper a,  ul.primary-menu .menu-item a, ul.primary-menu > .menu-item-has-children'								
 								),
 								array(
 									'property' => 'fill',
@@ -1122,8 +1134,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'border-color',
-									'selector' => 'ul.primary-menu > .menu-item-has-children:before',
-									'media'    => ' only screen and (max-width: 900px)'
+									'selector' => '.primary-menu > .menu-item-has-children:before, .primary-menu > .menu-item-has-children:before, ul.primary-menu >.menu-item-has-children:before',
 								)
 							),
 						),
@@ -1137,6 +1148,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'property' => 'color',
 									'selector' => '.header--transparent .primary-menu ul .children a, .header--transparent ul.primary-menu .sub-menu a,    .primary-menu ul .header--transparent .children a,
 										.primary-menu ul a, .menu-wrapper a,
+										
 										.primary-menu ul .page_item a,
 										ul.primary-menu ul .menu-item a,
 										.primary-menu ul .page_item_has_children > a,
@@ -1145,8 +1157,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'border-color',
-									'selector' => 'ul.primary-menu ul .menu-item-has-children:before',
-									'media'    => ' only screen and (max-width: 900px)'
+									'selector' => '.menu-item-has-children:before',
+									
 								)
 								// array(
 								// 	'property'        => 'border-color',
@@ -1188,32 +1200,87 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				'site_blogheroarea' => array(
 					'title'   => esc_html__( 'Blog Hero Area', 'bitcoin' ),
 					'options' => array(
-						'site_blogheroarea_transparent' => array(
+						'site_blogheroarea_textcolor' => array(
+							'type'    => 'color',
+							'label'   => __( 'Text Color', 'bitcoin' ),
+							'live'    => true,
+							'default' => '#fff',
+							'css'     => array(
+								array(
+									'property' => 'color',
+									'selector' => '.hero-header__content'
+								),
+								array(
+									'property' => 'border-color',
+									'selector' => '.hero-category__list li'
+								),
+								array(
+									'property' => 'background-color',
+									'selector' => '.hero-category__list li a:hover',
+									'callback_filter' => 'bitcoin_site_blogheroarea_color_with_opacity_callback'
+								)
+							)
+						),
+						'site_blogheroarea_gradover' => array(
 							'type'    => 'checkbox',
-							'default' => true,
-							'label'   => esc_html__( 'Apply Overlay', 'bitcoin' ),
+							'default' => false,
+							'label'   => __( 'Apply Gradient Overlay', 'bitcoin' ),
 						),
 						'site_blogheroarea_color1' => array(
 							'type'    => 'color',
-							'label'   => esc_html__( 'Header Background Color From Left Top Corner', 'bitcoin' ),
+							'label'   => __( 'Gradient Background Color From Left Top Corner', 'bitcoin' ),
 							'live'    => true,
 							'default' => '#6d42ef',
 							'css'     => array(
 								array(
 									'property' => 'fill',
-									'selector' => '#page-header__overlay1'						
+									'selector' => '#hero-header__overlay1'						
 								)
 							)
 						),
 						'site_blogheroarea_color2' => array(
 							'type'    => 'color',
-							'label'   => esc_html__( 'Header Background Color From Right Bottom Corner', 'bitcoin' ),
+							'label'   => __( 'Gradient Background Color From Right Bottom Corner', 'bitcoin' ),
 							'live'    => true,
 							'default' => '#00eaf8',
 							'css'     => array(
 								array(
 									'property' => 'fill',
-									'selector' => '#page-header__overlay2'								
+									'selector' => '#hero-header__overlay2'								
+								)
+							)
+						),
+						'site_blogheroarea_linover' => array(
+							'type'    => 'checkbox',
+							'default' => false,
+							'label'   => __( 'Apply Gradient Overlay', 'bitcoin' ),
+						),
+						'site_blogheroarea_color3' => array(
+							'type'    => 'color',
+							'label'   => __( 'Linear Overlay Color', 'bitcoin' ),
+							'live'    => true,
+							'default' => '#fff',
+							'css'     => array(
+								array(
+									'property' => 'background-color',
+									'selector' => '.hero-header__overlay3'
+								)
+							)
+						),
+						'site_blogheroarea_color3_opacity' => array(
+							'type'    => 'range',
+							'label'       => 'It\'s opacity',
+							'live'        => true,
+							'default'     => .5,
+							'input_attrs' => array(
+								'min'  => 0,
+								'max'  => 1,
+								'step' => .1,
+							),
+							'css' => array(
+								array(
+									'property' => 'opacity',
+									'selector' => '.hero-header__overlay3',
 								)
 							)
 						),
@@ -2348,6 +2415,15 @@ if ( ! function_exists( 'bitcoin_site_blogheroarea_color2_callback' ) ) {
 	function bitcoin_site_blogheroarea_color2_callback( $value, $selector, $property, $unit ) {
 	
 		$output = $selector . ' { '. $property .': '. 'linear-gradient(-38deg, rgba(255, 255, 255, 0) 0%, rgba(' . bitcoin_getRGB( $value ) . ' 0.9) 100%)'. '; } \n';
+	
+		return $output;
+	}
+}
+
+if ( ! function_exists( 'bitcoin_site_blogheroarea_color_with_opacity_callback' ) ) {
+	function bitcoin_site_blogheroarea_color_with_opacity_callback( $value, $selector, $property, $unit ) {
+	
+		$output = $selector . ' { '. $property . ': rgba(' . bitcoin_getRGB( $value )  . ' 0.3);} ' ;
 	
 		return $output;
 	}

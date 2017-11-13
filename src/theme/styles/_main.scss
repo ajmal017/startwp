@@ -24,13 +24,14 @@
 @import "base/lists";
 @import "base/links";
 @import "base/forms";
-@import "base/icon-fonts";
 @import "base/wp-align";
 @import "base/blockquote";
 // #LAYOUT
 
+
+
 @import "layout/front-page";
-// @import "layout/general";
+@import "layout/general";
 // @import "layout/archive";
 @import "layout/page";
 // @import "layout/single";
@@ -43,7 +44,7 @@
 // #COMPONENTS
 @import "components/variables";
 @import "components/header";
-// @import "components/hero";
+@import "components/hero";
 // @import "components/comments";
 // @import "components/footer";
 // @import "components/toolbar";

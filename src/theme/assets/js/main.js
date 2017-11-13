@@ -718,7 +718,7 @@
         if ($('.site-header .search-form').is(':visible')) {
             handleMobileHeaderSearch();
         }
-
+        
         //for search listings we need to make some magic to make it behave like the categories and tags archives
         if ($body.is('.search') && $body.is('.post-type-archive-job_listing')) {
             if ($('.job_listings #search_keywords').length) {

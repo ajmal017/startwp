@@ -1,0 +1,54 @@
+.blog .site-header
+  box-shadow: none
+  position: absolute
+
+.postcards
+  margin: 0 15px
+  padding: 50px 0 
+
+.grid
+  display: flex
+  flex-flow: wrap
+  margin-left: -15px
+  margin-right: -15px
+  > *
+    margin-left: 15px
+    margin-right: 15px
+  &__item
+    flex: 1 1 30.3%
+
+.card
+  display: flex
+  flex-flow: column wrap
+  height: 570px
+  &__image
+    height: 250px
+  &__title
+    margin-bottom: .5rem
+  &__content
+    padding: 20px 30px
+    font-family: inherit
+    display: flex
+    flex-flow: column wrap
+    flex: 1 0 auto
+  &__links
+    list-style: none
+    li 
+      display: inline-block
+      margin-right: rem(7px)
+      margin-bottom: rem(7px)
+      a
+        display: inline-block
+        text-decoration: none
+        height: rem(22px)
+        font-family: inherit
+        font-size: 14px
+        padding: 0 rem(10px)
+        color: white
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+        border-radius: 58px
+        background-color: #fc3868
+  &__meta
+    margin-top: auto
+
+  

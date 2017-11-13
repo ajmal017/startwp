@@ -40,7 +40,7 @@ if ( ! function_exists( 'listable_setup' ) ) :
 		 *
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
-		add_theme_support( 'post-thumbnails', array( 'page' ));
+		add_theme_support( 'post-thumbnails', array( 'page', 'post' ));
 
 		// Used for Listing Cards
 		// Max Width of 450px
@@ -197,7 +197,6 @@ function listable_scripts() {
 
 	wp_localize_script( 'listable-scripts', 'listable_params', array(
 		'login_url' => rtrim( esc_url( wp_login_url() ) , '/'),
-		'listings_page_url' => listable_get_listings_page_url(),
 		'strings' => array(
 			'wp-job-manager-file-upload' => esc_html__( 'Add Photo', 'listable' ),
 			'no_job_listings_found' => esc_html__( 'No results', 'listable' ),

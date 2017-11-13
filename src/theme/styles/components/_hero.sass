@@ -1,0 +1,82 @@
+/**
+ *   4.17 - Hero header
+ */
+
+
+.hero-header,
+.hero-header__background
+    position: relative
+    background-size: 100% 100%
+    background-size: cover
+    text-align: center
+    &__overlay1,
+    &__overlay2,
+    &__overlay3
+        position: absolute
+        top: 0
+        right: 0
+        left: 0
+        bottom: 0
+        z-index: 1
+    &.has__featured__image
+        padding: rem(300px / 2) rem(100px / 2)
+        background: black
+        position: relative
+        z-index: 1
+        +r(900)
+            padding: rem(100px) 20px rem(40px)
+        .hero-header__background
+            height: 100%
+            left: 0
+            position: absolute
+            top: 0
+            width: 100%
+            padding: rem(110px) 20px rem(0px)
+            +r(900)    
+                padding: rem(50px) 20px rem(40px)
+        .hero-header__content
+            position: relative
+            z-index: 2
+
+/**
+ *   4.16 - Hero Categories
+ */
+.hero-category__list
+    margin-top: rem(48px)
+    margin-bottom: 0
+    color: inherit
+    +r(900)
+        height: rem(32px)
+        overflow-x: auto
+        margin-top: rem(4px)
+        overflow-y: hidden
+        white-space: nowrap
+    li
+        display: inline-block
+        vertical-align: middle
+        border: 1px solid
+        border-radius: 20px
+        margin: 0 rem(8px) rem(8px)
+        overflow: hidden
+        a 
+            display: inline-block
+            vertical-align: middle
+            font-size: rem(11px)
+            font-weight: 600
+            padding: rem(6px)
+            color: inherit
+            +tr(background-color 1s)
+
+/**
+ *   4.17 - Page title
+ */
+.hero-title
+    color: #484848
+    margin-bottom: 0
+    position: relative
+    .has__featured__image &,
+    .page-template-front_page &
+        color: inherit
+    .page-template-front_page &
+        +r(900)
+            margin-bottom: 5px

@@ -14,7 +14,7 @@ $has_image = false; ?>
 		<div class="header-content">
 			<div class="entry-meta">
 				<?php
-				listable_posted_on();
+				bitcoin_posted_on();
 
 				$post_categories = wp_get_post_categories( $post->ID );
 				if ( ! is_wp_error( $post_categories ) ) {

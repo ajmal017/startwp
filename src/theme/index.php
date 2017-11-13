@@ -22,9 +22,9 @@ get_header();
 		<?php get_template_part( 'template-parts/content', 'hero' ); ?>	
 	
 		<?php if ( have_posts() ) : ?>
-
+	
 			<?php /* Start the Loop */ ?>
-		<div class="entry-content_wrapper">
+		<div class="site-content__wrapper">
 			<div class="postcards">
 				<div class="grid" id="posts-container">
 					<?php /* Start the Loop */ ?>

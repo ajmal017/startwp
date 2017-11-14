@@ -1298,21 +1298,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'     => array(
 								array(
 									'property' => 'background-color',
-									'selector' => 'html, .job_filters, .page-package-selection .hentry.hentry, .single-job_listing .entry-header:before,
-									.listing-sidebar--main .widget:not(.widget_listing_tags):not(.widget_listing_actions):not(.widget_listing_comments),
-									.listing-sidebar--top .widget,
-									.listing-sidebar--bottom,
-									.listing-sidebar--main .comment-respond,
-									.page-add-listing .entry-content,
-									.page-add-listing fieldset:first-child,
-									.woocommerce-account:not(.logged-in) .entry-content .woocommerce form,
-									.post-password-form,
-									.page-listings div.job_listings .load_more_jobs strong,
-									body.registration .entry-content',
-								),
-								array(
-									'property' => 'border-right-color',
-									'selector' => '.widget_listing_comments #add_post_rating:not(:empty):before',
+									'selector' => 'html',
 								)
 							)
 						),
@@ -1325,37 +1311,10 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'background-color',
 									'selector' => '.front-page-section:nth-child(2n),
-										.blog, .archive, .woocommerce.archive,
-										.page-header, .page-header-background,
-										.single:not(.single-job_listing) .entry-featured, .page .entry-featured,
-										.error404 .entry-header, .search-no-results .entry-header,
-										.single-job_listing,
-										.page-add-listing .hentry,
-										.job_filters .showing_jobs,
-										.job_listing_packages,
-										.page-listings,
-										.tax-job_listing_category,
-										.tax-job_listing_tag,
-										.single-action-buttons .action__icon,
-										.woocommerce-account:not(.logged-in) .site-content,
-										.woocommerce-account:not(.logged-in) .entry-content,
-										.mobile-buttons, .tabs.wc-tabs,
-										.woocommerce-cart,
-										.woocommerce-checkout,
-										body.registration',
-								),
-								array(
-									'property' => 'background-color',
-									// 'media' 		=> 'screen and (min-width: 1000px) ',
-									'selector' => '.job_listing_packages,',
-								),
-								array(
-									'media'    => 'not screen and (min-width: 480px)',
-									'property' => 'background-color',
-									'selector' => '.grid.job_listings > .grid__item,
-												.job_listings.product-content > .grid__item,
-												.product-content.job_listings > *'
-								),
+										.blog, .archive,
+										site-content__wrapper,
+										.error404 .entry-header, .search-no-results .entry-header',
+								)
 
 							)
 						),
@@ -1370,12 +1329,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'selector' => '.page-title,
 										.widget_title--frontpage,
 										.single:not(.single-job_listing) .entry-title, .page .entry-title,
-
-										.card__title.card__title,
-										.card__title.card__title a,
-										.package__price,
-										.product .card__title.card__title,
-
+										.card__title,
 										h1, h2, h3, h4, h5, h6,
 										.results,
 										.intro,
@@ -1404,11 +1358,10 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'     => array(
 								array(
 									'property' => 'color',
-									'selector' => '.entry-content a:hover, .comment-content a:hover,
+									'selector' => '.comment-content a:hover,
 										label, html,
 
 										.widget--footer .search-form .search-field,
-										.entry-content a.listing-contact,
 										.single-action-buttons .action__text, .single-action-buttons .action__text--mobile,
 										div.sd-social.sd-social > div.sd-content.sd-content ul li > a span,
 
@@ -1431,27 +1384,14 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'property' => 'border-color',
 									'selector' => 'input[type="checkbox"]:focus,
 													.package__btn.package__btn:hover',
-								),
-
-								array(
-									'property' => 'background-color',
-									'selector' => '.btn:hover, input[type="submit"]:hover,
-										.job-manager-form fieldset .job-manager-uploaded-files .job-manager-uploaded-file .job-manager-uploaded-file-preview a:hover,
-										.woocommerce-account:not(.logged-in) .woocommerce form.login input[type="submit"]:hover,
-										.woocommerce .button:hover, .btn:focus, input[type="submit"]:focus,
-										.job-manager-form fieldset .job-manager-uploaded-files .job-manager-uploaded-file .job-manager-uploaded-file-preview a:focus,
-										.woocommerce-account:not(.logged-in) .woocommerce form.login input[type="submit"]:focus, .woocommerce .button:focus,
-										.package__btn.package__btn:hover,
-										.job_listing_preview_title input[name="edit_job"],
-										 .page-template-front_page .search-form .search-submit:hover, .woocommerce-message > a.button.wc-forward:hover',
-								),
+								)
 							)
 						),
 						'buttons_color'        => array(
 							'type'    => 'color',
 							'label'   => __( 'Buttons Color', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#FF4D55',
+							'	default' => '#FF4D55',
 							'css'     => array(
 								array(
 									'property' => 'background-color',
@@ -1514,17 +1454,27 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							),
 							'css'         => array(
 								array(
-									'selector' => '.card',
+									'selector' => '.postcard',
 									'property' => 'border-radius',
+									'unit'     => 'px'
+								),
+								array(
+									'selector' => '.card .card__image',
+									'property' => 'border-top-left-radius',
+									'unit'     => 'px'
+								),
+								array(
+									'selector' => '.card .card__image',
+									'property' => 'border-top-right-radius',
 									'unit'     => 'px'
 								)
 							)
 						),
 						'thumbs_radius'               => array(
 							'type'        => 'range',
-							'label'       => 'Thumbs Radius',
+							'label'       => 'Categories Radius',
 							'live'        => true,
-							'default'     => 4,
+							'default'     => 14,
 							'input_attrs' => array(
 								'min'  => 0,
 								'max'  => 36,
@@ -1532,7 +1482,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							),
 							'css'         => array(
 								array(
-									'selector' => 'ul.categories--widget .category-cover',
+									'selector' => '.card__categories li a',
 									'property' => 'border-radius',
 									'unit'     => 'px'
 								)
@@ -1542,15 +1492,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'    => 'color',
 							'label'   => __( 'Title Color', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#FF4D55',
+							'default' => '#484848',
 							'css'     => array(
 								array(
 									'property' => 'color',
-									'selector' => '.card--listing .card__title.card__title,
-														.card--post a:hover,
-														.grid__item--widget .posted-on a:hover,
-														.grid__item--widget .card--post a:hover,
-														.popup__title.popup__title',
+									'selector' => '.card__title',
 								),
 							)
 						),
@@ -1558,102 +1504,38 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'    => 'color',
 							'label'   => __( 'Text Color', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#ababab',
+							'default' => '#6b7c93',
 							'css'     => array(
 								array(
 									'property' => 'color',
-									'selector' => '.card, .card__content, .card--post.sticky,
-									.popup__address, .package__description,
-									.single-job_listing .entry-subtitle',
+									'selector' => '.card, .card__content, .card--post.sticky',
 								),
 							)
 						),
-						'cards_icon_color'            => array(
+						'cards_hover'            => array(
 							'type'    => 'color',
-							'label'   => __( 'Icons Color', 'bitcoin' ),
+							'label'   => __( 'Hover Color On Links', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#FF4D5A',
+							'default' => '#22dfb5',
 							'css'     => array(
 								array(
 									'property' => 'color',
-									'selector' => '.card .pin,
-														.card .pin__icon,
-														.card--listing .card__rating.rating,
-														.widget_listing_sidebar_categories .category-icon',
+									'selector' => '
+										.card__title:hover,
+										.card__title:focus,
+										.posted-on:hover, 
+										.posted-on:focus, 
+										.posted-by:hover,
+										.posted-by:focus'
 								),
-							)
-						),
-						'cards_icon_border_color'     => array(
-							'type'    => 'color',
-							'label'   => __( 'Icons Border Color', 'bitcoin' ),
-							'live'    => true,
-							'default' => '#FF4D5A',
-							'css'     => array(
-								array(
-									'property' => 'border-color',
-									'selector' => '.card__tag,
-													.card__rating.rating,
-													.single-action-buttons .action__icon,
-													.widget_listing_sidebar_categories .category-icon',
-								),
-								array(
-									'property' => 'fill',
-									'selector' => '.pin--selected #selected',
-								),
-								array(
-									'property' => 'color',
-									'selector' => '.card__rating.card__pin',
-								),
-							)
-						),
-						'cards_icon_background_color' => array(
-							'type'    => 'color',
-							'label'   => __( 'Icon Background Color', 'bitcoin' ),
-							'live'    => true,
-							'default' => '#FFFFFF',
-							'css'     => array(
 								array(
 									'property' => 'background-color',
-									'selector' => '.card__tag,
-										.card__rating.rating,
-										.widget_listing_sidebar_categories .category-icon',
+									'selector' => '
+										.format-standard.card .card__toplink:before'
 								),
 							)
-						),
-						'pin_background_color'        => array(
-							'type'    => 'color',
-							'label'   => __( 'Pin Background Color', 'bitcoin' ),
-							'live'    => true,
-							'default' => '#FFFFFF',
-							'css'     => array(
-								array(
-									'property' => 'fill',
-									'selector' => '.pin #selected,
-										.marker-cluster svg #svgCluster2,
-										.marker-cluster svg #svgCluster3,
-										.marker-cluster svg #svgCluster4,
-										.pin #oval',
-								),
-							)
-						),
-						'pin_icon_color'              => array(
-							'type'    => 'color',
-							'label'   => __( 'Pin Color', 'bitcoin' ),
-							'live'    => true,
-							'default' => '#FF4D5A',
-							'css'     => array(
-								array(
-									'property' => 'fill',
-									'selector' => '.pin--selected #selected,
-										.marker-cluster svg #svgCluster1,
-										.heart.is--bookmarked #heartshape',
-								),
-								array(
-									'property' => 'color',
-									'selector' => '.marker-cluster, .pin__icon',
-								),
-							)
-						),
+						)
+
 					)
 				),
 
@@ -1753,8 +1635,6 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 													.listing-sidebar .action__icon,
 													.widget_listing_comments #add_comment_rating_wrap i,
 													ol.comment-list .fn a:hover,
-													.single-job_listing .entry-title,
-													.page-listings div.job_listings .load_more_jobs:hover strong,
 													.tax-job_listing_category div.job_listings .load_more_jobs:hover strong,
 													.tax-job_listing_tag div.job_listings .load_more_jobs:hover strong,
 													.chosen-container-single .chosen-single span,
@@ -1764,24 +1644,15 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 													.product-content .price,
 													.tabs.wc-tabs li.active a,
 													.color-accent,
-													.entry-content a, .comment-content a,
-													.gallery-arrow,
-													.job-manager-form fieldset .job-manager-uploaded-files .job-manager-uploaded-file .job-manager-uploaded-file-preview a:hover,
-													.job-manager-form fieldset .job-manager-uploaded-files .job-manager-uploaded-file .job-manager-uploaded-file-preview a:focus,
-													.package__btn.package__btn:hover,
-													.nav-links a:hover, .site-footer a:hover, .facetwp-pager a:hover,
-													.facetwp-pager a.first-page:hover:before, .facetwp-pager a.first-page:hover:after,
-													.facetwp-pager a.last-page:hover:before, .facetwp-pager a.last-page:hover:after,
-													.widget_listing_sidebar_claim_listing .listing-claim-button, .lwa-form .lwa-action-link,
-													.pac-container .pac-item:hover .pac-item-query',
+													.entry-content a:not(.btn), .comment-content a,
+													.gallery-arrow',
 								),
 								array(
 									'property' => 'background-color',
 									'selector' => '.secondary-menu, .secondary-menu-wrapper:before, .product__remove,
 													.page-template-front_page .pac-container .pac-item:hover,
 													.page-template-front_page .search_jobs--frontpage .search-submit,
-													.facetwp-type-slider .noUi-connect,
-													.card__featured-tag, .woocommerce-message, .no-results .clear-results-btn',
+												    .no-results .clear-results-btn',
 								),
 								array(
 									'property' => 'background',
@@ -2089,10 +1960,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								.package__description,
 								.footer-text-area,
 								.widget_listing_comments h3.pixrating_title,
-								.chosen-container-multi .chosen-choices,
-								.chosen-container-single .chosen-single,
-								.product .product__price,
-								.product .product__tag',
+								',
 							'load_all_weights' => true,
 							'default'          => array(
 								'type'        => 'google',
@@ -2159,7 +2027,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						'card_title_font'           => array(
 							'type'             => 'typography',
 							'label'            => esc_html__( 'Card Title Font', 'bitcoin' ),
-							'selector'         => '.card__title.card__title, ul.categories--widget .category-count,
+							'selector'         => '.card__title, ul.categories--widget .category-count,
 									ul.categories--widget .category-text',
 							'load_all_weights' => false,
 							'default'          => array( 'Noto Sans', '700' ),
@@ -2180,8 +2048,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'         => array(
 								array(
 									'property' => 'font-size',
-									'selector' => '.card__title.card__title,
-									ul.categories--widget .category-text',
+									'selector' => '.card__title',
 									'unit'     => 'px',
 								)
 							)
@@ -2202,8 +2069,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'     => array(
 								array(
 									'property' => 'text-transform',
-									'selector' => '.card__title.card__title, ul.categories--widget .category-count,
-									ul.categories--widget .category-text',
+									'selector' => '.card__title',
 								)
 							)
 						),
@@ -2223,8 +2089,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'         => array(
 								array(
 									'property' => 'letter-spacing',
-									'selector' => '.card__title.card__title, ul.categories--widget .category-count,
-									ul.categories--widget .category-text',
+									'selector' => '.card__title',
 									'unit'     => 'px',
 								)
 							)
@@ -2252,40 +2117,93 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						'meta_font' => array(
 							'type'             => 'typography',
 							'label'            => esc_html__( 'Meta & Forms', 'bitcoin' ),
-							'selector'         => '.single:not(.single-job_listing) .entry-meta,
+							'selector'         => '
+								.entry-meta,
 								.page .entry-meta,
-								.single:not(.single-job_listing) div.sd-social.sd-social > div.sd-content.sd-content ul li > a,
-								.page div.sd-social.sd-social > div.sd-content.sd-content ul li > a,
-								.search_jobs select,
-								.search-form .search-field,
-								.search_jobs--frontpage .chosen-container .chosen-results li,
-								.search_jobs--frontpage .chosen-container-multi .chosen-choices li.search-field input[type=text],
-								.search_jobs--frontpage .chosen-container-single .chosen-single span,
-								.search_jobs .chosen-container .chosen-results li,
-								.search_jobs .chosen-container-multi .chosen-choices li.search-field input[type=text],
-								.search_jobs .chosen-container-single .chosen-single span,
-								.search_jobs--frontpage-facetwp,
-								.search_jobs--frontpage-facetwp input,
-								.search_jobs--frontpage-facetwp select,
-								.search_jobs--frontpage-facetwp .facetwp-filter-title,
-								.header-facet-wrapper .facetwp-facet input,
-								.header-facet-wrapper .facetwp-facet select,
-								.header-facet-wrapper .facetwp-facet label,
-								.active-tag,
-								.chosen-results,
-								.job_filters .search_jobs div.search_location input,
-								.search-suggestions-menu li a,
-								.page-template-front_page .search-form .search-submit,
-								.btn,
 								input[type="submit"],
 								button[type="submit"],
-								.woocommerce-account:not(.logged-in) .woocommerce form.login input[type="submit"],
-								.woocommerce .button,
-								.search_jobs--frontpage #search_location',
+								input[type="submit"],
+								.btn',
 							'load_all_weights' => false,
 							'default'          => array( 'Noto Sans', '400' ),
 							'subsets'          => false,
 							'recommended'      => $recommended_body_fonts
+						),
+						// Font Size
+						'meta_title_font_size'      => array(
+							'type'        => 'range',
+							'label'       => __( 'Font Size', 'bitcoin' ),
+							'live'        => true,
+							'default'     => 15,
+							'input_attrs' => array(
+								'min'          => 10,
+								'max'          => 40,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'font-size',
+									'selector' => '.entry-meta,
+								.page .entry-meta,
+								input[type="submit"],
+								button[type="submit"],
+								input[type="submit"],
+								.btn',
+									'unit'     => 'px',
+								)
+							)
+						),
+
+						// Text Transform
+						'meta_title_text_transform' => array(
+							'label'   => __( 'Text Transform', 'bitcoin' ),
+							'live'    => true,
+							'type'    => 'select',
+							'choices' => array(
+								'none'       => 'None',
+								'capitalize' => 'Capitalize',
+								'uppercase'  => 'Uppercase',
+								'lowercase'  => 'Lowercase',
+							),
+							'default' => 'None',
+							'css'     => array(
+								array(
+									'property' => 'text-transform',
+									'selector' => '.entry-meta,
+								.page .entry-meta,
+								input[type="submit"],
+								button[type="submit"],
+								input[type="submit"],
+								.btn',
+								)
+							)
+						),
+
+						// Letter Spacing
+						'meta_title_letter-spacing' => array(
+							'type'        => 'range',
+							'label'       => __( 'Letter Spacing', 'bitcoin' ),
+							'live'        => true,
+							'default'     => 0,
+							'input_attrs' => array(
+								'min'          => - 2,
+								'max'          => 20,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'letter-spacing',
+									'selector' => '.entry-meta,
+								.page .entry-meta,
+								input[type="submit"],
+								button[type="submit"],
+								input[type="submit"],
+								.btn',
+									'unit'     => 'px',
+								)
+							)
 						),
 					)
 				),

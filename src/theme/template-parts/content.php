@@ -11,8 +11,8 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'card card--post' ); ?>>
 	<?php if ( has_post_thumbnail() ) {
 		$image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'listable-card-image' ); ?>
-		<a href="<?php the_permalink(); ?>">
-			<aside class="card__image" style="background-image: url('<?php echo listable_get_inline_background_image( $image[0] ); ?>')"></aside>
+		<a class="card__toplink" href="<?php the_permalink(); ?>">
+			<aside class="card__image" style="background-image: url('<?php echo listable_get_inline_background_image( $image[0] ); ?>');"></aside>
 		</a>
 	<?php } else { ?>
 		<a href="<?php the_permalink(); ?>">
@@ -35,9 +35,12 @@
 		<?php the_title( sprintf( '<h2 class="card__title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 		<?php the_excerpt(); ?>
 		<!-- READ MORE-->
-		<a href="<?php the_permalink(); ?>">
-			<?php _e('READ MORE','bitcoin'); ?>
-		</a>
+		<?php bitcoin_permabutton(
+				array(
+					'classes' => 'btn btn-primary',
+					'title' =>  __( 'READ MORE', 'bitcoin')
+					)
+				); ?>
 
 		<?php if ( 'post' === get_post_type() ) { ?>
 			<div class="card__meta">

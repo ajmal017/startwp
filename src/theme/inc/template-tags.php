@@ -146,6 +146,23 @@ if ( ! function_exists( 'bitcoin_posted_by' ) ) :
 	}
 endif;
 
+if ( ! function_exists('bitcoin_permabutton') ) :
+	
+	// Print the button with title and css classe
+	function bitcoin_permabutton($opt) {
+		$default = array(
+			'classes' => 'btn btn--primary',
+			'title' => ''
+		);
+		$settings = array_merge($default, $opt);
+		$btn = '<div><a class="'. $settings['classes'] . '" href="' . get_permalink() .'">';
+		$btn .= $settings['title'];
+		$btn .= '</a></div>';
+		echo $btn;
+
+	}
+endif;
+
 if ( ! function_exists( 'listable_entry_footer' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.

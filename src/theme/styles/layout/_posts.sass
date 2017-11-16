@@ -13,8 +13,8 @@
   > *
     margin: 15px
   &__item
-    flex: 1 1 360px
-    max-width: 360px
+    flex: 1 1 350px
+    max-width: 350px
     overflow: hidden
     &.postcard
       box-shadow: 0 16px 20px rgba(0, 0, 0, 0.12)
@@ -22,47 +22,56 @@
 .card
   display: flex
   flex-flow: column nowrap
-  height: 570px
+  height: 550px
   overflow: hidden
-  &.format-standard .card__toplink
-    position: relative
-    overflow: hidden
-    +tr(transform .5s)
-    backface-visibility: hidden
-    transform: scale(1)
-    &:hover .card__image
+  &.format-standard 
+    .card__toplink--hasPic
+      flex: 0 0 250px
+      position: relative
+      overflow: hidden
+      +tr(transform .5s)
+      backface-visibility: hidden
+      transform: scale(1)
+      &:before
+        content: ""
+        opacity: 0
+        +coverdiv
+        +tr(opacity .5s ease-out)
+        z-index: 10
+      &:after
+        content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAARElEQVQ4T2NkIAL8////P0gZIyMjIyHlBBWADBg1EG8wjoYh9uAhKdnAFBNKsMTKM1LdQGJsJsnLowZiDYHRMKRvaQMAGvdQDXktn2AAAAAASUVORK5CYII=)
+        position: absolute
+        top: 50%
+        left: 50%
+        margin-left: -10px
+        margin-top: -10px
+        +tr(all .5s ease-out)
+        transform: translateY(-100%)
+        opacity: 0
+        z-index: 11
+    &:hover .card__toplink--hasPic:before
+      opacity: 0.7
+    &:hover .card__toplink--hasPic:after
+      opacity: 1
+      transform: translateY(0)
+    &:hover .card__toplink--hasPic .card__image
       +tr(transform .5s)
       transform: scale(1.1)
-    &:before
-      content: ""
-      opacity: 0
-      +coverdiv
-      +tr(opacity .5s)
-      z-index: 10
-    &:hover:before
-      opacity: 0.7
-    &:hover:after
-      content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAARElEQVQ4T2NkIAL8////P0gZIyMjIyHlBBWADBg1EG8wjoYh9uAhKdnAFBNKsMTKM1LdQGJsJsnLowZiDYHRMKRvaQMAGvdQDXktn2AAAAAASUVORK5CYII=)
-      position: absolute
-      top: 50%
-      left: 50%
-      margin-left: -10px
-      margin-top: -10px
-      z-index: 11
   &__image
+    position: relative
+    background-size: cover
+    background-position: center  
     opacity: 0.95
     height: 250px
     overflow: hidden
-    position: relative
     +tr(transform .5s)
+
 
   &__title
     margin-bottom: .5rem
     +tr(color .5s)
     a
       color: inherit
-  &__categories a:hover
-    opacity: .9
   &__content
     width: 100%
     padding: 20px 30px
@@ -71,28 +80,58 @@
     display: flex
     flex-flow: column wrap
     flex: 1 0 auto
-  &__links
-    list-style: none
-    li 
-      display: inline-block
-      margin-right: rem(7px)
-      margin-bottom: rem(7px)
-      a
+  &__categories
+    margin-bottom: 8px 
+    .card__links
+      list-style: none
+      li 
         display: inline-block
-        text-decoration: none
-        height: rem(22px)
-        font-family: inherit
-        font-size: 14px
-        padding: 0 rem(10px)
-        color: white
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
-        background-color: #fc3868
-  &__meta
+        margin-right: rem(7px)
+        margin-bottom: rem(7px)
+        a
+          display: inline-block
+          text-decoration: none
+          height: rem(22px)
+          font-family: inherit
+          font-size: 14px
+          padding: 0 rem(10px)
+          color: white
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+          &:hover
+            opacity: .9
+  &__excerpt
+    height: rem(3*$base-line-height)
+    margin-bottom: rhythm(1)
+    overflow: hidden
+    p
+      height: rem(3*$base-line-height)
+      overflow: hidden
+      text-overflow: ellipsis
+  &-meta
+    display: flex
     margin-top: auto
+    &__delimiter
+      padding: 0 5px
     .posted-by,
     .posted-on
       +tr(color .5s)
     a
       color: inherit
+    .comments-count
+      margin-left: auto
 
-  
+
+.posted-on,
+.posted-by,
+.comments-count
+  vertical-align: middle
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+.posted-by
+  width: 55px
+.posted-on
+  width: 155px
+.comments-count
+  text-overflow: unset
+  overflow: visible

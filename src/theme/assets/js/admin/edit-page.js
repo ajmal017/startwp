@@ -31,7 +31,7 @@
 		var $gallery = $this.children('ul'),
 			nr_of_images = $gallery.children('li').length,
 			metabox_class = '',
-			options_container = $('#listing_aside tr:not(.display_on.hidden):not(:first-child)');
+			options_container = $('#bitcoin_page_background tr:not(.display_on.hidden):not(:first-child)');
 
 		if ( nr_of_images == 0 ) {
 			metabox_class = 'no-image';
@@ -42,7 +42,7 @@
 		}
 
 		if ( metabox_class !== '' ) {
-			$( '#listing_aside')
+			$( '#bitcoin_page_background')
 				.removeClass('no-image single-image multiple-images')
 				.addClass(metabox_class);
 		}

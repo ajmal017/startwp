@@ -78,7 +78,7 @@ if ( ! function_exists( 'listable_setup' ) ) :
 		 * No support for Post Formats.
 		 * See https://developer.wordpress.org/themes/functionality/post-formats/
 		 */
-		add_theme_support( 'post-formats', array() );
+		add_theme_support( 'post-formats', array('gallery') );
 
 
 		add_post_type_support( 'page', 'excerpt' );
@@ -223,10 +223,6 @@ function listable_admin_scripts() {
 		}
 	}
 
-	if ( listable_is_nav_menus_page() ) {
-		wp_enqueue_script( 'listable-admin-nav-menus-scripts', get_template_directory_uri() . '/assets/js/admin/edit-nav-menus.js', array( 'jquery' ), '1.0.0', true );
-	}
-
 	wp_enqueue_script( 'listable-admin-general-scripts', get_template_directory_uri() . '/assets/js/admin/admin-general.js', array( 'jquery' ), '1.0.0', true );
 
 	$translation_array = array (
@@ -249,7 +245,7 @@ function listable_admin_scripts() {
 			'import_error' =>  esc_html__( "Error:", 'listable'),
 			'import_try_reload' =>  esc_html__( "You can reload the page and try again.", 'listable'),
 	);
-	wp_localize_script( 'listable-admin-general-scripts', 'listable_admin_js_texts', $translation_array );
+	wp_localize_script( 'listable-admin-general-scripts', 'bitcoin_admin_js_texts', $translation_array );
 }
 
 add_action( 'admin_enqueue_scripts', 'listable_admin_scripts' );

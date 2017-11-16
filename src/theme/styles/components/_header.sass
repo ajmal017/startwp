@@ -78,9 +78,12 @@
                     flex-shrink: 0
                 .primary-menu > ul .cta,
                 ul.primary-menu .cta
-                    height: 36px
+                    +rmin(900)
+                        height: 36px
     &.header--transparent
         background-color: transparent
+        .site-title--text
+            color: white
     .site-branding
         padding: 0 20px
         flex-wrap: nowrap
@@ -89,6 +92,8 @@
         align-items: center
         &--image a
             display: flex
+        .site-title--text
+            margin: 0
     +r(786)
         min-height: 60px
         height: 60px
@@ -182,35 +187,39 @@ ul.primary-menu
         &:first-child:before
             content: none
         &.cta
-            border: 2px solid rgba(0, 0, 0, 0.075)
-            border-radius: 5px
-            border-color: white
-            height: auto
-            &:hover
-                border-color: rgba(0, 0, 0, 0.15)
-            .header--transparent &
-                background: rgba(255, 255, 255, 0.15)
-                border: 2px solid rgba(255, 255, 255, 0.1)
-                margin-left: 20px
-                margin-right: 20px
-            a
-                padding: 5px 32px 4px 18px
-            &:before
-                content: none
-            &:after
-                font: normal normal normal 14px/1 FontAwesome
-                content: $fa-var-angle-down
-                display: block
-                height: 4px
-                position: absolute
-                right: 14px
-                top: 50%
-                transform: translateY(-50%) rotate(-90deg) 
-                width: 10px
+            +rmin(900)
+                border: 2px solid rgba(0, 0, 0, 0.075)
+                border-radius: 5px
+                border-color: white
+                height: auto
+                max-height: 40px
+                &:hover
+                    border-color: rgba(0, 0, 0, 0.15)
+                    &:after
+                        opacity: .6
                 .header--transparent &
-                    border-top-color: white
-            + .menu-item:before
-                content: none
+                    background: rgba(255, 255, 255, 0.15)
+                    border: 2px solid rgba(255, 255, 255, 0.1)
+                    margin-left: 20px
+                    margin-right: 20px
+                a
+                    padding: 5px 32px 4px 18px
+                &:before
+                    content: none
+                &:after
+                    font: normal normal normal 14px/1 FontAwesome
+                    content: $fa-var-angle-down
+                    display: block
+                    height: 4px
+                    position: absolute
+                    right: 14px
+                    top: 50%
+                    transform: translateY(-50%) rotate(-90deg) 
+                    width: 10px
+                    .header--transparent &
+                        border-top-color: white
+                + .menu-item:before
+                    content: none
                 
     .menu-item-has-children,
     .page_item_has_children

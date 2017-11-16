@@ -38,14 +38,7 @@ add_action( 'after_setup_theme', 'listable_jetpack_setup' );
  */
 function listable_infinite_scroll_render() {
 	while ( have_posts() ) : the_post();
-
-		/**
-		 * If this is a woocommerce archive, use the proper template card
-		 */
-		if ( 'product' === get_post_type() && function_exists( 'wc_get_template_part' ) ) {
-			wc_get_template_part( 'content', 'product' );
-			continue;
-		} ?>
+	?>
 		<div class="grid__item  postcard">
 			<?php
 			/*
@@ -58,15 +51,3 @@ function listable_infinite_scroll_render() {
 
 	<?php endwhile;
 } // end function listable_infinite_scroll_render
-
-function listable_jetpack_remove_share_from_listings() {
-	if ( is_post_type_archive('job_listing') || get_query_var( 'post_type' )  == 'job_listing' ) {
-		remove_filter( 'the_content', 'sharing_display', 19 );
-		remove_filter( 'the_excerpt', 'sharing_display', 19 );
-		if ( class_exists( 'Jetpack_Likes' ) ) {
-			remove_filter( 'the_content', array( Jetpack_Likes::init(), 'post_likes' ), 30 );
-		}
-	}
-}
-
-add_action( 'loop_start', 'listable_jetpack_remove_share_from_listings' );

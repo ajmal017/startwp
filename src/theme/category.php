@@ -11,9 +11,9 @@ get_header(); ?>
 
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
-		<header class="page-header">
-			<h1 class="page-title"><?php single_cat_title( esc_html__('Category: ', 'listable') ); ?></h1>
-		</header>
+
+		<?php get_template_part('template-parts/content', 'hero'); ?>	
+
  
 		<?php if ( have_posts() ) : ?>
 

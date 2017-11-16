@@ -163,6 +163,21 @@ if ( ! function_exists('bitcoin_permabutton') ) :
 	}
 endif;
 
+if( ! function_exists( 'bitcoin_comments_number' ) ):
+	/** 
+	 * Prints HTML with icon for comments
+	*/
+
+	function bitcoin_comments_number() {
+		$comment_html  = sprintf(
+			'<span class="comments-count"><i class="bitcoin-icon bitcoin-icon--comment"></i>%1$s</span>',
+			get_comments_number_text( __('0','bitcoin'), __('1','bitcoin'), __('%','bitcoin'))
+		);
+		echo $comment_html;
+	}
+
+endif;
+
 if ( ! function_exists( 'listable_entry_footer' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
@@ -206,8 +221,8 @@ endif;
  *
  * @return bool
  */
-function listable_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'listable_categories' ) ) ) {
+function bitcoin_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'bitcoin_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -219,32 +234,29 @@ function listable_categorized_blog() {
 
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
-
-		set_transient( 'listable_categories', $all_the_cool_cats );
+		set_transient( 'bitcoin_categories', $all_the_cool_cats );
 	}
 
+
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so listable_categorized_blog should return true.
+		// This blog has more than 1 category so bitcoin_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so listable_categorized_blog should return false.
+		// This blog has only 1 category so bitcoin_categorized_blog should return false.
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in listable_categorized_blog.
+ * Flush out the transients used in bitcoin_categorized_blog.
  */
-function listable_category_transient_flusher() {
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-		return;
-	}
+function bitcoin_category_transient_flusher() {
 	// Like, beat it. Dig?
-	delete_transient( 'listable_categories' );
+	delete_transient( 'bitcoin_categories' );
 }
 
-add_action( 'edit_category', 'listable_category_transient_flusher' );
-add_action( 'save_post', 'listable_category_transient_flusher' );
+add_action( 'edit_category', 'bitcoin_category_transient_flusher' );
+add_action( 'save_post', 'bitcoin_category_transient_flusher' );
 
 if ( ! function_exists( 'listable_display_term_icon' ) ) {
 	function listable_display_term_icon( $term_id = null, $size = 'thumbnail' ) {
@@ -285,59 +297,6 @@ if ( ! function_exists( 'listable_listing_tag_slug_input' ) ) {
 			echo esc_attr( $permalinks['tag_base'] );
 		} ?>" placeholder="<?php echo esc_attr_x( 'listing-tag', 'slug', 'listable' ) ?>"/>
 		<?php
-	}
-}
-
-if ( ! function_exists('listable_output_single_listing_icon' ) ) {
-	/**
-	 * Output an icon to be used in the Single Listing Map Widget
-	 */
-	function listable_output_single_listing_icon () {
-		global $post;
-
-		$the_term = null;
-
-		// Try to get a category icon
-		$cat_list = wp_get_post_terms(
-			$post->ID,
-			'job_listing_category',
-			array( 'fields' => 'all' )
-		);
-
-		if ( ! empty( $cat_list ) && ! is_wp_error( $cat_list ) ) {
-			foreach ( $cat_list as $term ) :
-				if ( listable_get_term_icon_url( $term->term_id ) ) {
-					$the_term = $term;
-					break;
-				}
-			endforeach;
-		}
-
-		// Else try to get a tag icon
-		if ( $the_term == null ) {
-			$tag_list = wp_get_post_terms(
-				$post->ID,
-				'job_listing_tag',
-				array( 'fields' => 'all' )
-			);
-
-			if ( ! empty( $tag_list ) && ! is_wp_error( $tag_list ) ) {
-				foreach ( $tag_list as $term ) :
-					if ( listable_get_term_icon_url( $term->term_id ) ) {
-						$the_term = $term;
-						break;
-					}
-				endforeach;
-			}
-		}
-
-		if( $the_term != null ) {
-			$icon_url      = listable_get_term_icon_url( $the_term->term_id );
-			$attachment_id = listable_get_term_icon_id( $the_term->term_id );
-			echo '<div class="single-listing-map-category-icon">';
-			listable_display_image( $icon_url, '', true, $attachment_id );
-			echo '</div>';
-		}
 	}
 }
 
@@ -534,89 +493,7 @@ class ListableWrapImagesInFigureCallback {
 		}
 		return '<span class="' . $this->class . '">' . $match[1] . '</span>';
 	}
-}
-
-function listable_display_frontpage_listing_categories( $default_count = 7 ) {
-	$term_list = array();
-
-	//first let's do only one query and get all the terms - we will reuse this info to avoid multiple queries
-	$query_args = array( 'orderby' => 'count', 'order' => 'DESC', 'hide_empty' => false, 'hierarchical' => true, 'pad_counts' => true );
-
-	$all_terms = get_terms(
-			'job_listing_category',
-			$query_args
-	);
-
-	//bail if there was an error
-	if ( is_wp_error( $all_terms ) ) {
-		return;
-	}
-
-	//now create an array with the category slug as key so we can reference/search easier
-	$all_categories = array();
-	foreach ( $all_terms as $key => $term ) {
-		$all_categories[ $term->slug ] = $term;
-	}
-
-	$categories             = get_post_meta( get_the_ID(), 'frontpage_listing_categories', true );
-	$custom_category_labels = array();
-
-	//if we have received a list of categories to display (their slugs and optional label), use that
-	if ( ! empty( $categories ) ) {
-		$categories = explode( ',', $categories );
-		foreach ( $categories as $key => $category ) {
-			if ( strpos( $category, '(' ) !== false ) {
-				$category  = explode( '(', $category );
-				$term_slug = trim( $category[0] );
-				$term_slug = sanitize_title_for_query( $term_slug );
-
-				if ( substr( $category[1], - 1, 1 ) == ')' ) {
-					$custom_category_labels[ $term_slug ] = trim( substr( $category[1], 0, - 1 ) );
-				}
-
-				if ( array_key_exists( $term_slug, $all_categories ) ) {
-					$term_list[] = $all_categories[ $term_slug ];
-				}
-			} else {
-				$term_slug   = trim( $category );
-				$term_slug = sanitize_title_for_query( $term_slug );
-
-				if ( array_key_exists( $term_slug, $all_categories ) ) {
-					$term_list[] = $all_categories[ $term_slug ];
-				}
-			}
-		}
-	} else {
-		//it seems we will have to figure out ourselves what categories to display
-
-		$term_list = array_slice( $all_categories, 0, $default_count);
-	}
-
-	foreach ( $term_list as $key => $term ) :
-		if ( ! $term || ( is_array( $term ) && isset( $term['invalid_taxonomy'] ) ) ) {
-			continue;
-		} ?>
-
-		<a href="<?php echo esc_url( get_term_link( $term ) ); ?>">
-
-			<?php
-			$url = listable_get_term_icon_url( $term->term_id );
-			$attachment_id = listable_get_term_icon_id( $term->term_id );
-			if ( ! empty( $url ) ) : ?>
-
-				<span class="cat__icon"><?php listable_display_image( $url, '', true, $attachment_id ); ?></span>
-
-			<?php endif; ?>
-
-			<span class="cat__text"><?php echo isset( $custom_category_labels[ $term->slug ] ) ? $custom_category_labels[ $term->slug ] : $term->name; ?></span>
-		</a>
-
-	<?php endforeach;
-
-	if ( $term_list ) {
-		echo '<div style="position: relative;"><span class="cta-text">' . esc_html__( 'Or browse the highlights', 'listable' ) . '</span></div>';
-	}
-}
+}	
 
 
 

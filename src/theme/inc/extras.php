@@ -387,19 +387,6 @@ function listable_is_edit_page( $new_edit = null ) {
 	}
 }
 
-function listable_is_nav_menus_page( $new_edit = null ) {
-	global $pagenow;
-	//make sure we are on the backend
-	if ( ! is_admin() ) {
-		return false;
-	}
-
-	if( 'nav-menus.php' == $pagenow ) {
-		return true;
-	}
-
-	return false;
-}
 
 function listable_sort_array_by_priority( $a, $b ) {
 	if ( $a['priority'] == $b['priority'] ) {

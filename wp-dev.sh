@@ -8,6 +8,7 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/css/a
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/css/admin/edit-page.css d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/css/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/css/admin/group_panel_widget.css d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/css/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/fonts/fontawesome/fontawesome-webfont.eot d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/fonts/fontawesome 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/fonts/fontawesome/fontawesome-webfont.otf d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/fonts/fontawesome 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/fonts/fontawesome/fontawesome-webfont.ttf d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/fonts/fontawesome 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/fonts/fontawesome/FontAwesome.otf d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/fonts/fontawesome 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/fonts/hanken/hanken-book-webfont.eot d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/fonts/hanken 
@@ -27,6 +28,7 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/fonts
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/emerald.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/light.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/outdoors.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/Pattern.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/pencil.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/pirates.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/satellite.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img 
@@ -44,14 +46,6 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/ad
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/edit-nav-menus.js.map d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/edit-page.js d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/edit-page.js.map d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/facetwp/fwp.js d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin/facetwp 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/facetwp/fwp.js.map d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin/facetwp 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/facetwp/sortable.js d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin/facetwp 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/facetwp/sortable.js.map d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin/facetwp 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/facetwp/systemjs/fwp.js d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin/facetwp/systemjs 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/facetwp/systemjs/fwp.js.map d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin/facetwp/systemjs 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/facetwp/systemjs/sortable.js d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin/facetwp/systemjs 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/facetwp/systemjs/sortable.js.map d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin/facetwp/systemjs 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/group_panel_widget.js d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/group_panel_widget.js.map d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/systemjs/admin-general.js d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/js/admin/systemjs 

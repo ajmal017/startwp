@@ -14,12 +14,13 @@
     $the_random_hero = listable_get_random_hero_object( $page_for_posts );
     $has_image       = false;	
 
-    if ( ( empty( $the_random_hero ) || property_exists( $the_random_hero, 'post_mime_type' ) || strpos( $the_random_hero->post_mime_type, 'video' ) !== false ) && is_object( $the_random_hero ) && property_exists( $the_random_hero, 'post_mime_type' ) && strpos( $the_random_hero->post_mime_type, 'image' ) !== false ) {
+    if ( ( empty( $the_random_hero ) || property_exists( $the_random_hero, 'post_mime_type' ) ) && is_object( $the_random_hero ) && property_exists( $the_random_hero, 'post_mime_type' ) && strpos( $the_random_hero->post_mime_type, 'image' ) !== false ) {
             $has_image = wp_get_attachment_url( $the_random_hero->ID );
         } 
 ?>
 
-<header class="hero-header<?php if($has_image) echo ' has__featured__image'; ?>" >
+<header class="hero-header<?php if($has_image) echo ' has__featured__image'; 
+if(bitcoin_categorized_blog() && !is_category()) echo ' has__categories'; ?>" >
     <div class="hero-header__background"<?php if ( ! empty( $has_image ) ) {
         echo ' style="background-image: url(' . listable_get_inline_background_image( $has_image ) . ');"';
     } ?>>
@@ -66,32 +67,28 @@
             <!-- Trasparancy Overlay end-->
 
         <?php endif; ?>
-
-        <?php if ( ! empty( $the_random_hero ) && property_exists( $the_random_hero, 'post_mime_type' ) && strpos( $the_random_hero->post_mime_type, 'video' ) !== false ) {
-            $mimetype = str_replace( 'video/', '', $the_random_hero->post_mime_type );
-            if ( has_post_thumbnail( $the_random_hero->ID ) ) {
-                $image = wp_get_attachment_url( get_post_thumbnail_id( $the_random_hero->ID ) );
-                $poster = ' poster="' . $image . '" ';
-            } else {
-                $poster = ' ';
-            }
-            echo do_shortcode( '[video ' . $mimetype . '="' . wp_get_attachment_url( $the_random_hero->ID ) . '"' . $poster . 'loop="true" autoplay="true"][/video]' );
-        } ?>
     
         <div class="hero-header__content">
-            <h1 class="hero-title"><?php echo get_the_title( $page_for_posts ); ?></h1>
+            <?php if( is_category() ) { ?>
+                <h1 class="hero-title"><?php single_cat_title(esc_html__('Category: ', 'bitcoin')); ?></h1>
+            <?php } else { ?>
+                <h1 class="hero-title"><?php echo get_the_title($page_for_posts); ?></h1>
+            <?php } ?>
 
             <?php
-            $categories = get_categories();
-            if( $categories ):
-                echo '<ul class="hero-category__list">';
+            if( bitcoin_categorized_blog() && !is_category()):
+                $categories = get_categories();
+                if( $categories ):
+                    echo '<ul class="hero-category__list">';
 
-                foreach ( $categories as $category ): ?>
-                    <li><a href="<?php echo esc_sql( get_category_link( $category->cat_ID ) ); ?>"><?php echo $category->cat_name; ?></a></li>
-                <?php endforeach;
+                    foreach ( $categories as $category ): ?>
+                        <li><a href="<?php echo esc_sql( get_category_link( $category->cat_ID ) ); ?>"><?php echo $category->cat_name; ?></a></li>
+                    <?php endforeach;
 
-                echo '</ul>';
+                    echo '</ul>';
+                endif;
             endif; ?>
+
         </div>
     </div>
 </header>

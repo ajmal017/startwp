@@ -50,9 +50,7 @@ global $post; ?>
 
 						</div>
 
-						<div class="top-categories">
-							<?php listable_display_frontpage_listing_categories(); ?>
-						</div>
+			
 
 					</header>
 

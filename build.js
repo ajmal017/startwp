@@ -5,6 +5,8 @@ const glob = require('glob');
 const path = require('path');
 const AsyncArray = require('./async_array.js')
 const package = require('./package.json');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 const cssoConfig = {
   restructure: false,
@@ -230,5 +232,7 @@ async function wpDev() {
             ln -fs d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/* d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/ \n`; // hack to create dir
 
   await fs.writeFile('wp-dev.sh', paths.reduce((acc, val) => acc.concat(val), pre));
+  const { stdout, stderr } = await exec('sh wp-dev.sh');
+  if (stderr) console.log('stderr:', stderr);
 
 } 

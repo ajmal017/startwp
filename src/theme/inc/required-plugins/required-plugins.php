@@ -44,13 +44,8 @@ function listable_register_required_plugins() {
 			'name'      		 => 'Jetpack',
 			'slug'      		 => 'jetpack',
 			'required'  		 => false
-		),
+		)
 
-		// array(
-		// 	'name'               => 'PixCodes',
-		// 	'slug'               => 'pixcodes',
-		// 	'required'           => false,
-		// ),
 	);
 
 	$config = array(

@@ -9,6 +9,7 @@
     background-size: 100% 100%
     background-size: cover
     text-align: center
+
     &__overlay1,
     &__overlay2,
     &__overlay3
@@ -17,27 +18,35 @@
         right: 0
         left: 0
         bottom: 0
-        z-index: 1
-    &.has__featured__image
-        padding: rem(300px / 2) rem(100px / 2)
+        z-index: -1
+    &
         background: black
         position: relative
         z-index: 1
+        padding: rem(300px / 3.5) rem(100px / 2)
         +r(900)
-            padding: rem(100px) 20px rem(40px)
+            padding: rem(300px / 4) 20px rem(40px)
+        &.has__categories
+            padding: rem(300px / 2) rem(100px / 2)
+            +r(900)
+                padding: rem(300px / 2) 20px rem(40px)
         .hero-header__background
             height: 100%
             left: 0
             position: absolute
             top: 0
+            background-position: center
+            background-size: cover
             width: 100%
+            padding: rem(110px / 2) 20px rem(0px)
+            +r(900)
+                padding: rem(100px / 3) 20px rem(0px)
+        &.has__categories .hero-header__background
             padding: rem(110px) 20px rem(0px)
             +r(900)    
-                padding: rem(50px) 20px rem(40px)
-        .hero-header__content
-            position: relative
-            z-index: 2
-
+                padding: rem(65px) 20px rem(40px)
+    .hero-header__content
+        z-index: 20
 /**
  *   4.16 - Hero Categories
  */
@@ -45,8 +54,9 @@
     margin-top: rem(48px)
     margin-bottom: 0
     color: inherit
+    z-index: 10
     +r(900)
-        height: rem(32px)
+        height: rem(42px)
         overflow-x: auto
         margin-top: rem(4px)
         overflow-y: hidden
@@ -54,8 +64,7 @@
     li
         display: inline-block
         vertical-align: middle
-        border: 1px solid
-        border-radius: 20px
+        border-style: solid
         margin: 0 rem(8px) rem(8px)
         overflow: hidden
         a 
@@ -71,8 +80,8 @@
  *   4.17 - Page title
  */
 .hero-title
-    color: #484848
-    margin-bottom: 0
+    color: inherit
+    margin-bottom: 16px
     position: relative
     .has__featured__image &,
     .page-template-front_page &

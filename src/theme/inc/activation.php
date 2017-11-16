@@ -19,12 +19,12 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 		$pixtypes_conf_settings = array(
 			'first_activation' => true,
 			'metaboxes'        => array(
-				'_page_background' => array(
-					'id'         => '_page_background',
+				'bitcoin_page_background' => array(
+					'id'         => 'bitcoin_page_background',
 					'title'      => sprintf(
 							'%s <a class="tooltip" title="%s.<p>%s <strong>%s</strong>, %s <strong>%s</strong> %s.</p>"></a>',
 							esc_html__( 'Hero Area', 'bitcoin' ) ,
-							esc_html__( 'Add an image or a video to be used as a Background for the Hero Area on the Front Page', 'bitcoin' ),
+							esc_html__( 'Add an image to be used as a Background for the Hero Area on the Page', 'bitcoin' ),
 							esc_html__( 'Tip: Uploading', 'bitcoin' ),
 							esc_html__( 'multiple images and/or videos', 'bitcoin' ),
 							esc_html__( 'will', 'bitcoin' ),
@@ -43,20 +43,35 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 							'id'   => 'image_backgrounds',
 							'type' => 'gallery',
 
-						),
-						array(
-							'name' => esc_html__( 'Gallery Image', 'bitcoin' ),
-							'id'   => 'image_backgrounds1',
-							'type' => 'gallery',
-
-						),
-						array(
-							'name' => esc_html__( 'Playlist', 'bitcoin' ),
-							'id'   => 'videos_backgrounds',
-							'type' => 'playlist',
 						)
 					)
-				)
+				),
+				'_gallery_post_images' => array(
+					'id' => '_gallery_post_images',
+					'title' => sprintf(
+						'%s <a class="tooltip" title="%s"></a>',
+						esc_html__('Gallery', 'bitcoin'),
+						esc_html__('Add an images to be used as a gallery for the Gallery Post Type', 'bitcoin')
+					),
+					'pages' => array('post'), // Post type
+					'context' => 'normal',
+					'priority' => 'high',
+					'show_names' => true, // Show field names on the left
+					'show_on' => array(
+						'key' => 'post-formats-select',
+						'value' => array('gallery'),
+					),
+					'fields' => array(
+						array(
+							'name' => esc_html__('Gallery Image', 'bitcoin'),
+							'id' => 'image_backgrounds',
+							'type' => 'gallery',
+
+						)
+					)
+				),
+
+
 				// '_page_frontpage_categories' => array(
 				// 	'id'         => '_page_frontpage_listing_categories',
 				// 	'title'      => '&#x1f535; ' . esc_html__( 'Front Page &raquo; Highlighted Categories', 'bitcoin' ) . ' <a class="tooltip" title="' . esc_html__( '<p>You can select which categories to highlight, by adding their <em>slugs</em>, separated by a comma: <em>food, hotels, restaurants</em></p><p> You can change their <em>shown name</em> (in case it is too long) with this pattern: <em>slug (My Custom Name)</em></p>', 'bitcoin' ) . '"></a>',
@@ -181,3 +196,21 @@ if ( ! class_exists( 'wpgrade' ) ) :
 	}
 
 endif;
+
+function add_for_specific_post_type($display, $meta_box)
+{
+	// Get the current ID
+	if (isset($_GET['post'])) {
+		$post_id = $_GET['post'];
+	} elseif (isset($_POST['post_ID'])) {
+		$post_id = $_POST['post_ID'];
+	}
+
+	if($post_id){
+		return (get_post_format($post_id) == 'gallery');
+	}else{
+		return $display;
+	}
+}
+
+//add_filter( 'cmb_show_on', 'add_for_specific_post_type', 10, 2 );

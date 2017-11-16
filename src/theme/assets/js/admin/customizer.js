@@ -6,36 +6,6 @@
 ( function( $, window ) {
 
 
-	// Site title and description.
-	wp.customize( 'blogname', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-title a' ).text( to );
-		} );
-	} );
-	wp.customize( 'blogdescription', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-description' ).text( to );
-		} );
-	} );
-	// Header text color.
-	wp.customize( 'header_textcolor', function( value ) {
-		value.bind( function( to ) {
-			if ( 'blank' === to ) {
-				$( '.site-title a, .site-description' ).css( {
-					'clip': 'rect(1px, 1px, 1px, 1px)',
-					'position': 'absolute'
-				} );
-			} else {
-				$( '.site-title a, .site-description' ).css( {
-					'clip': 'auto',
-					'color': to,
-					'position': 'relative'
-				} );
-			}
-		} );
-	} );
-
-
 	// Not needed now
 
 	//var ListableImageModal = typeof window.ListableImageModal === 'undefined' ? {} : window.ListableImageModal,
@@ -224,7 +194,7 @@
 
 		//The demo data import-----------------------------------------------------
 		var importButton = jQuery( '#wpGrade_import_demodata_button' ),
-			container = jQuery( '#customize-control-listable_options-import_demodata_button_control' );
+			container = jQuery( '#customize-control-bitcoin_options-import_demodata_button_control' );
 
 		var saveData = {
 			container: container,
@@ -251,11 +221,11 @@
 						if ( res.errors == false ) {
 
 							setTimeout( function() {
-								resultcontainer.append( '<i>' + listable_admin_js_texts.import_all_done + '</i><br />' );
+								resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_all_done + '</i><br />' );
 							}, 1000 );
 
 							setTimeout( function() {
-								resultcontainer.append( '<h3>' + listable_admin_js_texts.import_phew + '</h3><br /><p>' + listable_admin_js_texts.import_success_note + listable_admin_js_texts.import_success_reload + listable_admin_js_texts.import_success_warning + '</p>' );
+								resultcontainer.append( '<h3>' + bitcoin_admin_js_texts.import_phew + '</h3><br /><p>' + bitcoin_admin_js_texts.import_success_note + bitcoin_admin_js_texts.import_success_reload + bitcoin_admin_js_texts.import_success_warning + '</p>' );
 							}, 1000 );
 
 						} else {
@@ -264,7 +234,7 @@
 							button.removeClass( 'button-disabled' );
 
 							setTimeout( function() {
-								resultcontainer.append( '<i>' + listable_admin_js_texts.import_failed + '</i><br />' );
+								resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_failed + '</i><br />' );
 							}, 1000 );
 						}
 
@@ -307,7 +277,7 @@
 
 			if ( button.is( '.wpGrade_button_inactive' ) ) return false;
 
-			var activate = confirm( listable_admin_js_texts.import_confirm );
+			var activate = confirm( bitcoin_admin_js_texts.import_confirm );
 
 			if ( activate == false ) return false;
 
@@ -320,7 +290,7 @@
 			//disable the import button
 			button.addClass( 'button-disabled' );
 			resultcontainer.removeClass( 'hidden' );
-			resultcontainer.append( '<br /><i>' + listable_admin_js_texts.import_working + '</i><br />' );
+			resultcontainer.append( '<br /><i>' + bitcoin_admin_js_texts.import_working + '</i><br />' );
 
 			//queue the calls
 			ajax_import_theme_options(resultcontainer, this_data);
@@ -350,7 +320,7 @@
 				.fail( function( response ) {
 					responseRaw = response;
 					res = wpAjax.parseAjaxResponse( response, 'notifier' );
-					resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_posts_failed + '</i><br />' );
+					resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />' );
 				} )
 				.done( function( response ) {
 					responseRaw = response;
@@ -358,22 +328,22 @@
 					if ( res != null && res.errors != null ) {
 						if ( res.errors == false ) {
 							if ( res.responses[0] != null ) {
-								resultcontainer.append( '<i>' + listable_admin_js_texts.import_posts_step + ' ' +  + res.responses[0].supplemental.stepNumber + ' of ' + res.responses[0].supplemental.numberOfSteps + '</i><br />' );
+								resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_posts_step + ' ' +  + res.responses[0].supplemental.stepNumber + ' of ' + res.responses[0].supplemental.numberOfSteps + '</i><br />' );
 								//for debuging purposes
 								resultcontainer.append( '<div style="display:none;visibility:hidden;">Return data:<br />' + res.responses[0].data + '</div>' );
 							} else {
-								resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_posts_failed + '</i><br />' + listable_admin_js_texts.import_error + ' ' + res.responses[0].data );
+								resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />' + bitcoin_admin_js_texts.import_error + ' ' + res.responses[0].data );
 							}
 						}
 						else {
 							if ( res.responses[0] != null ) {
-								resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_posts_failed + '</i><br />( ' + res.responses[0].errors[0].message + ' )<br/>' );
+								resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />( ' + res.responses[0].errors[0].message + ' )<br/>' );
 							} else {
-								resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_posts_failed + '</i><br />' + listable_admin_js_texts.import_error + ' ' + res.responses[0].data );
+								resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />' + bitcoin_admin_js_texts.import_error + ' ' + res.responses[0].data );
 							}
 						}
 					} else {
-						resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_posts_failed + ' ' + listable_admin_js_texts.import_try_reload + ' </i><br />' );
+						resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + ' ' + bitcoin_admin_js_texts.import_try_reload + ' </i><br />' );
 					}
 				} );
 		}
@@ -393,22 +363,22 @@
 			.fail( function( response ) {
 				responseRaw = response;
 				res = wpAjax.parseAjaxResponse( response, 'notifier' );
-				resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_theme_options_failed + '</i><br />' );
+				resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_theme_options_failed + '</i><br />' );
 			} )
 			.done( function( response ) {
 				responseRaw = response;
 				res = wpAjax.parseAjaxResponse( response, 'notifier' );
 				if ( res != null && res.errors != null ) {
 					if ( res.errors == false ) {
-						resultcontainer.append( '<i>' + listable_admin_js_texts.import_theme_options_done + '</i><br />' );
+						resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_theme_options_done + '</i><br />' );
 						//for debuging purposes
 						resultcontainer.append( '<div style="display:none;visibility:hidden;">Return data:<br />' + res.responses[0].data + '</div>' );
 					}
 					else {
-						resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_theme_options_error + ': ' + res.responses[0].errors[0].message + ' )<br/><br/>' );
+						resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_theme_options_error + ': ' + res.responses[0].errors[0].message + ' )<br/><br/>' );
 					}
 				} else {
-					resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_theme_options_failed + '</i><br />' );
+					resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_theme_options_failed + '</i><br />' );
 				}
 			} );
 	}
@@ -427,23 +397,23 @@
 			.fail( function() {
 				responseRaw = response;
 				res = wpAjax.parseAjaxResponse( response, 'notifier' );
-				resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_widgets_failed + '</i><br />' );
+				resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_widgets_failed + '</i><br />' );
 			} )
 			.done( function( response ) {
 				responseRaw = response;
 				res = wpAjax.parseAjaxResponse( response, 'notifier' );
 				if ( res != null && res.errors != null ) {
 					if ( res.errors == false ) {
-						resultcontainer.append( '<i>' + listable_admin_js_texts.import_widgets_done + '</i><br />' );
+						resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_widgets_done + '</i><br />' );
 
 						//for debuging purposes
 						resultcontainer.append( '<div style="display:none;visibility:hidden;">Return data:<br />' + res.responses[0].data + '</div>' );
 					}
 					else {
-						resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_widgets_error + ': '  + res.responses[0].errors[0].message + ' )<br/><br/>' );
+						resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_widgets_error + ': '  + res.responses[0].errors[0].message + ' )<br/><br/>' );
 					}
 				} else {
-					resultcontainer.append( '<i style="color:red">' + listable_admin_js_texts.import_widgets_failed + '</i><br />' );
+					resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_widgets_failed + '</i><br />' );
 				}
 			} );
 	}

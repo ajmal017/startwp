@@ -698,6 +698,8 @@
             $('.login-container').slideToggle();
         });
     }
+     
+
 
     // /* ====== ON WINDOW LOAD ====== */
     $window.load(function() {

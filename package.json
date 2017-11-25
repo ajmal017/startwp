@@ -1,6 +1,6 @@
 {
   "name": "WPT",
-  "version": "1.0.103",
+  "version": "1.0.104",
   "description": "Wordpress, JS, Compile",
   "main": "index.js",
   "author": "IONDIGITAL",
@@ -39,8 +39,9 @@
   },
   "dependencies": {
     "@webcomponents/custom-elements": "^1.0.4",
-    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-es2015-modules-systemjs": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
     "babili": "^0.1.4",
     "csso": "^3.2.0",
     "glob": "^7.1.2",
@@ -48,6 +49,9 @@
     "node-sass": "^4.5.3",
     "npm-watch": "^0.3.0",
     "path": "^0.12.7",
+    "rollup": "^0.51.8",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "systemjs": "^0.20.19",
     "webcomponentsjs": "^1.0.2"
   }

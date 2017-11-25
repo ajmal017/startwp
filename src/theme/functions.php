@@ -78,7 +78,7 @@ if ( ! function_exists( 'listable_setup' ) ) :
 		 * No support for Post Formats.
 		 * See https://developer.wordpress.org/themes/functionality/post-formats/
 		 */
-		add_theme_support( 'post-formats', array('gallery') );
+		add_theme_support( 'post-formats', array('gallery','audio', 'quote', 'video') );
 
 
 		add_post_type_support( 'page', 'excerpt' );

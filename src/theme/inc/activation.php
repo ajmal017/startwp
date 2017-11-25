@@ -40,36 +40,65 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 					'fields'     => array(
 						array(
 							'name' => esc_html__( 'Gallery Image', 'bitcoin' ),
-							'id'   => 'image_backgrounds',
+							'id'   => 'blog_image_backgrounds',
 							'type' => 'gallery',
 
+						),
+						array(
+							'name' => esc_html__('Sidebar', 'bitcoin'),
+							'id' => 'blog_sidebar',
+							'type' => 'radio',
+							'std' => 'Has Sidebar',
+							'options' => array(
+											array('value' => 'Has Sidebar',
+												   'name' => 'has-sidebar'),
+											array(
+												'value' => 'Without Sidebar',
+												'name' => 'no-sidebar'
+											)
+							)
 						)
 					)
 				),
-				'_gallery_post_images' => array(
-					'id' => '_gallery_post_images',
+				'bitcoin_gallery_post' => array(
+					'id' => 'bitcoin_gallery_post',
 					'title' => sprintf(
 						'%s <a class="tooltip" title="%s"></a>',
 						esc_html__('Gallery', 'bitcoin'),
-						esc_html__('Add an images to be used as a gallery for the Gallery Post Type', 'bitcoin')
+						esc_html__('Add an images to be used as a gallery for the Gallery Post Type Card', 'bitcoin')
 					),
 					'pages' => array('post'), // Post type
-					'context' => 'normal',
-					'priority' => 'high',
+					'context' => 'side',
+					'priority' => 'low',
 					'show_names' => true, // Show field names on the left
-					'show_on' => array(
-						'key' => 'post-formats-select',
-						'value' => array('gallery'),
-					),
 					'fields' => array(
 						array(
 							'name' => esc_html__('Gallery Image', 'bitcoin'),
-							'id' => 'image_backgrounds',
+							'id' => 'gallery_post_input',
 							'type' => 'gallery',
 
 						)
 					)
 				),
+				'bitcoin_post_audio' => array(
+					'id' => 'bitcoin_post_audio',
+					'title' => sprintf(
+						'%s <a class="tooltip" title="%s"></a>',
+						esc_html__('Audio', 'bitcoin'),
+						esc_html__('Put Url to your audio file to be used in the Audio Post Type Card', 'bitcoin')
+					),
+					'pages' => array('post'), // Post type
+					'context' => 'side',
+					'priority' => 'low',
+					'show_names' => true, // Show field names on the left
+					'fields' => array(
+						array(
+							'name' => esc_html__('Audio File', 'bitcoin'),
+							'id' => 'post_audio_file',
+							'type' => 'text'
+						)
+					)
+				)
 
 
 				// '_page_frontpage_categories' => array(
@@ -196,21 +225,3 @@ if ( ! class_exists( 'wpgrade' ) ) :
 	}
 
 endif;
-
-function add_for_specific_post_type($display, $meta_box)
-{
-	// Get the current ID
-	if (isset($_GET['post'])) {
-		$post_id = $_GET['post'];
-	} elseif (isset($_POST['post_ID'])) {
-		$post_id = $_POST['post_ID'];
-	}
-
-	if($post_id){
-		return (get_post_format($post_id) == 'gallery');
-	}else{
-		return $display;
-	}
-}
-
-//add_filter( 'cmb_show_on', 'add_for_specific_post_type', 10, 2 );

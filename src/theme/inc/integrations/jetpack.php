@@ -14,6 +14,10 @@ function listable_load_jetpack_compatibility() {
 		//this is not safe -- needed to prefix the functions
 		require_once get_template_directory() . '/inc/integrations/jetpack/responsive-videos.php';
 	}
+
+	if( class_exists( 'Jetpack' )){
+		Jetpack::activate_module('shortcodes');
+	}
 }
 add_action( 'after_setup_theme', 'listable_load_jetpack_compatibility' );
 
@@ -25,6 +29,7 @@ function bitcoin_responsive_videos_setup()
 	add_theme_support('jetpack-responsive-videos');
 }
 add_action('after_setup_theme', 'bitcoin_responsive_videos_setup');
+
 
 /**
  * Add theme support for Infinite Scroll.

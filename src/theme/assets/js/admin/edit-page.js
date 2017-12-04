@@ -1,14 +1,44 @@
 (function($){
 
 	$(document).ready(function(){
+		
+
+		function postPage(){
+			let startFormat = document.querySelector('input[name=\'post_format\']:checked').getAttribute('id').slice(12);
+			setPostFormat(startFormat);
+
+			function setPostFormat(postFormat){
+				let contentPostBlocks = Array.from(document.querySelectorAll('div[id*=bitcoin_post]'));
+				contentPostBlocks.map(item => $(item).slideUp());
+
+				if (postFormat == 'gallery') {
+					$('#postimagediv').slideUp();
+				}else{
+					$('#postimagediv').slideDown();
+				}
+				
+				$(`#bitcoin_post_${postFormat}`).slideDown();
+				
+
+			}
+
+		
+			$('#formatdiv').on('change', function (e) {
+				if( ! e.target instanceof Element ) return
+				let postFormat = e.target.getAttribute('id').slice(12);
+				setPostFormat( postFormat );
+			});
+		}
+
+		postPage();
 		// classify the gallery number
 		$('#pixgallery').on('html-change-post', function() {
 			check_the_number_of_images( $(this) );
 		});
 
-		//determine if we should see the Featured Image box depending on the current page template
+		// determine if we should see the Featured Image box depending on the current page template
 		if ( $('select#page_template').val() == 'page-templates/front_page.php' ) {
-			//hide the Featured Image box
+			// hide the Featured Image box
 			$('#postimagediv').hide();
 		}
 

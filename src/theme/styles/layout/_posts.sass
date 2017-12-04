@@ -12,26 +12,56 @@
   margin: -15px
   > *
     margin: 15px
-  &__item
+  .grid--tile &__item
     flex: 1 1 350px
     max-width: 350px
+  .grid--list &__item
+    flex: 1 1 100%
+    max-width: 100%
+
+
+  .grid--list &__item,
+  .grid--tile &__item
     overflow: hidden
     &.postcard
       box-shadow: 0 16px 20px rgba(0, 0, 0, 0.12)
+      +tr(box-shadow .5s)
+      &:hover
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22)
 
 .card
   display: flex
-  flex-flow: column nowrap
-  height: 550px
   overflow: hidden
-  &.format-standard 
+  position: relative
+  .grid--list &
+    display: flex
+    flex: 1 1 100%
+    flex-flow: row
+    height: 270px
+    +r(768)
+      height: auto
+      flex-flow: column
+  .grid--tile &
+    flex-flow: column nowrap
+    height: 550px
+
+  &.format-standard,
+  &.format-link 
     .card__toplink--hasPic
-      flex: 0 0 250px
       position: relative
       overflow: hidden
       +tr(transform .5s)
       backface-visibility: hidden
       transform: scale(1)
+      .grid--list &
+        width: 360px
+        flex: 0 0 360px
+        +r(768)
+          width: 100%
+          flex: 0 0 100%
+          height: 250px
+      .grid--tile &
+        flex: 0 0 250px
       &:before
         content: ""
         opacity: 0
@@ -39,7 +69,7 @@
         +tr(opacity .5s ease-out)
         z-index: 10
       &:after
-        content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAARElEQVQ4T2NkIAL8////P0gZIyMjIyHlBBWADBg1EG8wjoYh9uAhKdnAFBNKsMTKM1LdQGJsJsnLowZiDYHRMKRvaQMAGvdQDXktn2AAAAAASUVORK5CYII=)
+        // content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAARElEQVQ4T2NkIAL8////P0gZIyMjIyHlBBWADBg1EG8wjoYh9uAhKdnAFBNKsMTKM1LdQGJsJsnLowZiDYHRMKRvaQMAGvdQDXktn2AAAAAASUVORK5CYII=)
         position: absolute
         top: 50%
         left: 50%
@@ -57,32 +87,127 @@
     &:hover .card__toplink--hasPic .card__image
       +tr(transform .5s)
       transform: scale(1.1)
+  &.format-standard .card__toplink--hasPic:after
+    content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAARElEQVQ4T2NkIAL8////P0gZIyMjIyHlBBWADBg1EG8wjoYh9uAhKdnAFBNKsMTKM1LdQGJsJsnLowZiDYHRMKRvaQMAGvdQDXktn2AAAAAASUVORK5CYII=)
+  &.format-link .card__toplink--hasPic:after
+    content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAB0klEQVRIS51V0VXCQBCcqUA7UCsQKxArUDrACsAKhArECtQKlAqECpQOoAK1gvHNeYdJuISE/Uk+7mZ2d3b2iAND0imAEYAbAP53vAF4IelvCB6CL8mgTwCOa+6b4Jbkd2cCScMIbuwlgAnJRazIxBMAR66G5KATQcz8NWZ9R3JWrUBSD8AikrQniBl+xLZkwROZpDGABwDz1hVIcrYWdU7SraiNWIWTaS+ypDWAEwAXJD/3EFj8r64EChfIULUkg4xITjM69AG8A9h0aZEJViR7EdwAFnRK0pOzDUkW+RLAYxcCg6SpSeArAH3Pe0bgHyewQ1Dj0JBlJfMceNEjAzu6RFDj0AAUM8xmHqfmPq4NH7WLn0si1zm0IGgJvEKYOuS2DHd2UZND69oiyZo4a8cmLroZSY/zNtjk0Bx4vDmuTk6dL0yQHLokmXodzhcq2woqySY7T35oMlzQoODQK2/FjGm8FhZpFCWVDNeGoPUFSf8OJdMj08jhCgIBgLOqQJlq/JBcB4eS3ph7wwTpUtsV/OfQyrQ0iewe+xGx3a3DzqaseCQ4dG/q8UDajKkKk3i+vfPXTQ7tSuDVa2u7v7nYcWgngnQ4zr0XViKqdWhbgl8SFgqhOo15bwAAAABJRU5ErkJggg==)
   &__image
     position: relative
     background-size: cover
     background-position: center  
     opacity: 0.95
-    height: 250px
     overflow: hidden
     +tr(transform .5s)
+    .grid--list &
+      height: 100%
+      width: 100%
+    .grid--tile &
+      height: 250px
+    .format-quote &
+      height: 100%
+      z-index: 1
+      opacity: .05
+  &__toplink
+    .grid--list &
+      display: flex
+      width: 360px
+      flex: 0 0 360px
+      +r(768)
+        width: 100%
+        flex: 0 0 auto
+    .format-quote &
+      height: 100%
+      width: 100%
+      flex: 0 0 100%
+    &:hover
+      opacity: 1
+  &-player
+    position: relative
+    .card__toplink
+      height: 100%
+    &__wrapper
+      position: absolute
+      bottom: 0
+      > * 
+        margin: 0 !important
+      &--sc
+        width: 100%
+        height: 100%
 
+  &-gallery 
+    &__slider
+      .grid--list &
+        display: flex
+        width: 360px
+        flex: 0 0 360px
+        +r(768)
+          width: 100%
+          flex: 0 0 auto
+          height: 250px
+      .slick-arrow
+        z-index: 10
+        overflow: hidden
+        width: 30px
+        height: 30px
+        text-align: center
+      .slick-prev:before,
+      .slick-next:before
+        @extend %icon
+        color: inherit
+        font-size: 25px
+        line-height: 30px
+        vertical-align: middle
+        width: 30px
+        height: 30px
+        background-color: rgba(255, 255, 255, 0.9)
+        z-index: 10
+      .slick-prev
+        border-top-right-radius: 5px
+        border-bottom-right-radius: 5px
+        left: 0px
+        &:before
+          padding-right: 5px
+          content: $fa-var-angle-left
+      .slick-next
+        border-top-left-radius: 5px
+        border-bottom-left-radius: 5px
+        right: 0px
+        &:before
+          padding-left: 5px
+          content: $fa-var-angle-right
+    &__item
+      .grid--list &
+        height: 270px !important
+        width: 360px !important
+      .grid--tile &
+        height: 250px !important
 
   &__title
     margin-bottom: .5rem
     +tr(color .5s)
-    a
+    .card__content & a
       color: inherit
   &__content
-    width: 100%
     padding: 20px 30px
     font-family: inherit
     font-weight: inherit
     display: flex
     flex-flow: column wrap
-    flex: 1 0 auto
+    .grid--tile &
+      flex: 1 0 auto
+      width: 100%
+    .grid--list &
+      width: 100%
+      flex: 0 1 auto
+      & > *
+        width: 100%
+    .format-quote  &
+      height: 100%
+      position: absolute
   &__categories
     margin-bottom: 8px 
     .card__links
+      width: 100%
       list-style: none
       li 
         display: inline-block
@@ -98,29 +223,82 @@
           color: white
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
           &:hover
-            opacity: .9
+            opacity: .8
   &__excerpt
-    height: rem(3*$base-line-height)
-    margin-bottom: rhythm(1)
     overflow: hidden
+    margin-bottom: rhythm(1)
+    .grid--list &
+      height: rem(2*$base-line-height)
+    .grid--tile &
+      height: rem(3*$base-line-height)
+    .format-quote &
+      height: 88%
+      margin-bottom: 0
+      display: flex
     p
       height: rem(3*$base-line-height)
       overflow: hidden
       text-overflow: ellipsis
+      .grid--list &
+        height: rem(2*$base-line-height)
+      .grid--tile &
+        height: rem(3*$base-line-height)
+      .format-quote &
+        height: auto
+    blockquote
+      display: flex
+      flex: 1 0 100%
+      flex-flow: column
+      justify-content: center
+      align-items: center
+      text-align: center
+      &:before
+        content: '\201C'
+        font-size: rem(140px)
+        line-height: rem(30px)
+
+  &.format-quote 
+    .permalink,
+    .posted-by,
+    .card-meta__delimiter,
+    .card__title,
+    .card__categories
+      display: none
+    .bitcoin-icon
+      opacity: 1
+    
+
   &-meta
     display: flex
     margin-top: auto
     &__delimiter
       padding: 0 5px
+      .format-quote &
+        display: none
     .posted-by,
     .posted-on
       +tr(color .5s)
-    a
-      color: inherit
+      a
+        color: inherit
+        opacity: 1
+        &:hover
+          opacity: 1
     .comments-count
       margin-left: auto
-  
 
+  &__sticky
+    position: absolute
+    right: 0
+    top: 0
+    height: 40px
+    width: 40px
+    z-index: 10
+    display: flex
+    flex: 1 1 auto
+    justify-content: center
+    align-items: center
+    
+    
 .posted-on,
 .posted-by,
 .comments-count

@@ -436,7 +436,6 @@ if ( ! function_exists( 'listable_get_random_hero_object' ) ) {
 		}
 
 		$image_backgrounds  = get_post_meta( $post_id, 'image_backgrounds', true );
-		$videos_backgrounds = get_post_meta( $post_id, 'videos_backgrounds', true );
 
 		if ( ! empty( $image_backgrounds ) ) {
 			$image_backgrounds = explode( ',', $image_backgrounds );
@@ -444,18 +443,10 @@ if ( ! function_exists( 'listable_get_random_hero_object' ) ) {
 			$image_backgrounds = array();
 		}
 
-		if ( ! empty( $videos_backgrounds ) ) {
-			$videos_backgrounds = explode( ',', $videos_backgrounds );
-		} else {
-			$videos_backgrounds = array();
-		}
+		if ( ! empty( $image_backgrounds ) ) {
+			$random = array_rand( $image_backgrounds, 1 );
 
-		$all_backgrounds = array_merge( $image_backgrounds, $videos_backgrounds );
-
-		if ( ! empty( $all_backgrounds ) ) {
-			$random = array_rand( $all_backgrounds, 1 );
-
-			return get_post( $all_backgrounds[ $random ] );
+			return get_post( $image_backgrounds[ $random ] );
 		}
 	}
 }

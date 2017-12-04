@@ -8,6 +8,12 @@ const package = require('./package.json');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
+const rollup = require('rollup');
+const babelPlugin = require('rollup-plugin-babel');
+const resolve = require('rollup-plugin-node-resolve');
+
+var browserSync = require('browser-sync').create();
+
 const cssoConfig = {
   restructure: false,
   sourceMap: true,
@@ -20,32 +26,104 @@ const babelConfig = {
 };
 
 const funcTable = {
-  "copyStatic": [copyStatic],
-  "watchJS": [minifyJs],
-  "watchCSS": [minifyCss, handleSass],
-  "wpDev": [wpDev]
+  "watch": [watch, serve],
+  "png,jpeg,jpg,svg,woff2,eot,ttf,otf,php": [copyStatic],
+  "js": [minifyJs],
+  "css": [minifyCss],
+  "sass,scss": [handleSass],
+  "wpDev": [wpDev],
+  "default": [noop]
 }
 
 const templateData = {
   'VERSION': package.version,
 };
 
-const call = function (fn, ...opt) {
-  fnStack = funcTable[fn];
+function noop() {}
 
-  fnStack.reduce(async (p, fn) => {
+async function call (ext, ...opt) {
+  console.time('task');
+
+  fnStack = funcTable['default'];
+  Object.entries(funcTable).map(item => {
+    if(item[0].includes(ext)){
+      fnStack = item[1];
+    }
+  })
+
+  await fnStack.reduce(async (p, fn) => {
     await p;
-    return fn(...opt)
+    return fn(...opt); 
   }, Promise.resolve())
-    .then(_ => console.log('Done'))
-    .catch(err => console.log(err.stack, '\nError while building'));;
+    .then(_ => {})
+    .catch(err => console.log(err.stack, '\nError while building'));
+
+  console.timeEnd('task'); 
+  console.log('Done');
+
+
+  return Promise.resolve()
 }
+
+
 
 
 if (process.argv.length > 2) {
   call(process.argv.slice(2));
   return 0
 }
+
+function debounce(func, wait) {
+  var timeout;
+  var eventTypeLast;
+  return function () {
+    var context = this, args = arguments, eventType = args[0];
+    
+    var later = function () {
+      timeout = null;
+      func.apply(context, args);
+    };
+
+    if (eventTypeLast && eventTypeLast === eventType)
+      clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    eventTypeLast = args[0];
+  };
+};
+
+function watch(){
+
+  fs.watch('./src', { recursive: true }, debounce(async (eventType, filename) => {
+    let spltdFFP = filename.split(/\.(.{2,4}$)/);
+    if (eventType == "rename"){
+      files = null;
+      filesDist = null;
+      if(fs.existsSync(`./src/${filename.split('\\').join('/')}`)) {
+        console.log('\x1b[36m%s\x1b[0m', 'create');
+        await call(spltdFFP[spltdFFP.length - 2], filename)
+      }else{
+        console.log('\x1b[36m%s\x1b[0m', 'delete');
+        try{
+          await fs.unlink(`./dist/${filename.split('\\').join('/')}`);
+        }
+        catch(err) { }
+      }
+      call('wpDev');
+      return
+    }
+
+    //event === 'change'
+    call(spltdFFP[spltdFFP.length - 2 ], filename)
+  },500));
+
+  return Promise.resolve();
+
+}
+
+
+
+
+
 
 Promise.all([
   copyStatic(),
@@ -54,14 +132,14 @@ Promise.all([
   minifyCss(),
   minifyJs(),
 ])
-  .then(_ => console.log('Done'))
+  .then(_ => console.log('Done All'))
   .catch(err => console.log(err.stack, '\nError while building'));
 
 async function copyStatic() {
   console.time('copyStatic');
-  filesWithPatterns([/\.php$/i, /\.htaccess$/i, /\.(png|jpe?g|svg)$/i, /\.(woff?2|eot|ttf|otf)$/i, /\.xml$/i])
+  await filesWithPatterns([/\.php$/i, /\.htaccess$/i, /\.(png|jpe?g|svg)$/i, /\.(woff?2|eot|ttf|otf)$/i, /\.xml$/i])
     .map(async file => copy(`src/${file}`, `dist/${file}`))
-    .array;
+    .array || Promise.resolve(); 
   console.timeEnd('copyStatic')
 }
 
@@ -130,54 +208,76 @@ async function handleSass() {
 }
 
 
-async function minifyJs() {
+var cache;
+async function minifyJs(filename) {
   console.time('minifyJs');
+  console.log(filename)
   const orig = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
-    .map(async file => ({ name: file, contents: await fs.readFile(`src/${file}`) }))
-    .map(async file => Object.assign(file, { contents: file.contents.toString('utf-8') }))
-    .map(async file => {
-      for (const [key, val] of Object.entries(templateData)) {
-        file.contents = file.contents.replace(`{%${key}%}`, val);
-      }
-      return file;
-    })
-    .map(async file => Object.assign(file, { code, map } = babel.transform(file.contents, babelConfig)))
-    //.map(async file => Object.assign(file, {code: file.contents, map: ''}))
-    .map(async file => {
-      const dir = path.dirname(file.name);
-      await mkdirAll(`dist/${dir}`);
-      await fs.writeFile(`dist/${file.name}`, file.code + `\n//# sourceMappingURL=${path.basename(file.name)}.map`);
-      await fs.writeFile(`dist/${file.name}.map`, JSON.stringify(file.map));
-    })
-    .array;
+    .map(async file  => {
+      const name = file;
+      if(filename && filename.split('\\').join('/') != name) return
 
-  const trans = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
-    .map(async file => ({ name: file, contents: await fs.readFile(`src/${file}`) }))
-    .map(async file => Object.assign(file, { contents: file.contents.toString('utf-8') }))
-    .map(async file => {
-      for (const [key, val] of Object.entries(templateData)) {
-        file.contents = file.contents.replace(`{%${key}%}`, val);
-      }
-      return file;
-    })
-    .map(async file => {
-      const { code } = babel.transform(file.contents, { plugins: [require('babel-plugin-transform-es2015-modules-systemjs')] })
-      file.contents = code;
-      file.name = `${path.dirname(file.name)}/systemjs/${path.basename(file.name)}`;
-      return file;
-    })
-    .map(async file => Object.assign(file, { code, map } = babel.transform(file.contents, { presets: ["babili"], sourceMaps: true, sourceMapTarget: file.name, sourceType: "script", sourceRoot: './../' })))
-    // .map(async file => Object.assign(file, {code: file.contents, map: ''}))
-    .map(async file => {
-      const dir = path.dirname(file.name);
-      await mkdirAll(`dist/${dir}`);
-      await fs.writeFile(`dist/${file.name}`, file.code + `\n//# sourceMappingURL=${path.basename(file.name)}.map`);
-      await fs.writeFile(`dist/${file.name}.map`, JSON.stringify(file.map));
-    })
+      console.log('bundling... \n %s', path.parse(name).name)
+      const bundle = await rollup.rollup({
+        input: `src/${name}`, 
+        plugins: [
+          resolve(),
+          babelPlugin({
+            exclude: 'node_modules/**' // only transpile our source code
+          })
+        ],
+        cache
+      });
+
+      cache = bundle;
+      let outputOptions = {
+        format: 'iife',
+        globals: {
+          jquery: '$'
+        },
+        file: `dist/${name}`,
+        name: path.parse(name).name.split('-').join('_')
+      };
+      const { code, map } = await bundle.generate(outputOptions);
+      await bundle.write(outputOptions);
+
+      return  { code, map, name }
+    }) 
+    //.map(async file => Object.assign(file, {code: file.contents, map: ''}))
+    // .map(async file => {
+    //   const dir = path.dirname(file.name);
+    //   await mkdirAll(`dist/${dir}`);
+    //   await fs.writeFile(`dist/${file.name}`, file.code + `\n//# sourceMappingURL=${path.basename(file.name)}.map`);
+    //   await fs.writeFile(`dist/${file.name}.map`, JSON.stringify(file.map));
+    // })
     .array;
+  // const trans = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
+  //   .map(async file => ({ name: file, contents: await fs.readFile(`src/${file}`) }))
+  //   .map(async file => Object.assign(file, { contents: file.contents.toString('utf-8') }))
+  //   .map(async file => {
+  //     for (const [key, val] of Object.entries(templateData)) {
+  //       file.contents = file.contents.replace(`{%${key}%}`, val);
+  //     }
+  //     return file;
+  //   })
+  //   .map(async file => {
+  //     const { code } = babel.transform(file.contents, { plugins: [require('babel-plugin-transform-es2015-modules-systemjs')] })
+  //     file.contents = code;
+  //     file.name = `${path.dirname(file.name)}/systemjs/${path.basename(file.name)}`;
+  //     return file;
+  //   })
+  //   .map(async file => Object.assign(file, { code, map } = babel.transform(file.contents, { presets: ["babili"], sourceMaps: true, sourceMapTarget: file.name, sourceType: "script", sourceRoot: './../' })))
+  //   // .map(async file => Object.assign(file, {code: file.contents, map: ''}))
+  //   .map(async file => {
+  //     const dir = path.dirname(file.name);
+  //     await mkdirAll(`dist/${dir}`);
+  //     await fs.writeFile(`dist/${file.name}`, file.code + `\n//# sourceMappingURL=${path.basename(file.name)}.map`);
+  //     await fs.writeFile(`dist/${file.name}.map`, JSON.stringify(file.map));
+  //   })
+  //   .array;
 
   console.timeEnd('minifyJs')
-  return await Promise.all([orig, trans]);
+  return await Promise.all([orig]);
 }
 
 function flatten(arr) {
@@ -217,10 +317,11 @@ function filesWithPatternsDist(regexps) {
     filesDist = AsyncArray.from(new Promise((resolve, reject) => glob('dist/**', { dot: true }, (err, f) => err ? reject(err) : resolve(f))))
       .map(async file => file.substr(4));
   }
-  return filesDist.filter(async file => regexps.some(regexp => regexp.test(file)));
+  return filesDist.filter(async file => regexps.some(regexp => regexp.test(file))); 
 }
 
 async function wpDev() {
+  console.log('\x1b[36m%s\x1b[40m', 'Linking ...');  
   let paths = await filesWithPatternsDist([/theme\/.*\..{2,4}$/])
     .map(async filePath => {
       return `ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/${filePath.substr(7)} d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/${path.dirname(filePath.substr(7))} \n`
@@ -236,3 +337,42 @@ async function wpDev() {
   if (stderr) console.log('stderr:', stderr);
 
 } 
+
+
+
+
+function serve(){
+
+  browserSync.init({
+    files: [
+      "src/theme/**/*.php",
+      "src/theme/**/*.js",
+      "src/theme/**/*.sass",
+      "src/theme/**/*.png",
+      "src/theme/**/*.svg"
+    ],
+    exclude: false,
+    proxy: "wordpress",
+    port: 8080,
+    server: false, // It should NOT be used if you have an existing PHP, WordPress.
+    startPath: null,
+    ghostMode: {
+      clicks: true,
+      links: true,
+      forms: true,
+      scroll: true
+    },
+    open: false,
+    xip: false,
+    timestamps: true,
+    fileTimeout: 1000,
+    injectChanges: true,
+    scrollProportionally: true,
+    scrollThrottle: 0,
+    notify: true,
+    host: null,
+    excludedFileTypes: [],
+    reloadDelay: 0
+  });
+  return Promise.resolve();
+}

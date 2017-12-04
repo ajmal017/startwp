@@ -26,6 +26,7 @@
 @import "base/forms";
 @import "base/wp-align";
 @import "base/blockquote";
+@import "components/variables";
 // #LAYOUT
 
 
@@ -42,7 +43,6 @@
 // @import "layout/search-results";
 
 // #COMPONENTS
-@import "components/variables";
 @import "components/header";
 @import "components/hero";
 // @import "components/comments";

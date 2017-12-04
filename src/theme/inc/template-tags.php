@@ -155,7 +155,7 @@ if ( ! function_exists('bitcoin_permabutton') ) :
 			'title' => ''
 		);
 		$settings = array_merge($default, $opt);
-		$btn = '<div><a class="'. $settings['classes'] . '" href="' . get_permalink() .'">';
+		$btn = '<div class="permalink" ><a class="'. $settings['classes'] . '" href="' . get_permalink() .'">';
 		$btn .= $settings['title'];
 		$btn .= '</a></div>';
 		echo $btn;
@@ -170,7 +170,8 @@ if( ! function_exists( 'bitcoin_comments_number' ) ):
 
 	function bitcoin_comments_number() {
 		$comment_html  = sprintf(
-			'<span class="comments-count"><i class="bitcoin-icon bitcoin-icon--comment"></i>%1$s</span>',
+		'<span class="comments-count"><i class="bitcoin-icon">%1$s</i>%2$s</span>',
+			file_get_contents(locate_template('assets/svg/comment-icon.php')),
 			get_comments_number_text( __('0','bitcoin'), __('1','bitcoin'), __('%','bitcoin'))
 		);
 		echo $comment_html;

@@ -57,11 +57,12 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 												'name' => 'no-sidebar'
 											)
 							)
+
 						)
 					)
 				),
-				'bitcoin_gallery_post' => array(
-					'id' => 'bitcoin_gallery_post',
+				'bitcoin_post_gallery' => array(
+					'id' => 'bitcoin_post_gallery',
 					'title' => sprintf(
 						'%s <a class="tooltip" title="%s"></a>',
 						esc_html__('Gallery', 'bitcoin'),
@@ -93,12 +94,66 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 					'show_names' => true, // Show field names on the left
 					'fields' => array(
 						array(
-							'name' => esc_html__('Audio File', 'bitcoin'),
+							'name' => esc_html__('Audio File Source', 'bitcoin'),
 							'id' => 'post_audio_file',
-							'type' => 'text'
+							'type' => 'textarea_code'
+						),
+						array(
+							'name' => esc_html__('Audio Type', 'bitcoin'),
+							'id' => 'post_audio_type',
+							'type' => 'radio_inline',
+							'std' => 'wp',
+							'options'=> array(
+								array(
+									'name' => 'WordPress',
+									'value' => 'wp'
+								),
+								array(
+									'name' => 'SoundCloud',
+									'value' => 'sc'
+								)
+							)
+
 						)
 					)
+			),
+			'bitcoin_post_video' => array(
+				'id' => 'bitcoin_post_video',
+				'title' => sprintf(
+					'%s <a class="tooltip" title="%s"></a>',
+					esc_html__('Video', 'bitcoin'),
+					esc_html__('Put Url from youtube or vimeo to be used in the Video Post Type Card', 'bitcoin')
+				),
+				'pages' => array('post'), // Post type
+				'context' => 'side',
+				'priority' => 'low',
+				'show_names' => true, // Show field names on the left
+				'fields' => array(
+					array(
+						'name' => esc_html__('Video File Source', 'bitcoin'),
+						'id' => 'post_video_file',
+						'type' => 'textarea_code'
+					),
+					array(
+						'name' => esc_html__('Video Type', 'bitcoin'),
+						'id' => 'post_video_type',
+						'type' => 'radio_inline',
+						'std' => 'yt',
+						'options' => array(
+							array(
+								'name' => 'Youtube',
+								'value' => 'yt'
+							),
+							array(
+								'name' => 'Vimeo',
+								'value' => 'vi'
+							)
+						)
+
+					)
 				)
+			)
+
 
 
 				// '_page_frontpage_categories' => array(

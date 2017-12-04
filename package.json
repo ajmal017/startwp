@@ -46,6 +46,7 @@
     "csso": "^3.2.0",
     "glob": "^7.1.2",
     "mz": "^2.7.0",
+    "node-notifier": "^5.1.2",
     "node-sass": "^4.5.3",
     "npm-watch": "^0.3.0",
     "path": "^0.12.7",
@@ -54,5 +55,8 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "systemjs": "^0.20.19",
     "webcomponentsjs": "^1.0.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13"
   }
 }

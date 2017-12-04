@@ -20,7 +20,7 @@ get_header(); ?>
 			<?php /* Start the Loop */ ?>
 
 			<div class="postcards">
-				<div class="grid">
+				<div class="grid grid--<?php echo pixelgrade_option('blog_type_style'); ?>">
 					<?php /* Start the Loop */ ?>
 					<?php while ( have_posts() ) : the_post(); ?>
 						<div class="grid__item  postcard">

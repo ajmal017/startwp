@@ -78,7 +78,7 @@ if ( ! function_exists( 'listable_setup' ) ) :
 		 * No support for Post Formats.
 		 * See https://developer.wordpress.org/themes/functionality/post-formats/
 		 */
-		add_theme_support( 'post-formats', array('gallery','audio', 'quote', 'video') );
+		add_theme_support( 'post-formats', array('gallery','audio', 'quote', 'video', 'link') );
 
 
 		add_post_type_support( 'page', 'excerpt' );
@@ -170,6 +170,10 @@ function listable_scripts() {
 	$listable_scripts_deps = array('jquery');
 	wp_enqueue_script( 'tween-lite', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js', array( 'jquery' ) );
 	$listable_scripts_deps[] = 'tween-lite';
+	wp_enqueue_script('imagesloaded', '//unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js', array( 'jquery' ) );
+	$listable_scripts_deps[] = 'imagesloaded';
+	wp_enqueue_script('polyfill', '//cdn.polyfill.io/v2/polyfill.min.js', array( 'jquery' ) );
+	$listable_scripts_deps[] = 'polyfill';
 	wp_enqueue_script( 'scroll-to-plugin', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/ScrollToPlugin.min.js', array( 'jquery' ) );
 	$listable_scripts_deps[] = 'scroll-to-plugin';
 	wp_enqueue_script( 'cssplugin', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/CSSPlugin.min.js', array( 'jquery' ) );
@@ -180,6 +184,12 @@ function listable_scripts() {
 	$listable_scripts_deps[] = 'magnific';
 	wp_enqueue_script( 'modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array( 'jquery' ) );
 	$listable_scripts_deps[] = 'modernizr';
+	wp_enqueue_script('slick', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js', array( 'jquery' ) );
+	$listable_scripts_deps[] = 'slick';
+
+	wp_enqueue_style( 'slick-style', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css' );
+	wp_enqueue_style('slick-style-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
+
 	wp_enqueue_script( 'system', get_template_directory_uri() . '/assets/js/system.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
 	$listable_scripts_deps[] = 'system';
 	$template = get_template_directory_uri();
@@ -216,14 +226,15 @@ add_action( 'wp_enqueue_scripts', 'listable_scripts' );
 function listable_admin_scripts() {
 
 	if ( listable_is_edit_page() ) {
-		wp_enqueue_script( 'listable-admin-edit-scripts', get_template_directory_uri() . '/assets/js/admin/edit-page.js', array( 'jquery' ), '1.0.0', true );
+		wp_enqueue_script('polyfill', '//cdn.polyfill.io/v2/polyfill.min.js', array('jquery'));
+		wp_enqueue_script( 'listable-admin-edit-scripts', get_template_directory_uri() . '/assets/js/admin/edit-page.js', array( 'jquery', 'polyfill' ), '1.0.0', true );
+
 
 		if ( get_post_type() === 'page' ) {
 			wp_enqueue_style( 'listable-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/edit-page.css' );
 		}
 	}
 
-	wp_enqueue_script( 'listable-admin-general-scripts', get_template_directory_uri() . '/assets/js/admin/admin-general.js', array( 'jquery' ), '1.0.0', true );
 
 	$translation_array = array (
 			'import_failed' => esc_html__( 'The import didn\'t work completely!', 'listable') . '<br/>' . esc_html__( 'Check out the errors given. You might want to try reloading the page and try again.', 'listable'),

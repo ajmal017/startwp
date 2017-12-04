@@ -22,7 +22,7 @@ get_header(); ?>
 			</header><!-- .page-header -->
 
 			<div class="postcards">
-				<div class="grid" id="posts-container">
+				<div class="grid grid--<?php echo pixelgrade_option('blog_type_style'); ?>"  id="posts-container">
 					<?php /* Start the Loop */ ?>
 					<?php while ( have_posts() ) : the_post(); ?>
 						<div class="grid__item  postcard">

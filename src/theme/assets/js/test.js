@@ -1,4 +1,5 @@
 
-import {a} from  './test.js';
-console.log(a);
-export const ua = 1;
+import {a} from  './test1.js';
+
+export const ua = 603;
+x = 2;

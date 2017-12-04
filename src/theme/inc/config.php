@@ -1018,7 +1018,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'media'    => 'only screen and (min-width: 900px) ',
 								)
 							)
-						),
+						)
 					),
 				),
 				'content_layouts_section'    => array(
@@ -1070,6 +1070,16 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'media'    => 'only screen and (min-width: 900px) ',
 								)
 							)
+							
+						),
+						'blog_type_style' => array(
+							'type' => 'radio_image',
+							'label' => esc_html__('Blog type', 'bitcoin'),
+							'default' => 'tile',
+							'choices' => array(
+								'tile' => get_template_directory_uri() . '/assets/img/tile.png',
+								'list' => get_template_directory_uri() . '/assets/img/list.png'
+							),
 						),
 					),
 				)
@@ -1463,8 +1473,18 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'     => array(
 								array(
 									'property' => 'background-color',
-									'selector' => '.card, .package, .leaflet-popup-content, .leaflet-popup-tip'
+									'selector' => '.card'
 								),
+								array(
+									'property' => 'color',
+									'selector' => '.card.format-quote .card-meta,
+													.card.format-quote .card__content,
+													.card.format-quote blockquote a'
+								),
+								array(
+									'property' => 'fill',
+									'selector' => '.card.format-quote .bitcoin-icon svg use'
+								)
 							)
 						),
 						'cards_radius'                => array(
@@ -1489,9 +1509,14 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'unit'     => 'px'
 								),
 								array(
-									'selector' => '.card .card__image',
+									'selector' => '.grid--tile .card .card__image',
 									'property' => 'border-top-right-radius',
 									'unit'     => 'px'
+								),
+								array(
+									'selector' => '.card .card__sticky',
+									'property' => 'border-bottom-left-radius',
+									'unit' => 'px'
 								)
 							)
 						),
@@ -1551,13 +1576,26 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 										.posted-on:hover, 
 										.posted-on:focus, 
 										.posted-by:hover,
-										.posted-by:focus'
+										.posted-by:focus,
+										.card-gallery__slider .slick-arrow'
 								),
 								array(
 									'property' => 'background-color',
 									'selector' => '
-										.format-standard.card .card__toplink:before'
+										.format-standard.card .card__toplink:before,
+										.format-link.card .card__toplink:before,
+										.card .card__sticky'
 								),
+								array(
+									'property' => 'background-color',
+									'selector' => '.format-quote .card__toplink',
+									'unit' => '.95',
+									'callback_filter' => 'bitcoin_color_with_opacity_callback'
+								),
+								array(
+									'property' => 'fill',
+									'selector' => '.postcard .bitcoin-icon use'
+								)
 							)
 						)
 
@@ -1647,7 +1685,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'     => array(
 								array(
 									'property' => 'background-color',
-									'selector' => '.card__links li a',
+									'selector' => '.card__links li a,
+									html body .mejs-container, html body .mejs-container .mejs-controls, html body .mejs-embed, html body .mejs-embed body',
 								),
 								array(
 									'property' => 'background',
@@ -1660,6 +1699,10 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'background',
 									'selector' => 'progress::-moz-progress-bar',
+								),
+								array(
+									'property' => 'color',
+									'selector' => 'a:not(.btn)',
 								),
 								array(
 									'property' => 'border-top-color',
@@ -1678,18 +1721,12 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'     => array(
 								array(
 									'property' => 'color',
-									'selector' => '.description, .tabs.wc-tabs,
-														.single-categories-breadcrumb a,
-														.single-categories-breadcrumb a:after,
-														.single-rating .rating-value, .widget_listing_comments .comment .review_rate .rating-value,
-														.tags-links,
-														.tags-links a,
-														.listing-sidebar a,
-														.widget_listing_comments .comment-meta a,
-														.comment-meta a,
-														.single:not(.single-job_listing) .entry-subtitle, .page .entry-subtitle,
-														.single:not(.single-job_listing) .entry-meta a, .page .entry-meta a,
+									'selector' => '.description, .entry-meta a, .page .entry-meta a,
 														.card-meta'
+								),
+								array(
+									'property' => 'background-color',
+									'selector' => 'html body .mejs-controls .mejs-time-rail .mejs-time-current '
 								),
 								array(
 									'property' => 'color',
@@ -2394,6 +2431,16 @@ if ( ! function_exists( 'bitcoin_site_blogheroarea_color_with_opacity_callback' 
 	
 		$output = $selector . ' { '. $property . ': rgba(' . bitcoin_getRGB( $value )  . ' 0.3);} ' ;
 	
+		return $output;
+	}
+}
+
+if (!function_exists('bitcoin_color_with_opacity_callback')) {
+	function bitcoin_color_with_opacity_callback($value, $selector, $property, $unit)
+	{
+
+		$output = $selector . ' { ' . $property . ': rgba(' . bitcoin_getRGB($value) . ' '. $unit . ');} ';
+ 
 		return $output;
 	}
 }

@@ -348,6 +348,7 @@ function serve(){
       "src/theme/**/*.php",
       "src/theme/**/*.js",
       "src/theme/**/*.sass",
+      "src/theme/**/*.scss",
       "src/theme/**/*.png",
       "src/theme/**/*.svg"
     ],

@@ -1,0 +1,239 @@
+%no-bullets 
+  list-style: none
+  li 
+    &::before 
+      content: none
+    
+  
+
+
+%li-style 
+  border-bottom: none
+  padding: 5px 0
+
+
+%site-content-wrapper
+  display: flex
+  +r(769)
+    flex-flow: column
+  .postcards
+    flex: 1 1 auto
+    +rmin(769)
+      width: 77%
+  
+  .widget-area__posts
+    max-width: 300px
+    +rmin(769)
+      flex: 1 1 100%
+      width: 33%
+
+
+
+.sidebar__left .site-content__wrapper
+    @extend %site-content-wrapper
+    +rmin(768)
+      flex-flow: row-reverse
+
+.sidebar__right .site-content__wrapper
+    @extend %site-content-wrapper
+    +rmin(769)
+      flex-flow: row
+
+
+
+
+.widget-area__posts
+  padding: 50px 0
+  margin: 0 15px
+  
+  .widget 
+    margin: 40px 0
+  
+
+  .widget:first-child 
+      margin-top: rhythm(-.5)
+
+.widget-area__footer
+  display: flex
+  flex-flow: row wrap
+  width: 100%
+  padding-top: rem(50px)
+  margin: 0 -10px
+  &__col
+    > *:not(:first-child)
+      margin-top: rhythm(.4)
+    padding: 0 10px
+    margin-bottom: 20px
+    &--1
+      width: 100%
+    &--2
+      width: 50%
+      +r(414)
+        width: 100%
+    &--3
+      width: 33%
+      +r(768)
+        width: 100%
+    &--4
+      width: 25%
+      +r(768)
+        width: 50%
+      +r(414)
+        width: 100%
+
+
+.widget 
+  .widget-sidebar-title
+    position: relative
+    margin-bottom: rem(25px)
+    &:after
+      content: ''
+      position: absolute
+      bottom: -10px
+      width: 100%
+      right: 0
+      left: 0
+      height: 1px
+    
+  
+  .genericon
+    font-size: 20px
+    margin-right: 30px
+  
+  ul 
+    padding-left: 0px
+    li
+      @extend %li-style
+    
+    @extend %no-bullets
+  
+  img 
+    border-radius: 5px
+  
+  form.search-form
+    margin: rem(40px) 0
+  
+  .search-submit
+    height: 0
+    width: 0
+    margin: 0
+    padding: 0
+    position: absolute
+  
+
+
+.widget_calendar 
+  #calendar_wrap 
+    #wp-calendar 
+      background-color: transparent
+      min-width: 250px
+      margin: 10px auto
+      caption 
+        font-size: 15px
+      
+      tbody 
+        tr 
+          td 
+            padding-left: 5px
+            a 
+              @extend %li-style
+      tfoot 
+        tr 
+          td 
+            .pad 
+              color: black
+
+
+.widget_nav_menu 
+  .menu-main-menu-container 
+    ul.menu 
+      margin: 0 auto
+
+      li.menu-item a 
+        @extend %li-style
+      
+    
+  
+
+.widget_recent_comments 
+  ul 
+    margin-bottom: 0px
+    li.recentcomments 
+      a 
+        @extend %li-style
+      
+    
+  
+
+.widget_pages 
+  ul 
+    li 
+      a 
+        @extend %li-style
+      
+    
+  
+
+
+.widget_meta 
+  ul 
+    margin: 0 auto
+    @extend %no-bullets
+    li 
+      a 
+        @extend %li-style
+        abbr[title] 
+          @extend %li-style
+        
+      
+    
+  
+
+.widget_recent_entries 
+  ul 
+    margin: 0 auto
+    @extend %no-bullets
+    li 
+      a 
+        @extend %li-style
+      
+      span.post-date 
+        display: block
+        background-color: transparent
+      
+    
+  
+
+.widget_rss 
+  h2 
+    a 
+      @extend %li-style
+  ul 
+    margin: 0 auto
+    li 
+      margin-bottom: 5px
+      background-color: transparent
+      a 
+        @extend %li-style
+      
+    
+  
+
+.widget_tag_cloud 
+  .tagcloud 
+    a 
+      display: inline-block
+      padding: 7px
+      margin: 5px
+      border-radius: 16px
+      border: 1px solid 
+      @extend %li-style
+      font-size: 11px !important
+      +tr(background .5s)
+
+.widget-area__posts .widget_wpcom_social_media_icons_widget
+  margin-top: -15px
+
+.posts-navigation 
+  display:inline-block
+

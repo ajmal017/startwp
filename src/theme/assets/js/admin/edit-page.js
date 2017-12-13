@@ -19,7 +19,7 @@
 				
 				$(`#bitcoin_post_${postFormat}`).slideDown();
 				
-
+					
 			}
 
 		

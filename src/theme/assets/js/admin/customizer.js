@@ -208,7 +208,7 @@
 
 		//this is the ajax queue
 		var this_data = {},
-			resultcontainer = $( '.wpGrade-import-results', this_data.container );
+			resultcontainer = $( '.wpGrade-import-results', this_data.container ),
 			qInst = $.qjax( {
 				timeout: 3000,
 				ajaxSettings: {
@@ -429,4 +429,6 @@
 		wp.customize.previewer.refresh();
 	};
 
+
+	
 } )( jQuery, window );

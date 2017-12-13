@@ -35,6 +35,11 @@ function listable_body_classes( $classes ) {
 		$classes[] = 'shortcode';
 	}
 
+	$sidebar = pixelgrade_option('blog_sidebar');
+	if( isset( $sidebar ) && 'sidebar_none' != $sidebar ){
+		$classes[] = $sidebar;
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'listable_body_classes' );
@@ -87,82 +92,6 @@ function listable_change_page_excerpt_box_title() {
 }
 add_action( 'add_meta_boxes', 'listable_change_page_excerpt_box_title' );
 
-/**
- * Taxonomy Icons functions
- */
-if ( ! function_exists( 'listable_get_term_icon_id' ) ) {
-	function listable_get_term_icon_id( $term_id = null, $taxonomy = null ) {
-
-		if ( function_exists( 'get_term_meta' ) ) {
-
-			if ( null === $term_id ) {
-				global $wp_query;
-				$term    = $wp_query->queried_object;
-				$term_id = $term->term_id;
-
-			}
-
-			return get_term_meta( $term_id, 'pix_term_icon', true );
-		}
-
-		return false;
-	}
-}
-
-if ( ! function_exists( 'listable_get_term_icon_url' ) ) {
-	function listable_get_term_icon_url( $term_id = null, $size = 'thumbnail' ) {
-
-		$attachment_id = listable_get_term_icon_id( $term_id );
-
-		if ( ! empty( $attachment_id ) ) {
-			$attach_args = wp_get_attachment_image_src( $attachment_id, $size );
-
-			// $attach_args[0] should be the url
-			if ( isset( $attach_args[0] ) ) {
-				return $attach_args[0];
-			}
-		}
-
-		return false;
-	}
-}
-
-if ( ! function_exists( 'listable_get_term_image_id' ) ) {
-	function listable_get_term_image_id( $term_id = null, $taxonomy = null ) {
-
-		if ( function_exists( 'get_term_meta' ) ) {
-
-			if ( null === $term_id ) {
-				global $wp_query;
-				$term    = $wp_query->queried_object;
-				$term_id = $term->term_id;
-
-			}
-
-			return get_term_meta( $term_id, 'pix_term_image', true );
-		}
-
-		return false;
-	}
-}
-
-if ( ! function_exists( 'listable_get_term_image_url' ) ) {
-	function listable_get_term_image_url( $term_id = null, $size = 'thumbnail' ) {
-
-		$attachment_id = listable_get_term_image_id( $term_id );
-
-		if ( ! empty( $attachment_id ) ) {
-			$attach_args = wp_get_attachment_image_src( $attachment_id, $size );
-
-			// $attach_args[0] should be the url
-			if ( isset( $attach_args[0] ) ) {
-				return $attach_args[0];
-			}
-		}
-
-		return false;
-	}
-}
 
 if ( ! function_exists( 'listable_display_image' ) ) {
 	/**
@@ -528,6 +457,34 @@ function listable_preg_match_array_get_value_by_key( $arrs, $searched ) {
 	}
 
 	return null;
+}
+
+function bitcoin_map_get_posts($item){
+	return array(
+		'name' => $item->post_title,
+		'value' => $item->ID,
+	);
+}
+
+function bitcoin_get_posts_array($options)
+{
+	if (!isset($options) || !is_array($options))
+		$options = array();
+
+	
+	if (isset($options['post_type']) && !post_type_exists($options['post_type']))
+		return array();
+
+	$posts_list = get_posts($options);
+
+	if (!empty($posts_list)) {
+		$posts_list = array_map('bitcoin_map_get_posts', $posts_list);
+	} else {
+		$post_type = get_post_type_object($options['post_type']);
+		$posts_list = array(sprintf(esc_html__("No %s found", 'forit'), $post_type->labels->name) => 0);
+	}
+
+	return $posts_list;
 }
 
 

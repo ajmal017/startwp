@@ -92,7 +92,7 @@
 					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
 						<aside class="card__image" style="background-image: url('<?php echo listable_get_inline_background_image($image[0]); ?>');"></aside>
 					</a>
-					<div class="card-player__wrapper"><?php echo do_shortcode($audio); ?></div>
+					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 				</div>
 			<?php elseif($type == 'wp') : ?>
 				<div class="card-player" >
@@ -101,7 +101,7 @@
 						</aside>
 						
 					</a>
-					<div class="card-player__wrapper"><?php echo do_shortcode($audio); ?></div>
+					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 				</div>
 			<?php endif; 
 		
@@ -116,14 +116,14 @@
 			if ($type == 'vi') {
 				if (filter_var($url, FILTER_VALIDATE_URL)) {
 				
-					$video = sprintf('[vimeo %s %s ]', $url, 'w=350%&h=250%');
+					$video = sprintf('[vimeo %s %s ]', $url, '');
 				}
 				
 
 			} elseif ($type == 'yt') {
 
 				if (filter_var($url, FILTER_VALIDATE_URL)) {
-					$video = sprintf('[youtube %s%s ]', $url, '&w=350&h=250&showinfo=0&rel=0');
+					$video = sprintf('[youtube %s%s ]', $url, '&showinfo=0&rel=0');
 				}
 
 			}

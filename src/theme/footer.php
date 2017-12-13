@@ -8,18 +8,26 @@
  *
  * @package Listable
  */
-
 ?>
 
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<?php if ( is_active_sidebar( 'footer-widget-area' ) ) : ?>
-			<div id="footer-sidebar" class="footer-widget-area" role="complementary">
-				<?php dynamic_sidebar( 'footer-widget-area' ); ?>
+	<footer class="site-footer" role="contentinfo">
+		<?php if ( is_active_sidebar( 'footer-widget-area-1' ) ) : ?>
+			<div id="footer-sidebar" class="widget-area__footer" role="complementary">
+			<?php
+				$footer_sidebar_number = (int) pixelgrade_option('footer_sidebar_number', 4, true);
+
+				for($i = 0; $i < $footer_sidebar_number; $i++){
+					echo '<div class="widget-area__footer__col widget-area__footer__col--' . $footer_sidebar_number . '">'; 
+					dynamic_sidebar('footer-widget-area-' . ($i + 1));
+					echo '</div>';
+				}
+			?>
+			
 			</div><!-- #primary-sidebar -->
 		<?php endif; ?>
-		<div class="footer-text-area">
+		<div class="footer-infoarea">
 			<div class="site-info">
 				<?php
 				$footer_copyright = pixelgrade_option('footer_copyright');
@@ -28,34 +36,14 @@
 						<?php echo $footer_copyright; ?>
 					</div>
 				<?php endif; ?>
-				<?php
-				$args = array(
-					'theme_location'  => 'footer_menu',
-					'container'       => '',
-					'container_class' => '',
-					'menu_class'      => 'footer-menu',
-					'depth'           => 1,
-					'fallback_cb'     => null,
-				);
-				wp_nav_menu( $args );
-				?>
 			</div><!-- .site-info -->
-			<div class="theme-info">
-				<a href="<?php echo esc_url( esc_html__( 'https://wordpress.org/', 'listable' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'listable' ), 'WordPress' ); ?></a>
-				<span class="sep"> <?php _e( 'and', 'listable' ) ?> </span>
-				<?php printf( esc_html__( '%1$s by %2$s.', 'listable' ), '<a href="http://themeforest.net/item/listable-a-friendly-directory-wordpress-theme/13398377?ref=pixelgrade" rel="theme">Bitcoin</a>', '<a href="https://pixelgrade.com/" rel="designer">Iondigital</a>' ); ?>
+			<div class="social-info">
+				<?php dynamic_sidebar('footer-widget-area-social');?>
 			</div>
 		</div>
-	</footer><!-- #colophon -->
+	</footer><!-- .site-footer -->
 </div><!-- #page -->
 
-<div class="hide">
-	<div class="arrow-icon-svg"><?php get_template_part( 'assets/svg/carousel-arrow-svg' ); ?></div>
-	<div class="cluster-icon-svg"><?php get_template_part( 'assets/svg/map-pin-cluster-svg' ); ?></div>
-	<div class="selected-icon-svg"><?php get_template_part( 'assets/svg/map-pin-selected-svg' ); ?></div>
-	<div class="empty-icon-svg"><?php get_template_part( 'assets/svg/map-pin-empty-svg' ); ?></div>
-	<div class="card-pin-svg"><?php get_template_part( 'assets/svg/pin-simple-svg' ); ?></div>
-</div>
 
 <?php wp_footer(); ?>
 

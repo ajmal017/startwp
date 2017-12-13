@@ -59,688 +59,6 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 		// keep this empty now
 		$options['sections'] = array();
 
-		$options['sections']['style_presets'] = array(
-			'title'   => '&#x1f3ad; ' . esc_html__( 'Style Presets', 'bitcoin' ),
-			'options' => array(
-				'theme_style' => array(
-					'type'         => 'preset',
-					'label'        => __( 'Select a style:', 'bitcoin' ),
-					'desc'         => __( 'Conveniently change the design of your site with built-in style presets. Easy as pie.', 'patch' ),
-					'default'      => 'bitcoin',
-					'choices_type' => 'awesome',
-					'choices'      => array(
-						'bitcoin' => array(
-							'label'   => __( 'Bitcoin', 'bitcoin' ),
-							'preview' => array(
-								'color-text'       => '#ffffff',
-								'background-card'  => '#ff4d55',
-								'background-label' => '#f13d46',
-								'font-main'        => 'Noto Sans',
-								'font-alt'         => 'Open Sans',
-							),
-							'options' => array(
-
-								// COLORS
-								// Site Header
-								'header_transparent'          => true,
-								'header_background_color'     => '#ffffff',
-								'site_title_color'            => '#484848',
-								'search_color'                => '#484848',
-								'nav_link_color'              => '#919191',
-								'nav_active_color'            => '#FF4D55',
-								'nav_button_color'            => '#EBEBEB',
-
-								// Main Content
-								'content_background'          => '#ffffff',
-								'page_background'             => '#F9F9F9',
-								'page_titles_color'           => '#484848',
-								'page_subtitles_color'        => '#919191',
-								'text_color'                  => '#484848',
-								'buttons_color'               => '#FF4D55',
-
-								// Cards
-								'cards_background'            => '#ffffff',
-								'cards_radius'                => '8',
-								'thumbs_radius'               => '4',
-								'cards_title_color'           => '#FF4D55',
-								'cards_text_color'            => '#ababab',
-								'cards_icon_color'            => '#FF4D5A',
-								'cards_icon_border_color'     => '#FF4D5A',
-								'cards_icon_background_color' => '#FFFFFF',
-								'pin_background_color'        => '#FFFFFF',
-								'pin_icon_color'              => '#FF4D5A',
-
-								// Pre Footer
-								'prefooter_background'        => '#2F2929',
-								'prefooter_text_color'        => '#FFFFFF',
-
-								// Footer
-								'footer_background'           => '#261E1E',
-								'footer_text_color'           => '#ADADB2',
-								'footer_credits_color'        => '#706C6C',
-
-								// Other Colors
-								'accent_color'                => '#FF4D58',
-								'fields_color'                => '#919191',
-								'micro_color'                 => '#ABABAB',
-
-								// FONTS
-								'site_title_font'             => array(
-									'font_family'       => 'Noto Sans',
-									'selected_variants' => '400'
-								),
-								'site_title_font_size'        => '24',
-								'site_title_text_transform'   => 'None',
-								'site_title_letter-spacing'   => '0',
-
-								'navigation_font'           => array(
-									'font_family'       => 'Noto Sans',
-									'selected_variants' => '400'
-								),
-								'navigation_font_size'      => '14.95',
-								'navigation_text_transform' => 'Capitalize',
-								'navigation_letter-spacing' => '0',
-
-								'body_font'           => array(
-									'font_family'       => 'Noto Sans',
-									'selected_variants' => 'regular'
-								),
-								'page_titles_font'    => array( 'font_family'       => 'Noto Sans',
-								                                'selected_variants' => '700'
-								),
-								'page_subtitles_font' => array( 'font_family'       => 'Noto Sans',
-								                                'selected_variants' => '400'
-								),
-								'meta_font'           => array( 'font_family'       => 'Noto Sans',
-								                                'selected_variants' => '400'
-								),
-								'card_font'           => array( 'font_family'       => 'Noto Sans',
-								                                'selected_variants' => '400'
-								),
-
-								'card_title_font'           => array(
-									'font_family'       => 'Noto Sans',
-									'selected_variants' => '700'
-								),
-								'card_title_font_size'      => '24',
-								'card_title_text_transform' => 'None',
-								'card_title_letter-spacing' => '0',
-
-							)
-						),
-
-
-						// Royal Preset
-						'royal'    => array(
-							'label'   => __( 'Royal', 'bitcoin' ),
-							'preview' => array(
-								'color-text'       => '#ffffff',
-								'background-card'  => '#10324e',
-								'background-label' => '#bdae6a',
-								'font-main'        => 'Playfair Display',
-								'font-alt'         => 'Source Sans Pro',
-							),
-							'options' => array(
-
-								// COLORS
-								// Site Header
-								'header_transparent'          => true,
-								'header_background_color'     => '#ffffff',
-								'site_title_color'            => '#10324e',
-								'search_color'                => '#484848',
-								'nav_link_color'              => '#86898c',
-								'nav_active_color'            => '#10324e',
-								'nav_button_color'            => '#ebebeb',
-
-								// Main Content
-								'content_background'          => '#ffffff',
-								'page_background'             => '#f9f9f9',
-								'page_titles_color'           => '#10324e',
-								'page_subtitles_color'        => '#86898c',
-								'text_color'                  => '#10324e',
-								'buttons_color'               => '#bdae6a',
-
-								// Cards
-								'cards_background'            => '#ffffff',
-								'cards_radius'                => '4',
-								'thumbs_radius'               => '16',
-								'cards_title_color'           => '#bdae6a',
-								'cards_text_color'            => '#86898c',
-								'cards_icon_color'            => '#ffffff',
-								'cards_icon_border_color'     => '#bdae6a',
-								'cards_icon_background_color' => '#bdae6a',
-								'pin_background_color'        => '#ffffff',
-								'pin_icon_color'              => '#bdae6a',
-
-								// Pre Footer
-								'prefooter_background'        => '#1c486d',
-								'prefooter_text_color'        => '#ffffff',
-
-								// Footer
-								'footer_background'           => '#10324e',
-								'footer_text_color'           => '#d9dae0',
-								'footer_credits_color'        => '#b0b5b7',
-
-								// Other Colors
-								'accent_color'                => '#bdae6a',
-								'fields_color'                => '#919191',
-								'micro_color'                 => '#ababab',
-
-								// FONTS
-								'site_title_font'             => array( 'font_family'       => 'Playfair Display',
-								                                        'selected_variants' => '700'
-								),
-								'site_title_font_size'        => '24',
-								'site_title_text_transform'   => 'None',
-								'site_title_letter-spacing'   => '0',
-
-								'navigation_font'           => array(
-									'font_family'       => 'Source Sans Pro',
-									'selected_variants' => '200'
-								),
-								'navigation_font_size'      => '15',
-								'navigation_text_transform' => 'Capitalize',
-								'navigation_letter-spacing' => '0',
-
-								'body_font' => 'Source Sans Pro',
-
-								'page_titles_font'    => array(
-									'font_family'       => 'Playfair Display',
-									'selected_variants' => '700'
-								),
-								'page_subtitles_font' => array( 'font_family'       => 'Source Sans Pro',
-								                                'selected_variants' => '300'
-								),
-
-								'card_title_font'           => array(
-									'font_family'       => 'Playfair Display',
-									'selected_variants' => 'regular'
-								),
-								'card_title_font_size'      => '24',
-								'card_title_text_transform' => 'None',
-								'card_title_letter-spacing' => '0',
-
-								'card_font' => array( 'font_family'       => 'Source Sans Pro',
-								                      'selected_variants' => '300'
-								),
-
-								'meta_font' => array( 'font_family'       => 'Source Sans Pro',
-								                      'selected_variants' => '300'
-								),
-
-							)
-						),
-						//Silkberry Preset
-
-						'silkberry' => array(
-							'label'   => __( 'Silkberry', 'bitcoin' ),
-							'preview' => array(
-								'color-text'       => '#ffffff',
-								'background-card'  => '#3D3235',
-								'background-label' => '#FCC5BE',
-								'font-main'        => 'Yeseva One',
-								'font-alt'         => 'Source Sans Pro',
-							),
-							'options' => array(
-
-								// COLORS
-								// Site Header
-								'header_transparent'          => true,
-								'header_background_color'     => '#161314',
-								'site_title_color'            => '#fcc5be',
-								'search_color'                => '#484848',
-								'nav_link_color'              => '#b2b2b2',
-								'nav_active_color'            => '#fcc5be',
-								'nav_button_color'            => '#9e9e9e',
-
-								// Main Content
-								'content_background'          => '#3d3235',
-								'page_background'             => '#2b2427',
-								'page_titles_color'           => '#fcc5be',
-								'page_subtitles_color'        => '#bf8989',
-								'text_color'                  => '#f9f9f9',
-								'buttons_color'               => '#fcc5be',
-
-								// Cards
-								'cards_background'            => '#312a2d',
-								'cards_radius'                => '24',
-								'thumbs_radius'               => '22',
-								'cards_title_color'           => '#fcc5be',
-								'cards_text_color'            => '#ffffff',
-								'cards_icon_color'            => '#3c3133',
-								'cards_icon_border_color'     => '#fcc5be',
-								'cards_icon_background_color' => '#fcc5be',
-								'pin_background_color'        => '#ffffff',
-								'pin_icon_color'              => '#ffadad',
-
-								// Pre Footer
-								'prefooter_background'        => '#2F2929',
-								'prefooter_text_color'        => '#ffffff',
-
-								// Footer
-								'footer_background'           => '#261E1E',
-								'footer_text_color'           => '#868889',
-								'footer_credits_color'        => '#a3a09b',
-
-								// Other Colors
-								'accent_color'                => '#fcc5be',
-								'fields_color'                => '#6d6d6d',
-								'micro_color'                 => '#dddddd',
-
-								// FONTS
-								'site_title_font'             => array( 'font_family'       => 'Libre Baskerville',
-								                                        'selected_variants' => '700'
-								),
-								'navigation_font'             => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => '300'
-								),
-								'navigation_font_size'        => '14.95',
-								'navigation_text_transform'   => 'None',
-								'navigation_letter-spacing'   => '0',
-								'body_font'                   => 'Raleway',
-
-								'page_titles_font'    => array(
-									'font_family'       => 'Libre Baskerville',
-									'selected_variants' => 'regular'
-								),
-								'page_subtitles_font' => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => '300'
-								),
-								'meta_font'           => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => '300'
-								),
-								'card_font'           => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => '300'
-								),
-
-								'card_title_font'           => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => '300'
-								),
-								'card_title_font_size'      => '28',
-								'card_title_text_transform' => 'None',
-								'card_title_letter-spacing' => '0',
-
-							)
-						),
-
-						//Orangina Preset
-						'Orangina'  => array(
-							'label'   => __( 'Orangina', 'bitcoin' ),
-							'preview' => array(
-								'color-text'       => '#ffffff',
-								'background-card'  => '#01a7ba',
-								'background-label' => '#e58500',
-								'font-main'        => 'Delius',
-								'font-alt'         => 'Lato',
-							),
-							'options' => array(
-
-								// COLORS
-								// Site Header
-								'header_transparent'          => true,
-								'header_background_color'     => '#01a7ba',
-								'site_title_color'            => '#ffffff',
-								'search_color'                => '#ffffff',
-								'nav_link_color'              => '#ffffff',
-								'nav_active_color'            => '#3d3d3d',
-								'nav_button_color'            => '#3d3d3d',
-
-								// Main Content
-								'content_background'          => '#ffffff',
-								'page_background'             => '#ffffff',
-								'page_titles_color'           => '#01a7ba',
-								'page_subtitles_color'        => '#86898c',
-								'text_color'                  => '#3d3d3d',
-								'buttons_color'               => '#f79f07',
-
-								// Cards
-								'cards_background'            => '#ffffff',
-								'cards_radius'                => '20',
-								'thumbs_radius'               => '6',
-								'cards_title_color'           => '#f79f07',
-								'cards_text_color'            => '#9b9b9b',
-								'cards_icon_color'            => '#ffffff',
-								'cards_icon_border_color'     => '#01a7ba',
-								'cards_icon_background_color' => '#01a7ba',
-								'pin_background_color'        => '#ffffff',
-								'pin_icon_color'              => '#01a7ba',
-
-								// Pre Footer
-								'prefooter_background'        => '#01a7ba',
-								'prefooter_text_color'        => '#ffffff',
-
-								// Footer
-								'footer_background'           => '#f79f07',
-								'footer_text_color'           => '#ffffff',
-								'footer_credits_color'        => '#000000',
-
-								// Other Colors
-								'accent_color'                => '#f79f07',
-								'fields_color'                => '#848484',
-								'micro_color'                 => '#000000',
-
-								// FONTS
-								'site_title_font'             => array( 'font_family'       => 'Delius',
-								                                        'selected_variants' => '700'
-								),
-								'navigation_font'             => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => '300'
-								),
-								'navigation_font_size'        => '14.95',
-								'navigation_text_transform'   => 'None',
-								'navigation_letter-spacing'   => '0',
-								'body_font'                   => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => 'regular'
-								),
-								'page_titles_font'            => array(
-									'font_family'       => 'Delius',
-									'selected_variants' => 'regular'
-								),
-								'meta_font'                   => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => '300'
-								),
-								'page_subtitles_font'         => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => '300'
-								),
-								'card_font'                   => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => 'regular'
-								),
-
-								'card_title_font'           => array(
-									'font_family'       => 'Delius',
-									'selected_variants' => 'regular'
-								),
-								'card_title_font_size'      => '28',
-								'card_title_text_transform' => 'None',
-								'card_title_letter-spacing' => '0',
-
-
-							)
-						),
-						//Jolly Preset
-
-						'Jolly' => array(
-							'label'   => __( 'Jolly', 'bitcoin' ),
-							'preview' => array(
-								'color-text'       => '#ffffff',
-								'background-card'  => '#ea6f4d',
-								'background-label' => '#ea481c',
-								'font-main'        => 'Flamenco',
-								'font-alt'         => 'Lato',
-							),
-							'options' => array(
-
-								// COLORS
-								// Site Header
-								'header_transparent'          => true,
-								'header_background_color'     => '#ea6f4d',
-								'site_title_color'            => '#ffffff',
-								'search_color'                => '#474747',
-								'nav_link_color'              => '#ffffff',
-								'nav_active_color'            => '#9b3030',
-								'nav_button_color'            => '#000000',
-
-								// Main Content
-								'content_background'          => '#ffffff',
-								'page_background'             => '#ffffff',
-								'page_titles_color'           => '#ea6f4d',
-								'page_subtitles_color'        => '#86898c',
-								'text_color'                  => '#494949',
-								'buttons_color'               => '#ea6f4d',
-
-								// Cards
-								'cards_background'            => '#ffffff',
-								'cards_radius'                => '6',
-								'thumbs_radius'               => '6',
-								'cards_title_color'           => '#ea481c',
-								'cards_text_color'            => '#666666',
-								'cards_icon_color'            => '#ffffff',
-								'cards_icon_border_color'     => '#ea6f4d',
-								'cards_icon_background_color' => '#ea6f4d',
-								'pin_background_color'        => '#ffffff',
-								'pin_icon_color'              => '#ea481c',
-
-								// Pre Footer
-								'prefooter_background'        => '#ea481c',
-								'prefooter_text_color'        => '#ffffff',
-
-								// Footer
-								'footer_background'           => '#ea6f4d',
-								'footer_text_color'           => '#ffffff',
-								'footer_credits_color'        => '#ffbaba',
-
-								// Other Colors
-								'accent_color'                => '#ea481c',
-								'fields_color'                => '#898989',
-								'micro_color'                 => '#777777',
-
-								// FONTS
-								'site_title_font'             => array( 'font_family'       => 'Flamenco',
-								                                        'selected_variants' => '700'
-								),
-								'navigation_font'             => array(
-									'font_family'       => 'Lato',
-									'selected_variants' => '300'
-								),
-								'navigation_font_size'        => '14.95',
-								'navigation_text_transform'   => 'None',
-								'navigation_letter-spacing'   => '0',
-								'body_font'                   => array(
-									'font_family'       => 'Lato',
-									'selected_variants' => '300'
-								),
-
-								'page_titles_font' => array(
-									'font_family'       => 'Flamenco',
-									'selected_variants' => 'regular'
-								),
-
-								'page_subtitles_font' => array(
-									'font_family'       => 'Lato',
-									'selected_variants' => '300'
-								),
-
-								'meta_font' => array(
-									'font_family'       => 'Lato',
-									'selected_variants' => '300'
-								),
-								'card_font' => array(
-									'font_family'       => 'Lato',
-									'selected_variants' => '300'
-								),
-
-								'card_title_font'           => array(
-									'font_family'       => 'Flamenco',
-									'selected_variants' => 'regular'
-								),
-								'card_title_font_size'      => '28',
-								'card_title_text_transform' => 'None',
-								'card_title_letter-spacing' => '0',
-
-
-							)
-						),
-						//Navy Preset
-
-						'Navy' => array(
-							'label'   => __( 'Navy', 'bitcoin' ),
-							'preview' => array(
-								'color-text'       => '#ffffff',
-								'background-card'  => '#001f63',
-								'background-label' => '#3a3a3a',
-								'font-main'        => 'Vidaloka',
-								'font-alt'         => 'Lato',
-							),
-							'options' => array(
-
-								// COLORS
-								// Site Header
-								'header_transparent'          => true,
-								'header_background_color'     => '#ffffff',
-								'site_title_color'            => '#001f63',
-								'search_color'                => '#3a3a3a',
-								'nav_link_color'              => '#001f63',
-								'nav_active_color'            => '#4a5463',
-								'nav_button_color'            => '#000000',
-
-								// Main Content
-								'content_background'          => '#ffffff',
-								'page_background'             => '#ffffff',
-								'page_titles_color'           => '#161400',
-								'page_subtitles_color'        => '#86898c',
-								'text_color'                  => '#3d3d3d',
-								'buttons_color'               => '#000144',
-
-								// Cards
-								'cards_background'            => '#ffffff',
-								'cards_radius'                => '6',
-								'thumbs_radius'               => '6',
-								'cards_title_color'           => '#001f63',
-								'cards_text_color'            => '#666666',
-								'cards_icon_color'            => '#001f63',
-								'cards_icon_border_color'     => '#001f63',
-								'cards_icon_background_color' => '#ffffff',
-								'pin_background_color'        => '#ffffff',
-								'pin_icon_color'              => '#001f63',
-
-								// Pre Footer
-								'prefooter_background'        => '#002847',
-								'prefooter_text_color'        => '#ffffff',
-
-								// Footer
-								'footer_background'           => '#00133f',
-								'footer_text_color'           => '#ffffff',
-								'footer_credits_color'        => '#c1c1c1',
-
-								// Other Colors
-								'accent_color'                => '#001f63',
-								'fields_color'                => '#848484',
-								'micro_color'                 => '#000000',
-
-								// FONTS
-								'site_title_font'             => 'Vidaloka',
-								'navigation_font'             => array(
-									'font_family'       => 'Lato',
-									'selected_variants' => 'regular'
-								),
-								'body_font'                   => 'Lato',
-								'page_titles_font'            => 'Vidaloka',
-								'meta_font'                   => array(
-									'font_family'       => 'Lato',
-									'selected_variants' => 'regular'
-								),
-								'page_subtitles_font'         => 'Lato',
-								'meta_font'                   => array(
-									'font_family'       => 'Lato',
-									'selected_variants' => 'regular'
-
-								),
-								'card_title_font'             => 'Vidaloka',
-
-							)
-						),
-						//Grass Preset
-
-						'Grass' => array(
-							'label'   => __( 'Grass', 'bitcoin' ),
-							'preview' => array(
-								'color-text'       => '#ffffff',
-								'background-card'  => '#64a97b',
-								'background-label' => '#213847',
-								'font-main'        => 'Copse',
-								'font-alt'         => 'Raleway',
-							),
-							'options' => array(
-
-								// COLORS
-								// Site Header
-								'header_transparent'          => true,
-								'header_background_color'     => '#ffffff',
-								'site_title_color'            => '#3a5465',
-								'search_color'                => '#231e1c',
-								'nav_link_color'              => '#090c11',
-								'nav_active_color'            => '#64a97b',
-								'nav_button_color'            => '#3d3931',
-
-								// Main Content
-								'content_background'          => '#ffffff',
-								'page_background'             => '#ffffff',
-								'page_titles_color'           => '#2f4859',
-								'page_subtitles_color'        => '#86898c',
-								'text_color'                  => '#3d3d3d',
-								'buttons_color'               => '#64a97b',
-
-								// Cards
-								'cards_background'            => '#ffffff',
-								'cards_radius'                => '36',
-								'thumbs_radius'               => '36',
-								'cards_title_color'           => '#3a5465',
-								'cards_text_color'            => '#474747',
-								'cards_icon_color'            => '#ffffff',
-								'cards_icon_border_color'     => '#64a97b',
-								'cards_icon_background_color' => '#64a97b',
-								'pin_background_color'        => '#ffffff',
-								'pin_icon_color'              => '#64a97b',
-
-								// Pre Footer
-								'prefooter_background'        => '#64a97b',
-								'prefooter_text_color'        => '#ffffff',
-
-								// Footer
-								'footer_background'           => '#3a5465',
-								'footer_text_color'           => '#ffffff',
-								'footer_credits_color'        => '#0c0c0c',
-
-								// Other Colors
-								'accent_color'                => '#001f63',
-								'fields_color'                => '#848484',
-								'micro_color'                 => '#000000',
-
-								// FONTS
-								'site_title_font'             => 'Copse',
-
-								'navigation_font'           => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => '300'
-								),
-								'navigation_font_size'      => '14.95',
-								'navigation_text_transform' => 'None',
-								'navigation_letter-spacing' => '0',
-
-								'body_font'           => 'Raleway',
-								'page_titles_font'    => array(
-									'font_family'       => 'Copse',
-									'selected_variants' => '700'
-								),
-								'meta_font'           => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => 'regular'
-								),
-								'page_subtitles_font' => 'Raleway',
-								'card_font'           => array(
-									'font_family'       => 'Raleway',
-									'selected_variants' => '300'
-								),
-								'card_title_font'     => 'Montserrat',
-
-							)
-						)
-
-
-					)
-				),
-			)
-		);
 
 		$options['panels']['theme_options'] = array(
 			'title'    => '&#x1f506; ' . esc_html__( 'Theme Options', 'bitcoin' ),
@@ -752,62 +70,10 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'              => 'textarea',
 							'label'             => esc_html__( 'Footer Copyright Text', 'bitcoin' ),
 							//'desc' => esc_html__( 'The copyright text which should appear in footer.', 'bitcoin' ),
-							'default'           => esc_html__( 'Copyright &copy; 2017 Company Inc.   &bull;   Address  &bull;   Tel: 42-898-4363', 'bitcoin' ),
+							'default'           => esc_html__('Copyright © 2017 Bitcoin theme. All Rights Reserved.', 'bitcoin' ),
 							'sanitize_callback' => 'wp_kses_post',
 							'live'              => array( '.site-info .site-copyright-area' )
 						),
-					)
-				),
-				'map_options' => array(
-					'title'   => esc_html__( 'Map Options', 'bitcoin' ),
-					'options' => array(
-						'mapbox_token'        => array(
-							'type'    => 'text',
-							'label'   => esc_html__( 'Mapbox Integration (optional)', 'bitcoin' ),
-							'default' => '',
-							// 'desc'      => __( 'Bitcoin uses the Mapbox API for different reasons. <a href="https://www.mapbox.com/help/create-api-access-token/">Get an API token</a> for best performances.', 'bitcoin' ),
-							'desc'    => sprintf(
-								'<p>%s <a href="https://www.mapbox.com/" target="_blank">%s</a> %s.</p><p><a href="https://www.mapbox.com/help/create-api-access-token/" target="_blank">%s</a> %s.</p>',
-								esc_html__( 'We are offering integration with the', 'bitcoin' ),
-								esc_html__( 'Mapbox', 'bitcoin' ),
-								esc_html__( 'service, so you can have better looking and highly performance maps', 'bitcoin' ),
-								esc_html__( 'Get a FREE token', 'bitcoin' ),
-								esc_html__( 'and paste it below. If there is nothing added, we will fallback to the Google Maps service', 'bitcoin' )
-							)
-						),
-						'mapbox_style'        => array(
-							'type'    => 'radio_image',
-							'label'   => esc_html__( 'Mapbox Style', 'bitcoin' ),
-							'default' => 'mapbox.streets-basic',
-							'choices' => array(
-								'mapbox.streets-basic' => get_template_directory_uri() . '/assets/img/streets-basic.png',
-								'mapbox.streets'       => get_template_directory_uri() . '/assets/img/streets.png',
-								'mapbox.outdoors'      => get_template_directory_uri() . '/assets/img/outdoors.png',
-								'mapbox.light'         => get_template_directory_uri() . '/assets/img/light.png',
-								'mapbox.emerald'       => get_template_directory_uri() . '/assets/img/emerald.png',
-								'mapbox.satellite'     => get_template_directory_uri() . '/assets/img/satellite.png',
-								'mapbox.pencil'        => get_template_directory_uri() . '/assets/img/pencil.png',
-								'mapbox.pirates'       => get_template_directory_uri() . '/assets/img/pirates.png'
-							),
-							'desc'    => esc_html__( 'Custom styles works only if you have set a valid Mapbox API token in the field above.', 'bitcoin' ),
-						),
-						'google_maps_api_key' => array(
-							'type'    => 'text',
-							'label'   => esc_html__( '(Deprecated) Google Maps API key', 'bitcoin' ),
-							'default' => '',
-							'desc'    => sprintf(
-								'<p>%s </p> <a href="%3s" target="_blank">%s</a>',
-								esc_html__( 'WP Job Manager has it\'s own field for Google Maps API key and since version 1.8.9 we recommend you to use their option.', 'bitcoin' ),
-								get_admin_url( null,'edit.php?post_type=job_listing&page=job-manager-settings#setting-job_manager_google_maps_api_key'),
-								esc_html__( 'Go there', 'bitcoin' )
-							),
-							'input_attrs' => array(
-								'min'          => 20,
-								'max'          => 100,
-								'disabled'         => 1,
-							),
-						)
-
 					)
 				),
 				'custom_js'   => array(
@@ -1059,13 +325,13 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'         => array(
 								array(
 									'property' => 'padding-top',
-									'selector' => '.postcards',
+									'selector' => '.postcards, .widget-area__posts',
 									'unit'     => 'px',
 									'media'    => ' only screen and (min-width: 900px)',
 								),
 								array(
 									'property' => 'padding-bottom',
-									'selector' => '.postcards',
+									'selector' => '.postcards, .widget-area__posts',
 									'unit'     => 'px',
 									'media'    => 'only screen and (min-width: 900px) ',
 								)
@@ -1074,14 +340,60 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'blog_type_style' => array(
 							'type' => 'radio_image',
-							'label' => esc_html__('Blog type', 'bitcoin'),
+							'label' => esc_html__('Blog Postcards Layout', 'bitcoin'),
 							'default' => 'tile',
 							'choices' => array(
 								'tile' => get_template_directory_uri() . '/assets/img/tile.png',
 								'list' => get_template_directory_uri() . '/assets/img/list.png'
 							),
 						),
+						'blog_sidebar' => array(
+							'type' => 'radio_image',
+							'label' => esc_html__('Blog Sidebar', 'bitcoin'),
+							'default' => 'sidebar__none',
+							'choices' => array(
+								'sidebar__left' => get_template_directory_uri() . '/assets/img/sidebar_left.png',
+								'sidebar__none' => get_template_directory_uri() . '/assets/img/sidebar_none.png',
+								'sidebar__right' => get_template_directory_uri() . '/assets/img/sidebar_right.png',
+							),
+						)
 					),
+				),
+				'footer_layouts_section' => array(
+					'title' => __('Footer', 'bitcoin'),
+					'options' => array(
+						'footer_sidebar_number' => array(
+							'type' => 'radio',
+							'label' => esc_html__('Column Number', 'bitcoin'),
+							'default' => '4',
+							'choices' => array(
+								'1' => '1',
+								'2' => '2',
+								'3' => '3',
+								'4' => '4'
+							),
+						),
+						'footer_content_width' => array(
+							'type' => 'range',
+							'label' => __('Container Width', 'bitcoin'),
+								// 'desc'        => __( 'Set the width of the container.', 'bitcoin' ),
+							'live' => true,
+							'default' => 1140,
+							'input_attrs' => array(
+								'min' => 600,
+								'max' => 2700,
+								'step' => 10,
+								'data-preview' => true
+							),
+							'css' => array(
+								array(
+									'property' => 'max-width',
+									'selector' => '.widget-area__footer, .footer-infoarea',
+									'unit' => 'px',
+								)
+							)
+						),
+					)
 				)
 			)
 		);
@@ -1358,10 +670,14 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'     => array(
 								array(
 									'property' => 'background-color',
-									'selector' => '.front-page-section:nth-child(2n),
+									'selector' => '
 										.blog, .archive,
 										site-content__wrapper,
 										.error404 .entry-header, .search-no-results .entry-header',
+								),
+								array(
+									'property' => 'color',
+									'selector' => '.widget_tag_cloud .tagcloud a:hover',
 								)
 
 							)
@@ -1375,15 +691,13 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'color',
 									'selector' => '.page-title,
-										.widget_title--frontpage,
 										.single:not(.single-job_listing) .entry-title, .page .entry-title,
 										.card__title,
 										h1, h2, h3, h4, h5, h6,
-										.results,
-										.intro,
-										.listing-sidebar .widget_sidebar_title',
-								),
+										#wp-calendar thead, .widget-sidebar-title',
+								)
 							)
+							
 						),
 
 						'page_subtitles_color' => array(
@@ -1402,23 +716,23 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'    => 'color',
 							'label'   => __( 'Text Color', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#484848',
+							'default' => '#6b7c93',
 							'css'     => array(
 								array(
 									'property' => 'color',
 									'selector' => '.comment-content a:hover,
-										label, html, body,
-										.listing-sidebar,
-										.widget_listing_content,
-										.widget_listing_comments h3.pixrating_title,
-										.widget_listing_sidebar_categories .category-text,
-										.widget_listing_tags .tag__text'
+										label, html, body, .site .widget a'
 								),
 
 								array(
 									'property' => 'border-color',
 									'selector' => 'input[type="checkbox"]:focus,
 													.package__btn.package__btn:hover',
+								),
+								array(
+									'property' => 'background',
+									'selector' => '.widget-sidebar-title:after',
+									'callback_filter' => 'bitcoin_customify_lighter_callback'
 								)
 							)
 						),
@@ -1459,6 +773,22 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 							)
 						),
+						'buttons_text_color' => array(
+							'type' => 'color',
+							'label' => __('Buttons Text Color', 'bitcoin'),
+							'live' => true,
+							'default' => '#fff',
+							'css' => array(
+								array(
+									'property' => 'color',
+									'selector' => '.btn, input[type="submit"]',
+								),
+								array(
+									'property' => 'background-color',
+									'selector' => '.nav-links a',
+								)
+							)
+						)
 					)
 				),
 
@@ -1605,15 +935,27 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				'prefooter' => array(
 					'title'   => esc_html__( 'Pre Footer', 'bitcoin' ),
 					'options' => array(
+						'prefooter_color_line' => array(
+							'type' => 'color',
+							'label' => __('Background', 'bitcoin'),
+							'live' => true,
+							'default' => '#e4e6ea',
+							'css' => array(
+								array(
+									'property' => 'border-top-color',
+									'selector' => '.site-footer'
+								),
+							)
+						),
 						'prefooter_background' => array(
 							'type'    => 'color',
 							'label'   => __( 'Background', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#2F2929',
+							'default' => '#f9f9f9',
 							'css'     => array(
 								array(
 									'property' => 'background-color',
-									'selector' => '.footer-widget-area'
+									'selector' => '.site-footer'
 								),
 							)
 						),
@@ -1621,7 +963,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'    => 'color',
 							'label'   => __( 'Text Color', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#FFFFFF',
+							'default' => '#6b7c93',
 							'css'     => array(
 								array(
 									'property' => 'color',
@@ -1639,7 +981,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'    => 'color',
 							'label'   => __( 'Background', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#261E1E',
+							'default' => '#f9f9f9',
 							'css'     => array(
 								array(
 									'property' => 'background-color',
@@ -1651,11 +993,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'    => 'color',
 							'label'   => __( 'Text Color', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#ADADB2',
+							'default' => '#6b7c93',
 							'css'     => array(
 								array(
 									'property' => 'color',
-									'selector' => '.site-info',
+									'selector' => '.footer-infoarea',
 								),
 							)
 						),
@@ -1663,11 +1005,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'    => 'color',
 							'label'   => __( 'Credits Color', 'bitcoin' ),
 							'live'    => true,
-							'default' => '#706C6C',
+							'default' => '#6b7c93',
 							'css'     => array(
 								array(
 									'property' => 'color',
-									'selector' => '.theme-info',
+									'selector' => '.site-copyright-area',
 								),
 							)
 						),
@@ -1690,19 +1032,25 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'background',
-									'selector' => 'progress::-webkit-progress-bar',
+									'selector' => 'progress::-webkit-progress-bar,
+									progress::-moz-progress-bar. progress::-webkit-progress-value',
 								),
 								array(
 									'property' => 'background',
-									'selector' => 'progress::-webkit-progress-value',
+									'selector' => '*::selection, *::-moz-selection',
 								),
 								array(
 									'property' => 'background',
-									'selector' => 'progress::-moz-progress-bar',
+									'selector' => '.widget_tag_cloud .tagcloud a:hover',
+								),
+								array(
+									'property' => 'border-color',
+									'selector' => '.widget_tag_cloud .tagcloud a',
 								),
 								array(
 									'property' => 'color',
-									'selector' => 'a:not(.btn)',
+									'selector' => 'a:not(.btn), #wp-calendar #today, .widget_tag_cloud .tagcloud a, .widget_recent_entries span.post-date,
+									 .site .widget a:hover,  .site .widget a:focus',
 								),
 								array(
 									'property' => 'border-top-color',
@@ -1962,17 +1310,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'selector'         => 'input,
 								textarea,
 								label,
-								html,
-								.entry-content blockquote cite,
-								.comment-content blockquote cite,
-								.card--feature .card__content,
-								.rating,
-								.widget--footer .search-form .search-field,
-								.featured-label,
-								.package__description,
-								.footer-text-area,
-								.widget_listing_comments h3.pixrating_title,
-								',
+								html',
 							'load_all_weights' => true,
 							'default'          => array(
 								'type'        => 'google',
@@ -1991,21 +1329,39 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						'page_titles_font' => array(
 							'type'             => 'typography',
 							'label'            => esc_html__( 'Headings', 'bitcoin' ),
-							'selector'         => '.entry-title, .archive-title,
-									h1, h2, h3,
-									.card--feature .card__title,
-									.results,
-									.page-title,
-									.search_location input,
-									.package__title, .package__price,
-									.package__subscription-period,
+							'selector'         => '.entry-title,
+									.card__title,
 									h2.comments-title,
-									.page-add-listing fieldset:first-child label,
-									.product-content .price',
+									.widget-sidebar-title,
+									.widget-footer-title',
 							'load_all_weights' => false,
 							'subsets'          => true,
 							'default'          => array( 'Noto Sans', '700' ),
 							'recommended'      => $recommended_headings_fonts
+						),
+						
+						// Text Transform
+						'page_titles_text_transform' => array(
+							'label' => __('Text Transform', 'bitcoin'),
+							'live' => true,
+							'type' => 'select',
+							'choices' => array(
+								'none' => 'None',
+								'capitalize' => 'Capitalize',
+								'uppercase' => 'Uppercase',
+								'lowercase' => 'Lowercase',
+							),
+							'default' => 'None',
+							'css' => array(
+								array(
+									'property' => 'text-transform',
+									'selector' => '
+									.card__title,
+									h2.comments-title,
+									.widget-sidebar-title,
+									.widget-footer-title',
+								)
+							)
 						),
 					)
 				),
@@ -2017,14 +1373,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'             => 'typography',
 							'label'            => esc_html__( 'Page Subtitles', 'bitcoin' ),
 							'selector'         => '.intro,
-									.description,
-									.tabs.wc-tabs,
-									.job-manager-form fieldset .job-manager-uploaded-files .job-manager-uploaded-file .job-manager-uploaded-file-preview a,
-									.widget_subtitle--frontpage,
-									.category-list a,
-									.single:not(.single-job_listing) .entry-subtitle,
-									.page .entry-subtitle,
-									.single-job_listing .entry-subtitle',
+									.description',
 							'load_all_weights' => false,
 							'subsets'          => false,
 							'default'          => array( 'Noto Sans', '400' ),
@@ -2039,8 +1388,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						'card_title_font'           => array(
 							'type'             => 'typography',
 							'label'            => esc_html__( 'Card Title Font', 'bitcoin' ),
-							'selector'         => '.card__title, ul.categories--widget .category-count,
-									ul.categories--widget .category-text',
+							'selector'         => '.card__title',
 							'load_all_weights' => false,
 							'default'          => array( 'Noto Sans', '700' ),
 							'recommended'      => $recommended_headings_fonts
@@ -2135,9 +1483,10 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								input[type="submit"],
 								button[type="submit"],
 								input[type="submit"],
-								.btn',
+								.btn,
+								.nav-links a',
 							'load_all_weights' => false,
-							'default'          => array( 'Noto Sans', '400' ),
+							'default'          => array( 'Noto Sans', '700' ),
 							'subsets'          => false,
 							'recommended'      => $recommended_body_fonts
 						),
@@ -2161,7 +1510,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								input[type="submit"],
 								button[type="submit"],
 								input[type="submit"],
-								.btn',
+								.btn,
+								.nav-links a',
 									'unit'     => 'px',
 								)
 							)
@@ -2212,7 +1562,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								input[type="submit"],
 								button[type="submit"],
 								input[type="submit"],
-								.btn',
+								.btn,
+								.nav-links a',
 									'unit'     => 'px',
 								)
 							)

@@ -20,10 +20,12 @@ get_header();
 
 		<?php get_template_part( 'template-parts/content', 'hero' ); ?>	
 	
-		<?php if ( have_posts() ) : ?>
-	
-			<?php /* Start the Loop */ ?>
 		<div class="site-content__wrapper">
+			
+			<?php do_action('bitcoin_before_posts_loop'); ?>
+			
+			<?php if (have_posts()) : ?>
+
 			<div class="postcards">
 				<div class="grid grid--<?php echo pixelgrade_option('blog_type_style'); ?>" id="posts-container">
 					<?php /* Start the Loop */ ?>
@@ -43,14 +45,18 @@ get_header();
 				</div>
 				<?php the_posts_navigation(); ?>
 			</div>
+			
 
 			<?php else : ?>
 				<?php get_template_part( 'template-parts/content', 'none' ); ?>
 			<?php endif; ?>
-			</div>
+
+			<?php do_action('bitcoin_after_posts_loop'); ?>
+		
+		</div>
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();

@@ -16,7 +16,9 @@ function listable_load_jetpack_compatibility() {
 	}
 
 	if( class_exists( 'Jetpack' )){
+
 		Jetpack::activate_module('shortcodes');
+		Jetpack::activate_module('widgets');
 	}
 }
 add_action( 'after_setup_theme', 'listable_load_jetpack_compatibility' );

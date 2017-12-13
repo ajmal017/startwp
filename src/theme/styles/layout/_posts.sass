@@ -38,7 +38,7 @@
     flex: 1 1 100%
     flex-flow: row
     height: 270px
-    +r(768)
+    +r(769)
       height: auto
       flex-flow: column
   .grid--tile &
@@ -91,6 +91,10 @@
     content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAARElEQVQ4T2NkIAL8////P0gZIyMjIyHlBBWADBg1EG8wjoYh9uAhKdnAFBNKsMTKM1LdQGJsJsnLowZiDYHRMKRvaQMAGvdQDXktn2AAAAAASUVORK5CYII=)
   &.format-link .card__toplink--hasPic:after
     content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAB0klEQVRIS51V0VXCQBCcqUA7UCsQKxArUDrACsAKhArECtQKlAqECpQOoAK1gvHNeYdJuISE/Uk+7mZ2d3b2iAND0imAEYAbAP53vAF4IelvCB6CL8mgTwCOa+6b4Jbkd2cCScMIbuwlgAnJRazIxBMAR66G5KATQcz8NWZ9R3JWrUBSD8AikrQniBl+xLZkwROZpDGABwDz1hVIcrYWdU7SraiNWIWTaS+ypDWAEwAXJD/3EFj8r64EChfIULUkg4xITjM69AG8A9h0aZEJViR7EdwAFnRK0pOzDUkW+RLAYxcCg6SpSeArAH3Pe0bgHyewQ1Dj0JBlJfMceNEjAzu6RFDj0AAUM8xmHqfmPq4NH7WLn0si1zm0IGgJvEKYOuS2DHd2UZND69oiyZo4a8cmLroZSY/zNtjk0Bx4vDmuTk6dL0yQHLokmXodzhcq2woqySY7T35oMlzQoODQK2/FjGm8FhZpFCWVDNeGoPUFSf8OJdMj08jhCgIBgLOqQJlq/JBcB4eS3ph7wwTpUtsV/OfQyrQ0iewe+xGx3a3DzqaseCQ4dG/q8UDajKkKk3i+vfPXTQ7tSuDVa2u7v7nYcWgngnQ4zr0XViKqdWhbgl8SFgqhOo15bwAAAABJRU5ErkJggg==)
+  
+  & .card__toplink
+    +r(768)
+      height: 250px
   &__image
     position: relative
     background-size: cover
@@ -125,21 +129,37 @@
     position: relative
     .card__toplink
       height: 100%
+      +r(768)
+        height: 250px
     &__wrapper
       position: absolute
+      width: 100%
+      height: 100%
       bottom: 0
       > * 
+        width: 100%
+        height: 100%
         margin: 0 !important
+        > *
+          display: block
+          width: 100%
+          height: 100% !important
+        iframe
+          width: 100%
+          height: 100% !important
       &--sc
         width: 100%
         height: 100%
-
+      &--wp
+        width: 100%
+        height: auto
   &-gallery 
     &__slider
       .grid--list &
         display: flex
         width: 360px
         flex: 0 0 360px
+        overflow: hidden
         +r(768)
           width: 100%
           flex: 0 0 auto
@@ -150,6 +170,7 @@
         width: 30px
         height: 30px
         text-align: center
+        +tr(all .5s)
       .slick-prev:before,
       .slick-next:before
         @extend %icon
@@ -164,17 +185,23 @@
       .slick-prev
         border-top-right-radius: 5px
         border-bottom-right-radius: 5px
-        left: 0px
+        left: -50px
         &:before
           padding-right: 5px
           content: $fa-var-angle-left
       .slick-next
         border-top-left-radius: 5px
         border-bottom-left-radius: 5px
-        right: 0px
+        right: -50px
         &:before
           padding-left: 5px
           content: $fa-var-angle-right
+      .card.format-gallery:hover &
+        .slick-prev
+          left: 0px
+        .slick-next
+          right: 0px
+
     &__item
       .grid--list &
         height: 270px !important
@@ -226,7 +253,7 @@
             opacity: .8
   &__excerpt
     overflow: hidden
-    margin-bottom: rhythm(1)
+    margin-bottom: rhythm(.5)
     .grid--list &
       height: rem(2*$base-line-height)
     .grid--tile &
@@ -257,6 +284,7 @@
         font-size: rem(140px)
         line-height: rem(30px)
 
+
   &.format-quote 
     .permalink,
     .posted-by,
@@ -266,7 +294,9 @@
       display: none
     .bitcoin-icon
       opacity: 1
-    
+
+  .permalink .btn
+    margin-bottom: 0 !important
 
   &-meta
     display: flex
@@ -297,8 +327,7 @@
     flex: 1 1 auto
     justify-content: center
     align-items: center
-    
-    
+
 .posted-on,
 .posted-by,
 .comments-count
@@ -307,10 +336,12 @@
   overflow: hidden
   text-overflow: ellipsis
 .posted-by
-  width: 55px
+  //min-width: 55px
 .posted-on
-  width: 155px
+  //min-width: 155px
 .comments-count
   text-overflow: unset
   overflow: visible
+
+
 

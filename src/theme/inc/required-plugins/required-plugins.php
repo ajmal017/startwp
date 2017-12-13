@@ -44,6 +44,12 @@ function listable_register_required_plugins() {
 			'name'      		 => 'Jetpack',
 			'slug'      		 => 'jetpack',
 			'required'  		 => false
+		),
+
+		array(
+			'name' => 'Contact Form 7',
+			'slug' => 'contact-form-7',
+			'required' => false
 		)
 
 	);

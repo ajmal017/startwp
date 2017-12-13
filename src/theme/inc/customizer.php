@@ -30,7 +30,9 @@ add_action( 'customize_preview_init', 'bitcoin_customize_preview_js' );
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function bitcoin_customize_js() {
-	wp_enqueue_script( 'bitcoin_customizer', get_template_directory_uri() . '/assets/js/admin/customizer.js', array( 'wp-ajax-response' ), '201711', true );
+	wp_enqueue_script('bitcoin_admin_general', get_template_directory_uri() . '/assets/js/admin/admin-general.js', array('wp-ajax-response'), '201711', true);
+
+	wp_enqueue_script( 'bitcoin_customizer', get_template_directory_uri() . '/assets/js/admin/customizer.js', array( 'wp-ajax-response', 'bitcoin_admin_general' ), '201711', true );
 
 	wp_enqueue_style( 'bitcoin-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/customizer.css' );
 }

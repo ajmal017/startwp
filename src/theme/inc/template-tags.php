@@ -248,58 +248,7 @@ function bitcoin_categorized_blog() {
 	}
 }
 
-/**
- * Flush out the transients used in bitcoin_categorized_blog.
- */
-function bitcoin_category_transient_flusher() {
-	// Like, beat it. Dig?
-	delete_transient( 'bitcoin_categories' );
-}
 
-add_action( 'edit_category', 'bitcoin_category_transient_flusher' );
-add_action( 'save_post', 'bitcoin_category_transient_flusher' );
-
-if ( ! function_exists( 'listable_display_term_icon' ) ) {
-	function listable_display_term_icon( $term_id = null, $size = 'thumbnail' ) {
-		$img_src = listable_get_term_icon_url( $term_id, $size );
-
-		if ( ! empty( $img_src ) ) { ?>
-			<div class="icon_wrapper">
-				<img src="<?php echo $img_src; ?>">
-			</div>
-		<?php }
-	}
-}
-
-if ( ! function_exists( 'listable_listing_slug_input' ) ) {
-	function listable_listing_slug_input() {
-		$permalinks = get_option( 'listable_permalinks_settings' ); ?>
-		<input name="listable_listing_base_slug" type="text" class="regular-text code" value="<?php if ( isset( $permalinks['listing_base'] ) ) {
-			echo esc_attr( $permalinks['listing_base'] );
-		} ?>" placeholder="<?php echo esc_attr_x( 'listings', 'slug', 'listable' ) ?>"/>
-		<?php
-	}
-}
-
-if ( ! function_exists( 'listable_listing_category_slug_input' ) ) {
-	function listable_listing_category_slug_input() {
-		$permalinks = get_option( 'listable_permalinks_settings' ); ?>
-		<input name="listable_listing_category_slug" type="text" class="regular-text code" value="<?php if ( isset( $permalinks['category_base'] ) ) {
-			echo esc_attr( $permalinks['category_base'] );
-		} ?>" placeholder="<?php echo esc_attr_x( 'listing-category', 'slug', 'listable' ) ?>"/>
-		<?php
-	}
-}
-
-if ( ! function_exists( 'listable_listing_tag_slug_input' ) ) {
-	function listable_listing_tag_slug_input() {
-		$permalinks = get_option( 'listable_permalinks_settings' ); ?>
-		<input name="listable_listing_tag_slug" type="text" class="regular-text code" value="<?php if ( isset( $permalinks['tag_base'] ) ) {
-			echo esc_attr( $permalinks['tag_base'] );
-		} ?>" placeholder="<?php echo esc_attr_x( 'listing-tag', 'slug', 'listable' ) ?>"/>
-		<?php
-	}
-}
 
 /**
  * @param null $post_id
@@ -328,28 +277,6 @@ function display_average_listing_rating( $post_id = null, $decimals = 2 ) {
 	<?php
 }
 
-/**
- * Returns the rating score for the current post
- *
- * @param null $post_id
- * @param int $decimals
- *
- * @return bool
- */
-function get_average_listing_rating( $post_id = null, $decimals = 2 ) {
-
-	if ( empty( $post_id ) ) {
-		global $post;
-		$post_id = $post->ID;
-	}
-
-	global $pixreviews_plugin;
-	if ( method_exists( $pixreviews_plugin, 'get_average_rating' ) ) {
-		return $pixreviews_plugin->get_average_rating( $post_id, $decimals );
-	}
-
-	return false;
-}
 
 if ( ! function_exists( 'listable_shape_comment' ) ) :
 	/**

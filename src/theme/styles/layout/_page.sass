@@ -1,3 +1,37 @@
-.single-post 
-    .post-navigation 
-      display: none
+.single-post
+  .site-main
+    padding: 50px
+    +r(768)
+      padding: 20px 10px
+  .entry-related.grid--tile .grid__item,
+    flex: 0 0 50%
+    max-width: 45%
+    width: 350px
+  +rmin(769)
+    .entry-related.grid--list .card.format-gallery .card__toplink,
+    .entry-related.grid--list .card.format-standard .card__toplink,
+    .entry-related.grid--list .card.format-video .card-player,
+    .entry-related.grid--list .card.format-audio .card-player,
+    .entry-related.grid--list .card.format-link .card__toplink
+      flex: 0 0 50%
+      width: 50%
+    .entry-related.grid--list .card.format-video .card__toplink,
+    .entry-related.grid--list .card.format-audio .card__toplink,
+      flex: 0 0 100%
+      width: 100%
+    .entry-related.grid--list .card.format-quote
+      height: 350px
+  .grid--list .card
+  .content-area__wrapper
+    align-items: flex-start
+    overflow: hidden
+    box-shadow: 0 16px 20px rgba(0, 0, 0, 0.12)
+    .entry-featured
+      margin: -50px -50px 0
+    .content-area__wrapperIn
+      width: 100%
+      overflow: hidden
+      padding: 45px 50px
+      border-radius: 4px
+  .post-navigation 
+    display: none

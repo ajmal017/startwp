@@ -3,19 +3,7 @@
   *   3.6 - Forms
   */
  /*----------------------------------------*INPUTS / FORMS
- 
- [Table of contents]
- 
- 1. $Common form controls
- 2. $Checkboxes and radios
- 3. $Inline forms
- 4. $Input groups
 
-
-
- ------------------------------------------*/
- /*------------------------------------*	1. $Common form controls
- \*------------------------------------*/
  /**
   *
   * Shared size and type resets for form controls. Apply `.form-control` to any
@@ -38,56 +26,55 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .form-control
-    border: 1px solid rgba(0, 0, 0, 0.075)
-    border-radius: 3px
+    height: 40px
+    border-width: 1px 
+    border-style: solid
+    border-radius: 4px
     display: block
     outline: 0
     padding: 0.8125rem 0.9375rem
     vertical-align: middle
     width: 100%
     appearance: none
+    &:focus
+        opacity: 1
+        box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.8) inset, 0 0 0 2px rgba(0, 126, 255, 0.1)
+    &::placeholder
+        box-shadow: 0 0 0px 1000px transparent inset 
+    &:focus::placeholder
+        opacity: .6
+        box-shadow: 0 0 0px 1000px #fff inset 
+    &:-webkit-autofill
+        box-shadow: 0 0 0px 1000px rgb(240, 240, 240) inset 
+        -webkit-text-fill-color: #6f6f6f
+    &:focus:-webkit-autofill
+        -webkit-text-fill-color: rgba(black, .7)
+        box-shadow: 0 0 0px 1000px #fff inset
 
-.lt-ie9 select input,
-.lt-ie9
-textarea input,
-.lt-ie9
-input[type="text"] input,
-.lt-ie9
-input[type="password"] input,
-.lt-ie9
-input[type="datetime"] input,
-.lt-ie9
-input[type="datetime-local"] input,
-.lt-ie9
-input[type="date"] input,
-.lt-ie9
-input[type="month"] input,
-.lt-ie9
-input[type="time"] input,
-.lt-ie9
-input[type="week"] input,
-.lt-ie9
-input[type="number"] input,
-.lt-ie9
-input[type="email"] input,
-.lt-ie9
-input[type="url"] input,
-.lt-ie9
-input[type="search"] input,
-.lt-ie9
-input[type="tel"] input,
-.lt-ie9
-input[type="color"] input,
-.lt-ie9
+textarea
+    height: auto
+    min-height: 80px
+    resize: vertical
+
 .form-control input
     outline: 0 
     padding: 12px 0
     width: 100%
     height: 40px
     border-radius: 4px
-    border: 1px solid #e4e6ea
     padding: 0 18px
 
+.input-block
+    display: block
+    width: 100%
+
+.form-inline
+    display: inline-flex
+    margin: -5px
+    align-items: flex-end
+    & > *
+        margin: 5px
+        
 
 input[type="file"] 
     border: 0
@@ -98,6 +85,7 @@ input[type="submit"]
     height: 40px
     letter-spacing: 0.56px
     padding: 0 18px
+    border: none
 
 fieldset 
     border: 0
@@ -213,148 +201,70 @@ input[type="checkbox"]:focus
     margin-top: 0
 
 
-/*------------------------------------*	3. $Inline forms
-/**
-    *
-    * Make forms appear inline(-block) by adding the `.form-inline` class. Inline
-    * forms begin stacked on extra small (mobile) devices and then go inline when
-    * viewports reach <768px.
-    *
-    * Requires wrapping inputs and labels with `.form-group` for proper display of
-    * default HTML form controls and our custom form controls (e.g., input groups).
- */
-@media (min-width: 768px) 
-    .form-inline .form-group 
-        display: inline-block
-        margin-bottom: 0
-        vertical-align: middle
-    
-    .form-inline .form-control 
-        display: inline-block
-    
-    .form-inline .radio,
-    .form-inline .checkbox 
-        display: inline-block
-        margin-bottom: 0
-        margin-top: 0
-        padding-left: 0
-    
-    .form-inline .radio input[type="radio"],
-    .form-inline .checkbox input[type="checkbox"] 
-        float: none
-        margin-left: 0
-    
+
+.widget-area__posts
+    form input:not([type="submit"]),
+    form select,
+    form textarea 
+        background-color: white
+        color: #484848 
+        font-size: 14px
+        line-height: 1.3
+        margin-bottom: 0.5em
+        padding: 8px 13px
 
 
-/**
- *------------------------------------*	4. $Input groups
- */
-.input-group 
-    border-collapse: separate 
-    display: table
-    position: relative
-
-.input-group.col 
-    float: none
-    padding-left: 0
-    padding-right: 0
-
-.input-group .form-control 
-    margin-bottom: 0 
-    width: 100%
-
-
-.input-group-addon,
-.input-group-btn,
-.input-group .form-control 
-    display: table-cell
-
-.input-group-addon:not(:first-child):not(:last-child),
-.input-group-btn:not(:first-child):not(:last-child),
-.input-group .form-control:not(:first-child):not(:last-child) 
-    border-radius: 0
-
-
-.input-group-addon,
-.input-group-btn 
-    vertical-align: middle 
-    white-space: nowrap
-    width: 1%
-
-
-.bitcoin_sidebar_sticky_title 
-    color: #484848
-    font-size: 16px
-    margin-bottom: 20px 
-    text-align: center
-
-
-.bitcoin-sidebar--secondary form input:not([type="submit"]),
-.bitcoin-sidebar--secondary form select,
-.bitcoin-sidebar--secondary form textarea 
-    background-color: white
-    color: #484848 
-    font-size: 14px
-    line-height: 1.3
-    margin-bottom: 0.5em
-    padding: 8px 13px
-
-
-.bitcoin-sidebar label 
-    display: block
-
-
-.bitcoin-sidebar--secondary form label 
-    display: block
-    font-size: 14px
-    font-weight: normal
+    form label 
+        display: block
+        font-size: 14px
+        font-weight: normal
 
 
 
-.bitcoin-sidebar--secondary form select,
-.bitcoin-sidebar--secondary form textarea,
-.bitcoin-sidebar--secondary form input[type="text"],
-.bitcoin-sidebar--secondary form input[type="password"],
-.bitcoin-sidebar--secondary form input[type="datetime"],
-.bitcoin-sidebar--secondary form input[type="datetime-local"],
-.bitcoin-sidebar--secondary form input[type="date"],
-.bitcoin-sidebar--secondary form input[type="month"],
-.bitcoin-sidebar--secondary form input[type="time"],
-.bitcoin-sidebar--secondary form input[type="week"],
-.bitcoin-sidebar--secondary form input[type="number"],
-.bitcoin-sidebar--secondary form input[type="email"],
-.bitcoin-sidebar--secondary form input[type="url"],
-.bitcoin-sidebar--secondary form input[type="search"],
-.bitcoin-sidebar--secondary form input[type="tel"],
-.bitcoin-sidebar--secondary form input[type="color"],
-.bitcoin-sidebar--secondary form .form-control 
-    border-radius: 2px
+    form select,
+    form textarea,
+    form input[type="text"],
+    form input[type="password"],
+    form input[type="datetime"],
+    form input[type="datetime-local"],
+    form input[type="date"],
+    form input[type="month"],
+    form input[type="time"],
+    form input[type="week"],
+    form input[type="number"],
+    form input[type="email"],
+    form input[type="url"],
+    form input[type="search"],
+    form input[type="tel"],
+    form input[type="color"],
+    form .form-control 
+        border-radius: 4px
 
 
-.bitcoin-sidebar--secondary form select 
-    padding-right: 32px
+    form select 
+        padding-right: 32px
 
 
-.bitcoin-sidebar--secondary form button,
-.bitcoin-sidebar--secondary form input[type="submit"] 
-    width: 100%
+    form button,
+    form input[type="submit"] 
+        width: 100%
 
 
-.bitcoin-sidebar--secondary form input[type="file"] 
-    line-height: 1 
-    padding: 0
+    form input[type="file"] 
+        line-height: 1 
+        padding: 0
 
 
-.bitcoin-sidebar--secondary form input[type="number"] 
-    padding-right: 8px
+    form input[type="number"] 
+        padding-right: 8px
 
 
-.bitcoin-sidebar--secondary form input[type="checkbox"] 
-    height: 28px
+    form input[type="checkbox"] 
+        height: 28px
 
 
-.bitcoin-sidebar--secondary form .search-submit 
-    z-index: -1
+    form .search-submit 
+        z-index: -1
 
 
 
@@ -363,27 +273,35 @@ input[type="checkbox"]:focus
 /**
  *   Contact Form 7
  */
-.bitcoin-sidebar--secondary .wpcf7 p 
-    position: relative
+.wpcf7 
+    p 
+        position: relative
+
+    div.wpcf7-response-output 
+        border-radius: 4px 
+        font-size: 14px
+        line-height: 1.3
+        margin: 0
+        padding: 8px 13px
 
 
-.bitcoin-sidebar--secondary .wpcf7 div.wpcf7-response-output 
-    border-radius: 4px 
-    font-size: 14px
-    line-height: 1.3
-    margin: 0
-    padding: 8px 13px
+    span.wpcf7-not-valid-tip 
+        font-size: 14px
+        position: relative
+        top: -4px
+
+    .ajax-loader
+        position: absolute
+        height: 0
+        width: 0
+        visibility: hidden
+        pointer-events: none
+
+    span.wpcf7-list-item 
+        margin-left: 0
+        margin-right: 1em
 
 
-.bitcoin-sidebar--secondary .wpcf7 span.wpcf7-not-valid-tip 
-    font-size: 14px
-    position: relative 
-    top: -4px
-
-
-span.wpcf7-list-item 
-    margin-left: 0
-    margin-right: 1em
 
 /*------------------------------------*/
 /*------------------------------------	1. $Paginations

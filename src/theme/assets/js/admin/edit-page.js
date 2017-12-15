@@ -4,13 +4,14 @@
 		
 
 		function postPage(){
-			let startFormat = document.querySelector('input[name=\'post_format\']:checked').getAttribute('id').slice(12);
+			let format = document.querySelector('input[name=\'post_format\']:checked');
+			if( !format ) return
+			let startFormat = format.getAttribute('id').slice(12);
 			setPostFormat(startFormat);
 
 			function setPostFormat(postFormat){
 				let contentPostBlocks = Array.from(document.querySelectorAll('div[id*=bitcoin_post]'));
 				contentPostBlocks.map(item => $(item).slideUp());
-
 				if (postFormat == 'gallery') {
 					$('#postimagediv').slideUp();
 				}else{

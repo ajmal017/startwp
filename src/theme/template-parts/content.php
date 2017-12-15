@@ -13,27 +13,27 @@
 
 	<?php 
 
-	$format = get_post_format();
 
 
 
 	if( is_sticky() ):
 		printf('<div class="card__sticky">%1$s</div>',
-		 	file_get_contents(locate_template('assets/svg/star.php')) 
-		);
+		file_get_contents(locate_template('assets/svg/star.php')) 
+	);
 	endif;
 
+	$format = get_post_format();
 
 	switch ($format) {
 		case 'gallery':
-			$post_meta = get_post_meta(get_the_ID(), 'gallery_post_input', false);
+			$post_meta = get_post_meta(get_the_ID(), 'post_gallery_input', false);
 			reset($post_meta);
 
 			if( !empty( $post_meta) ) :
 				$images_id = explode(',', current( $post_meta ));
 				$image_size = array(350, 250);
 
-				echo '<div class="card-gallery__slider">';
+				echo '<div class="card-gallery__slider js-gallery__slider">';
 				foreach( $images_id as $image_id){
 				
 					$image = wp_get_attachment_image_src($image_id, $image_size);

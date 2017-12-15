@@ -71,12 +71,15 @@ if(bitcoin_categorized_blog() && !is_category()) echo ' has__categories'; ?>" >
         <div class="hero-header__content">
             <?php if( is_category() ) { ?>
                 <h1 class="hero-title"><?php single_cat_title(esc_html__('Category: ', 'bitcoin')); ?></h1>
-            <?php } else { ?>
+            <?php } elseif ( is_archive() ) {
+                    the_archive_title('<h1 class="hero-title">', '</h1>');
+                    the_archive_description('<div class="hero-description">', '</div>');
+                } else { ?>
                 <h1 class="hero-title"><?php echo get_the_title($page_for_posts); ?></h1>
             <?php } ?>
 
             <?php
-            if( bitcoin_categorized_blog() && !is_category()):
+            if( bitcoin_categorized_blog() && !is_category() && !is_archive()):
                 $categories = get_categories();
                 if( $categories ):
                     echo '<ul class="hero-category__list">';

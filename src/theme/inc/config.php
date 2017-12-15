@@ -306,7 +306,27 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'         => array(
 								array(
 									'property' => 'max-width',
-									'selector' => '.site-content__wrapper',
+									'selector' => '.content-area__wrapper',
+									'unit'     => 'px',
+								)
+							)
+						),
+						'content_width_blog' => array(
+							'type'        => 'range',
+							'label'       => __( 'Container Width On Posts Page', 'bitcoin' ),
+							// 'desc'        => __( 'Set the width of the container.', 'bitcoin' ),
+							'live'        => true,
+							'default'     => 1140,
+							'input_attrs' => array(
+								'min'          => 600,
+								'max'          => 2700,
+								'step'         => 10,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'max-width',
+									'selector' => '.blog .content-area__wrapper',
 									'unit'     => 'px',
 								)
 							)
@@ -356,6 +376,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								'sidebar__none' => get_template_directory_uri() . '/assets/img/sidebar_none.png',
 								'sidebar__right' => get_template_directory_uri() . '/assets/img/sidebar_right.png',
 							),
+						),
+						'blog_sidebar_posts' => array(
+							'type' => 'checkbox',
+							'default' => true,
+							'label' => esc_html__('Also shot it on Posts Page', 'bitcoin')
 						)
 					),
 				),
@@ -658,7 +683,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'     => array(
 								array(
 									'property' => 'background-color',
-									'selector' => 'html',
+									'selector' => 'html,
+										.single .content-area__wrapperIn',
 								)
 							)
 						),
@@ -671,8 +697,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'background-color',
 									'selector' => '
-										.blog, .archive,
-										site-content__wrapper,
+										.blog, .archive, .single .content-area,
 										.error404 .entry-header, .search-no-results .entry-header',
 								),
 								array(
@@ -932,34 +957,22 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 					)
 				),
 
-				'prefooter' => array(
-					'title'   => esc_html__( 'Pre Footer', 'bitcoin' ),
+				'footer' => array(
+					'title'   => esc_html__( 'Footer', 'bitcoin' ),
 					'options' => array(
-						'prefooter_color_line' => array(
-							'type' => 'color',
-							'label' => __('Background', 'bitcoin'),
-							'live' => true,
-							'default' => '#e4e6ea',
-							'css' => array(
-								array(
-									'property' => 'border-top-color',
-									'selector' => '.site-footer'
-								),
-							)
-						),
-						'prefooter_background' => array(
+						'footer_background' => array(
 							'type'    => 'color',
 							'label'   => __( 'Background', 'bitcoin' ),
 							'live'    => true,
 							'default' => '#f9f9f9',
 							'css'     => array(
 								array(
-									'property' => 'background-color',
+									'property' => 'background',
 									'selector' => '.site-footer'
 								),
 							)
 						),
-						'prefooter_text_color' => array(
+						'footer_text_color' => array(
 							'type'    => 'color',
 							'label'   => __( 'Text Color', 'bitcoin' ),
 							'live'    => true,
@@ -971,50 +984,22 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								)
 							)
 						),
+						'footer_credits_color' => array(
+							'type' => 'color',
+							'label' => __('Credits&Social Colors', 'bitcoin'),
+							'live' => true,
+							'default' => '#6b7c93',
+							'css' => array(
+								array(
+									'property' => 'color',
+									'selector' => '.site-copyright-area, .footer-infoarea .social-info',
+								),
+							)
+						)
 					)
 				),
 
-				'footer' => array(
-					'title'   => esc_html__( 'Footer', 'bitcoin' ),
-					'options' => array(
-						'footer_background'    => array(
-							'type'    => 'color',
-							'label'   => __( 'Background', 'bitcoin' ),
-							'live'    => true,
-							'default' => '#f9f9f9',
-							'css'     => array(
-								array(
-									'property' => 'background-color',
-									'selector' => '.site-footer'
-								),
-							)
-						),
-						'footer_text_color'    => array(
-							'type'    => 'color',
-							'label'   => __( 'Text Color', 'bitcoin' ),
-							'live'    => true,
-							'default' => '#6b7c93',
-							'css'     => array(
-								array(
-									'property' => 'color',
-									'selector' => '.footer-infoarea',
-								),
-							)
-						),
-						'footer_credits_color' => array(
-							'type'    => 'color',
-							'label'   => __( 'Credits Color', 'bitcoin' ),
-							'live'    => true,
-							'default' => '#6b7c93',
-							'css'     => array(
-								array(
-									'property' => 'color',
-									'selector' => '.site-copyright-area',
-								),
-							)
-						),
-					)
-				),
+
 
 				'other_color' => array(
 					'title'   => esc_html__( 'Other Colors', 'bitcoin' ),
@@ -1078,31 +1063,22 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'color',
-									'selector' => '.page-template-front_page .search-form .search-field::-webkit-input-placeholder'
+									'selector' => '.form-control::placeholder, input::placeholder'
 								),
 								array(
 									'property' => 'color',
-									'selector' => '.page-template-front_page .search-form .search-field::-moz-placeholder'
+									'selector' => '.form-control, input',
+									'callback_filter' => 'bitcoin_customify_darker_callback'
 								),
 								array(
 									'property' => 'color',
-									'selector' => '.page-template-front_page .search-form .search-field::-moz-placeholder'
+									'selector' => '.form-control::focus::placeholder,
+									input::focus::placeholder',
+									'callback_filter ' => 'bitcoin_customify_lighter_callback'
 								),
 								array(
-									'property' => 'color',
-									'selector' => '.select-tags .chosen-container-multi .chosen-choices li.search-field::-webkit-input-placeholder'
-								),
-								array(
-									'property' => 'color',
-									'selector' => '.select-tags .chosen-container-multi .chosen-choices li.search-field:-moz-placeholder'
-								),
-								array(
-									'property' => 'color',
-									'selector' => '.select-tags .chosen-container-multi .chosen-choices li.search-field::-moz-placeholder'
-								),
-								array(
-									'property' => 'color',
-									'selector' => '.select-tags .chosen-container-multi .chosen-choices li.search-field:-ms-input-placeholder'
+									'property' => 'border-color',
+									'selector' => 'input, textarea',
 								),
 								array(
 									'property' => 'color',
@@ -1117,23 +1093,13 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'default' => '#ABABAB',
 							'css'     => array(
 								array(
-									'property' => 'color',
-									'selector' => '.job_filters .showing_jobs,
-										.tax-job_listing_category div.job_listings .load_more_jobs strong,
-										.tax-job_listing_tag div.job_listings .load_more_jobs strong'
+									'property' => 'border-bottom-color',
+									'selector' => '.site-header'
 								),
 								array(
 									'property' => 'border-top-color',
-									'selector' => '
-										.chosen-container-single .chosen-single div b:after,
-										.select-tags .chosen-container-multi .chosen-choices:after'
-								),
-								array(
-									'property' => 'background-color',
-									'selector' => '
-										.remove-tag:before,
-										.remove-tag:after'
-								),
+									'selector' => '.site-footer'
+								)
 							)
 						),
 

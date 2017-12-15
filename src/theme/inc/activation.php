@@ -43,21 +43,6 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 							'id'   => 'blog_image_backgrounds',
 							'type' => 'gallery',
 
-						),
-						array(
-							'name' => esc_html__('Sidebar', 'bitcoin'),
-							'id' => 'blog_sidebar',
-							'type' => 'radio',
-							'std' => 'Has Sidebar',
-							'options' => array(
-											array('value' => 'Has Sidebar',
-												   'name' => 'has-sidebar'),
-											array(
-												'value' => 'Without Sidebar',
-												'name' => 'no-sidebar'
-											)
-							)
-
 						)
 					)
 				),
@@ -75,7 +60,7 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 					'fields' => array(
 						array(
 							'name' => esc_html__('Gallery Image', 'bitcoin'),
-							'id' => 'gallery_post_input',
+							'id' => 'post_gallery_input',
 							'type' => 'gallery',
 
 						)

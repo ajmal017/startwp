@@ -29,12 +29,12 @@
 
 
 
-.sidebar__left .site-content__wrapper
+.sidebar__left .content-area__wrapper
     @extend %site-content-wrapper
     +rmin(768)
       flex-flow: row-reverse
 
-.sidebar__right .site-content__wrapper
+.sidebar__right .content-area__wrapper
     @extend %site-content-wrapper
     +rmin(769)
       flex-flow: row
@@ -50,7 +50,7 @@
     margin: 40px 0
   
 
-  .widget:first-child 
+  .widget:first-child   
       margin-top: rhythm(-.5)
 
 .widget-area__footer
@@ -233,6 +233,10 @@
 
 .widget-area__posts .widget_wpcom_social_media_icons_widget
   margin-top: -15px
+
+
+.site-footer .widget li a
+  color: inherit 
 
 .posts-navigation 
   display:inline-block

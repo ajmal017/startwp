@@ -51,7 +51,21 @@ add_action('widgets_init', 'listable_register_widget_areas' );
 
 function bitcoin_sidebar(){
 	// Output the sidebar.php
-	get_sidebar();
+	global $post;
+	$sidebar = pixelgrade_option('blog_sidebar');
+	$show_on_posts_page = true;
+
+
+	if( is_home() ){
+		$show_on_posts_page = false;
+		$show_on_posts_page = pixelgrade_option('blog_sidebar_posts');
+	}
+
+	if ( 'sidebar__none' != $sidebar && $show_on_posts_page ) {
+
+		get_sidebar();
+
+	}
 	
 }
 

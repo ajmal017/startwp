@@ -84,6 +84,7 @@ if ( ! function_exists( 'listable_setup' ) ) :
 		add_post_type_support( 'page', 'excerpt' );
 
 		remove_post_type_support( 'page', 'thumbnail' );
+		remove_post_type_support( 'page', 'subtitles' ); 
 
 		// custom javascript handlers - make sure it is the last one added
 		add_action( 'wp_head', 'listable_load_custom_js_header', 999 );
@@ -229,8 +230,7 @@ function listable_admin_scripts() {
 		wp_enqueue_script('polyfill', '//cdn.polyfill.io/v2/polyfill.min.js', array('jquery'));
 		wp_enqueue_script( 'listable-admin-edit-scripts', get_template_directory_uri() . '/assets/js/admin/edit-page.js', array( 'jquery', 'polyfill' ), '1.0.0', true );
 
-
-		if ( get_post_type() === 'page' ) {
+		if ( get_post_type() === 'post' ) {
 			wp_enqueue_style( 'listable-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/edit-page.css' );
 		}
 	}

@@ -20,7 +20,7 @@ get_header();
 
 		<?php get_template_part( 'template-parts/content', 'hero' ); ?>	
 	
-		<div class="site-content__wrapper">
+		<div class="content-area__wrapper">
 			
 			<?php do_action('bitcoin_before_posts_loop'); ?>
 			

@@ -579,13 +579,12 @@
 
     const Sliders = (function($){
         const defaultSettings = {
-            container: '.card-gallery__slider'
+            container: '.js-gallery__slider'
         }
 
         function init(options = {}){
             let settings = new Object;
             $.extend(settings, defaultSettings, options);
-            console.log(settings)
             const slidersContainer = settings.container instanceof Element ? settings.container : document.querySelectorAll(settings.container);
 
             Array.from(slidersContainer).map( slider => {

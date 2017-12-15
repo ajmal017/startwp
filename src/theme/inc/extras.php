@@ -14,6 +14,8 @@
  *
  * @return array
  */
+
+
 function listable_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
@@ -35,8 +37,14 @@ function listable_body_classes( $classes ) {
 		$classes[] = 'shortcode';
 	}
 
+	$show_on_posts_page = true;
+	if (is_home()) {
+		$show_on_posts_page = false;
+		$show_on_posts_page = pixelgrade_option('blog_sidebar_posts');
+	}
+
 	$sidebar = pixelgrade_option('blog_sidebar');
-	if( isset( $sidebar ) && 'sidebar_none' != $sidebar ){
+	if( isset( $sidebar ) && 'sidebar__none' != $sidebar && $show_on_posts_page ){
 		$classes[] = $sidebar;
 	}
 
@@ -364,7 +372,7 @@ if ( ! function_exists( 'listable_get_random_hero_object' ) ) {
 			$post_id = $post->ID;
 		}
 
-		$image_backgrounds  = get_post_meta( $post_id, 'image_backgrounds', true );
+		$image_backgrounds  = get_post_meta( $post_id, 'blog_image_backgrounds', true );
 
 		if ( ! empty( $image_backgrounds ) ) {
 			$image_backgrounds = explode( ',', $image_backgrounds );
@@ -487,7 +495,45 @@ function bitcoin_get_posts_array($options)
 	return $posts_list;
 }
 
+/**
+ * Retrive the relative post
+ * @return WP_Post
+ */
+function bitcoin_get_related_posts(){
+	$tags = get_the_tags();
+	$cats = get_the_category();
 
+	$tags = !empty($tags) ? array_map(function ($tag) {
+		return $tag->term_id;
+	}, $tags) : array();
+	$cats = !empty($cats) ? array_map(function ($cat) {
+		return $cat->term_id;
+	}, $cats) : array();
+
+	$posts = new WP_Query(
+		array(
+			'post_type' => 'post',
+			'posts_per_page' => 4,
+			/** TODO: Theme option**/
+			'post__not_in' => array(get_the_ID()),
+			'tax_query' => array(
+				'relation' => 'OR',
+				array(
+					'taxonomy' => 'post_tag',
+					'field' => 'id',
+					'terms' => $tags
+				),
+				array(
+					'taxonomy' => 'category',
+					'field' => 'term_id',
+					'terms' => $cats
+				)
+			)
+		)
+	);
+
+	return $posts;
+}
 
 /**
  * Modify the output for our custom User Menu items

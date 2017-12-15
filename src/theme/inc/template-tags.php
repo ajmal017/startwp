@@ -422,10 +422,3 @@ class ListableWrapImagesInFigureCallback {
 		return '<span class="' . $this->class . '">' . $match[1] . '</span>';
 	}
 }	
-
-
-
-
-function listable_single_post_style () {
-	echo apply_filters( 'listable_single_post_image', '');
-}

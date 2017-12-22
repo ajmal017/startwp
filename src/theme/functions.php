@@ -44,15 +44,15 @@ if ( ! function_exists( 'listable_setup' ) ) :
 
 		// Used for Listing Cards
 		// Max Width of 450px
-		add_image_size( 'listable-card-image', 450, 9999, false );
+		add_image_size( 'bitcoin-card-image', 350, 250, false );
 
 		// Used for Single Listing carousel images
 		// Max Height of 800px
-		add_image_size( 'listable-carousel-image', 9999, 800, false );
+		add_image_size('bitcoin-carousel-image', 9999, 800, false );
 
 		// Used for Full Width (fill) images on Pages and Listings
 		// Max Width of 2700px
-		add_image_size( 'listable-featured-image', 2700, 9999, false );
+		add_image_size('bitcoin-featured-image', 2700, 9999, false );
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
@@ -94,7 +94,17 @@ if ( ! function_exists( 'listable_setup' ) ) :
 		 * Add editor custom style to make it look more like the frontend
 		 * Also enqueue the custom Google Fonts and self-hosted ones
 		 */
-		// add_editor_style( array( 'editor-style.css' ) );
+		add_editor_style( array( 'editor-style.css' ) );
+
+		function jptweak_remove_share() {
+			remove_filter('the_content', 'sharing_display', 19);
+			remove_filter('the_excerpt', 'sharing_display', 19);
+			if (class_exists('Jetpack_Likes')) {
+				remove_filter('the_content', array(Jetpack_Likes::init(), 'post_likes'), 30, 1);
+			}
+		}
+
+		add_action('loop_start', 'jptweak_remove_share');
 
 	}
 endif; // listable_setup
@@ -206,7 +216,11 @@ function listable_scripts() {
 	// wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
 	wp_enqueue_script( 'listable-scripts', get_template_directory_uri() . '/assets/js/main.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
 
-	wp_localize_script( 'listable-scripts', 'listable_params', array(
+	wp_localize_script( 'listable-scripts', 'BitcoinParams', array(
+		'ajax' => array (
+				'url' => admin_url('admin-ajax.php'),
+				'likes_action' => 'bitcoin_set_likes_number'
+			),
 		'login_url' => rtrim( esc_url( wp_login_url() ) , '/'),
 		'strings' => array(
 			'wp-job-manager-file-upload' => esc_html__( 'Add Photo', 'listable' ),
@@ -230,9 +244,8 @@ function listable_admin_scripts() {
 		wp_enqueue_script('polyfill', '//cdn.polyfill.io/v2/polyfill.min.js', array('jquery'));
 		wp_enqueue_script( 'listable-admin-edit-scripts', get_template_directory_uri() . '/assets/js/admin/edit-page.js', array( 'jquery', 'polyfill' ), '1.0.0', true );
 
-		if ( get_post_type() === 'post' ) {
-			wp_enqueue_style( 'listable-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/edit-page.css' );
-		}
+		wp_enqueue_style( 'listable-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/edit-page.css' );
+		
 	}
 
 

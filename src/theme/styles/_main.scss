@@ -18,6 +18,8 @@
 @import "generic/normalize";
 @import "generic/reset";
  
+
+
 // #BASE
 @import "base/type";
 @import "base/tables";
@@ -27,18 +29,13 @@
 @import "base/wp-align";
 @import "base/blockquote";
 @import "components/variables";
+
+
 // #LAYOUT
-
-
-
 @import "layout/front-page";
 @import "layout/general";
-// @import "layout/archive";
-@import "layout/page";
-// @import "layout/single";
+@import "layout/single";
 @import "layout/posts";
-// @import "layout/categories";
-// @import "layout/error404";
 // @import "layout/nocontent";
 // @import "layout/search-results";
 
@@ -46,7 +43,7 @@
 @import "components/header";
 @import "components/hero";
 @import "components/widgets";
-// @import "components/comments";
+@import "components/comments";
 @import "components/footer";
 // @import "components/toolbar";
 

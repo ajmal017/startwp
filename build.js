@@ -26,7 +26,7 @@ const babelConfig = {
 };
 
 const funcTable = {
-  "watch": [watch, serve],
+  "watch": [watch],
   "png,jpeg,jpg,svg,woff2,eot,ttf,otf,php": [copyStatic],
   "js": [minifyJs],
   "css": [minifyCss],
@@ -41,12 +41,12 @@ const templateData = {
 
 function noop() {}
 
-async function call (ext, ...opt) {
+async function call (ext, ... opt) {
   console.time('task');
-
+  
   fnStack = funcTable['default'];
   Object.entries(funcTable).map(item => {
-    if(item[0].includes(ext)){
+    if(item[0].split(/(\,)/).some(extComp => ext.includes(extComp))){
       fnStack = item[1];
     }
   })
@@ -203,7 +203,14 @@ async function handleSass() {
         file.contents = file.contents.css.toString().replace(`{%${key}%}`, val);
       }
       await fs.writeFile(`dist/theme/${path.basename(file.name).split('.')[0]}.css`, file.contents);
+      return file
+      
+    }).array.catch(err => {
+      console.log('\x1b[31m','CSS');
+      console.log(err.formatted)
+      console.log('\x1b[37m');
     })
+
   console.timeEnd('handleSass')
 }
 

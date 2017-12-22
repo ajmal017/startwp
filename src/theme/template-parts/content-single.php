@@ -12,76 +12,82 @@ $has_image = false; ?>
 	<header class="entry-header">
 		<div class="entry-featured">
 			<?php
-				$format = get_post_format();
 
-				switch ($format) {
-					case 'gallery':
-						$post_meta = get_post_meta(get_the_ID(), 'post_gallery_input', false);
-						reset($post_meta);
+			$format = get_post_format();
 
-						if (!empty($post_meta)) :
-							$images_id = explode(',', current($post_meta));
-						$image_size = array(350, 250);
+			switch ($format) {
+				case 'gallery':
+					$post_meta = get_post_meta(get_the_ID(), 'post_gallery_input', false);
+					reset($post_meta);
 
-						echo '<div class="post-gallery__slider js-gallery__slider">';
-						foreach ($images_id as $image_id) {
+					if (!empty($post_meta)) :
+						$images_id = explode(',', current($post_meta));
+					$image_size = array(350, 250);
 
-							$image = wp_get_attachment_image_src($image_id, $image_size);
+					echo '<div class="post-gallery__slider js-gallery__slider">';
+					foreach ($images_id as $image_id) {
 
-							printf(
-								'<img class="post-gallery__item" src="%s" width="%s" height="%s" srcset="%s" alt="%s">',
-								$image[0],
-								$image[1],
-								$image[2],
-								wp_get_attachment_image_srcset($image_id, $image_size),
-								get_post_meta($image_id, '_wp_attachment_image_alt', true)
-							);
+						$image = wp_get_attachment_image_src($image_id, $image_size);
 
-						}
-						echo '</div>';
-						endif;
-						break;
+						printf(
+							'<img class="post-gallery__item" src="%s" width="%s" height="%s" srcset="%s" alt="%s">',
+							$image[0],
+							$image[1],
+							$image[2],
+							wp_get_attachment_image_srcset($image_id, $image_size),
+							get_post_meta($image_id, '_wp_attachment_image_alt', true)
+						);
 
-					case 'audio':
-						$url = trim(get_post_meta(get_the_ID(), 'post_audio_file', true));
-						$type = get_post_meta(get_the_ID(), 'post_audio_type', true);
-						$audio = '';
+					}
+					echo '</div>';
+					endif;
+					break;
+
+				case 'audio':
+					$url = trim(get_post_meta(get_the_ID(), 'post_audio_file', true));
+					$type = get_post_meta(get_the_ID(), 'post_audio_type', true);
+					$audio = '';
 
 
-						if ($type == 'wp') {
+					if ($type == 'wp') {
 
-							if (filter_var($url, FILTER_VALIDATE_URL)) {
-								$audio = sprintf('[audio preload="metadata" src="%s"]', $url);
-							}
-
-						} elseif ($type == 'sc') {
-
-							if (filter_var($url, FILTER_VALIDATE_URL)) {
-								$audio = sprintf('[soundcloud  url="%s" %s ]', $url, 'params="color=#ff5500&auto_play=false&visual=true" width="100%" height="250" iframe="true"');
-							}
-
+						if (filter_var($url, FILTER_VALIDATE_URL)) {
+							$audio = sprintf('[audio preload="metadata" src="%s"]', $url);
 						}
 
+					} elseif ($type == 'sc') {
 
-						if ($type == 'sc') :
-						?>
+						if (filter_var($url, FILTER_VALIDATE_URL)) {
+							$audio = sprintf('[soundcloud  url="%s" %s ]', $url, 'params="color=#ff5500&auto_play=false&visual=true" width="100%" height="250" iframe="true"');
+						}
+
+					}
+
+
+					if ($type == 'sc') : ?>
 
 						<div class="post-player" >
-							<a class="post__toplink" href="<?php the_permalink(); ?>">
-								<aside class="post__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')">
-								</aside>
-								
-							</a>
 							<div class="post-player__wrapper post-player__wrapper--sc"><?php echo do_shortcode($audio); ?></div>
 						</div>
 
-					<?php elseif (has_post_thumbnail() && $type == 'wp') :
-
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'listable-post-image'); ?>
+					<?php elseif (has_post_thumbnail() && $type == 'wp') : ?>
 						<div class="post-player" >
-							<a class="post__toplink post__toplink--hasPic" href="<?php the_permalink(); ?>">
-								<aside class="post__image" style="background-image: url('<?php echo listable_get_inline_background_image($image[0]); ?>');"></aside>
-							</a>
+						<?php
+
+							$image_id = get_post_thumbnail_id();
+							$image = wp_get_attachment_image_src($image_id, 'large');
+
+							
+							printf(
+								'<img class="post__image" src="%s" width="%s" height="%s" srcset="%s" alt="%s">',
+								$image[0],
+								$image[1],
+								$image[2],
+								wp_get_attachment_image_srcset($image_id, 'large'),
+								get_post_meta($image_id, '_wp_attachment_image_alt', true)
+							);
+							?>
+						
 							<div class="post-player__wrapper post-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 						</div>
 					<?php elseif ($type == 'wp') : ?>
@@ -97,77 +103,85 @@ $has_image = false; ?>
 
 				break;
 
-			case ('video'):
-				$url = trim(get_post_meta(get_the_ID(), 'post_video_file', true));
-				$type = get_post_meta(get_the_ID(), 'post_video_type', true);
-				$video = '';
+				case ('video'):
+					$url = trim(get_post_meta(get_the_ID(), 'post_video_file', true));
+					$type = get_post_meta(get_the_ID(), 'post_video_type', true);
+					$video = '';
 
 
-				if ($type == 'vi') {
-					if (filter_var($url, FILTER_VALIDATE_URL)) {
+					if ($type == 'vi') {
+						if (filter_var($url, FILTER_VALIDATE_URL)) {
 
-						$video = sprintf('[vimeo %s %s ]', $url, '');
+							$video = sprintf('[vimeo %s %s ]', $url, '');
+						}
+
+
+					} elseif ($type == 'yt') {
+
+						if (filter_var($url, FILTER_VALIDATE_URL)) {
+							$video = sprintf('[youtube %s%s ]', $url, '&showinfo=0&rel=0');
+						}
+
 					}
-
-
-				} elseif ($type == 'yt') {
-
-					if (filter_var($url, FILTER_VALIDATE_URL)) {
-						$video = sprintf('[youtube %s%s ]', $url, '&showinfo=0&rel=0');
-					}
-
-				}
-				?>
-					
-					<div class="post-player" > 
-						<a class="post__toplink" href="<?php the_permalink(); ?>">
-								<aside class="post__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')">
-								</aside>
-						</a>
+					?>
+							
+					<div class="post-player" >
 						<div class="post-player__wrapper"><?php echo do_shortcode($video); ?></div>
+					</div>
+				<?php	
+				break;
+
+				case ('quote'):
+				
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-featured-image'); ?>
+
+					
+					<div class="entry-featured__qoute" style="background-image: url('<?php echo listable_get_inline_background_image($image[0]); ?>');">
+						<aside class="entry-featured__qoute__bkgrnd">
+							<?php the_excerpt (); ?>
+						</aside>
 					</div>
 					<?php
 				break;
+				default:
+					if (has_post_thumbnail()) :					
 
-			default:
-				if (has_post_thumbnail()) :
+						$image_id = get_post_thumbnail_id();
+						$image = wp_get_attachment_image_src($image_id, 'large');
 
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'listable-post-image'); ?>
-						<a class="post__toplink post__toplink--hasPic" href="<?php the_permalink(); ?>">
-							<aside class="post__image" style="background-image: url('<?php echo listable_get_inline_background_image($image[0]); ?>');"></aside>
-						</a>
 
-					<?php else : ?>
+							printf(
+								'<img class="post__image" src="%s" width="%s" height="%s" srcset="%s" alt="%s">',
+								$image[0],
+								$image[1],
+								$image[2],
+								wp_get_attachment_image_srcset($image_id, 'large'),
+								get_post_meta($image_id, '_wp_attachment_image_alt', true)
+							);
 
-						<a class="post__toplink" href="<?php the_permalink(); ?>">
-							<aside class="post__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"></aside>
-						</a>
-
-					<?php endif;
+					endif;
 
 		}
 
+			
 			?>
 		</div>
-		<div class="header-content">
-			<div class="entry-meta">
+		<div class="entry-header__content">
+			<div class="entry-header-categories">
 				<?php
 				$post_categories = wp_get_post_categories( $post->ID );
-				if ( ! is_wp_error( $post_categories ) ) {
-					foreach ( $post_categories as $c ) {
-						$cat = get_category( $c );
-						echo '<a class="category-link" href="' . esc_sql( get_category_link( $cat->cat_ID ) ) . '">' . $cat->name . '</a>';
-					}
-				} ?>
+				if ( ! is_wp_error( $post_categories ) && count($post_categories) ) { ?>
+					<ul class="entry-header-categories__links">
+						<?php foreach ( $post_categories as $c ) {
+							$cat = get_category( $c );
+							echo '<li><a class="category-link" href="' . esc_sql( get_category_link( $cat->cat_ID ) ) . '">' . $cat->name . '</a></li>';
+						} ?>
+					</ul>
+				<?php } ?>
+			</div><!-- .entry-header__categories -->
+		</div><!-- .entry-header__content -->
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-			</div><!-- .entry-meta -->
-			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-			<span class="entry-subtitle"><?php echo get_the_excerpt(); ?></span>
-
-			<?php if ( function_exists( 'sharing_display' ) ) : ?>
-				<?php sharing_display( '', true ); ?>
-			<?php endif; ?>
-		</div>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
@@ -175,24 +189,27 @@ $has_image = false; ?>
 
 		the_content();
 
-		bitcoin_posted_on();
-		$query = bitcoin_get_related_posts();
+		?> <div class="entry-meta"> <?php
+			?>  <div class="entry-meta__1stLine"> <?php
+				bitcoin_posted_by();
 
-		if ($query->have_posts()) : ?>
-			<div class="entry-related grid grid--<?php echo pixelgrade_option('blog_type_style'); ?>">
+				?> <span class="entry-meta__delimiter" > | </span> <?php
 
-				<?php while ($query->have_posts()) : $query->the_post(); ?>
-					
-					<div class="grid__item  postcard">
-						<?php get_template_part('template-parts/content', get_post_format()); ?>
-					</div>
+				bitcoin_posted_on();
+
+				bitcoin_comments_number();
+
+				bitcoin_likes();
 				
-				<?php endwhile; ?>
-				
-			</div>
-		<?php endif;
-		wp_reset_postdata();
-		
+				get_template_part('template-parts/social-share')
+
+			?> </div> <?php
+		?> <hr/> <?php
+										
+		bitcoin_tags();
+
+		?> </div> <?php
+
 		wp_link_pages( array(
 			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'listable' ),
 			'after'  => '</div>',

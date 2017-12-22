@@ -85,11 +85,11 @@
         $('.js-widget-gallery').magnificPopup('open');
     });
 
-    if (typeof listable_params.login_url !== "undefined" && listable_params.login_url.indexOf('action=logout') === -1) {
+    if (typeof BitcoinParams.login_url !== "undefined" && BitcoinParams.login_url.indexOf('action=logout') === -1) {
         $('a.iframe-login-link').magnificPopup({
             mainClass: "mfp-bg-transparent  mfp-login-modal",
             type: 'iframe',
-            src: listable_params.login_url,
+            src: BitcoinParams.login_url,
             iframe: {
                 markup: '<div class="mfp-iframe-scaler  mfp-wp-login">' +
                     '<div class="mfp-close"></div>' +
@@ -133,7 +133,7 @@
             function init() {
 
                 if ($('.no_job_listings_found').length) {
-                    $('<div class="results">' + listable_params.strings['no_job_listings_found'] + '</div>').prependTo('.showing_jobs, .search-query');
+                    $('<div class="results">' + BitcoinParams.strings['no_job_listings_found'] + '</div>').prependTo('.showing_jobs, .search-query');
                 }
 
                 if (!$('#map').length) {
@@ -245,9 +245,9 @@
                 if (typeof $total_found !== 'undefined') {
                     //someone must have blessed us with higher knowledge
                     //let's not let it go to waste
-                    $('<div class="results"><span class="results-no">' + $total_found + '</span> ' + listable_params.strings['results-no'] + '</div>').prependTo('.showing_jobs, .search-query');
+                    $('<div class="results"><span class="results-no">' + $total_found + '</span> ' + BitcoinParams.strings['results-no'] + '</div>').prependTo('.showing_jobs, .search-query');
                 } else {
-                    $('<div class="results"><span class="results-no">' + $cards.length + '</span> ' + listable_params.strings['results-no'] + '</div>').prependTo('.showing_jobs, .search-query');
+                    $('<div class="results"><span class="results-no">' + $cards.length + '</span> ' + BitcoinParams.strings['results-no'] + '</div>').prependTo('.showing_jobs, .search-query');
                 }
 
                 if ($('.map').length && typeof map !== "undefined") {
@@ -439,8 +439,8 @@
             });
         });
 
-        $('.wc-social-login').attr('data-string', listable_params.strings.social_login_string);
-    });
+        $('.wc-social-login').attr('data-string', BitcoinParams.strings.social_login_string);
+    }); 
 
 
     function customizerOptionsPadding() {
@@ -494,7 +494,7 @@
             var $input = $(obj),
                 id = $(obj).attr('id'),
                 $label = $('label[for="' + id + '"]'),
-                $btn = $('<div class="uploader-btn"><div class="spacer"><div class="text">' + listable_params.strings['wp-job-manager-file-upload'] + '</div></div></div>').insertAfter($input);
+                $btn = $('<div class="uploader-btn"><div class="spacer"><div class="text">' + BitcoinParams.strings['wp-job-manager-file-upload'] + '</div></div></div>').insertAfter($input);
 
             $btn.on('click', function() {
                 $label.trigger('click'); 
@@ -602,11 +602,108 @@
     })(jQuery)
 
 
+    
+    const Likes = (function($) {
+        function init(){
+            var stop = false; 
+            $(".likes-count").click(function(event) {
+                event.preventDefault();
+                if(stop) return
+                var $this = $(this);
+                stop = true;
+                $.post(BitcoinParams.ajax.url, {
+                    action: BitcoinParams.ajax.likes_action,
+                    ID: $this.data("post-id")
+                }).done(function(response) {
+                    stop = false
+                if (response.data.liked) {
+                    $this.addClass("likes-count--active");
+
+                    var n = $this.find(".likes-count__number").text() || 0;
+
+                    if (n) $this.find(".likes-count__number").text(parseInt(n) + 1);
+                } else {
+                    $this.removeClass("likes-count--active");
+
+                    var n = $this.find(".likes-count__number").text() || 0
+                    if (n) $this
+                        .find(".likes-count__number")
+                        .text(parseInt(n) <= 0 ? 0 : parseInt(n) - 1);
+                }
+                });
+            });
+        }
+
+        return {
+            init: init
+        }
+    })(jQuery);
+
+
+    const Share = (function($) {
+        function init(){
+            var shareServices = {
+                twitter: function() {
+                    window.open('http://twitter.com/intent/tweet?text=' + jQuery("h2.text-title").text() + ' ' + window.location,
+                        "twitterWindow",
+                        "width=650,height=350");
+                    return false;
+                },
+
+                // Facebook
+
+                facebook: function(){
+                    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href),
+                        'facebookWindow',
+                        'width=650,height=350');
+                    return false;
+                },
+
+                // Pinterest
+
+                pinterest: function(){
+                    window.open('http://pinterest.com/pin/create/bookmarklet/?description=' + jQuery("h2.text-title").text() + ' ' + encodeURIComponent(location.href),
+                        'pinterestWindow',
+                        'width=750,height=430, resizable=1');
+                    return false;
+                },
+
+                // Google Plus
+
+                google: function(){
+                    window.open('https://plus.google.com/share?url=' + encodeURIComponent(location.href),
+                        'googleWindow',
+                        'width=500,height=500');
+                    return false;
+                }
+            }
+
+            $('.entry-share__links').on('click', 'a', function(e){
+                e.preventDefault();
+                var $href = $(e.currentTarget),
+                    service = $href.data('share');
+
+                if( typeof shareServices[service] === 'function'){
+                    shareServices[service]();
+
+                }
+            })
+
+
+        }
+        
+        return {
+            init: init
+        }
+    })(jQuery);
+
     // /* ====== ON WINDOW LOAD ====== */
     $window.load(function() {
         $('html').addClass('is--loaded');
  
         Sliders.init();
+        Likes.init();
+        Share.init();
 
         tooltipTrigger();
         keepSubmenusInViewport(); 

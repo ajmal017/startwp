@@ -339,24 +339,14 @@ function listable_sort_array_by_priority( $a, $b ) {
  *
  * @return mixed
  */
-function listable_add_comments_placeholders( $args ) {
-	$args['fields']['author'] = str_replace( 'name="author"', 'placeholder="' . esc_attr__( 'Your name', 'listable' ) . '" name="author"', $args['fields']['author'] );
-	$args['fields']['email']  = str_replace( 'name="email"', 'placeholder="' . esc_attr__( 'your@email.com', 'listable' ) . '" name="email"', $args['fields']['email'] );
-
+function bitcoin_add_comments_placeholders( $args ) {
+	$args['fields']['author'] = str_replace( 'name="author"', 'placeholder="' . esc_attr__( 'Enter your name', 'bitcoin' ) . '" name="author"', $args['fields']['author'] );
+	$args['fields']['email']  = str_replace( 'name="email"', 'placeholder="' . esc_attr__( 'Enter your mail', 'bitcoin' ) . '" name="email"', $args['fields']['email'] );
+	$args['fields']['url']  = str_replace( 'name="url"', 'placeholder="' . esc_attr__( 'Enter your website', 'bitcoin' ) . '" name="url"', $args['fields']['url'] );
 	return $args;
 }
-add_action( 'comment_form_defaults', 'listable_add_comments_placeholders' );
+add_action( 'comment_form_defaults', 'bitcoin_add_comments_placeholders' );
 
-function listable_search_template_chooser( $template ) {
-	global $wp_query;
-	$post_type = get_query_var( 'post_type' );
-	if ( $wp_query->is_search && $post_type == 'job_listing' ) {
-		return locate_template( 'search-job_listing.php' );  //  redirect to archive-search.php
-	}
-
-	return $template;
-}
-add_filter( 'template_include', 'listable_search_template_chooser' );
 
 if ( ! function_exists( 'listable_get_random_hero_object' ) ) {
 	/**
@@ -489,7 +479,7 @@ function bitcoin_get_posts_array($options)
 		$posts_list = array_map('bitcoin_map_get_posts', $posts_list);
 	} else {
 		$post_type = get_post_type_object($options['post_type']);
-		$posts_list = array(sprintf(esc_html__("No %s found", 'forit'), $post_type->labels->name) => 0);
+		$posts_list = array(sprintf(esc_html__("No %s found", 'bitcoin'), $post_type->labels->name) => 0);
 	}
 
 	return $posts_list;
@@ -513,8 +503,8 @@ function bitcoin_get_related_posts(){
 	$posts = new WP_Query(
 		array(
 			'post_type' => 'post',
-			'posts_per_page' => 4,
-			/** TODO: Theme option**/
+			'posts_per_page' => 3,
+			/** TODO: Customazer**/
 			'post__not_in' => array(get_the_ID()),
 			'tax_query' => array(
 				'relation' => 'OR',
@@ -725,3 +715,74 @@ function archive_wpml_language_switcher() {
 }
 
 add_action('wp_footer', 'archive_wpml_language_switcher', 11);
+
+//
+
+function bitcoin_get_likes_number() {
+
+	$likes = get_post_meta(get_the_ID(), 'post_likes', true);
+
+	return $likes;
+}
+
+//
+
+function bitcoin_set_likes_number(){
+
+
+
+	$post_id = isset($_POST['ID'])?$_POST['ID']:null;
+
+		if(!$post_id)
+			wp_send_json_error();
+	
+		$data = array('cookie' => $_COOKIE['bitcoin_post_' . $post_id . '_liked']);
+	
+		if(empty($_COOKIE['bitcoin_post_' . $post_id . '_liked'])) {
+			$liked = get_post_meta($post_id, 'post_likes', true);
+			$liked = intval($liked) + 1;
+	
+			update_post_meta($post_id, 'post_likes', $liked);
+			
+	
+			setcookie('bitcoin_post_' . $post_id . '_liked', true, (time() + 24 * 3600 * 1000), SITECOOKIEPATH );
+			$data['liked'] = true;
+		} else {
+			$liked = get_post_meta($post_id, 'post_likes', true);
+			$liked = intval($liked) - 1;
+			$liked = $liked < 0?0:$liked;
+	
+			update_post_meta($post_id, 'post_likes', $liked);
+	
+			setcookie('bitcoin_post_' . $post_id . '_liked', false, (time() + 24 * 3600 * 1000), SITECOOKIEPATH );
+			$data['liked'] = false;
+		}
+	
+		wp_send_json_success($data);
+
+}
+
+add_action('wp_ajax_bitcoin_set_likes_number', 'bitcoin_set_likes_number');
+add_action('wp_ajax_nopriv_bitcoin_set_likes_number', 'bitcoin_set_likes_number');
+
+
+add_filter('comment_form_fields', 'bitcoin_reorder_comment_fields' );
+function bitcoin_reorder_comment_fields( $fields ){
+
+	$new_fields = array(); 
+	// Set new order 
+	$myorder = array('author','email','url','comment'); 
+
+	// Reorder
+	foreach( $myorder as $key ){
+		$new_fields[ $key ] = $fields[ $key ];
+		unset( $fields[ $key ] );
+	}
+
+	// If there are remained some fields add them to end 
+	if( $fields )
+		foreach( $fields as $key => $val )
+			$new_fields[ $key ] = $val;
+
+	return $new_fields;
+}

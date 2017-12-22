@@ -1,0 +1,101 @@
+#comments
+  margin: 0 auto
+  textarea 
+    width: 100%
+  
+.comments
+  &-header
+    display: flex
+    align-items: baseline
+    justify-content: space-between
+
++rmin(900)
+  .comment-notes
+    white-space: normal
+  .comment-form
+     white-space: nowrap
+  .comment-form-author,
+  .comment-form-url,
+  .comment-form-email
+    display: inline-block
+    width: 30%
+  .comment-form-email
+    margin: 0 4.4%
+
+.comment-form 
+  .form-submit
+    display: flex
+  .form-submit input.submit
+    margin: 20px 0
+    margin-left: auto
+  .cancel-comment-reply-link
+    font-size: 16px
+
+.comment
+  .children
+    list-style: none
+    padding-left: 8% 
+
+  &-wrapper
+    margin-bottom: 35px
+  &-avatar
+    width: 68px
+    height: 68px
+    border-radius: 5px
+    overflow: hidden
+    float: left
+    box-shadow: 0 16px 20px rgba(0, 0, 0, 0.12)
+    img
+      width: 100%
+      height: auto
+  &-header
+    margin-left: 90px
+    font-size: 17px
+    overflow: hidden
+  &-content
+    margin-left: 90px
+    overflow: hidden
+    padding: 5px 0
+    p:last-child
+      margin: 0
+  &-meta
+    margin-left: 90px
+    font-size: 14px
+    overflow: hidden
+    > *
+      color: inherit
+
+  &-reply
+    margin-left: 10%
+    a 
+      &:before
+          content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAALCAYAAABPhbxiAAAArUlEQVQoU5WRzRGCMBCF3+5By9ESsAMsQKSE9SLjTU+aWzogWgklUIoVZJ3A6BAUhNx2dr68nyX0XiY3y2Dn7LHu77ozdYdMjAN0zVgmzh6ek8A5UPiwUZwLNeBOrjmDyzFb7U4rgl6cPVWRIgErwmIzlC0XkyrUETQN8KecYHcK7AF52CL5avUfvBejd1tQBLZFDd8x2P2pOFZQmxElwW+jjGNQJqZpkuHP71ZfkehWDIeU0vgAAAAASUVORK5CYII=')
+          margin-right: 9px
+          vertical-align: middle
+
+.reply 
+  position: absolute
+  right: 0
+  top: 10px
+
+
+.comment-list 
+  list-style: none
+  li 
+    position: relative
+
+  &.bypostauthor 
+    padding: 10px
+    margin-bottom: 10px
+    .reply 
+      right: 10px
+
+.comment-notes
+  font-size: .9rem
+.comment-reply-title
+  a
+    font-size: 1rem
+
+
+.comment-form-comment 
+  position: relative

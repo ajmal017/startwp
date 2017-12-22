@@ -137,6 +137,26 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 
 					)
 				)
+			),
+			'bitcoin_post_likes' => array(
+				'id' => 'bitcoin_post_likes',
+				'title' => sprintf(
+					'%s <a class="tooltip" title="%s"></a>',
+					esc_html__('Likes', 'bitcoin'),
+					esc_html__('Amount of Likes made on this post', 'bitcoin')
+				),
+				'pages' => array('post'), // Post type
+				'context' => 'side',
+				'priority' => 'low',
+				'show_names' => true, // Show field names on the left
+				'fields' => array(
+					array(
+						'name' => esc_html__('Amount of likes', 'bitcoin'),
+						'id' => 'post_likes',
+						'type' => 'text'
+					)
+					
+				)
 			)
 
 

@@ -1,0 +1,89 @@
+// Settings     -- Default, settings and variables.
+// Tools        -- Functions and mixins.
+// Generic      -- Generic, high-level styling, like resets, etc.
+// Object       -- Objects and abstractions.
+// Components   -- Your designed UI elements.
+// Trumps       -- Overrides and helper classes.
+// Pages        -- Global styles for specific pages
+// Vendor
+// Shame        -- the place for prototyping, quick fixes and overrides
+
+// // #SETTINGS
+@import "settings"
+
+// // #TOOLS
+@import "tools/mixins"
+@import "tools/flex"
+// #GENERIC
+@import "generic/normalize"
+@import "generic/reset"
+
+// #BASE
+@import "base/type"
+@import "base/tables"
+@import "base/lists"
+@import "base/links"
+@import "base/forms"
+@import "base/wp-align"
+@import "base/blockquote"
+// #LAYOUT
+
+// #SHAME
+@import "shame"
+
+// #BODY
+
+/**
+ * 1.0 - Body
+ * --------------------------------------------------
+ */
+
+html 
+    padding: 24px 36px
+
+
+body.wp-editor 
+    max-width: 600px
+    margin-left: auto
+    margin-right: auto
+
+    font-size: 18px
+
+
+
+
+.wp-caption 
+    text-align: left
+    &.alignleft  
+        @extend .alignleft 
+    &.alignright     
+        @extend .alignright 
+    &.aligncenter   
+         @extend .aligncenter 
+    &.alignnone     
+        @extend .alignnone 
+
+
+
+#wp-image-toolbar 
+    z-index: 2
+
+
+.wp-caption-dd 
+    @extend .wp-caption-text
+
+
+
+blockquote
+    font-size: 1.25rem
+    font-weight: 400
+    line-height: 1.5 
+    position: relative
+    margin: rem(30px) 0
+    padding-left: rem(16px) 
+    border-left: 4px solid #e4e6ea
+    p
+        font-family: inherit
+        font-size: inherit
+        font-weight: inherit 
+        line-height: inherit 

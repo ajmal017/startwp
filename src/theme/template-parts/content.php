@@ -87,7 +87,7 @@
 
 			<?php elseif (has_post_thumbnail() && $type == 'wp') :
 
-				$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'listable-card-image'); ?>
+				$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image'); ?>
 				<div class="card-player" >
 					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
 						<aside class="card__image" style="background-image: url('<?php echo listable_get_inline_background_image($image[0]); ?>');"></aside>
@@ -142,7 +142,7 @@
 		default:
 			if (has_post_thumbnail()) :
 
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'listable-card-image'); ?>
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image'); ?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
 					<aside class="card__image" style="background-image: url('<?php echo listable_get_inline_background_image($image[0]); ?>');"></aside>
 				</a>

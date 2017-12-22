@@ -19,6 +19,7 @@ function listable_load_jetpack_compatibility() {
 
 		Jetpack::activate_module('shortcodes');
 		Jetpack::activate_module('widgets');
+		Jetpack::activate_module('tiled-gallery');
 	}
 }
 add_action( 'after_setup_theme', 'listable_load_jetpack_compatibility' );

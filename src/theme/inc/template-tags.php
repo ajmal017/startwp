@@ -170,7 +170,7 @@ if( ! function_exists( 'bitcoin_comments_number' ) ):
 
 	function bitcoin_comments_number() {
 		$comment_html  = sprintf(
-		'<span class="comments-count"><i class="bitcoin-icon">%1$s</i>%2$s</span>',
+		'<span class="comments-count"><i class="bitcoin__icon bitcoin__icon--opacity2 ">%1$s</i>%2$s</span>',
 			file_get_contents(locate_template('assets/svg/comment-icon.php')),
 			get_comments_number_text( __('0','bitcoin'), __('1','bitcoin'), __('%','bitcoin'))
 		);
@@ -179,41 +179,47 @@ if( ! function_exists( 'bitcoin_comments_number' ) ):
 
 endif;
 
-if ( ! function_exists( 'listable_entry_footer' ) ) :
+if (!function_exists('bitcoin_likes')) :
+/** 
+ * Prints HTML with icon for comments
+ */
+
+function bitcoin_likes(){
+
+	$post_id = get_the_ID();
+
+	$html = sprintf(
+		'<span data-post-id="%3$s" class="likes-count %4$s"><i class="bitcoin__icon bitcoin__icon--opacity2 ">%1$s</i>
+		<span class="likes-count__number">%2$s</span></span>',
+		file_get_contents(locate_template('assets/svg/likes-icon.php')),
+		bitcoin_get_likes_number(),
+		$post_id ,
+		isset($_COOKIE['bitcoin_post_' . $post_id . '_liked'])?'likes-count--active':''
+	);
+
+	echo $html;
+}
+
+endif;
+
+
+
+
+if ( ! function_exists('bitcoin_tags' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
-	function listable_entry_footer() {
+	function bitcoin_tags() {
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
-			/* translators: used between list items, there is a space after the comma */
-			$categories_list = get_the_category_list( esc_html__( ', ', 'listable' ) );
-			if ( $categories_list && listable_categorized_blog() ) {
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'listable' ) . '</span>', $categories_list ); // WPCS: XSS OK.
-			}
 
 			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( '', esc_html__( ', ', 'listable' ) );
+			$tags_list = get_the_tag_list( '<li>', esc_html__( ' ', 'bitcoin' ), '</li>' );
 			if ( $tags_list ) {
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'listable' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+				printf( '<ul class="tags-links"> %1$s </ul>', $tags_list );
 			}
 		}
 
-		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-			echo '<span class="comments-link">';
-			comments_popup_link( esc_html__( 'Leave a comment', 'listable' ), esc_html__( '1 Comment', 'listable' ), esc_html__( '% Comments', 'listable' ) );
-			echo '</span>';
-		}
-//
-//	edit_post_link(
-//		sprintf(
-//			/* translators: %s: Name of current post */
-//			esc_html__( 'Edit %s', 'listable' ),
-//			the_title( '<span class="screen-reader-text">"', '"</span>', false )
-//		),
-//		'<span class="edit-link">',
-//		'</span>'
-//	);
 	}
 endif;
 
@@ -278,103 +284,62 @@ function display_average_listing_rating( $post_id = null, $decimals = 2 ) {
 }
 
 
-if ( ! function_exists( 'listable_shape_comment' ) ) :
+if ( ! function_exists( 'bitcoin_shape_comment' ) ) :
 	/**
 	 * Template for comments and pingbacks.
 	 *
 	 * Used as a callback by wp_list_comments() for displaying the comments.
 	 *
-	 * @since Listable
+	 * @since Bitcoin
 	 */
-	function listable_shape_comment( $comment, $args, $depth ) {
+	function bitcoin_shape_comment( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
 		switch ( $comment->comment_type ) :
 			case 'pingback' :
 			case 'trackback' : ?>
 				<li class="post pingback">
-				<p><?php esc_html_e( 'Pingback:', 'listable' ); ?><?php comment_author_link(); ?><?php edit_comment_link( esc_html__( '(Edit)', 'listable' ), ' ' ); ?></p>
+				<p><?php esc_html_e( 'Pingback:', 'bitcoin' ); ?><?php comment_author_link(); ?><?php edit_comment_link( esc_html__( '(Edit)', 'bitcoin' ), ' ' ); ?></p>
 				<?php
 				break;
-			default :
-				if ( 'job_listing' == get_post_type() ) : ?>
-					<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>" itemprop="review" itemscope itemtype="http://schema.org/Review">
-					<div class="comment-wrapper" id="div-comment-<?php comment_ID(); ?>">
-						<header class="comment-header">
-							<div class="comment-author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">
-								<?php
-								echo get_avatar( $comment, 75 );
-								echo sprintf( '<span class="fn">%s</span>', get_comment_author_link() ); ?>
-							</div><!-- .comment-author .vcard -->
-							<?php if ( $comment->comment_approved == '0' ) : ?>
-								<em><?php esc_html_e( 'Your comment is awaiting moderation.', 'listable' ); ?></em>
-								<br/>
-							<?php endif; ?>
-						</header>
-						<div class="comment-content" itemprop="reviewBody">
-							<?php comment_text(); ?>
-						</div>
-						<div class="reply">
+			default : ?>
+				<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+				<div class="comment-wrapper" id="div-comment-<?php comment_ID(); ?>">
+					<?php if ( $comment->comment_approved == '0' ) : ?>
+							<p><?php esc_html_e( 'Your comment is awaiting moderation.', 'bitcoin' ); ?></p>
+					<?php endif; ?>
+					<div class="comment-avatar"><?php echo get_avatar( $comment, 75 ); ?></div>
+					<header class="comment-header">
+						<div class="comment-author ">
+							<?php echo sprintf( '<span class="fn">%s</span>', get_comment_author_link() ); ?>
+						</div><!-- .comment-author -->
+					</header>
+					
+					<div class="comment-content">
+						<?php comment_text(); ?>
+					</div>
+					<div class="comment-meta">
+						<a class="text" href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
+							<time pubdate datetime="<?php comment_time( 'c' ); ?>">
+								<?php printf( esc_html__( 'on %1$s', 'bitcoin' ), get_comment_date() ); ?>
+							</time>
+						</a><?php edit_comment_link( esc_html__( '(Edit)', 'bitcoin' ), ' ' ); ?>
+						<span class="comment-reply">
 							<?php comment_reply_link( array_merge( $args, array(
 								'add_below' => 'div-comment',
 								'depth'     => $depth,
 								'max_depth' => $args['max_depth'],
 							) ) ); ?>
-						</div><!-- .reply -->
+						</span><!-- .reply -->
 					</div>
-				<?php else : ?>
-					<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-					<div class="comment-wrapper" id="div-comment-<?php comment_ID(); ?>">
-						<div class="comment-avatar"><?php echo get_avatar( $comment, 75 ); ?></div>
-						<header class="comment-header">
-							<div class="comment-author vcard">
-								<?php echo sprintf( '<span class="fn">%s</span>', get_comment_author_link() ); ?>
-							</div><!-- .comment-author .vcard -->
-							<?php if ( $comment->comment_approved == '0' ) : ?>
-								<em><?php esc_html_e( 'Your comment is awaiting moderation.', 'listable' ); ?></em>
-								<br/>
-							<?php endif; ?>
-							<div class="comment-meta commentmetadata">
-								<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-									<time pubdate datetime="<?php comment_time( 'c' ); ?>">
-										<?php printf( esc_html__( 'on %1$s', 'listable' ), get_comment_date() ); ?>
-									</time>
-								</a><?php edit_comment_link( esc_html__( '(Edit)', 'listable' ), ' ' ); ?>
-							</div>
-						</header>
-						<div class="comment-content">
-							<?php comment_text(); ?>
-						</div>
-						<div class="reply">
-							<?php comment_reply_link( array_merge( $args, array(
-								'add_below' => 'div-comment',
-								'depth'     => $depth,
-								'max_depth' => $args['max_depth'],
-							) ) ); ?>
-						</div><!-- .reply -->
-					</div>
-				<?php endif;
+		
+				</div>
+		
+				<?php
 				break;
 		endswitch;
 	}
-endif; // ends check for listable_shape_comment()
+endif; // ends check for bitcoin_shape_comment()
 
-if ( ! function_exists( 'listable_move_comment_date' ) ) {
-	function listable_move_comment_date( $comment_content ) {
-		global $comment;
-
-		$commentDateTime = new DateTime( $comment->comment_date );
-		$commentIsoDate = $commentDateTime->format(DateTime::ISO8601);
-
-		ob_start(); ?>
-	<div class="comment-meta commentmetadata" itemprop="datePublished" content = "<?php echo $commentIsoDate; ?>">
-	<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate datetime="<?php comment_time( 'c' ); ?>"><?php
-			/* translators: 1: date, 2: time */
-			printf( esc_html__( 'on %1$s', 'listable' ), get_comment_date() ); ?></time>
-		</a><?php edit_comment_link( esc_html__( '(Edit)', 'listable' ), ' ' ); ?></div><?php
-
-		return ob_get_clean() . $comment_content;
-	}
-}
 
 /**
  * Due to the fact that we need a wrapper for center aligned images and for the ones with alignnone, we need to wrap the images without a caption
@@ -384,7 +349,7 @@ if ( ! function_exists( 'listable_move_comment_date' ) ) {
  *
  * @return string
  */
-function listable_wrap_images_in_figure( $content ) {
+function bitcoin_wrap_images_in_figure( $content ) {
 	$classes = array( 'aligncenter', 'alignnone' );
 
 	foreach ( $classes as $class ) {
@@ -395,7 +360,7 @@ function listable_wrap_images_in_figure( $content ) {
 		$regex = '~\[caption[^\]]*\].*\[\/caption\]|((?:<a[^>]*>\s*)?<img.*class="[^"]*' . $class . '[^"]*[^>]*>(?:\s*<\/a>)?)~i';
 
 		// php 5.2 valid
-		$callback = new ListableWrapImagesInFigureCallback( $class );
+		$callback = new BitcoinWrapImagesInFigureCallback( $class );
 		$content = preg_replace_callback(
 				$regex,
 				// in the callback function, if Group 1 is empty,
@@ -407,10 +372,10 @@ function listable_wrap_images_in_figure( $content ) {
 
 	return $content;
 }
-add_filter( 'the_content', 'listable_wrap_images_in_figure' );
+add_filter( 'the_content', 'bitcoin_wrap_images_in_figure' );
 
 //We need to use a class so we can pass the $class variable to the callback function
-class ListableWrapImagesInFigureCallback {
+class BitcoinWrapImagesInFigureCallback {
 	private $class;
 	function __construct( $class ) {
 		$this->class = $class;

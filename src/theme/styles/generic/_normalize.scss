@@ -159,15 +159,6 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-  .search-submit {
-    background: url(assets/images/more-bg.png) center;
-    background-size: cover;
-    border: 0;
-    &:focus {
-      outline: 0;
-    }
-  }
-
 
 button[disabled],
 html input[disabled] {

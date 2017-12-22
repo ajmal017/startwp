@@ -1,0 +1,263 @@
+.single-post
+  .site-main
+    padding: 0 50px 50px
+    +r(768)
+      padding: 0px 10px 20px
+  .entry-featured
+    .post__toplink 
+      pointer-events: none
+      display: block
+    .post__image
+      width: 100%
+      height: auto
+    .post-player
+      position: relative
+      &__wrapper
+        width: 100%
+        height: auto
+        .embed-vimeo iframe
+          width: 100% !important
+      .post__toplink,
+      .post__image
+        height: auto
+    &__qoute
+      &__bkgrnd
+        width: 100%
+        padding: 0 10px
+      blockquote
+        display: flex
+        flex: 1 0 100%
+        flex-flow: column
+        justify-content: center
+        align-items: center
+        text-align: center
+        padding: 100px 0 55px
+        a
+          color: inherit
+        &:before
+          content: '\201C'
+          font-size: rem(140px)
+          line-height: rem(30px)
+  .format-audio
+    .post-player__wrapper:not(.post-player__wrapper--sc)
+      position: absolute
+      bottom: 0
+  .format-gallery .post-gallery__slider
+    .slick-slide
+      height: auto
+    .slick-arrow
+      z-index: 10
+      overflow: hidden
+      width: 30px
+      height: 30px
+      text-align: center
+      +tr(all .5s)
+    .slick-prev:before,
+    .slick-next:before
+      @extend %icon
+      color: inherit
+      font-size: 25px
+      line-height: 30px
+      vertical-align: middle
+      width: 30px
+      height: 30px
+      background-color: rgba(255, 255, 255, 0.9)
+      z-index: 10
+    .slick-prev
+      border-top-right-radius: 5px
+      border-bottom-right-radius: 5px
+      left: 0px
+      &:before
+        padding-right: 5px
+        content: $fa-var-angle-left
+    .slick-next
+      border-top-left-radius: 5px
+      border-bottom-left-radius: 5px
+      right: -0px
+      &:before
+        padding-left: 5px
+        content: $fa-var-angle-right
+ 
+  .entry-header
+    &-categories
+      margin-top: 38px 
+      &__links
+        width: 100%
+        list-style: none
+        padding-left: 0
+        margin: 0 
+        li 
+          display: inline-block
+          margin-right: rem(7px)
+          margin-top: rem(7px)
+          a
+            display: inline-block
+            text-decoration: none
+            height: rem(22px)
+            line-height: rem(22px)
+            font-family: inherit
+            font-size: 14px
+            padding: 0 rem(10px)
+            color: white
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+            &:hover
+              opacity: .8
+
+  .entry-content
+    .entry-meta
+      margin-top: 30px
+      &__1stLine
+        display: flex
+        align-items: center
+      &__delimiter
+        margin: 0 10px
+    .posted-by a,
+    .entry-date,
+    .posted-on a
+      color: inherit
+    .posted-on
+      margin-right: 3%
+    .comments-count
+      margin-right: 20px
+ 
+    .likes-count
+      overflow: visible
+      vertical-align: middle
+      white-space: nowrap
+      cursor: pointer
+      &--active .likes-count__number
+          opacity: 1
+      &__number
+          opacity: .5
+   
+    .entry-share
+      margin-left: auto
+      display: inline-block
+      &__links
+        margin: 0
+        padding: 0 
+        list-style: none
+        white-space: nowrap;
+        li
+          display: inline-block
+          margin-left: 5px
+          a
+            padding: 5px
+
+    .tags-links
+      display: block
+      list-style: none
+      padding: 0
+      margin: -5px -5px 40px
+      a
+        display: inline-block
+        padding: 5px 20px
+        margin: 5px
+        border-radius: 16px
+        border: 1px solid
+        font-size: 11px
+        +tr(background .5s)
+
+  .content-area__wrapper
+    align-items: flex-start
+    .entry-featured
+      margin: -50px -50px 0
+    .content-area__wrapperIn
+      width: 100%
+      overflow: hidden
+      box-shadow: 0 16px 20px rgba(0, 0, 0, 0.12)
+      padding: 45px 50px
+      border-radius: 4px
+      margin-top: 50px
+      +r(768)
+        padding: 15px 10px
+        margin-top: 30px
+  .post-navigation 
+    display: none
+
+  .entry-related
+    margin: 0px -15px 10px
+    &.grid--tile 
+      .grid__item
+        flex: 0 0 30%
+        max-width: 27%
+        min-width: 214px
+        margin: 0px 15px 15px
+        +r(768)
+          flex: 0 0 auto
+          min-width: calc(100% - 30px)
+      .card
+        height: 350px
+        .card__toplink
+          flex: 0 0 180px
+        .card-gallery__item,
+        .card__image
+          height: 180px !important
+    .postcard .format-quote 
+      p
+        display: -webkit-box
+        height: 4.5em
+        overflow: hidden
+        text-overflow: ellipsis
+        -webkit-line-clamp: 3
+        -webkit-box-orient: vertical
+      footer
+        font-size: 14px
+      &.card .card__toplink 
+        flex: 0 0 100%
+      .card__excerpt
+        display: block
+    +rmin(769)
+      &.grid--list .card.format-gallery .card__toplink,
+      &.grid--list .card.format-standard .card__toplink,
+      &.grid--list .card.format-video .card-player,
+      &.grid--list .card.format-audio .card-player,
+      &.grid--list .card.format-link .card__toplink
+        flex: 0 0 50%
+        width: 50%
+      &.grid--list .card.format-video .card__toplink,
+      &.grid--list .card.format-audio .card__toplink,
+        flex: 0 0 100%
+        width: 100%
+      &.grid--list .card.format-quote
+        height: 350px
+    &.grid--list 
+      .card-gallery__slider
+        width: 50%
+        flex: 0 0 auto
+      .card-gallery__item
+        width: 100%
+      
+    .permalink,
+    &.grid--tile .card__excerpt,
+    .posted-by,
+    .card-meta__delimiter
+      display: none
+      
+    .card__title a
+      display: block
+      display: -webkit-box
+      height: 3em
+      overflow: hidden
+      text-overflow: ellipsis
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+
+
+  .gallery[class*="gallery-columns"]
+    display: flex
+    flex-flow: wrap
+    width: 100%
+  @for $i from 1 through 9
+    .gallery-columns-#{$i} .gallery-item
+      margin: 0
+      flex: 0 1 #{(100%)/$i}
+      width: #{(100%)/$i}
+      > *
+        justify-content: center
+        align-items: center
+        display: flex
+        img
+          width: 100%
+          height: auto
+          padding: 3%

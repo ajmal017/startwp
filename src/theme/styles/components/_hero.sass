@@ -3,8 +3,7 @@
  */
 
 
-.hero-header,
-.hero-header__background
+.hero-header
     position: relative
     background-size: 100% 100%
     background-size: cover
@@ -23,28 +22,32 @@
         background: black
         position: relative
         z-index: 1
-        padding: rem(300px / 3.5) rem(100px / 2)
-        +r(900)
-            padding: rem(300px / 4) 20px rem(40px)
-        &.has__categories
-            padding: rem(300px / 2) rem(100px / 2)
-            +r(900)
-                padding: rem(300px / 2) 20px rem(40px)
+        // padding: rem(300px / 3.5) rem(100px / 2)
+        // +r(900)
+        //     padding: rem(300px / 4) 20px rem(40px)
+        // &.has__categories
+        //     padding: rem(300px / 2) rem(100px / 2)
+        //     +r(900)
+        //         padding: rem(300px / 2) 20px rem(40px)
         .hero-header__background
             height: 100%
-            left: 0
-            position: absolute
-            top: 0
+            // left: 0
+            // position: absolute
+            // top: 0
             background-position: center
             background-size: cover
             width: 100%
-            padding: rem(110px / 2) 20px rem(0px)
+            padding: rem(110px / 2) rem(30px) rem(30px)
             +r(900)
-                padding: rem(100px / 3) 20px rem(0px)
-        &.has__categories .hero-header__background
-            padding: rem(110px) 20px rem(0px)
-            +r(900)    
-                padding: rem(65px) 20px rem(40px)
+                padding: rem(100px / 3) rem(30px) rem(30px)
+            body.header--transparent &
+                padding: rem(100px) rem(30px) rem(30px)
+                +r(900)
+                    padding: rem(100px / 3) rem(30px) rem(30px)
+        // &.has__categories .hero-header__background
+        //     padding: rem(110px) 20px rem(0px)
+        //     +r(900)    
+        //         padding: rem(65px) 20px rem(40px)
     .hero-header__content
         z-index: 20
 /**

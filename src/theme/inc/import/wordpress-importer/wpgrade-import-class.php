@@ -53,7 +53,7 @@ class wpGrade_import extends WPGrade_WP_Import {
 				}
 			}
 
-			update_option( 'listable_demo_data_imported', true );
+			update_option( 'bitcoin_demo_data_imported', true );
 			do_action('import_demo_data_end');
 		}
 
@@ -133,7 +133,7 @@ class wpGrade_import extends WPGrade_WP_Import {
 			$post = apply_filters( 'wp_import_post_data_raw', $post );
 
 			if ( ! post_type_exists( $post['post_type'] ) ) {
-				printf( __( 'Failed to import "%s": Invalid post type %s', 'listable' ), esc_html( $post['post_title'] ), esc_html( $post['post_type'] ) );
+				printf( __( 'Failed to import "%s": Invalid post type %s', 'bitcoin' ), esc_html( $post['post_title'] ), esc_html( $post['post_type'] ) );
 				echo '<br />';
 				do_action( 'wp_import_post_exists', $post );
 				continue;
@@ -157,7 +157,7 @@ class wpGrade_import extends WPGrade_WP_Import {
 
 			$post_exists = post_exists( $post['post_title'] );
 			if ( $post_exists && get_post_type( $post_exists ) == $post['post_type'] ) {
-				//printf( __('%s &#8220;%s&#8221; already exists.', 'listable'), $post_type_object->labels->singular_name, esc_html($post['post_title']) );
+				//printf( __('%s &#8220;%s&#8221; already exists.', 'bitcoin'), $post_type_object->labels->singular_name, esc_html($post['post_title']) );
 				//echo '<br />';
 
 				//save it for later check if it exists - it may be unattached to it's parent
@@ -241,7 +241,7 @@ class wpGrade_import extends WPGrade_WP_Import {
 				}
 
 				if ( is_wp_error( $post_id ) ) {
-					printf( __( 'Failed to import %s "%s"', 'listable' ), $post_type_object->labels->singular_name, esc_html( $post['post_title'] ) );
+					printf( __( 'Failed to import %s "%s"', 'bitcoin' ), $post_type_object->labels->singular_name, esc_html( $post['post_title'] ) );
 					if ( defined( 'IMPORT_DEBUG' ) && IMPORT_DEBUG ) {
 						echo ': ' . $post_id->get_error_message();
 					}
@@ -277,7 +277,7 @@ class wpGrade_import extends WPGrade_WP_Import {
 							$term_id = $t['term_id'];
 							do_action( 'wp_import_insert_term', $t, $term, $post_id, $post );
 						} else {
-							printf( __( 'Failed to import %s %s', 'listable' ), esc_html( $taxonomy ), esc_html( $term['name'] ) );
+							printf( __( 'Failed to import %s %s', 'bitcoin' ), esc_html( $taxonomy ), esc_html( $term['name'] ) );
 							if ( defined( 'IMPORT_DEBUG' ) && IMPORT_DEBUG ) {
 								echo ': ' . $t->get_error_message();
 							}
@@ -403,8 +403,8 @@ class wpGrade_import extends WPGrade_WP_Import {
 		wp_defer_term_counting( false );
 		wp_defer_comment_counting( false );
 
-		//echo '<p>' . __( 'All done.', 'listable' ) . ' <a href="' . admin_url() . '">' . __( 'Have fun!', 'listable' ) . '</a>' . '</p>';
-		//echo '<p>' . __( 'Remember to update the passwords and roles of imported users.', 'listable' ) . '</p>';
+		//echo '<p>' . __( 'All done.', 'bitcoin' ) . ' <a href="' . admin_url() . '">' . __( 'Have fun!', 'bitcoin' ) . '</a>' . '</p>';
+		//echo '<p>' . __( 'Remember to update the passwords and roles of imported users.', 'bitcoin' ) . '</p>';
 
 		do_action( 'import_end' );
 	}
@@ -422,7 +422,7 @@ class wpGrade_import extends WPGrade_WP_Import {
 			$post = apply_filters( 'wp_import_post_data_raw', $post );
 
 			//			if ( ! post_type_exists( $post['post_type'] ) ) {
-			//				printf( __( 'Failed to import &#8220;%s&#8221;: Invalid post type %s', 'listable' ),
+			//				printf( __( 'Failed to import &#8220;%s&#8221;: Invalid post type %s', 'bitcoin' ),
 			//					esc_html($post['post_title']), esc_html($post['post_type']) );
 			//				echo '<br />';
 			//				do_action( 'wp_import_post_exists', $post );

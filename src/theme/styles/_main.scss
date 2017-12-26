@@ -36,8 +36,8 @@
 @import "layout/general";
 @import "layout/single";
 @import "layout/posts";
-// @import "layout/nocontent";
-// @import "layout/search-results";
+@import "layout/error404";
+@import "layout/search-results";
 
 // #COMPONENTS
 @import "components/header";
@@ -45,14 +45,6 @@
 @import "components/widgets";
 @import "components/comments";
 @import "components/footer";
-// @import "components/toolbar";
-
-
-// #TRUMPS
-// @import "trumps/specific";
-// @import "trumps/wp-align";
-
-// #OBJECTS
 
 // #PAGES
 

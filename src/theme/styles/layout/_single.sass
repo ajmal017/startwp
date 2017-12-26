@@ -80,7 +80,9 @@
  
   .entry-header
     &-categories
-      margin-top: 38px 
+      margin-top: rem(38px)
+      +r(900)
+         margin-top: rem(18px)
       &__links
         width: 100%
         list-style: none
@@ -119,7 +121,7 @@
       margin-right: 3%
     .comments-count
       margin-right: 20px
- 
+
     .likes-count
       overflow: visible
       vertical-align: middle
@@ -158,25 +160,11 @@
         font-size: 11px
         +tr(background .5s)
 
-  .content-area__wrapper
-    align-items: flex-start
-    .entry-featured
-      margin: -50px -50px 0
-    .content-area__wrapperIn
-      width: 100%
-      overflow: hidden
-      box-shadow: 0 16px 20px rgba(0, 0, 0, 0.12)
-      padding: 45px 50px
-      border-radius: 4px
-      margin-top: 50px
-      +r(768)
-        padding: 15px 10px
-        margin-top: 30px
   .post-navigation 
     display: none
 
   .entry-related
-    margin: 0px -15px 10px
+    margin: 0px -15px 50px
     &.grid--tile 
       .grid__item
         flex: 0 0 30%

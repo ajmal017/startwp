@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Listable
+ * @package Bitcoin
  */
 
 $has_image = false; ?>
@@ -136,7 +136,7 @@ $has_image = false; ?>
 					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-featured-image'); ?>
 
 					
-					<div class="entry-featured__qoute" style="background-image: url('<?php echo listable_get_inline_background_image($image[0]); ?>');">
+					<div class="entry-featured__qoute" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');">
 						<aside class="entry-featured__qoute__bkgrnd">
 							<?php the_excerpt (); ?>
 						</aside>
@@ -210,10 +210,7 @@ $has_image = false; ?>
 
 		?> </div> <?php
 
-		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'listable' ),
-			'after'  => '</div>',
-		) );
+		wp_link_pages( );
 		?>
 	</div><!-- .entry-content -->
 </article><!-- #post-## -->

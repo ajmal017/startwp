@@ -2,7 +2,7 @@
 /**
 * Require files that deal with various plugin integrations.
 *
-* @package Listable
+* @package Bitcoin
 */
 
 /**
@@ -30,4 +30,13 @@ if ( class_exists( 'WPSEO_Utils' ) ) {
 if ( class_exists( 'SitePress' ) ) {
 	require get_template_directory() . '/inc/integrations/wpml.php';
 }
+
+
+/**
+ * Load ShortCodes .
+ */
+if ( class_exists( 'WPBakeryShortCode' ) ) {
+	require get_template_directory() . '/inc/shortcodes/init.php';
+}
+
 

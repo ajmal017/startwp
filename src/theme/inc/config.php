@@ -254,7 +254,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'         => array(
 								array(
 									'property' => 'max-width',
-									'selector' => '.section-wrap',
+									'selector' => '.frontpage-area__wrapper',
 									'unit'     => 'px',
 								)
 							)
@@ -748,7 +748,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'selector' => '
 										 label, html, body, body .site .widget a,
 										.comment-wrapper .comment-meta a.comment-reply-link,
-										.comment-wrapper .comment-meta a.comment-edit-link'
+										.comment-wrapper .comment-meta a.comment-edit-link,
+										.site-content a.text'
 								),
 
 								array(
@@ -767,7 +768,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'    => 'color',
 							'label'   => __( 'Buttons Color', 'bitcoin' ),
 							'live'    => true,
-							'	default' => '#FF4D55',
+							'default' => '#22dfb5',
 							'css'     => array(
 								array(
 									'property' => 'background-color',
@@ -840,7 +841,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'fill',
-									'selector' => '.grid--list .card.format-quote .bitcoin__icon svg use'
+									'selector' => '.grid .card.format-quote .bitcoin__icon svg use'
 								)
 							)
 						),
@@ -930,8 +931,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'selector' => '
 										.card__title:hover,
 										.card__title:focus,
-										.posted-on:hover, 
-										.posted-on:focus, 
+										.card:not(.format-quote) .posted-on:hover, 
+										.card:not(.format-quote) .posted-on:focus, 
 										.posted-by:hover,
 										.posted-by:focus,
 										.card-gallery__slider .slick-arrow,
@@ -1040,7 +1041,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'color',
-									'selector' => 'a:not(.btn):not(.text), #wp-calendar #today, body .widget_tag_cloud .tagcloud a, .widget_recent_entries span.post-date,
+									'selector' => 'a:not(.btn), #wp-calendar #today, body .widget_tag_cloud .tagcloud a, .widget_recent_entries span.post-date,
 									 .site .widget a:not(.tag-cloud-link):hover,  .site .widget a:not(.tag-cloud-link):focus, .single-post .entry-content .tags-links a',
 								),
 								array(
@@ -1682,14 +1683,14 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 endif;
 
 
-add_action( 'customize_register', 'listabe_adjust_cusotmizer_settings', 35 );
+add_action( 'customize_register', 'bitcoin_adjust_cusotmizer_settings', 35 );
 
 /**
  * Use this function to move or reorder options between sections
  *
  * @param $wp_customize
  */
-function listabe_adjust_cusotmizer_settings( $wp_customize ) {
+function bitcoin_adjust_cusotmizer_settings( $wp_customize ) {
 
 	// move the `logo_invert` option to the title_tagline section(just to keep the well grouped)
 	$logo_invert           = $wp_customize->get_control( 'bitcoin_options[logo_invert]_control' );
@@ -1720,10 +1721,20 @@ if ( ! function_exists( 'bitcoin_getRGB' ) ) {
 		// Get our color
 		$color = ( $color ) ? $color : '#ffffff';
 		// Calculate straight from rbg
-		$r = hexdec( $color[1] . $color[2] );
-		$g = hexdec( $color[3] . $color[4] );
-		$b = hexdec( $color[5] . $color[6] );
 
+		if( count($color) > 3){
+
+			$r = hexdec( $color[1] . $color[2] );
+			$g = hexdec( $color[3] . $color[4] );
+			$b = hexdec( $color[5] . $color[6] );
+		
+		}else{
+
+			$r = hexdec( $color[1] . $color[2] );
+			$g = hexdec( $color[3] . $color[4] );
+			$b = hexdec( $color[5] . $color[6] );
+
+		}
 		return $r . ',' . $g . ',' . $b . ',';
 	}
 }

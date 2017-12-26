@@ -1,13 +1,13 @@
 <?php
 /**
- * Listable functions and definitions.
+ * Bitcoin functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Listable
+ * @package Bitcoin
  */
 
-if ( ! function_exists( 'listable_setup' ) ) :
+if ( ! function_exists( 'bitcoin_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -15,14 +15,14 @@ if ( ! function_exists( 'listable_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function listable_setup() {
+	function bitcoin_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Listable, use a find and replace
-		 * to change 'listable' to the name of your theme in all the template files.
+		 * If you're building a theme based on Bitcoin, use a find and replace
+		 * to change 'bitcoin' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'listable', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'bitcoin', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -56,8 +56,8 @@ if ( ! function_exists( 'listable_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary'            => esc_html__( 'Primary Menu', 'listable' ),
-			'footer_menu'        => esc_html__( 'Footer Menu', 'listable' ),
+			'primary'            => esc_html__( 'Primary Menu', 'bitcoin' ),
+			'footer_menu'        => esc_html__( 'Footer Menu', 'bitcoin' ),
 		) );
 
 		/*
@@ -87,8 +87,8 @@ if ( ! function_exists( 'listable_setup' ) ) :
 		remove_post_type_support( 'page', 'subtitles' ); 
 
 		// custom javascript handlers - make sure it is the last one added
-		add_action( 'wp_head', 'listable_load_custom_js_header', 999 );
-		add_action( 'wp_footer', 'listable_load_custom_js_footer', 999 );
+		add_action( 'wp_head', 'bitcoin_load_custom_js_header', 999 );
+		add_action( 'wp_footer', 'bitcoin_load_custom_js_footer', 999 );
 
 		/*
 		 * Add editor custom style to make it look more like the frontend
@@ -107,8 +107,8 @@ if ( ! function_exists( 'listable_setup' ) ) :
 		add_action('loop_start', 'jptweak_remove_share');
 
 	}
-endif; // listable_setup
-add_action( 'after_setup_theme', 'listable_setup' );
+endif; // bitcoin_setup
+add_action( 'after_setup_theme', 'bitcoin_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -117,92 +117,69 @@ add_action( 'after_setup_theme', 'listable_setup' );
  *
  * @global int $content_width
  */
-function listable_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'listable_content_width', 1050, 0 );
+function bitcoin_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'bitcoin_content_width', 1050, 0 );
 }
-add_action( 'after_setup_theme', 'listable_content_width', 0 );
+add_action( 'after_setup_theme', 'bitcoin_content_width', 0 );
 
 /**
  * Set the gallery widget width in pixels, based on the theme's design and stylesheet.
  */
-function listable_gallery_widget_width( $args, $instance ) {
+function bitcoin_gallery_widget_width( $args, $instance ) {
 	return '1050';
 }
 
-add_filter( 'gallery_widget_content_width', 'listable_gallery_widget_width', 10, 3 );
+add_filter( 'gallery_widget_content_width', 'bitcoin_gallery_widget_width', 10, 3 );
 
 /**
  * Enqueue scripts and styles.
  */
-function listable_scripts() {
+function bitcoin_scripts() {
 	$theme = wp_get_theme();
 
-	// Add an API key if available in Listings -> Settings Google Maps API Key.
-	$google_maps_key = get_option( 'job_manager_google_maps_api_key' );
-
-	// back-compat with the old Listable field Google Maps API Key.
-	if ( empty( $google_maps_key ) ) {
-		$google_maps_key = pixelgrade_option( 'google_maps_api_key' );
-	}
-
-	if ( ! empty( $google_maps_key ) ) {
-		$google_maps_key = '&key=' . $google_maps_key;
-	} else {
-		$google_maps_key = '';
-	}
-
-	//if there is no mapbox token use Google Maps instead
-	if ( '' == pixelgrade_option( 'mapbox_token', '' ) ) {
-		wp_deregister_script('google-maps');
-		wp_enqueue_script( 'google-maps', '//maps.google.com/maps/api/js?v=3.exp&amp;libraries=places' . $google_maps_key, array(), '3.22', true );
-		$listable_scripts_deps[] = 'google-maps';
-	} elseif ( wp_script_is( 'google-maps' )  ) {
-		wp_deregister_script('google-maps');
-		wp_enqueue_script( 'google-maps', '//maps.google.com/maps/api/js?v=3.exp&amp;libraries=places' . $google_maps_key, array(), '3.22', false );
-		$listable_scripts_deps[] = 'google-maps';
-	}
-
-	wp_deregister_style( 'wc-paid-listings-packages' );
-	wp_deregister_style( 'wc-bookings-styles' );
 
 	$main_style_deps = array();
 
 	//only enqueue the de default font if Customify is not present
 	if ( ! class_exists( 'PixCustomifyPlugin' ) ) {
-		wp_enqueue_style( 'listable-default-fonts', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700' );
-		$main_style_deps[] = 'listable-default-fonts';
+		wp_enqueue_style( 'bitcoin-default-fonts', 'https://fonts.googleapis.com/css?family=Noto+Sans:400,300,600,700' );
+		$main_style_deps[] = 'bitcoin-default-fonts';
+		
+		wp_enqueue_style( 'bitcoin-default-theme', get_template_directory_uri() . '/styles/theme.css'  );
+		$main_style_deps[] = 'bitcoin-default-theme';
+
 	}
 
 	if ( !is_rtl() ) {
-		wp_enqueue_style( 'listable-style', get_stylesheet_uri(), $main_style_deps, $theme->get( 'Version' ) );
+		wp_enqueue_style( 'bitcoin-style', get_stylesheet_uri(), $main_style_deps, $theme->get( 'Version' ) );
 	}
 
 	global $post;
-	$listable_scripts_deps = array('jquery');
+	$bitcoin_scripts_deps = array('jquery');
 	wp_enqueue_script( 'tween-lite', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js', array( 'jquery' ) );
-	$listable_scripts_deps[] = 'tween-lite';
+	$bitcoin_scripts_deps[] = 'tween-lite';
 	wp_enqueue_script('imagesloaded', '//unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js', array( 'jquery' ) );
-	$listable_scripts_deps[] = 'imagesloaded';
+	$bitcoin_scripts_deps[] = 'imagesloaded';
 	wp_enqueue_script('polyfill', '//cdn.polyfill.io/v2/polyfill.min.js', array( 'jquery' ) );
-	$listable_scripts_deps[] = 'polyfill';
+	$bitcoin_scripts_deps[] = 'polyfill';
 	wp_enqueue_script( 'scroll-to-plugin', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/ScrollToPlugin.min.js', array( 'jquery' ) );
-	$listable_scripts_deps[] = 'scroll-to-plugin';
+	$bitcoin_scripts_deps[] = 'scroll-to-plugin';
 	wp_enqueue_script( 'cssplugin', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/CSSPlugin.min.js', array( 'jquery' ) );
-	$listable_scripts_deps[] = 'cssplugin';
+	$bitcoin_scripts_deps[] = 'cssplugin';
 	wp_enqueue_script( 'mousewheel', '//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js', array( 'jquery' ) );
-	$listable_scripts_deps[] = 'mousewheel';
+	$bitcoin_scripts_deps[] = 'mousewheel';
 	wp_enqueue_script( 'magnific', '//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js', array( 'jquery' ) );
-	$listable_scripts_deps[] = 'magnific';
+	$bitcoin_scripts_deps[] = 'magnific';
 	wp_enqueue_script( 'modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array( 'jquery' ) );
-	$listable_scripts_deps[] = 'modernizr';
+	$bitcoin_scripts_deps[] = 'modernizr';
 	wp_enqueue_script('slick', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js', array( 'jquery' ) );
-	$listable_scripts_deps[] = 'slick';
+	$bitcoin_scripts_deps[] = 'slick';
 
 	wp_enqueue_style( 'slick-style', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css' );
 	wp_enqueue_style('slick-style-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
 
-	wp_enqueue_script( 'system', get_template_directory_uri() . '/assets/js/system.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
-	$listable_scripts_deps[] = 'system';
+	wp_enqueue_script( 'system', get_template_directory_uri() . '/assets/js/system.js', $bitcoin_scripts_deps, $theme->get( 'Version' ), true );
+	$bitcoin_scripts_deps[] = 'system';
 	$template = get_template_directory_uri();
 	$systemjs_modules = json_encode(array('test.js', 'test1.js', 'main.js'));
 	// wp_add_inline_script('system', "$systemjs_modules.reduce(
@@ -212,67 +189,46 @@ function listable_scripts() {
     //     },
     //     Promise.resolve() 
     //   )");
-	// wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
-	// wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
-	wp_enqueue_script( 'listable-scripts', get_template_directory_uri() . '/assets/js/main.js', $listable_scripts_deps, $theme->get( 'Version' ), true );
+	// wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $bitcoin_scripts_deps, $theme->get( 'Version' ), true );
+	// wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $bitcoin_scripts_deps, $theme->get( 'Version' ), true );
+	wp_enqueue_script( 'bitcoin-scripts', get_template_directory_uri() . '/assets/js/main.js', $bitcoin_scripts_deps, $theme->get( 'Version' ), true );
 
-	wp_localize_script( 'listable-scripts', 'BitcoinParams', array(
+	wp_localize_script( 'bitcoin-scripts', 'BitcoinParams', array(
 		'ajax' => array (
 				'url' => admin_url('admin-ajax.php'),
 				'likes_action' => 'bitcoin_set_likes_number'
 			),
 		'login_url' => rtrim( esc_url( wp_login_url() ) , '/'),
 		'strings' => array(
-			'wp-job-manager-file-upload' => esc_html__( 'Add Photo', 'listable' ),
-			'no_job_listings_found' => esc_html__( 'No results', 'listable' ),
-			'results-no' => esc_html__( 'Results', 'listable'), //@todo this is not quite right as it is tied to the number of results - they can 1 or 0
-			'select_some_options' => esc_html__( 'Select Some Options', 'listable' ),
-			'select_an_option' => esc_html__( 'Select an Option', 'listable' ),
-			'no_results_match' => esc_html__( 'No results match', 'listable' ),
-			'social_login_string' => esc_html__( 'or', 'listable' ),
+			'wp-job-manager-file-upload' => esc_html__( 'Add Photo', 'bitcoin' ),
+			'no_job_listings_found' => esc_html__( 'No results', 'bitcoin' ),
+			'results-no' => esc_html__( 'Results', 'bitcoin'), //@todo this is not quite right as it is tied to the number of results - they can 1 or 0
+			'select_some_options' => esc_html__( 'Select Some Options', 'bitcoin' ),
+			'select_an_option' => esc_html__( 'Select an Option', 'bitcoin' ),
+			'no_results_match' => esc_html__( 'No results match', 'bitcoin' ),
+			'social_login_string' => esc_html__( 'or', 'bitcoin' ),
 		)
 	) ); 
 
 }
 
 
-add_action( 'wp_enqueue_scripts', 'listable_scripts' );
+add_action( 'wp_enqueue_scripts', 'bitcoin_scripts' );
 
-function listable_admin_scripts() {
+function bitcoin_admin_scripts() {
 
-	if ( listable_is_edit_page() ) {
+	if ( bitcoin_is_edit_page() ) {
 		wp_enqueue_script('polyfill', '//cdn.polyfill.io/v2/polyfill.min.js', array('jquery'));
-		wp_enqueue_script( 'listable-admin-edit-scripts', get_template_directory_uri() . '/assets/js/admin/edit-page.js', array( 'jquery', 'polyfill' ), '1.0.0', true );
+		wp_enqueue_script( 'bitcoin-admin-edit-scripts', get_template_directory_uri() . '/assets/js/admin/edit-page.js', array( 'jquery', 'polyfill' ), '1.0.0', true );
 
-		wp_enqueue_style( 'listable-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/edit-page.css' );
+		wp_enqueue_style( 'bitcoin-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/edit-page.css' );
 		
 	}
 
 
-	$translation_array = array (
-			'import_failed' => esc_html__( 'The import didn\'t work completely!', 'listable') . '<br/>' . esc_html__( 'Check out the errors given. You might want to try reloading the page and try again.', 'listable'),
-			'import_confirm' => esc_html__( 'Importing the demo data will overwrite your current site content and options. Proceed anyway?', 'listable'),
-			'import_phew' => esc_html__( 'Phew...that was a hard one!', 'listable'),
-			'import_success_note' => esc_html__( 'The demo data was imported without a glitch! Awesome! ', 'listable') . '<br/><br/>',
-			'import_success_reload' => esc_html__( '<i>We have reloaded the page on the right, so you can see the brand new data!</i>', 'listable'),
-			'import_success_warning' => '<p>' . esc_html__( 'Remember to update the passwords and roles of imported users.', 'listable') . '</p><br/>',
-			'import_all_done' => esc_html__( "All done!", 'listable'),
-			'import_working' => esc_html__( "Working...", 'listable'),
-			'import_widgets_failed' => esc_html__( "The setting up of the demo widgets failed...", 'listable'),
-			'import_widgets_error' => esc_html__( 'The setting up of the demo widgets failed', 'listable') . '</i><br />' . esc_html__( '(The script returned the following message', 'listable'),
-			'import_widgets_done' => esc_html__( 'Finished setting up the demo widgets...', 'listable'),
-			'import_theme_options_failed' => esc_html__( "The importing of the theme options has failed...", 'listable'),
-			'import_theme_options_error' => esc_html__( 'The importing of the theme options has failed', 'listable') . '</i><br />' . esc_html__( '(The script returned the following message', 'listable'),
-			'import_theme_options_done' => esc_html__( 'Finished importing the demo theme options...', 'listable'),
-			'import_posts_failed' => esc_html__( "The importing of the theme options has failed...", 'listable'),
-			'import_posts_step' => esc_html__( 'Importing posts | Step', 'listable'),
-			'import_error' =>  esc_html__( "Error:", 'listable'),
-			'import_try_reload' =>  esc_html__( "You can reload the page and try again.", 'listable'),
-	);
-	wp_localize_script( 'listable-admin-general-scripts', 'bitcoin_admin_js_texts', $translation_array );
 }
 
-add_action( 'admin_enqueue_scripts', 'listable_admin_scripts' );
+add_action( 'admin_enqueue_scripts', 'bitcoin_admin_scripts' );
 
 
 /**
@@ -280,8 +236,8 @@ add_action( 'admin_enqueue_scripts', 'listable_admin_scripts' );
  * This method is invoked by wpgrade_callback_themesetup
  * The function is executed on wp_enqueue_scripts
  */
-function listable_load_custom_js_header() {
-	$custom_js = pixelgrade_option( 'custom_js' );
+function bitcoin_load_custom_js_header() {
+	$custom_js = bitcoin_get_option( 'custom_js' );
 	if ( ! empty( $custom_js ) ) {
 		//first lets test is the js code is clean or has <script> tags and such
 		//if we have <script> tags than we will not enclose it in anything - raw output
@@ -293,8 +249,8 @@ function listable_load_custom_js_header() {
 	}
 }
 
-function listable_load_custom_js_footer() {
-	$custom_js = pixelgrade_option( 'custom_js_footer' );
+function bitcoin_load_custom_js_footer() {
+	$custom_js = bitcoin_get_option( 'custom_js_footer' );
 	if ( ! empty( $custom_js ) ) {
 		//first lets test is the js code is clean or has <script> tags and such
 		//if we have <script> tags than we will not enclose it in anything - raw output
@@ -349,15 +305,15 @@ require get_template_directory() . '/inc/required-plugins/required-plugins.php';
 
 
 // Callback function to insert 'styleselect' into the $buttons array
-function listable_mce_buttons( $buttons ) {
+function bitcoin_mce_buttons( $buttons ) {
 	array_unshift( $buttons, 'styleselect' );
 	return $buttons;
 }
 // Register our callback to the appropriate filter
-add_filter('mce_buttons_2', 'listable_mce_buttons');
+add_filter('mce_buttons_2', 'bitcoin_mce_buttons');
 
 // Callback function to filter the MCE settings
-function listable_formats( $init_array ) {
+function bitcoin_formats( $init_array ) {
 	// Define the style_formats array
 	$style_formats = array(
 		// Each array child is a format with it's own settings
@@ -386,5 +342,5 @@ function listable_formats( $init_array ) {
 
 }
 // Attach callback to 'tiny_mce_before_init'
-add_filter( 'tiny_mce_before_init', 'listable_formats' );
+add_filter( 'tiny_mce_before_init', 'bitcoin_formats' );
 

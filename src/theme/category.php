@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Listable
+ * @package Bitcoin
  */
 
 get_header(); ?>
@@ -20,7 +20,7 @@ get_header(); ?>
 			<?php /* Start the Loop */ ?>
 
 			<div class="postcards">
-				<div class="grid grid--<?php echo pixelgrade_option('blog_type_style'); ?>">
+				<div class="grid grid--<?php echo bitcoin_get_option('blog_type_style'); ?>">
 					<?php /* Start the Loop */ ?>
 					<?php while ( have_posts() ) : the_post(); ?>
 						<div class="grid__item  postcard">

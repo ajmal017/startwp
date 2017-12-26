@@ -4,9 +4,9 @@
  * This way we provide a smooth transition to those that decide to use Jetpack
  * See: http://jetpack.me/
  *
- * @package Listable
+ * @package Bitcoin
  */
-function listable_load_jetpack_compatibility() {
+function bitcoin_load_jetpack_compatibility() {
 
 	//first test if Jetpack is present and activated
 	// only if it is not present load the duplicated code from the theme
@@ -22,7 +22,7 @@ function listable_load_jetpack_compatibility() {
 		Jetpack::activate_module('tiled-gallery');
 	}
 }
-add_action( 'after_setup_theme', 'listable_load_jetpack_compatibility' );
+add_action( 'after_setup_theme', 'bitcoin_load_jetpack_compatibility' );
 
 /**
  * Add theme support for Responsive Videos.
@@ -38,22 +38,22 @@ add_action('after_setup_theme', 'bitcoin_responsive_videos_setup');
  * Add theme support for Infinite Scroll.
  * See: https://jetpack.me/support/infinite-scroll/
  */
-function listable_jetpack_setup() {
+function bitcoin_jetpack_setup() {
 	add_theme_support( 'infinite-scroll', array(
 		'container' => 'posts-container',
-		'render'    => 'listable_infinite_scroll_render',
+		'render'    => 'bitcoin_infinite_scroll_render',
 		'footer'    => 'page',
 		'wrapper'   => false
 	) );
 	add_theme_support( 'jetpack-responsive-videos' );
 
-} // end function listable_jetpack_setup
-add_action( 'after_setup_theme', 'listable_jetpack_setup' );
+} // end function bitcoin_jetpack_setup
+add_action( 'after_setup_theme', 'bitcoin_jetpack_setup' );
 
 /**
  * Custom render function for Infinite Scroll.
  */
-function listable_infinite_scroll_render() {
+function bitcoin_infinite_scroll_render() {
 	while ( have_posts() ) : the_post();
 	?>
 		<div class="grid__item  postcard">
@@ -67,4 +67,4 @@ function listable_infinite_scroll_render() {
 		</div>
 
 	<?php endwhile;
-} // end function listable_infinite_scroll_render
+} // end function bitcoin_infinite_scroll_render

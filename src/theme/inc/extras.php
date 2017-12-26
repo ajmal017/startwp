@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package Listable
+ * @package Bitcoin
  */
 
 /**
@@ -16,7 +16,7 @@
  */
 
 
-function listable_body_classes( $classes ) {
+function bitcoin_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
@@ -40,17 +40,21 @@ function listable_body_classes( $classes ) {
 	$show_on_posts_page = true;
 	if (is_home()) {
 		$show_on_posts_page = false;
-		$show_on_posts_page = pixelgrade_option('blog_sidebar_posts');
+		$show_on_posts_page = bitcoin_get_option('blog_sidebar_posts');
 	}
 
-	$sidebar = pixelgrade_option('blog_sidebar');
+	$sidebar = bitcoin_get_option('blog_sidebar');
 	if( isset( $sidebar ) && 'sidebar__none' != $sidebar && $show_on_posts_page ){
 		$classes[] = $sidebar;
 	}
 
+	if((is_page_template( 'page-templates/front_page.php' ) && bitcoin_get_option( 'header_transparent', true)) || ( is_home() && bitcoin_get_option( 'header_transparent', true)) ) {
+		$classes[] = 'header--transparent'; 
+	}
+
 	return $classes;
 }
-add_filter( 'body_class', 'listable_body_classes' );
+add_filter( 'body_class', 'bitcoin_body_classes' );
 
 /**
  * Add a custom body class when the request comes from a modal
@@ -58,50 +62,50 @@ add_filter( 'body_class', 'listable_body_classes' );
  *
  * @return array
  */
-function listable_login_body_class( $classes ) {
+function bitcoin_login_body_class( $classes ) {
 	if ( isset( $_REQUEST['modal_login'] ) && $_REQUEST['modal_login'] ) {
 		$classes[] = 'page-login-modal';
 	}
 
 	return $classes;
 }
-add_filter( 'login_body_class', 'listable_login_body_class' );
+add_filter( 'login_body_class', 'bitcoin_login_body_class' );
 
-function listable_force_display_the_excerpt_box( $hidden ) {
+function bitcoin_force_display_the_excerpt_box( $hidden ) {
 	//this filter is fired from get_hidden_meta_boxes()
 	//make sure that 'postexcerpt' is not in the default hidden boxes
 	$hidden = array_diff( $hidden, array( 'postexcerpt' ) );
 
 	return $hidden;
 }
-add_filter( 'default_hidden_meta_boxes', 'listable_force_display_the_excerpt_box' );
+add_filter( 'default_hidden_meta_boxes', 'bitcoin_force_display_the_excerpt_box' );
 
-if ( ! function_exists('listable_post_excerpt_meta_box' ) ) {
+if ( ! function_exists('bitcoin_post_excerpt_meta_box' ) ) {
 	/**
 	 * Custom callback function for the page excerpt meta box - it changes the strings in the form
 	 *
 	 * @param $post
 	 */
-	function listable_post_excerpt_meta_box( $post ) { ?>
-		<label class="screen-reader-text" for="excerpt"><?php esc_html_e( 'Page Subtitle', 'listable' ) ?></label>
+	function bitcoin_post_excerpt_meta_box( $post ) { ?>
+		<label class="screen-reader-text" for="excerpt"><?php esc_html_e( 'Page Subtitle', 'bitcoin' ) ?></label>
 		<textarea rows="1" cols="40" name="excerpt" id="excerpt"><?php echo $post->post_excerpt; // textarea_escaped ?></textarea>
-		<p><?php esc_html_e( 'This is the subtitle that will be shown in the page\'s Hero Area, below the page title.', 'listable' ); ?></p>
+		<p><?php esc_html_e( 'This is the subtitle that will be shown in the page\'s Hero Area, below the page title.', 'bitcoin' ); ?></p>
 		<?php
 	}
 }
 
-function listable_change_page_excerpt_box_title() {
+function bitcoin_change_page_excerpt_box_title() {
 	global $wp_meta_boxes; // array of defined meta boxes
 
 	//Change the page excerpt meta box title
-	$wp_meta_boxes['page']['normal']['core']['postexcerpt']['title'] = esc_html__( 'Page Subtitle', 'listable' );
+	$wp_meta_boxes['page']['normal']['core']['postexcerpt']['title'] = esc_html__( 'Page Subtitle', 'bitcoin' );
 	//and it's callback
-	$wp_meta_boxes['page']['normal']['core']['postexcerpt']['callback'] = 'listable_post_excerpt_meta_box';
+	$wp_meta_boxes['page']['normal']['core']['postexcerpt']['callback'] = 'bitcoin_post_excerpt_meta_box';
 }
-add_action( 'add_meta_boxes', 'listable_change_page_excerpt_box_title' );
+add_action( 'add_meta_boxes', 'bitcoin_change_page_excerpt_box_title' );
 
 
-if ( ! function_exists( 'listable_display_image' ) ) {
+if ( ! function_exists( 'bitcoin_display_image' ) ) {
 	/**
 	 * Display an image from the given url
 	 * We use this function when the url may contain a svg file
@@ -110,7 +114,7 @@ if ( ! function_exists( 'listable_display_image' ) ) {
 	 * @param string $class A CSS class
 	 * @param bool|true $wrap_as_img If the function should wrap the url in an image tag or not
 	 */
-	function listable_display_image( $url, $class = '', $wrap_as_img = true, $attachment_id = null ) {
+	function bitcoin_display_image( $url, $class = '', $wrap_as_img = true, $attachment_id = null ) {
 		if ( ! empty( $url ) && is_string( $url ) ) {
 
 			//we try to inline svgs
@@ -156,7 +160,7 @@ if ( ! function_exists( 'listable_display_image' ) ) {
 	}
 }
 
-if ( ! function_exists( 'listable_get_listing_gallery_ids' ) ) {
+if ( ! function_exists( 'bitcoin_get_listing_gallery_ids' ) ) {
 	/**
 	 * Return the gallery of images attached to the listing
 	 *
@@ -164,7 +168,7 @@ if ( ! function_exists( 'listable_get_listing_gallery_ids' ) ) {
 	 *
 	 * @return array|bool
 	 */
-	function listable_get_listing_gallery_ids( $listing_ID = null ) {
+	function bitcoin_get_listing_gallery_ids( $listing_ID = null ) {
 
 		if ( empty( $listing_ID ) ) {
 			$listing_ID = get_the_ID();
@@ -208,7 +212,7 @@ if ( ! function_exists( 'listable_get_listing_gallery_ids' ) ) {
 	}
 }
 
-if ( ! function_exists( 'listable_get_post_image_id' ) ) {
+if ( ! function_exists( 'bitcoin_get_post_image_id' ) ) {
 	/**
 	 * Return the ID of the first image found in the post meta (featured image). In case of listings first we will look into the gallery (main_image) and then for the featured image
 	 *
@@ -216,14 +220,14 @@ if ( ! function_exists( 'listable_get_post_image_id' ) ) {
 	 *
 	 * @return array|bool|string
 	 */
-	function listable_get_post_image_id( $post_ID = null ) {
+	function bitcoin_get_post_image_id( $post_ID = null ) {
 
 		if ( empty( $post_ID ) ) {
 			$post_ID = get_the_ID();
 		}
 
 		//get the presentation gallery if present
-		$gallery_ids = listable_get_listing_gallery_ids( $post_ID );
+		$gallery_ids = bitcoin_get_listing_gallery_ids( $post_ID );
 
 		//now lets get the image (either from the presentation gallery or the featured image
 		// if there are second images, use them
@@ -238,7 +242,7 @@ if ( ! function_exists( 'listable_get_post_image_id' ) ) {
 	}
 }
 
-if ( ! function_exists( 'listable_get_post_image_src' ) ) {
+if ( ! function_exists( 'bitcoin_get_post_image_src' ) ) {
 	/**
 	 * Return the src of the post image. In the case of listings we will try and get the first image of the gallery first, then the featured image.
 	 *
@@ -247,13 +251,13 @@ if ( ! function_exists( 'listable_get_post_image_src' ) ) {
 	 *
 	 * @return bool
 	 */
-	function listable_get_post_image_src( $post_id = null, $size = 'thumbnail' ) {
+	function bitcoin_get_post_image_src( $post_id = null, $size = 'thumbnail' ) {
 
 		if ( empty( $post_id ) ) {
 			$post_id = get_the_ID();
 		}
 
-		$attach_id = listable_get_post_image_id( $post_id );
+		$attach_id = bitcoin_get_post_image_id( $post_id );
 
 		if ( empty( $attach_id ) || is_wp_error( $attach_id ) ) {
 			return false;
@@ -262,14 +266,14 @@ if ( ! function_exists( 'listable_get_post_image_src' ) ) {
 		$data = wp_get_attachment_image_src( $attach_id, $size );
 		// if this attachment has an url for this size, return it
 		if ( isset( $data[0] ) && ! empty ( $data ) ) {
-			return listable_get_inline_background_image( $data[0] );
+			return bitcoin_get_inline_background_image( $data[0] );
 		}
 
 		return false;
 	}
 }
 
-if ( ! function_exists( 'listable_get_attachment_id_from_url' ) ) {
+if ( ! function_exists( 'bitcoin_get_attachment_id_from_url' ) ) {
 	/**
 	 * Given an URL we will try to find and return the ID of the attachment, if present
 	 *
@@ -277,7 +281,7 @@ if ( ! function_exists( 'listable_get_attachment_id_from_url' ) ) {
 	 *
 	 * @return bool|null|string
 	 */
-	function listable_get_attachment_id_from_url( $attachment_url = '' ) {
+	function bitcoin_get_attachment_id_from_url( $attachment_url = '' ) {
 
 		global $wpdb;
 		$attachment_id = false;
@@ -308,7 +312,7 @@ if ( ! function_exists( 'listable_get_attachment_id_from_url' ) ) {
 	}
 }
 
-function listable_is_edit_page( $new_edit = null ) {
+function bitcoin_is_edit_page( $new_edit = null ) {
 	global $pagenow;
 	//make sure we are on the backend
 	if ( ! is_admin() ) {
@@ -325,7 +329,7 @@ function listable_is_edit_page( $new_edit = null ) {
 }
 
 
-function listable_sort_array_by_priority( $a, $b ) {
+function bitcoin_sort_array_by_priority( $a, $b ) {
 	if ( $a['priority'] == $b['priority'] ) {
 		return 0;
 	}
@@ -348,7 +352,7 @@ function bitcoin_add_comments_placeholders( $args ) {
 add_action( 'comment_form_defaults', 'bitcoin_add_comments_placeholders' );
 
 
-if ( ! function_exists( 'listable_get_random_hero_object' ) ) {
+if ( ! function_exists( 'bitcoin_get_random_hero_object' ) ) {
 	/**
 	 * A post / page can hold images or videos, but sometimes we want to use only a random one as featured hero
 	 * This is what this functions returns
@@ -356,7 +360,7 @@ if ( ! function_exists( 'listable_get_random_hero_object' ) ) {
 	 *
 	 * @return array|null|WP_Post
 	 */
-	function listable_get_random_hero_object( $post_id = null ) {
+	function bitcoin_get_random_hero_object( $post_id = null ) {
 		if ( $post_id === null ) {
 			global $post;
 			$post_id = $post->ID;
@@ -384,7 +388,7 @@ if ( ! function_exists( 'listable_get_random_hero_object' ) ) {
  *
  * @return mixed|void
  */
-function listable_get_inline_background_image( $url ) {
+function bitcoin_get_inline_background_image( $url ) {
 	if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) && function_exists( 'jetpack_photon_url' ) ) {
 		return apply_filters( 'jetpack_photon_url', $url );
 	}
@@ -394,7 +398,7 @@ function listable_get_inline_background_image( $url ) {
 /**
  * Add descriptions to menu items
  */
-function listable_nav_description( $item_output, $item, $depth, $args ) {
+function bitcoin_nav_description( $item_output, $item, $depth, $args ) {
 
 	if ( 'search_suggestions' == $args->theme_location && $item->description ) {
 		$item_output = str_replace( $args->link_after . '</a>', '<span class="menu-item-description">' . $item->description . '</span>' . $args->link_after . '</a>', $item_output );
@@ -403,15 +407,15 @@ function listable_nav_description( $item_output, $item, $depth, $args ) {
 	return $item_output;
 
 }
-add_filter( 'walker_nav_menu_start_el', 'listable_nav_description', 10, 4 );
+add_filter( 'walker_nav_menu_start_el', 'bitcoin_nav_description', 10, 4 );
 
 
 
-function listable_string_to_bool( $value ) {
+function bitcoin_string_to_bool( $value ) {
 	return ( is_bool( $value ) && $value ) || in_array( $value, array( '1', 'true', 'yes' ) ) ? true : false;
 }
 
-function listable_get_shortcode_param_value( $content, $shortcode, $param, $default ) {
+function bitcoin_get_shortcode_param_value( $content, $shortcode, $param, $default ) {
 	$param_value = $default;
 	if ( has_shortcode( $content, $shortcode ) ) {
 		$pattern = get_shortcode_regex( array( $shortcode ) );
@@ -432,7 +436,7 @@ function listable_get_shortcode_param_value( $content, $shortcode, $param, $defa
 			}
 
 			if ( ! empty( $result ) ) {
-				$value = listable_preg_match_array_get_value_by_key( $result, $param );
+				$value = bitcoin_preg_match_array_get_value_by_key( $result, $param );
 
 				if ( null !== $value ) {
 					//just in case someone has magic_quotes activated
@@ -445,7 +449,7 @@ function listable_get_shortcode_param_value( $content, $shortcode, $param, $defa
 	return $param_value;
 }
 
-function listable_preg_match_array_get_value_by_key( $arrs, $searched ) {
+function bitcoin_preg_match_array_get_value_by_key( $arrs, $searched ) {
 	foreach ( $arrs as $arr ) {
 		foreach ( $arr as $key => $value ) {
 			if (  $key == $searched ) {
@@ -528,7 +532,7 @@ function bitcoin_get_related_posts(){
 /**
  * Modify the output for our custom User Menu items
  */
-class Listable_Walker_Nav_Menu extends Walker_Nav_Menu {
+class Bitcoin_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 	/**
 	 * Start the element output.
@@ -621,7 +625,7 @@ class Listable_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$attributes = '';
 		foreach ( $atts as $attr => $value ) {
 			if ( ! empty( $value ) ) {
-				//Custom URL for the Current Username menu item since right now it should be #listablecurrentusername
+				//Custom URL for the Current Username menu item since right now it should be #bitcoincurrentusername
 
 				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
 				$attributes .= ' ' . $attr . '="' . $value . '"';
@@ -652,7 +656,7 @@ class Listable_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$item_output .= '<a'. $attributes .'>';
 
 		//If this is a Current Username item
-		if( isset( $item->url ) && 'custom' == $item->type  && '#listablecurrentusername' == $item->url ) {
+		if( isset( $item->url ) && 'custom' == $item->type  && '#bitcoincurrentusername' == $item->url ) {
 			//Get the current user display name
 			global $current_user;
 
@@ -699,7 +703,7 @@ class Listable_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 	}
 
-} //Listable_Walker_Nav_Menu
+} //Bitcoin_Walker_Nav_Menu
 
 function archive_wpml_language_switcher() {
 	// a functions to remove the footer	language switcher added by WPML plugin

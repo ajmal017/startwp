@@ -37,6 +37,7 @@ input[type="color"],
     width: 100%
     appearance: none
     margin-bottom: 10px
+    box-sizing: border-box
     &:focus
         opacity: 1
         box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.8) inset, 0 0 0 2px rgba(0, 126, 255, 0.1)
@@ -69,15 +70,17 @@ textarea
     display: block
     width: 100%
 
-.form-inline
+.form-inline,
+.search-form
     display: inline-flex
     margin: -5px
     align-items: flex-start
-    label
-        margin-top: -18px
     & > *
         margin: 5px
         
+.form-inline      
+    label
+        margin-top: -18px
 
 input[type="file"] 
     border: 0
@@ -214,7 +217,7 @@ input[type="checkbox"]:focus
         font-size: 14px
         line-height: 1.3
         margin-bottom: 0.5em
-        padding: 8px 13px
+        padding: 0px 13px
 
 
     form label 

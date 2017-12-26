@@ -3,7 +3,7 @@
  * Register our sidebars and widgetized areas.
  *
  */
-function listable_register_widget_areas() {
+function bitcoin_register_widget_areas() {
 
 	register_sidebar( array(
 		'name'          => '&#x1f537; ' . esc_html__( 'Sidebar', 'bitcoin' ),
@@ -25,7 +25,7 @@ function listable_register_widget_areas() {
 	) );
 
 
-	$footer_sidebar_number = (int) pixelgrade_option('footer_sidebar_number', 4, false);
+	$footer_sidebar_number = (int) bitcoin_get_option('footer_sidebar_number', 4, false);
 
 	for($i = 0; $i < $footer_sidebar_number; $i++){
 		register_sidebar(array(
@@ -40,25 +40,27 @@ function listable_register_widget_areas() {
 
 
 	if( class_exists('WPCF7')){
-		register_widget('ForIT_Footer_Forms_Widget' );
+		register_widget('Bitcoin_Footer_Forms_Widget' );
 	}
+	
+	register_widget('Bitcoin_Coinmarketcap' );
 
 
 }
 
-add_action('widgets_init', 'listable_register_widget_areas' );
+add_action('widgets_init', 'bitcoin_register_widget_areas' );
 
 
 function bitcoin_sidebar(){
 	// Output the sidebar.php
 	global $post;
-	$sidebar = pixelgrade_option('blog_sidebar');
+	$sidebar = bitcoin_get_option('blog_sidebar');
 	$show_on_posts_page = true;
 
 
 	if( is_home() ){
 		$show_on_posts_page = false;
-		$show_on_posts_page = pixelgrade_option('blog_sidebar_posts');
+		$show_on_posts_page = bitcoin_get_option('blog_sidebar_posts');
 	}
 
 	if ( 'sidebar__none' != $sidebar && $show_on_posts_page ) {
@@ -72,13 +74,125 @@ function bitcoin_sidebar(){
 add_action('bitcoin_after_posts_loop', 'bitcoin_sidebar');
 
 
+class Bitcoin_Coinmarketcap extends WP_Widget {
+	function __construct()
+	{
+		parent::__construct(
+			'bitcoin_coinmarketcap', // Base ID
+			'&#x1F536; ' . esc_html__( 'Bitcoin', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'Coin Market Cap', 'bitcoin' ), // Name
+			array( 'description' => esc_html__( 'A list of the Coin Market Cap cryptocurrencies', 'bitcoin' ), ) // Args
+		);
+	
+	}
+
+
+	public function widget($args, $instance)
+	{
+		$title = !empty($instance['title']) ? apply_filters('widget_title', $instance['title']) : '';
+		$currencies = !empty($instance['currencies']) ? $instance['currencies'] : false;
+
+		echo $args['before_widget'];
+
+		if (!empty($title)) :
+			echo $args['before_title'] . $title . $args['after_title'];
+		endif;
+
+
+		$output = '';
+
+		if( is_array( $currencies ) ){
+
+			$output .= "<ul class='widget-coinmarketcap' >";
+			foreach( $currencies as $coin ){
+
+				$response = wp_remote_get('https://api.coinmarketcap.com/v1/ticker/' . trim($coin) );
+				if( $response['response']['code'] !== 200 ){
+					continue;
+				}
+				$data =  json_decode($response['body']);
+				if( !is_array($data) ){
+					continue;
+				}
+
+				$output .= sprintf(
+					'<li class="widget-coinmarketcap__item "><img class="widget-coinmarketcap__icon" alt="%1$s" src="%2$s" />  %1$s <span class="widget-coinmarketcap__space"> </span>
+					<span class="widget-coinmarketcap__price"> $ %3$s </span>
+					</li>',
+					$data[0]->name,
+					'https://files.coinmarketcap.com/static/img/coins/64x64/' . $coin . '.png',
+					$data[0]->price_usd
+				);
+			}
+
+			$output .= "</ul>";
+		
+		}
+
+		echo $output;
+
+		echo $args['after_widget'];
+
+	}
+
+	public function update($new_instance, $old_instance)
+	{
+		var_dump( $new_instance );
+		$instance = $old_instance;
+		if (!empty($new_instance['title'])) {
+			$instance['title'] = strip_tags(stripslashes($new_instance['title']));
+		}
+		if (!empty($new_instance['currencies'])) {
+			$instance['currencies'] = esc_sql($new_instance['currencies']);
+		}
+		return $instance;
+	}
+
+	public function form( $instance ) {
+
+		$response = wp_remote_get('https://api.coinmarketcap.com/v1/ticker/');
+		
+		if( $response['response']['code'] !== 200 ){
+
+			return $response['response']['code'];
+		
+		}
+		$data =  json_decode($response['body']);
+		
+		if( !is_array($data) ){
+			return -1;
+		}
+
+		?>
+			<p>
+				<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'forit') ?></label>
+				<input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr( isset($instance['title'])?$instance['title']:''); ?>" />
+			</p>
+			<p>
+				<label for="<?php echo $this->get_field_id('currencies'); ?>"><?php esc_html_e('Currencies:', 'forit') ?></label>
+				<select class="widefat" multiple="multiple" id="<?php echo $this->get_field_id('currencies'); ?>" name="<?php echo $this->get_field_name('currencies') . '[]'; ?>"  size="10">
+					<?php foreach($data as $coin ){ ?>
+						
+						<option 
+							<?php echo in_array($coin->id ,$instance['currencies']) ? 'selected="selected"' : ''; ?> value="<?php echo $coin->id; ?>">
+							<?php echo $coin->name; ?>
+						</option>
+
+					<?php } ?>
+				</select>
+			</p>
+	<?php
+	}
+
+
+}
+
 class Listing_Comments_Widget extends WP_Widget {
 
 	function __construct() {
 		parent::__construct(
 			'bitcoin_comments', // Base ID
-			'&#x1F536; ' . esc_html__( 'Listing', 'listable' ) . ' &raquo; ' . esc_html__( 'Reviews', 'listable' ), // Name
-			array( 'description' => esc_html__( 'A list of the recent reviews and the submission form.', 'listable' ), ) // Args
+			'&#x1F536; ' . esc_html__( 'Listing', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'Reviews', 'bitcoin' ), // Name
+			array( 'description' => esc_html__( 'A list of the recent reviews and the submission form.', 'bitcoin' ), ) // Args
 		);
 	}
 
@@ -102,7 +216,7 @@ class Listing_Comments_Widget extends WP_Widget {
 /**
  *  Display CF7 in footer sidebar
  */
-class ForIT_Footer_Forms_Widget extends WP_Widget
+class Bitcoin_Footer_Forms_Widget extends WP_Widget
 {
 
 
@@ -110,7 +224,7 @@ class ForIT_Footer_Forms_Widget extends WP_Widget
 		parent::__construct(
 			'bitcoin_footer_form', // Base ID
 			'&#x1F536; ' . esc_html__( 'Bitcoin', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'Footer', 'bitcoin' ), // Name
-			array( 'description' => esc_html__( 'Add a Contact Form 7 to your footer.', 'listable' ), ) // Args
+			array( 'description' => esc_html__( 'Add a Contact Form 7 to your footer.', 'bitcoin' ), ) // Args
 		);
 	}
 
@@ -134,6 +248,8 @@ class ForIT_Footer_Forms_Widget extends WP_Widget
 		echo $args['after_widget'];
 
 	}
+
+
 
 	public function update($new_instance, $old_instance)
 	{

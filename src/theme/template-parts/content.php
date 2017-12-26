@@ -5,7 +5,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Listable
+ * @package Bitcoin
  */
 
 ?>
@@ -90,7 +90,7 @@
 				$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image'); ?>
 				<div class="card-player" >
 					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-						<aside class="card__image" style="background-image: url('<?php echo listable_get_inline_background_image($image[0]); ?>');"></aside>
+						<aside class="card__image" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');"></aside>
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 				</div>
@@ -144,7 +144,7 @@
 
 					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image'); ?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<aside class="card__image" style="background-image: url('<?php echo listable_get_inline_background_image($image[0]); ?>');"></aside>
+					<aside class="card__image" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');"></aside>
 				</a>
 
 			<?php else : ?>
@@ -192,7 +192,7 @@
 				<?php bitcoin_posted_by();?>
 				<span class="card-meta__delimiter" > | </span>
 				<?php bitcoin_posted_on();?>
-				<?php bitcoin_comments_number();?>
+				<?php bitcoin_comments_number( $format == 'quote' ? '5':'2' );?>
 			</div><!-- .card-meta -->
 		<?php } ?>
 	</div>

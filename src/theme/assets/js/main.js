@@ -98,8 +98,8 @@
             },
             callbacks: {
                 open: function() {
-                    if (!listableDocumentCookies.hasItem('listable_login_modal')) {
-                        listableDocumentCookies.setItem('listable_login_modal', 'opened', null, '/');
+                    if (!bitcoinDocumentCookies.hasItem('bitcoin_login_modal')) {
+                        bitcoinDocumentCookies.setItem('bitcoin_login_modal', 'opened', null, '/');
                     }
 
                     closeMenu();
@@ -109,7 +109,7 @@
                     $('body').css('overflow', 'hidden');
                 },
                 close: function() {
-                    listableDocumentCookies.removeItem('listable_login_modal', '/');
+                    bitcoinDocumentCookies.removeItem('bitcoin_login_modal', '/');
 
                     $('body').removeClass('overlay-is-open');
                     $('body').removeAttr('style');
@@ -119,7 +119,7 @@
     }
     if ($('#map').length && typeof L === "object") {
         // set Leaflet's default path for images
-        L.Icon.Default.imagePath = 'wp-content/themes/listable/assets/img/';
+        L.Icon.Default.imagePath = 'wp-content/themes/bitcoin/assets/img/';
     }
 
     // Map module
@@ -278,8 +278,8 @@
                         var lng = (bounds._northEast.lng + bounds._southWest.lng) / 2;
                         bounds = [lat, lng];
 
-                        Cookies.set('pxg-listable-bounds', JSON.stringify(bounds));
-                        Cookies.set('pxg-listable-mapZoom', mapZoom);
+                        Cookies.set('pxg-bitcoin-bounds', JSON.stringify(bounds));
+                        Cookies.set('pxg-bitcoin-mapZoom', mapZoom);
                     } else {
                         defaultMapView();
                     }
@@ -354,8 +354,8 @@
             }
 
             function defaultMapView() {
-                var bounds = Cookies.get('pxg-listable-bounds'),
-                    zoom = Cookies.get('pxg-listable-mapZoom');
+                var bounds = Cookies.get('pxg-bitcoin-bounds'),
+                    zoom = Cookies.get('pxg-bitcoin-mapZoom');
 
                 if (typeof bounds === 'undefined') {
                     bounds = [51.4825766, 0.0098476];
@@ -685,7 +685,6 @@
 
                 if( typeof shareServices[service] === 'function'){
                     shareServices[service]();
-
                 }
             })
 
@@ -712,7 +711,7 @@
         if (windowWidth < 900) {
             HandleSubmenusOnTouch.initSidebarMenu();
         } else {
-            HandleSubmenusOnTouch.initHorizontalMenu();
+            // HandleSubmenusOnTouch.initHorizontalMenu();
         }
 
         if ($('.site-header .search-form').is(':visible')) {
@@ -777,7 +776,7 @@
                 if (windowWidth < 900) {
                     HandleSubmenusOnTouch.initSidebarMenu();
                 } else {
-                    HandleSubmenusOnTouch.initHorizontalMenu();
+                    // HandleSubmenusOnTouch.initHorizontalMenu();
                 }
             }
         });
@@ -1100,7 +1099,7 @@
         }
     }
 
-    var listableDocumentCookies = {
+    var bitcoinDocumentCookies = {
         getItem: function(sKey) {
             if (!sKey) {
                 return null;

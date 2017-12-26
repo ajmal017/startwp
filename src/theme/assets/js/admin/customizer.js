@@ -184,6 +184,7 @@
 	var res = null;
 	var stepNumber = 0;
 	var numberOfSteps = 10;
+	var qInst;
 
 	// when the customizer is ready prepare our fields events
 	wp.customize.bind( 'ready', function() {
@@ -208,7 +209,7 @@
 
 		//this is the ajax queue
 		var this_data = {},
-			resultcontainer = $( '.wpGrade-import-results', this_data.container ),
+			resultcontainer = $( '.wpGrade-import-results', this_data.container );
 			qInst = $.qjax( {
 				timeout: 3000,
 				ajaxSettings: {

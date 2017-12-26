@@ -27,7 +27,7 @@ const babelConfig = {
 
 const funcTable = {
   "watch": [watch],
-  "png,jpeg,jpg,svg,woff2,eot,ttf,otf,php": [copyStatic],
+  "png,jpeg,jpg,svg,woff2,eot,ttf,otf,php, txt, zip, html": [copyStatic],
   "js": [minifyJs],
   "css": [minifyCss],
   "sass,scss": [handleSass],
@@ -137,7 +137,7 @@ Promise.all([
 
 async function copyStatic() {
   console.time('copyStatic');
-  await filesWithPatterns([/\.php$/i, /\.htaccess$/i, /\.(png|jpe?g|svg)$/i, /\.(woff?2|eot|ttf|otf)$/i, /\.xml$/i])
+  await filesWithPatterns([/\.php$/i, /\.htaccess$/i, /\.(png|jpe?g|svg)$/i, /\.(woff?2|eot|ttf|otf)$/i, /\.xml$/i, /\.txt$/i, /\.zip$/i, /\.html$/i, /\.md$/i])
     .map(async file => copy(`src/${file}`, `dist/${file}`))
     .array || Promise.resolve(); 
   console.timeEnd('copyStatic')

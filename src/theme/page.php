@@ -9,28 +9,29 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Listable
+ * @package Bitcoin
  */
 
 get_header();  ?>
-<div id="primary" class="content-area">
+<div id="primary" class="page-area">
 	<main id="main" class="site-main" role="main">
+		<div class="page-area__wrapper">	
 
-		<?php // get_template_part( 'template-parts/content', 'hero' ); ?>	
+			<?php // get_template_part( 'template-parts/content', 'hero' ); ?>	
 
-		<?php while ( have_posts() ) : the_post();
+			<?php while ( have_posts() ) : the_post();
 
-			do_action( 'listable_before_page_content' );
+				do_action( 'bitcoin_before_page_content' );
 
-			get_template_part( 'template-parts/content', 'page' );
+				get_template_part( 'template-parts/content', 'page' );
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+				// If comments are open or we have at least one comment, load up the comment template.
+				if ( comments_open() || get_comments_number() ) :
+					comments_template();
+				endif;
 
-		endwhile; // End of the loop. ?>
-
+			endwhile; // End of the loop. ?>
+		</div>
 	</main><!-- #main -->
 </div><!-- #primary -->
 <?php

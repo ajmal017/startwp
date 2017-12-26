@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Listable
+ * @package Bitcoin
  */
 
 ?><!DOCTYPE html>
@@ -20,15 +20,15 @@
 </head>
 <body <?php body_class(); ?> >
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'listable' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'bitcoin' ); ?></a>
 
 	<header id="masthead" class="site-header  
-		<?php if( is_page_template( 'page-templates/front_page.php' ) && (pixelgrade_option( 'header_transparent', true ) == true) ) echo 'header--transparent'; ?>
-		<?php if(  !is_front_page() && is_home() && (pixelgrade_option( 'header_transparent_blog', true ) == true) ) echo 'header--transparent'; ?>
+		<?php if( is_page_template( 'page-templates/front_page.php' ) && (bitcoin_get_option( 'header_transparent', true ) == true) ) echo 'header--transparent'; ?>
+		<?php if(  !is_front_page() && is_home() && (bitcoin_get_option( 'header_transparent_blog', true ) == true) ) echo 'header--transparent'; ?>
 		" role="banner">
 		<div class="site-header__in">
 		
-			<?php listable_display_logo(); ?>
+			<?php bitcoin_display_logo(); ?>
 
 			<?php
 			// Output the navigation and mobile nav button only if there is a nav
@@ -49,14 +49,14 @@
 					'theme_location' => 'primary',
 					'menu_class' => 'primary-menu',
 					'fallback_cb' => false,
-					'walker' => new Listable_Walker_Nav_Menu(),
+					'walker' => new Bitcoin_Walker_Nav_Menu(),
 				) );
 				wp_nav_menu( array(
 					'container_class' => 'secondary-menu-wrapper',
 					'theme_location' => 'secondary',
 					'menu_class' => 'primary-menu secondary-menu',
 					'fallback_cb' => false,
-					'walker' => new Listable_Walker_Nav_Menu(),
+					'walker' => new Bitcoin_Walker_Nav_Menu(),
 				) ); ?>
 
 			</nav>

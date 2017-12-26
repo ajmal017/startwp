@@ -4,26 +4,12 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package Listable
+ * @package Bitcoin
  */
 
-if ( ! function_exists( 'listable_get_option' ) ) {
-	/**
-	 * Get option from the database
-	 *
-	 * @param string
-	 * @deprecated 1.8.1
-	 *
-	 * @return mixed
-	 */
-	function listable_get_option( $option, $default = null ) {
-		_deprecated_function('listable_get_option', '1.8.4', 'pixelgrade_option');
-		return pixelgrade_option($option, $default);
-	} //end function
-} // end if listable_get_option exists
 
 // This function should come from Customify, but we need to do our best to make things happen
-if ( ! function_exists( 'pixelgrade_option') ) {
+if ( ! function_exists( 'bitcoin_get_option') ) {
 	/**
 	 * Get option from the database
 	 *
@@ -36,7 +22,7 @@ if ( ! function_exists( 'pixelgrade_option') ) {
 	 *
 	 * @return mixed
 	 */
-	function pixelgrade_option( $option, $default = null, $force_default = true ) {
+	function bitcoin_get_option( $option, $default = null, $force_default = true ) {
 		/** @var PixCustomifyPlugin $pixcustomify_plugin */
 		global $pixcustomify_plugin;
 
@@ -63,21 +49,21 @@ if ( ! function_exists( 'pixelgrade_option') ) {
 	}
 }
 
-if ( ! function_exists( 'listable_display_logo' ) ) {
+if ( ! function_exists( 'bitcoin_display_logo' ) ) {
 	/**
 	 * Function to display the logo added by the theme support 'custom-logo'.
 	 * This was implemented in 4.5, to use the old logo install jetpack
 	 */
-	function listable_display_logo() {
+	function bitcoin_display_logo() {
 		// Display the inverted logo if all the requirements are met
-		$logo_invert = wp_get_attachment_image_src( pixelgrade_option('logo_invert') );
-		$header_transparent = pixelgrade_option( 'header_transparent' );
-		$header_transparent_blog = pixelgrade_option( 'header_transparent_blog' );
+		$logo_invert = wp_get_attachment_image_src( bitcoin_get_option('logo_invert') );
+		$header_transparent = bitcoin_get_option( 'header_transparent' );
+		$header_transparent_blog = bitcoin_get_option( 'header_transparent_blog' );
 		
 		if ( ( $header_transparent && is_page_template( 'page-templates/front_page.php' ) ) || ( !is_front_page() && is_home()  &&  $header_transparent_blog ) && ! empty( $logo_invert[0] ) ) {
 			$html = sprintf( '<div class="site-branding  site-branding--image"><a href="%1$s" class="custom-logo-link  custom-logo-link--light" rel="home" itemprop="url">%2$s</a></div>',
 				esc_url( home_url( '/' ) ),
-				wp_get_attachment_image( pixelgrade_option('logo_invert'), 'full', false, array(
+				wp_get_attachment_image( bitcoin_get_option('logo_invert'), 'full', false, array(
 					'class'    => 'custom-logo',
 					'itemprop' => 'logo',
 				) )
@@ -86,7 +72,7 @@ if ( ! function_exists( 'listable_display_logo' ) ) {
 			echo $html;
 		}
 		// or else display the regular logo
-		elseif ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+		if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
 			// For transferring existing site logo from Jetpack -> Core
 			if ( ! get_theme_mod( 'custom_logo' ) && $jp_logo = get_option( 'site_logo' ) ) {
 				set_theme_mod( 'custom_logo', $jp_logo['id'] );
@@ -168,11 +154,12 @@ if( ! function_exists( 'bitcoin_comments_number' ) ):
 	 * Prints HTML with icon for comments
 	*/
 
-	function bitcoin_comments_number() {
+	function bitcoin_comments_number($opacity = 2) {
 		$comment_html  = sprintf(
-		'<span class="comments-count"><i class="bitcoin__icon bitcoin__icon--opacity2 ">%1$s</i>%2$s</span>',
+		'<span class="comments-count"><i class="bitcoin__icon bitcoin__icon--opacity%3$s ">%1$s</i>%2$s</span>',
 			file_get_contents(locate_template('assets/svg/comment-icon.php')),
-			get_comments_number_text( __('0','bitcoin'), __('1','bitcoin'), __('%','bitcoin'))
+			get_comments_number_text( __('0','bitcoin'), __('1','bitcoin'), __('%','bitcoin')),
+			$opacity
 		);
 		echo $comment_html;
 	}
@@ -229,23 +216,19 @@ endif;
  * @return bool
  */
 function bitcoin_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'bitcoin_categories' ) ) ) {
-		// Create an array of all the categories that are attached to posts.
-		$all_the_cool_cats = get_categories( array(
-			'fields'     => 'ids',
-			'hide_empty' => 1,
-
-			// We only need to know if there is more than one category.
-			'number'     => 2,
-		) );
-
-		// Count the number of categories that are attached to the posts.
-		$all_the_cool_cats = count( $all_the_cool_cats );
-		set_transient( 'bitcoin_categories', $all_the_cool_cats );
-	}
 
 
-	if ( $all_the_cool_cats > 1 ) {
+	
+	$all_the_cool_cats = get_categories( array(
+		'fields'     => 'ids',
+		'hide_empty' => 1,
+
+		// We only need to know if there is more than one category.
+		'number'     => 2,
+	) );
+
+
+	if ( $all_the_cool_cats[0] > 1 ) {
 		// This blog has more than 1 category so bitcoin_categorized_blog should return true.
 		return true;
 	} else {

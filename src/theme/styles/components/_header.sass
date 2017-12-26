@@ -81,7 +81,9 @@
                     +rmin(900)
                         height: 36px
     &.header--transparent
+        position: absolute
         background-color: transparent
+        box-shadow: none
         .site-title--text
             color: white
     .site-branding
@@ -156,8 +158,9 @@
 .primary-menu,
 ul.primary-menu
     font-size: 0
-    > li
-        height: 60px
+    +rmin(900)
+        > li
+            height: 60px
     li.current_page_item > a
         color: #2d7df0
     a

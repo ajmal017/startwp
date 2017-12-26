@@ -106,13 +106,13 @@
 
 		var init_image_uploader = function () {
 
-			var ListableSpotlightsWidget = typeof window.ListableSpotlightsWidget === 'undefined' ? {} : window.ListableSpotlightsWidget,
+			var BitcoinSpotlightsWidget = typeof window.BitcoinSpotlightsWidget === 'undefined' ? {} : window.BitcoinSpotlightsWidget,
 				Attachment = wp.media.model.Attachment,
 				frames = [],
 				imageControl, l10n;
 
 			// Link any localized strings.
-			l10n = ListableSpotlightsWidget.l10n = typeof ListableSpotlightsWidget.l10n === 'undefined' ? {} : ListableSpotlightsWidget.l10n;
+			l10n = BitcoinSpotlightsWidget.l10n = typeof BitcoinSpotlightsWidget.l10n === 'undefined' ? {} : BitcoinSpotlightsWidget.l10n;
 
 			/**
 			 * imageControl module object.
@@ -127,7 +127,7 @@
 
 				defaults = {
 					frame: {
-						id: 'listable-spotlights-widget',
+						id: 'bitcoin-spotlights-widget',
 						title: l10n.frameTitle,
 						updateText: l10n.frameUpdateText,
 						multiple: false
@@ -188,7 +188,7 @@
 					frame.state( 'library' ).on( 'select', function() {
 						var selection = this.get( 'selection' );
 						frame.control.setAttachments( selection );
-						frame.control.$el.trigger( 'selectionChange.listablespotlightswidget', [ selection ] );
+						frame.control.$el.trigger( 'selectionChange.bitcoinspotlightswidget', [ selection ] );
 					});
 
 					return frame;
@@ -207,7 +207,7 @@
 				};
 			};
 
-			_.extend( ListableSpotlightsWidget, {
+			_.extend( BitcoinSpotlightsWidget, {
 				/**
 				 * Retrieve a media selection control object.
 				 *
@@ -218,7 +218,7 @@
 				getControl: function( el ) {
 					var control, $control;
 
-					$control = $( el ).closest( '.listable-spotlights-widget-image-control' );
+					$control = $( el ).closest( '.bitcoin-spotlights-widget-image-control' );
 					control = $control.data( 'media-control' );
 
 					if ( ! control ) {
@@ -234,13 +234,13 @@
 				var $container = $( '.widgets-holder-wrap, .editwidget, .wp-core-ui' );
 
 				// Open the media library frame when the button or image are clicked.
-				$container.on( 'click', '.listable-spotlights-widget-image-control__choose, .listable-spotlights-widget-form img', function( e ) {
+				$container.on( 'click', '.bitcoin-spotlights-widget-image-control__choose, .bitcoin-spotlights-widget-form img', function( e ) {
 					e.preventDefault();
-					ListableSpotlightsWidget.getControl( this ).frame().open();
+					BitcoinSpotlightsWidget.getControl( this ).frame().open();
 				});
 
 				// Update the image preview in the widget when an image is selected.
-				$container.on( 'selectionChange.listablespotlightswidget', function( e, selection ) {
+				$container.on( 'selectionChange.bitcoinspotlightswidget', function( e, selection ) {
 					var $control = $( e.target ),
 						model = selection.first(),
 						sizes = model.get( 'sizes' ),

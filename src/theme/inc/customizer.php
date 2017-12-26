@@ -30,11 +30,38 @@ add_action( 'customize_preview_init', 'bitcoin_customize_preview_js' );
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function bitcoin_customize_js() {
+
+
 	wp_enqueue_script('bitcoin_admin_general', get_template_directory_uri() . '/assets/js/admin/admin-general.js', array('wp-ajax-response'), '201711', true);
 
 	wp_enqueue_script( 'bitcoin_customizer', get_template_directory_uri() . '/assets/js/admin/customizer.js', array( 'wp-ajax-response', 'bitcoin_admin_general' ), '201711', true );
 
 	wp_enqueue_style( 'bitcoin-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/customizer.css' );
+
+	
+	$translation_array = array (
+		'import_failed' => esc_html__( 'The import didn\'t work completely!', 'bitcoin') . '<br/>' . esc_html__( 'Check out the errors given. You might want to try reloading the page and try again.', 'bitcoin'),
+		'import_confirm' => esc_html__( 'Importing the demo data will overwrite your current site content and options. Proceed anyway?', 'bitcoin'),
+		'import_phew' => esc_html__( 'Phew...that was a hard one!', 'bitcoin'),
+		'import_success_note' => esc_html__( 'The demo data was imported without a glitch! Awesome! ', 'bitcoin') . '<br/><br/>',
+		'import_success_reload' => esc_html__( '<i>We have reloaded the page on the right, so you can see the brand new data!</i>', 'bitcoin'),
+		'import_success_warning' => '<p>' . esc_html__( 'Remember to update the passwords and roles of imported users.', 'bitcoin') . '</p><br/>',
+		'import_all_done' => esc_html__( "All done!", 'bitcoin'),
+		'import_working' => esc_html__( "Working...", 'bitcoin'),
+		'import_widgets_failed' => esc_html__( "The setting up of the demo widgets failed...", 'bitcoin'),
+		'import_widgets_error' => esc_html__( 'The setting up of the demo widgets failed', 'bitcoin') . '</i><br />' . esc_html__( '(The script returned the following message', 'bitcoin'),
+		'import_widgets_done' => esc_html__( 'Finished setting up the demo widgets...', 'bitcoin'),
+		'import_theme_options_failed' => esc_html__( "The importing of the theme options has failed...", 'bitcoin'),
+		'import_theme_options_error' => esc_html__( 'The importing of the theme options has failed', 'bitcoin') . '</i><br />' . esc_html__( '(The script returned the following message', 'bitcoin'),
+		'import_theme_options_done' => esc_html__( 'Finished importing the demo theme options...', 'bitcoin'),
+		'import_posts_failed' => esc_html__( "The importing of the theme options has failed...", 'bitcoin'),
+		'import_posts_step' => esc_html__( 'Importing posts | Step', 'bitcoin'),
+		'import_error' =>  esc_html__( "Error:", 'bitcoin'),
+		'import_try_reload' =>  esc_html__( "You can reload the page and try again.", 'bitcoin'),
+	);
+
+	wp_localize_script( 'bitcoin_admin_general', 'bitcoin_admin_js_texts', $translation_array );
+
 }
 add_action( 'customize_controls_enqueue_scripts', 'bitcoin_customize_js' );
 

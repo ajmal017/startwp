@@ -1,9 +1,9 @@
 <?php
 
 $demo_menus = array(
-	'primary'            => esc_html__( 'Main Menu', 'listable' ),
-	'search_suggestions' => esc_html__( 'Search Menu', 'listable' ),
-	'footer_menu'        => esc_html__( 'Footer Menu', 'listable' ),
+	'primary'            => esc_html__( 'Main Menu', 'bitcoin' ),
+	'search_suggestions' => esc_html__( 'Search Menu', 'bitcoin' ),
+	'footer_menu'        => esc_html__( 'Footer Menu', 'bitcoin' ),
 );
 
 $demo_reading_pages = array(

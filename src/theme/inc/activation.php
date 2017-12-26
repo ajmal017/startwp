@@ -241,7 +241,7 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 		}
 	}
 endif; // end bitcoin_config_getting_active
-bitcoin_config_getting_active();
+
 add_action( 'after_switch_theme', 'bitcoin_config_getting_active' );
 
 

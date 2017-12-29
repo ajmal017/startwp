@@ -22,8 +22,7 @@
 <header class="hero-header<?php 
         if($has_image) echo ' has__featured__image'; 
         if(bitcoin_categorized_blog() && !is_category() && !is_search()) echo ' has__categories';
-        if( is_search() && have_posts())  echo ' has__searchpost';
-        if( is_404() ) echo ' has__404';     ?>">
+             ?>">
     <div class="hero-header__background"<?php if ( ! empty( $has_image ) ) {
         echo ' style="background-image: url(' . bitcoin_get_inline_background_image( $has_image ) . ');"';
     } ?>>

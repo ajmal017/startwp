@@ -79,7 +79,7 @@ class Bitcoin_Coinmarketcap extends WP_Widget {
 	{
 		parent::__construct(
 			'bitcoin_coinmarketcap', // Base ID
-			'&#x1F536; ' . esc_html__( 'Bitcoin', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'Coin Market Cap', 'bitcoin' ), // Name
+			'&#x1F536; ' . esc_html__( 'Bitcoin', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'Cryptocurrency Monitor', 'bitcoin' ), // Name
 			array( 'description' => esc_html__( 'A list of the Coin Market Cap cryptocurrencies', 'bitcoin' ), ) // Args
 		);
 	
@@ -186,33 +186,6 @@ class Bitcoin_Coinmarketcap extends WP_Widget {
 
 }
 
-class Listing_Comments_Widget extends WP_Widget {
-
-	function __construct() {
-		parent::__construct(
-			'bitcoin_comments', // Base ID
-			'&#x1F536; ' . esc_html__( 'Listing', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'Reviews', 'bitcoin' ), // Name
-			array( 'description' => esc_html__( 'A list of the recent reviews and the submission form.', 'bitcoin' ), ) // Args
-		);
-	}
-
-	public function widget( $args, $instance ) {
-		global $post;
-		// If comments are open or we have at least one comment, load up the comment template.
-		if ( ( comments_open() || get_comments_number() ) && 'preview' !== $post->post_status ) {
-			echo $args['before_widget'];
-
-			comments_template();
-
-			echo $args['after_widget'];
-		}
-	}
-
-	public function form( $instance ) {
-		echo '<p>' . $this->widget_options['description'] . '</p>';
-	}
-} // class Listing_Comments_Widget
-
 /**
  *  Display CF7 in footer sidebar
  */
@@ -223,7 +196,7 @@ class Bitcoin_Footer_Forms_Widget extends WP_Widget
 	function __construct() {
 		parent::__construct(
 			'bitcoin_footer_form', // Base ID
-			'&#x1F536; ' . esc_html__( 'Bitcoin', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'Footer', 'bitcoin' ), // Name
+			'&#x1F536; ' . esc_html__( 'Bitcoin', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'CF7 Form', 'bitcoin' ), // Name
 			array( 'description' => esc_html__( 'Add a Contact Form 7 to your footer.', 'bitcoin' ), ) // Args
 		);
 	}
@@ -241,6 +214,7 @@ class Bitcoin_Footer_Forms_Widget extends WP_Widget
 		if (!empty($title)) :
 			echo $args['before_title'] . $title . $args['after_title'];
 		endif;
+		
 		$output = do_shortcode('[contact-form-7 id="'. $contact_form.'"]');
 
 		echo $output;

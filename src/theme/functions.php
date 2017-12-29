@@ -143,6 +143,7 @@ function bitcoin_scripts() {
 	//only enqueue the de default font if Customify is not present
 	if ( ! class_exists( 'PixCustomifyPlugin' ) ) {
 		wp_enqueue_style( 'bitcoin-default-fonts', 'https://fonts.googleapis.com/css?family=Noto+Sans:400,300,600,700' );
+		wp_enqueue_style( 'bitcoin-default-fonts', 'https://fonts.googleapis.com/css?family=Noto+Sans:400,700' );
 		$main_style_deps[] = 'bitcoin-default-fonts';
 		
 		wp_enqueue_style( 'bitcoin-default-theme', get_template_directory_uri() . '/styles/theme.css'  );
@@ -177,6 +178,9 @@ function bitcoin_scripts() {
 
 	wp_enqueue_style( 'slick-style', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css' );
 	wp_enqueue_style('slick-style-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
+
+	wp_register_script('highcharts', '//code.highcharts.com/highcharts.js', array( 'jquery' ));
+	$bitcoin_scripts_deps[] = 'highcharts';
 
 	wp_enqueue_script( 'system', get_template_directory_uri() . '/assets/js/system.js', $bitcoin_scripts_deps, $theme->get( 'Version' ), true );
 	$bitcoin_scripts_deps[] = 'system';

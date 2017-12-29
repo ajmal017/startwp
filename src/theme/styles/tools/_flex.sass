@@ -172,3 +172,40 @@ $base-gap: 6px
 	@each $prop in (block, inline-block, inline) 
 		&-#{$prop}
 			display: #{$prop}
+
+
+// Extra small devices (portrait phones, less than 576px)
+.only-xs
+	display: none
+	+r(575)
+		display: block
+
+// Small devices (landscape phones, 576px and up)
+.only-sm
+	display: none
+	@media (min-width: 576px) and (max-width: 767px) 
+		display: block
+
+// Medium devices (tablets, 768px and up)
+.only-md
+	display: none
+	@media (min-width: 768px) and (max-width: 899px) 
+		display: block
+
+// Large devices (desktops, 900px and up)
+.only-lg
+	display: none
+	@media (min-width: 900px) and (max-width: 1199px)
+		display: block
+
+// Extra large devices (large desktops, 1200px and up)
+.only-xl
+	display: none
+	+rmin(1200)
+		display: block
+
+
+.bitcoin-rounded
+	overflow: hidden
+	// &.bitcoin-shadow
+	// 	overflow: visible

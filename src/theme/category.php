@@ -14,7 +14,8 @@ get_header(); ?>
 
 		<?php get_template_part('template-parts/content', 'hero'); ?>	
 
- 
+		<div class="content-area__wrapper">
+			
 		<?php if ( have_posts() ) : ?>
 
 			<?php /* Start the Loop */ ?>
@@ -42,6 +43,8 @@ get_header(); ?>
 		<?php else : ?>
 			<?php get_template_part( 'template-parts/content', 'none' ); ?>
 		<?php endif; ?>
+
+		</div>
 
 	</main><!-- #main -->
 </div><!-- #primary -->

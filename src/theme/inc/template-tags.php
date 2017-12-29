@@ -72,7 +72,7 @@ if ( ! function_exists( 'bitcoin_display_logo' ) ) {
 			echo $html;
 		}
 		// or else display the regular logo
-		if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+		elseif ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
 			// For transferring existing site logo from Jetpack -> Core
 			if ( ! get_theme_mod( 'custom_logo' ) && $jp_logo = get_option( 'site_logo' ) ) {
 				set_theme_mod( 'custom_logo', $jp_logo['id'] );

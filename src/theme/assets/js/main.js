@@ -696,6 +696,157 @@
         }
     })(jQuery);
 
+    const BitcoinPlot = (function($, Highcharts) {
+        
+        var allTimeData = [], threeMonth = [], oneYear = [];  
+
+        function getMonthName (month){
+            let months = ['Jan','Feb','Mrch','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            return months[ month || 0 ];
+        }
+          
+
+        function printPlot(data){
+
+
+            Highcharts.chart('bitcoin-plot', {
+                chart: {
+                    zoomType: 'x',
+                    backgroundColor: 'transparent',
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    visible: false,
+                },
+                yAxis: {
+                    visible: false
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    area: {
+                        fillColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 1,
+                                x2: 0,
+                                y2: 0
+                            },
+                            stops: [
+                                [0, 'rgba(255,255,255,0)'],
+                                [1, 'rgba(255,255,255,0.5)']
+                            ]
+                        },
+                        marker: {
+                            radius: 2
+                        },
+                        lineWidth: 1.5,
+                        states: {
+                            hover: {
+                                lineWidth: 2
+                            }
+                        },
+                        threshold: null
+                    },
+                    series: {
+                        lineColor: 'rgba(255,255,255, .6)',
+                    }
+                },
+                    
+                tooltip: {
+                    pointFormat: "${point.y:.2f}",
+                    borderColor: 'transparent',
+                    borderRadius: 4,
+                    borderWidth: 0,
+                    formatter: function() {
+                        var time = new Date(this.key);
+                        console.log(time.getFullYear);
+                        return '<span text-anchor="middle" class="u-text-center bitcoin-shortcode__plot-time">' + time.getDate() + ' ' + getMonthName(time.getMonth())  + ' ' +time.getFullYear() + '</span> <br/> <tspan class="u-text-center bitcoin-shortcode__plot-price" text-anchor="middle">' + this.series.name + this.y + '</tspan>';
+                    }
+                },
+                series: [{
+                    type: 'area',
+                    name: '$',
+                    data: data
+                }]
+            });
+
+        }
+
+        function bindActions(){
+            var canGo = true
+            $('.bitcoin-shortcode__plot .bitcoin-shortcode__plot-change__timeframe').on('click touchend', function(e){
+                e.preventDefault();
+                if(!canGo) return -1
+                canGo =false;
+                setTimeout(() => {canGo = true;}, 1000);
+
+                $('.bitcoin-shortcode__plot .bitcoin-shortcode__plot-change__timeframe').removeClass('active');
+
+                $(this).addClass('active');
+                var timeframe = $(this).data('timeframe');
+                switch (timeframe) {
+                    case 'all':
+                        printPlot(allTimeData);
+                        break;
+                    case '3month':
+                        printPlot(threeMonth);
+                        break;
+                    case '1year':
+                        printPlot(oneYear);
+                        break;
+                    default:
+                        printPlot(allTimeData);
+                        break;
+                }
+                
+
+
+            })
+        }
+
+        
+        function init(){
+            
+            $.getJSON( "https://index.bitcoin.com/api/v0/history?span=all",  function( data ) {
+                var last = 0, now = 0, 
+                    maxLenght = 800, 
+                    initialLenght =  data.length, all =0,
+                    redundant = (data.length - maxLenght);
+
+
+                if (initialLenght > maxLenght ){
+                    for(var i = 0; i < initialLenght-1; i++){
+                        
+                        now = Math.round(redundant*i*i*i/initialLenght/initialLenght/initialLenght);
+                        data.splice(i - now , now-last);
+                        data[i- now][1] = Math.round(data[i- now][1] / 100);
+                        last = now;
+                        
+                    }
+                }
+                threeMonth  = data.slice(0, 3*31).reverse();
+                oneYear  = data.slice(0, 1*365).reverse();
+                allTimeData = data.reverse();
+                printPlot(allTimeData);
+
+                bindActions();
+            });
+        }
+
+        return {
+            init: init
+        }
+    })(jQuery, Highcharts);
+
+
+
     // /* ====== ON WINDOW LOAD ====== */
     $window.load(function() {
         $('html').addClass('is--loaded');
@@ -703,6 +854,7 @@
         Sliders.init();
         Likes.init();
         Share.init();
+        BitcoinPlot.init();
 
         tooltipTrigger();
         keepSubmenusInViewport(); 

@@ -8,13 +8,13 @@
 
 	// Not needed now
 
-	//var ListableImageModal = typeof window.ListableImageModal === 'undefined' ? {} : window.ListableImageModal,
+	//var BitcoinImageModal = typeof window.BitcoinImageModal === 'undefined' ? {} : window.BitcoinImageModal,
 	//	Attachment = wp.media.model.Attachment,
 	//	frames = [],
 	//	imageControl, l10n;
 	//
 	//// Link any localized strings.
-	//l10n = ListableImageModal.l10n = typeof ListableImageModal.l10n === 'undefined' ? {} : ListableImageModal.l10n;
+	//l10n = BitcoinImageModal.l10n = typeof BitcoinImageModal.l10n === 'undefined' ? {} : BitcoinImageModal.l10n;
 	//
 	///**
 	// * customizerImageControl module object.
@@ -29,7 +29,7 @@
 	//
 	//	defaults = {
 	//		frame: {
-	//			id: 'listable-image-modal',
+	//			id: 'bitcoin-image-modal',
 	//			title: l10n.frameTitle,
 	//			updateText: l10n.frameUpdateText,
 	//			multiple: false
@@ -90,7 +90,7 @@
 	//		frame.state( 'library' ).on( 'select', function() {
 	//			var selection = this.get( 'selection' );
 	//			frame.control.setAttachments( selection );
-	//			frame.control.$el.trigger( 'selectionChange.listableimagemodal', [ selection ] );
+	//			frame.control.$el.trigger( 'selectionChange.bitcoinimagemodal', [ selection ] );
 	//		});
 	//
 	//		return frame;
@@ -109,7 +109,7 @@
 	//	};
 	//};
 	//
-	//_.extend( ListableImageModal, {
+	//_.extend( BitcoinImageModal, {
 	//	/**
 	//	 * Retrieve a media selection control object.
 	//	 *
@@ -120,7 +120,7 @@
 	//	getControl: function( el ) {
 	//		var control, $control;
 	//
-	//		$control = $( el ).closest( '.listable-image-modal-control' );
+	//		$control = $( el ).closest( '.bitcoin-image-modal-control' );
 	//		control = $control.data( 'media-control' );
 	//
 	//		if ( ! control ) {
@@ -137,12 +137,12 @@
 	//		$container = $( '.widgets-holder-wrap, .editwidget, .wp-core-ui' );
 	//
 	//	// Open the media library frame when the button or image are clicked.
-	//	$container.on( 'click', '.listable-image-modal-control__choose, .listable-image-modal-control img', function( e ) {
+	//	$container.on( 'click', '.bitcoin-image-modal-control__choose, .bitcoin-image-modal-control img', function( e ) {
 	//		e.preventDefault();
-	//		ListableImageModal.getControl( this ).frame().open();
+	//		BitcoinImageModal.getControl( this ).frame().open();
 	//	});
 	//
-	//	$container.on( 'click', '.listable-image-modal-control__clear', function( e ) {
+	//	$container.on( 'click', '.bitcoin-image-modal-control__clear', function( e ) {
 	//		var $control = $( e.target ).parent(),
 	//			$input = $control.find('input' ),
 	//			option_id = $input.attr('name');
@@ -156,7 +156,7 @@
 	//	});
 	//
 	//	// Update the image preview in the widget when an image is selected.
-	//	$container.on( 'selectionChange.listableimagemodal', function( e, selection ) {
+	//	$container.on( 'selectionChange.bitcoinimagemodal', function( e, selection ) {
 	//		var $control = $( e.target ),
 	//			model = selection.first(),
 	//			sizes = model.get( 'sizes' ),

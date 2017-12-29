@@ -46,16 +46,16 @@
             width: 300px
             z-index: 999
             & li 
-                border-top: 1px solid rgba(0, 0, 0, 0.075) 
+                border-top: 1px solid rgba(#E4E6EA, 0.3) 
                 display: block
             & li:last-child
-                border-bottom: 1px solid rgba(0, 0, 0, 0.075)
+                border-bottom: 1px solid rgba(#E4E6EA, 0.3)
             & a 
                 color: #6b7c93 
                 padding: 19px 60px
                 padding-left: 20px
             .nav-is-open &
-                box-shadow: 0px 0 40px 2px rgba(0, 0, 0, 0.3) 
+                box-shadow: 0px 0 40px 2px rgba(#E4E6EA, 1) 
                 transform: translateZ(0)
         .admin-bar &
             top: 32px
@@ -94,6 +94,8 @@
         align-items: center
         &--image a
             display: flex
+            img
+                width: auto
         .site-title--text
             margin: 0
     +r(786)

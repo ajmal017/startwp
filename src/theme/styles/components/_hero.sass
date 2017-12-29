@@ -17,7 +17,7 @@
         right: 0
         left: 0
         bottom: 0
-        z-index: -1
+        z-index: 0
     &
         background: black
         position: relative
@@ -30,7 +30,7 @@
         //     +r(900)
         //         padding: rem(300px / 2) 20px rem(40px)
         .hero-header__background
-            height: 100%
+            // height: 100%
             // left: 0
             // position: absolute
             // top: 0
@@ -43,7 +43,7 @@
             body.header--transparent &
                 padding: rem(100px) rem(30px) rem(30px)
                 +r(900)
-                    padding: rem(100px / 3) rem(30px) rem(30px)
+                    padding: rem(100px / 2) rem(30px) rem(30px)
         // &.has__categories .hero-header__background
         //     padding: rem(110px) 20px rem(0px)
         //     +r(900)    
@@ -54,6 +54,7 @@
  *   4.16 - Hero Categories
  */
 .hero-category__list
+    position: relative
     margin-top: rem(48px)
     margin-bottom: 0
     color: inherit
@@ -75,7 +76,7 @@
             vertical-align: middle
             font-size: rem(11px)
             font-weight: 600
-            padding: rem(6px)
+            padding: rem(6px) rem(20px)
             color: inherit
             +tr(background-color 1s)
             &:hover

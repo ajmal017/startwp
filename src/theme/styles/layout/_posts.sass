@@ -1,21 +1,31 @@
 .postcards
-  margin: 0 15px
-  padding: 50px 0 
-
+  padding: 30px 15px
+  overflow: hidden
+  width: 100%
 .grid
   display: flex
   flex-flow: wrap
   margin: -15px
+  +r(553)
+    width: 100%
+    justify-content: center
+    margin: 0
   > *
     margin: 15px
+    +r(553)
+      margin-left: 0
+      margin-right: 0  
   .grid--tile &__item
     flex: 1 1 350px
     max-width: 350px
+    +r(553)
+      flex: 1 1 100%
+      max-width: 100%
   .grid--list &__item
     flex: 1 1 100%
     max-width: 100%
-
-
+    +rmin(769)
+      margin: 15px 30px
   .grid--list &__item,
   .grid--tile &__item
     overflow: hidden
@@ -166,6 +176,7 @@
         width: 30px
         height: 30px
         text-align: center
+        border-radius: 0px
         +tr(all .5s)
       .slick-prev:before,
       .slick-next:before
@@ -208,6 +219,15 @@
   &__title
     margin-bottom: .5rem
     +tr(color .5s)
+    a
+      display: block
+      display: -webkit-box
+      max-height: 3em
+      overflow: hidden
+      text-overflow: ellipsis
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+
     .card__content & a
       color: inherit
   &__content
@@ -224,7 +244,7 @@
       flex: 0 1 auto
       & > *
         width: 100%
-    .format-quote  &
+    .format-quote &
       height: 100%
       position: absolute
   &__categories
@@ -253,21 +273,26 @@
     overflow: hidden
     margin-bottom: rhythm(.5)
     .grid--list &
-      height: rem(2*$base-line-height)
-    .grid--tile &
-      height: rem(3*$base-line-height)
+      //max-height: rem(2*$base-line-height)
     .format-quote &
       height: 88%
       margin-bottom: 0
       display: flex
     p
-      height: rem(3*$base-line-height)
+      display: block
+      display: -webkit-box
+      max-height: rem(3*$base-line-height)
       overflow: hidden
       text-overflow: ellipsis
-      .grid--list &
-        height: rem(2*$base-line-height)
+      -webkit-line-clamp: 3
+      -webkit-box-orient: vertical
+      +rmin(769)
+        .grid--list &
+          max-height: rem(2*$base-line-height)
+          -webkit-line-clamp: 2
       .grid--tile &
-        height: rem(3*$base-line-height)
+        max-height: rem(3*$base-line-height)
+        -webkit-line-clamp: 3
       .format-quote &
         height: auto
     blockquote

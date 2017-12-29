@@ -21,7 +21,7 @@
 
 
 // #BASE
-@import "base/type";
+@import "base/typo"; 
 @import "base/tables";
 @import "base/lists";
 @import "base/links";
@@ -45,7 +45,8 @@
 @import "components/widgets";
 @import "components/comments";
 @import "components/footer";
-
+@import "components/vc-shortcodes";
+@import "components/bitcoin-plot";
 // #PAGES
 
 // #SHAME

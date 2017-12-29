@@ -180,7 +180,7 @@ $has_image = false; ?>
 				<?php } ?>
 			</div><!-- .entry-header__categories -->
 		</div><!-- .entry-header__content -->
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<?php the_title( '<h3 class="entry-title">', '</h3>' ); ?>
 
 	</header><!-- .entry-header -->
 

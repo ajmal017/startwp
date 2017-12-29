@@ -31,7 +31,7 @@
         justify-content: center
         align-items: center
         text-align: center
-        padding: 100px 0 55px
+        padding: 100px 50px 55px
         a
           color: inherit
         &:before
@@ -50,6 +50,7 @@
       overflow: hidden
       width: 30px
       height: 30px
+      border-radius: 0px
       text-align: center
       +tr(all .5s)
     .slick-prev:before,
@@ -111,18 +112,23 @@
       &__1stLine
         display: flex
         align-items: center
+        overflow-y: auto
       &__delimiter
         margin: 0 10px
     .posted-by a,
     .entry-date,
     .posted-on a
       color: inherit
+    .posted-by
+      flex: 1 0 auto
     .posted-on
       margin-right: 3%
+      flex: 100 0 auto
     .comments-count
       margin-right: 20px
 
     .likes-count
+      flex: 1000 0 auto
       overflow: visible
       vertical-align: middle
       white-space: nowrap
@@ -164,7 +170,8 @@
     display: none
 
   .entry-related
-    margin: 0px -15px 50px
+    +rmin(554)
+      margin: 0px -15px 50px
     &.grid--tile 
       .grid__item
         flex: 0 0 30%
@@ -174,6 +181,9 @@
         +r(768)
           flex: 0 0 auto
           min-width: calc(100% - 30px)
+        +r(553)
+          max-width: 100%
+          min-width: 100%
       .card
         height: 350px
         .card__toplink
@@ -236,6 +246,8 @@
     display: flex
     flex-flow: wrap
     width: 100%
+
+
   @for $i from 1 through 9
     .gallery-columns-#{$i} .gallery-item
       margin: 0

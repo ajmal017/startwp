@@ -1,8 +1,7 @@
 .single-post
-  .site-main
-    padding: 0 50px 50px
-    +r(768)
-      padding: 0px 10px 20px
+  .content-area__wrapper
+    +rmin(769)
+      padding: 0 10px
   .entry-featured
     .post__toplink 
       pointer-events: none
@@ -137,7 +136,7 @@
           opacity: 1
       &__number
           opacity: .5
-   
+  
     .entry-share
       margin-left: auto
       display: inline-block

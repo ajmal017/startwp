@@ -8,13 +8,14 @@
  */
 
 get_header(); ?>
+<?php get_template_part('template-parts/content', 'hero'); ?>	
+
+<div class="content-area__wrapper">
 
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
 
-		<?php get_template_part('template-parts/content', 'hero'); ?>	
 
-		<div class="content-area__wrapper">
 			
 		<?php if ( have_posts() ) : ?>
 
@@ -38,7 +39,6 @@ get_header(); ?>
 					<?php endwhile; ?>
 				</div>
 				<?php the_posts_navigation(); ?>
-			</div>
 
 		<?php else : ?>
 			<?php get_template_part( 'template-parts/content', 'none' ); ?>
@@ -48,5 +48,6 @@ get_header(); ?>
 
 	</main><!-- #main -->
 </div><!-- #primary -->
+</div>
 
 <?php get_footer(); ?>

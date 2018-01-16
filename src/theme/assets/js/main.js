@@ -85,295 +85,9 @@
         $('.js-widget-gallery').magnificPopup('open');
     });
 
-    if (typeof BitcoinParams.login_url !== "undefined" && BitcoinParams.login_url.indexOf('action=logout') === -1) {
-        $('a.iframe-login-link').magnificPopup({
-            mainClass: "mfp-bg-transparent  mfp-login-modal",
-            type: 'iframe',
-            src: BitcoinParams.login_url,
-            iframe: {
-                markup: '<div class="mfp-iframe-scaler  mfp-wp-login">' +
-                    '<div class="mfp-close"></div>' +
-                    '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
-                    '</div>' // HTML markup of popup, `mfp-close` will be replaced by the close button
-            },
-            callbacks: {
-                open: function() {
-                    if (!bitcoinDocumentCookies.hasItem('bitcoin_login_modal')) {
-                        bitcoinDocumentCookies.setItem('bitcoin_login_modal', 'opened', null, '/');
-                    }
 
-                    closeMenu();
 
-                    $('body').addClass('overlay-is-open');
-                    $('body').width($('body').width());
-                    $('body').css('overflow', 'hidden');
-                },
-                close: function() {
-                    bitcoinDocumentCookies.removeItem('bitcoin_login_modal', '/');
 
-                    $('body').removeClass('overlay-is-open');
-                    $('body').removeAttr('style');
-                }
-            }
-        });
-    }
-    if ($('#map').length && typeof L === "object") {
-        // set Leaflet's default path for images
-        L.Icon.Default.imagePath = 'wp-content/themes/bitcoin/assets/img/';
-    }
-
-    // Map module
-    var Map = (
-        function() {
-            // create a custom icon class that can be extended for each listing category
-
-            var map, markers, CustomHtmlIcon;
-
-            // initialization - check wether we are on the archive page or on a single listing
-            function init() {
-
-                if ($('.no_job_listings_found').length) {
-                    $('<div class="results">' + BitcoinParams.strings['no_job_listings_found'] + '</div>').prependTo('.showing_jobs, .search-query');
-                }
-
-                if (!$('#map').length) {
-                    $('#main .job_listings').on('updated_results', function(e, result) {
-                        updateCards(result.total_found);
-                    });
-                    return;
-                }
-
-                if (typeof L !== "object" || !L.hasOwnProperty('map')) {
-                    return;
-                }
-
-                map = L.map('map', {
-                    scrollWheelZoom: false
-                });
-                markers = new L.MarkerClusterGroup({
-                    showCoverageOnHover: false
-                });
-                CustomHtmlIcon = L.HtmlIcon.extend({
-                    options: {
-                        html: "<div class='pin'></div>",
-                        iconSize: [48, 59], // size of the icon
-                        iconAnchor: [24, 59], // point of the icon which will correspond to marker's location
-                        popupAnchor: [0, -59] // point from which the popup should open relative to the iconAnchor
-                    }
-                });
-
-                $window.on('pxg:refreshmap', function() {  
-                    map._onResize();
-                });
-
-                var tileLayer,
-                    mapboxToken = $('body').data('mapbox-token'),
-                    mapboxStyle = $('body').data('mapbox-style');
-
-                if (!empty(mapboxToken)) {
-                    tileLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/' + mapboxStyle + '/{z}/{x}/{y}.png?access_token=' + mapboxToken, {
-                        maxZoom: 22,
-                        attribution: '&copy; <a href="http://mapbox.com">Mapbox</a> | &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
-                        id: 'mapbox.streets'
-                    })
-                } else {
-                    tileLayer = L.gridLayer.googleMutant({
-                        type: 'roadmap'
-                    });
-                    $('#map').addClass('map--google');
-                }
-
-                map.addLayer(tileLayer);
-
-                // if we are on the archive page (#map is not a single listing's map) :D
-                // @todo do do doom
-                if (!$('#map').is('.listing-map')) {
-                    $('#main .job_listings').on('updated_results', function(e, result) {
-                        updateCards(result.total_found);
-                    });
-
-                    //This one is for FacetWP
-                    $(document).on('facetwp-loaded', function(e, result) {
-                        updateCards();
-                    });
-                } else {
-                    var $item = $('.single_job_listing');
-                    // add only one marker if we're on the single listing page
-                    if (typeof $item.data('latitude') !== "undefined" && typeof $item.data('longitude') !== "undefined") {
-
-                        var zoom = (
-                            typeof MapWidgetZoom !== "undefined"
-                        ) ? MapWidgetZoom : 13;
-
-                        addPinToMap($item);
-                        map.addLayer(markers);
-                        map.setActiveArea('active-area');
-                        map.setView([$item.data('latitude'), $item.data('longitude')], zoom);
-                        $(window).on('update:map', function() {
-                            map.setView([$item.data('latitude'), $item.data('longitude')], zoom);
-                        });
-                    } else {
-                        $('#map').hide();
-                        $('.listing-address').css('marginTop', 0);
-                    }
-                }
-
-                $('.js-find-me').on('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    map.locate({
-                        setView: true,
-                        maxZoom: 22
-                    });
-                });
-            }
-
-            function updateCards($total_found) {
-
-                var $cards = $('#main .card');
-                var cardsWithLocation = 0;
-
-                if (!$cards.length) {
-                    $('body').addClass('has-no-listings');
-                    defaultMapView();
-                    return;
-                }
-
-                //first some cleanup to avoid multiple results being shown - it happens
-                $('.showing_jobs .results').remove();
-
-                if (typeof $total_found !== 'undefined') {
-                    //someone must have blessed us with higher knowledge
-                    //let's not let it go to waste
-                    $('<div class="results"><span class="results-no">' + $total_found + '</span> ' + BitcoinParams.strings['results-no'] + '</div>').prependTo('.showing_jobs, .search-query');
-                } else {
-                    $('<div class="results"><span class="results-no">' + $cards.length + '</span> ' + BitcoinParams.strings['results-no'] + '</div>').prependTo('.showing_jobs, .search-query');
-                }
-
-                if ($('.map').length && typeof map !== "undefined") {
-                    map.removeLayer(markers);
-                    markers = new L.MarkerClusterGroup({
-                        showCoverageOnHover: false,
-                        spiderfyDistanceMultiplier: 3,
-                        spiderLegPolylineOptions: {
-                            weight: 0
-                        }
-                    });
-                    $cards.each(function(i, obj) {
-                        var cardHasLocation = addPinToMap($(obj), true);
-                        if (cardHasLocation) {
-                            cardsWithLocation += 1;
-                        }
-                    });
-
-                    if (cardsWithLocation != 0) {
-                        map.fitBounds(markers.getBounds(), {
-                            padding: [50, 50]
-                        });
-                        map.addLayer(markers);
-
-                        var mapZoom = map.getZoom();
-                        var bounds = markers.getBounds();
-                        var lat = (bounds._northEast.lat + bounds._southWest.lat) / 2;
-                        var lng = (bounds._northEast.lng + bounds._southWest.lng) / 2;
-                        bounds = [lat, lng];
-
-                        Cookies.set('pxg-bitcoin-bounds', JSON.stringify(bounds));
-                        Cookies.set('pxg-bitcoin-mapZoom', mapZoom);
-                    } else {
-                        defaultMapView();
-                    }
-                }
-            }
-
-            function addPinToMap($item, archive) {
-                var categories = $item.data('categories'),
-                    iconClass, m;
-
-                if (empty($item.data('latitude')) || empty($item.data('longitude'))) {
-                    return false;
-                }
-
-                if (typeof categories !== "undefined" && !categories.length) {
-                    iconClass = 'pin pin--empty';
-                } else {
-                    iconClass = 'pin';
-                }
-
-                var $icon = $('.selected-icon-svg'),
-                    $tags = $item.find('.card__tag'),
-                    $categories = $item.find('.category-icon'),
-                    $tag, iconHTML = "<div class='" + iconClass + "'>" + $('.empty-icon-svg').html() + "</div>";
-
-                if ($body.is('.single-job_listing')) {
-                    // If we are on a single listing
-                    if ($('.single-listing-map-category-icon').length) {
-                        iconHTML = "<div class='" + iconClass + "'>" + $icon.html() + "<div class='pin__icon'>" + $('.single-listing-map-category-icon').html() + "</div></div>";
-                    }
-                } else if ($tags.length) {
-                    $tag = $tags.first();
-                    iconHTML = "<div class='" + iconClass + "'>" + $icon.html() + $tag.html() + "</div>";
-                } else if ($categories.length) {
-                    iconHTML = "<div class='" + iconClass + "'>" + $icon.html() + "<div class='pin__icon'>" + $categories.html() + "</div></div>";
-                }
-
-                m = L.marker([$item.data('latitude'), $item.data('longitude')], {
-                    icon: new CustomHtmlIcon({
-                        html: iconHTML
-                    })
-                });
-
-                if (typeof archive !== "undefined") {
-
-                    $item.hover(function() {
-                        $(m._icon).find('.pin').addClass('pin--selected');
-                    }, function() {
-                        $(m._icon).find('.pin').removeClass('pin--selected');
-                    });
-
-                    var rating = $item.find('.js-average-rating').text(),
-                        ratingHTML = rating.length ? "<div class='popup__rating'><span>" + rating + "</span></div>" : "",
-                        address = $item.find('.card__address').text();
-
-                    m.bindPopup(
-                        "<a class='popup' href='" + $item.data('permalink') + "'>" +
-                        "<div class='popup__image' style='background-image: url(" + $item.data('img') + ");'></div>" +
-                        "<div class='popup__content'>" +
-                        "<h3 class='popup__title'>" + $item.find('.card__title').html() + "</h3>" +
-                        "<div class='popup__footer'>" +
-                        ratingHTML +
-                        "<div class='popup__address'>" + $item.find('.card__address').html() + "</div>" +
-                        "</div>" +
-                        "</div>" +
-                        "</a>").openPopup();
-                }
-
-                markers.addLayer(m);
-
-                return true;
-            }
-
-            function defaultMapView() {
-                var bounds = Cookies.get('pxg-bitcoin-bounds'),
-                    zoom = Cookies.get('pxg-bitcoin-mapZoom');
-
-                if (typeof bounds === 'undefined') {
-                    bounds = [51.4825766, 0.0098476];
-                    zoom = 9;
-                } else {
-                    bounds = JSON.parse(bounds);
-                }
-
-                map.removeLayer(markers);
-                map.setView(bounds, zoom);
-            }
-
-            return {
-                init: init,
-                updateResults: updateCards
-            }
-        }
-    )();
 
     function platformDetect() {
 
@@ -439,7 +153,6 @@
             });
         });
 
-        $('.wc-social-login').attr('data-string', BitcoinParams.strings.social_login_string);
     }); 
 
 
@@ -556,8 +269,6 @@
                 }
             }
         }
-
-        Map.init();
 
         detectLongMenu();
         moveListingStickySidebar();
@@ -698,7 +409,7 @@
 
     const BitcoinPlot = (function($, Highcharts) {
         
-        var allTimeData = [], threeMonth = [], oneYear = [];  
+        var allTimeData = [], threeMonth = [], oneYear = [], sevenDay = [], oneMonth = [];  
 
         function getMonthName (month){
             let months = ['Jan','Feb','Mrch','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -706,7 +417,7 @@
         }
           
 
-        function printPlot(data){
+        function printPlot(data, el){
 
 
             Highcharts.chart('bitcoin-plot', {
@@ -756,19 +467,45 @@
                     },
                     series: {
                         lineColor: 'rgba(255,255,255, .6)',
+                        dataLabels: {
+                            enabled: true,
+                            backgroundColor: 'transparent',
+                            borderColor: 'transparent',
+                            formatter: function() {
+                                if (this.point.x == this.series.data.length - 1 || this.point.x == 0) {
+                                    let lPrice = String.prototype.split.call(this.y,'').length,
+                                        fPrice= String.prototype.substring.call(this.y, lPrice - 3, 0),
+                                        sPrice =  String.prototype.substr.call(this.y, -3),
+                                        time = new Date(this.key);
+                                    return '<tspan class="bitcoin-shortcode__plot-time">' +  getMonthName(time.getMonth())  + ' ' +time.getFullYear() + '</tspan> <br/> <tspan dy="20" class="bitcoin-shortcode__plot-price">' + this.series.name + ( lPrice > 3 ? fPrice + ' ' : '' )  + sPrice + '</tspan>';
+                                } else {
+                                    return null;
+                                }
+                            },
+                            style: {
+                                color: '#FFFFFF',
+                                textOutline: 'none'
+                            },
+                        }
                     }
                 },
                     
                 tooltip: {
                     pointFormat: "${point.y:.2f}",
-                    borderColor: 'transparent',
-                    borderRadius: 4,
-                    borderWidth: 0,
+            
                     formatter: function() {
                         var time = new Date(this.key);
-                        console.log(time.getFullYear);
-                        return '<span text-anchor="middle" class="u-text-center bitcoin-shortcode__plot-time">' + time.getDate() + ' ' + getMonthName(time.getMonth())  + ' ' +time.getFullYear() + '</span> <br/> <tspan class="u-text-center bitcoin-shortcode__plot-price" text-anchor="middle">' + this.series.name + this.y + '</tspan>';
-                    }
+                        return '<p class="bitcoin-shortcode__plot-time">' + time.getDate() + ' ' + getMonthName(time.getMonth())  + ' ' +time.getFullYear() + '</p> <br/> <p dy= "20" class="bitcoin-shortcode__plot-price">' + this.series.name + this.y + '</p>';
+                    },
+                    backgroundColor: 'rgba(255, 255, 255, 1)',
+                    borderWidth: 1,
+                    style: {
+                        color: '#a0b0bb',
+                        textOutline: 'none'
+                    },
+                    borderRadius: 4,
+                    borderColor: '#fff',
+                    shape: 'rect'
                 },
                 series: [{
                     type: 'area',
@@ -777,23 +514,31 @@
                 }]
             });
 
+            Array.from($('.bitcoin-shortcode__plot-price')).forEach(el => $(el).attr('dy','20'));
+
         }
 
-        function bindActions(){
+        function bindActions(context){
             var canGo = true
-            $('.bitcoin-shortcode__plot .bitcoin-shortcode__plot-change__timeframe').on('click touchend', function(e){
+            $('.bitcoin-shortcode__plot-change__timeframe', context).on('click touchend', function(e){
                 e.preventDefault();
                 if(!canGo) return -1
                 canGo =false;
                 setTimeout(() => {canGo = true;}, 1000);
 
-                $('.bitcoin-shortcode__plot .bitcoin-shortcode__plot-change__timeframe').removeClass('active');
+                $('.bitcoin-shortcode__plot-change__timeframe', context).removeClass('active');
 
                 $(this).addClass('active');
                 var timeframe = $(this).data('timeframe');
                 switch (timeframe) {
                     case 'all':
                         printPlot(allTimeData);
+                        break;
+                    case '7day':
+                        printPlot(sevenDay);
+                        break;
+                    case '1month':
+                        printPlot(oneMonth);
                         break;
                     case '3month':
                         printPlot(threeMonth);
@@ -811,9 +556,7 @@
             })
         }
 
-        
-        function init(){
-            
+        function getData(context){
             $.getJSON( "https://index.bitcoin.com/api/v0/history?span=all",  function( data ) {
                 var last = 0, now = 0, 
                     maxLenght = 800, 
@@ -831,13 +574,22 @@
                         
                     }
                 }
+                sevenDay  = data.slice(0, 7).reverse();
+                oneMonth  = data.slice(0, 1*31).reverse();
                 threeMonth  = data.slice(0, 3*31).reverse();
                 oneYear  = data.slice(0, 1*365).reverse();
                 allTimeData = data.reverse();
-                printPlot(allTimeData);
+                printPlot(allTimeData, context);
 
-                bindActions();
+                bindActions(context);
             });
+        }
+
+        
+        function init(){
+            Array.from($('.bitcoin-shortcode__plot')).forEach(element => {
+                getData(element);
+            })
         }
 
         return {
@@ -847,6 +599,113 @@
 
 
 
+    var Coinmarketcap = (function($){
+        function init() {
+            Array.from($('#coinmarketcap')).forEach(element => {
+                Array.from($(element).find('> li')).map(el => {
+                    let url = new URL($(el).data('url'));
+                    fetch(url.href, {
+                        method: 'GET',
+                        mode: 'cors'
+                    }).then(res => res.json()).then( data => {
+                        $(el).find('.widget-coinmarketcap__price').text(data[0].price_usd +  " $");
+                        $(el).find('.widget-coinmarketcap__name').text(data[0].name);
+                    });
+                })
+            })
+        }
+
+        return {
+            init: init
+        }
+
+    })(jQuery);
+
+
+
+    var BitcoinSlider = (function($){
+        function init() {
+            var container = (defaultOptions.container instanceof $)? defaultOptions.container : $(defaultOptions.container) ;
+            container.each(function(i){
+                initialize(this);
+            });
+        };
+
+        var defaultOptions = {
+            container : '.bitcoin__slider',
+        };
+        
+        function initialize($container){
+            var options = Object.assign({},defaultOptions, _getHTMLdata($container));
+            options.container = $container;
+            $( '.bitcoin__slider-in', options.container ).imagesLoaded( (function() {
+
+                $( '#' + options.id ).slick({
+                    slidesToShow: options.slidesToShow || 1,
+                    slidesToScroll: options.slidesToScroll || 1,
+                    dots: options.dots || false,
+                    centerMode: options.centerMode || false,
+                    focusOnSelect: options.focusOnSelect || false,
+                    arrows: options.arrows || false,
+                    adaptiveHeight: options.adaptiveHeight || false,
+                    autoplay: options.autoplay || false,
+                    autoplaySpeed :options.autoplaySpeed || 3000,
+                    centerPadding : options.centerPadding + 'px' || '50px',
+                    draggable : options.draggable || true,
+                    fade : options.fade || false,
+                    variableWidth : options.variableWidth || false,
+                    vertical: options.vertical || false,
+                    speed: options.speed || 300,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: Math.min(3,options.slidesToShow),
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 767,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                });
+            }));
+
+
+        }
+
+        function _getHTMLdata($el){
+            $el = ($el instanceof $)? $el : $($el) ;
+            var data = $el.data('slider'),
+            options = {};
+            if( typeof data === 'object' ){
+                for (var key in data){
+                    if (data.hasOwnProperty(key)) {
+                        var val = data[key];
+                        if( $.isNumeric(data[key])  )
+                            val = parseInt(data[key]);
+                        if( data[key] == 'yes')
+                            val = true;
+                        options[key] = val;
+                    }
+                }
+            }
+            else
+                console.log(" Incorrect HTML Data ");
+
+            return options
+        }
+
+        return {
+            init: init
+        }
+
+    })(jQuery);
+
     // /* ====== ON WINDOW LOAD ====== */
     $window.load(function() {
         $('html').addClass('is--loaded');
@@ -855,6 +714,8 @@
         Likes.init();
         Share.init();
         BitcoinPlot.init();
+        Coinmarketcap.init();
+        BitcoinSlider.init();
 
         tooltipTrigger();
         keepSubmenusInViewport(); 
@@ -870,17 +731,6 @@
             handleMobileHeaderSearch();
         }
         
-        //for search listings we need to make some magic to make it behave like the categories and tags archives
-        if ($body.is('.search') && $body.is('.post-type-archive-job_listing')) {
-            if ($('.job_listings #search_keywords').length) {
-                $('.job_listings #search_keywords').val($('input.search-field').val());
-            } else {
-                //steal the search input data and put it in among some make shift filters
-                $('.job_listings').append('<form class="job_filters"><input type="hidden" name="search_keywords" id="search_keywords" value="' + $('input.search-field').val() + '"/></form>');
-            }
-            //now trigger and update so we can receive listings
-            //$('.job_listings').trigger( 'update_results', [ 1, true ] );
-        }
 
         frontpageVideoInit();
 

@@ -34,3 +34,107 @@
     
     .wpb_video_wrapper .jetpack-video-wrapper
         margin-bottom: 0
+
+    .bitcoin__slider 
+        margin-left: -20px  
+        margin-right: -20px
+
+        .slick-next
+            right: 15px
+            &:before
+                display: block
+                transform: scale(.5)
+                content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAdCAYAAADsMO9vAAABZ0lEQVRYR9WYfU0EMRTEZxSABFAAKGBxgAM4BzgAFCABHIADDgUcDpAACoZM0t2UpWzaHOReX7L/tdn5te+zxI5N0gGAVwBPJFetcti64a/XJ4ANgD0AtyRvWv6xcwCLlXQMYJ0gViQfaiFCACSIAcBzEl4NEQYgQVwCuG+BCAVQgDgjadf61cIBzCA+ABjCQV60kAAJwtnoGsAiRFiABOFsdLEEERqgAHFI0jcyWXiAGYRjwTExQXQBkCCcjU4BfIPoCWA/VeujHIKSrgDc1ZbuhnXvAPxtY270/JVsQ/LkPwG2EV6z94Xk0JsLuVdy4/cGYHAw9wTwCOA8F+9r6gJAkhs8N3rTyY8+Fh4gE//pgO6qkM3E2+d/NHVhb0DS2Mz55Iviw8aApHGwWRQfEiATb319DTQz8VVzcZgYkNTvUJ+eVVxl3bBVnXyYOpC9zFl8fw9bkizc+X1N0tmnycLEQJPqbPEXQA2cHjYWjdwAAAAASUVORK5CYII=')
+        .slick-prev
+            left: 15px
+            &:before
+                display: block
+                transform: rotateY(180deg) scale(.5)
+                content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAdCAYAAADsMO9vAAABZ0lEQVRYR9WYfU0EMRTEZxSABFAAKGBxgAM4BzgAFCABHIADDgUcDpAACoZM0t2UpWzaHOReX7L/tdn5te+zxI5N0gGAVwBPJFetcti64a/XJ4ANgD0AtyRvWv6xcwCLlXQMYJ0gViQfaiFCACSIAcBzEl4NEQYgQVwCuG+BCAVQgDgjadf61cIBzCA+ABjCQV60kAAJwtnoGsAiRFiABOFsdLEEERqgAHFI0jcyWXiAGYRjwTExQXQBkCCcjU4BfIPoCWA/VeujHIKSrgDc1ZbuhnXvAPxtY270/JVsQ/LkPwG2EV6z94Xk0JsLuVdy4/cGYHAw9wTwCOA8F+9r6gJAkhs8N3rTyY8+Fh4gE//pgO6qkM3E2+d/NHVhb0DS2Mz55Iviw8aApHGwWRQfEiATb319DTQz8VVzcZgYkNTvUJ+eVVxl3bBVnXyYOpC9zFl8fw9bkizc+X1N0tmnycLEQJPqbPEXQA2cHjYWjdwAAAAASUVORK5CYII=)           
+        .slick-arrow
+            width: 50px
+            height: 50px
+            border-radius: 50%
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
+            z-index: 100
+        .slick-dots 
+            bottom: 0
+        .slick-dots li
+            width: 60px
+            height: 4px
+            &:focus
+                outline: none
+            & button
+                width: 60px
+                height: 4px
+                &:focus
+                    outline: none
+                    box-shadow: none
+                &:before
+                    content: ''
+                    width: 60px
+                    height: 4px
+                    display: block
+                    background: black
+
+
+
+    .testimonials
+        //margin: -20px
+        &__in 
+            display: flex
+            height: 360px
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12)
+            border-radius: 4px
+            overflow: hidden
+            margin: 20px 40px 55px
+            .testimonials__image
+                height: 360px
+                width: 360px
+                img
+                    height: 100%
+                    width: auto
+            +r(768)
+                flex-flow: column
+                justify-content: center
+                align-items: center
+                height: 480px
+                .testimonials__image
+                    height: 164px
+                    img
+                        height: 100%
+                        width: auto
+
+        &__content
+            padding: 40px 60px
+            overflow: hidden
+            & .alignnone, 
+            & .aligncenter
+                margin: auto
+                display: inline-block
+    
+    .bitcoin-video-right
+        perspective: 1000px
+        perspective-origin: center
+        > div
+            transition: transform .5s ease-in-out   
+            transform: rotate3d(0, 1, 0, -20deg) scale(.95)
+            transform-origin:  center
+            &:hover
+                transform: rotate3d(0,1,0,0deg) scale(1)
+            iframe
+                border-radius: 8px
+                overflow: hidden
+                box-shadow: 0 16px 30px rgba(0, 0, 0, 0.10)
+
+    .bitcoin-video-left
+        perspective: 1000px
+        perspective-origin: center
+        > div
+            transition: transform .5s ease-in-out   
+            border-radius: 10px
+            overflow: hidden
+            transform: rotate3d(0, 1, 0, 20deg) scale(.95)
+            transform-origin:  center
+            &:hover
+                transform: rotate3d(0,1,0,0deg) scale(1)

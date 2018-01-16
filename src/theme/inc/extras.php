@@ -56,53 +56,6 @@ function bitcoin_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'bitcoin_body_classes' );
 
-/**
- * Add a custom body class when the request comes from a modal
- * @param $classes
- *
- * @return array
- */
-function bitcoin_login_body_class( $classes ) {
-	if ( isset( $_REQUEST['modal_login'] ) && $_REQUEST['modal_login'] ) {
-		$classes[] = 'page-login-modal';
-	}
-
-	return $classes;
-}
-add_filter( 'login_body_class', 'bitcoin_login_body_class' );
-
-function bitcoin_force_display_the_excerpt_box( $hidden ) {
-	//this filter is fired from get_hidden_meta_boxes()
-	//make sure that 'postexcerpt' is not in the default hidden boxes
-	$hidden = array_diff( $hidden, array( 'postexcerpt' ) );
-
-	return $hidden;
-}
-add_filter( 'default_hidden_meta_boxes', 'bitcoin_force_display_the_excerpt_box' );
-
-if ( ! function_exists('bitcoin_post_excerpt_meta_box' ) ) {
-	/**
-	 * Custom callback function for the page excerpt meta box - it changes the strings in the form
-	 *
-	 * @param $post
-	 */
-	function bitcoin_post_excerpt_meta_box( $post ) { ?>
-		<label class="screen-reader-text" for="excerpt"><?php esc_html_e( 'Page Subtitle', 'bitcoin' ) ?></label>
-		<textarea rows="1" cols="40" name="excerpt" id="excerpt"><?php echo $post->post_excerpt; // textarea_escaped ?></textarea>
-		<p><?php esc_html_e( 'This is the subtitle that will be shown in the page\'s Hero Area, below the page title.', 'bitcoin' ); ?></p>
-		<?php
-	}
-}
-
-function bitcoin_change_page_excerpt_box_title() {
-	global $wp_meta_boxes; // array of defined meta boxes
-
-	//Change the page excerpt meta box title
-	$wp_meta_boxes['page']['normal']['core']['postexcerpt']['title'] = esc_html__( 'Page Subtitle', 'bitcoin' );
-	//and it's callback
-	$wp_meta_boxes['page']['normal']['core']['postexcerpt']['callback'] = 'bitcoin_post_excerpt_meta_box';
-}
-add_action( 'add_meta_boxes', 'bitcoin_change_page_excerpt_box_title' );
 
 
 if ( ! function_exists( 'bitcoin_display_image' ) ) {
@@ -789,4 +742,14 @@ function bitcoin_reorder_comment_fields( $fields ){
 			$new_fields[ $key ] = $val;
 
 	return $new_fields;
+}
+
+
+/**
+ * Generate unique random slug
+ * 
+ * @return string unique id   
+*/
+function bitcoin_get_unique_id() {
+    return mt_rand(1000,9000) . '_' . mt_rand(1000,9999);
 }

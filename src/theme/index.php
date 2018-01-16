@@ -15,14 +15,15 @@
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<?php get_template_part( 'template-parts/content', 'hero' ); ?>	
 
-		<?php get_template_part( 'template-parts/content', 'hero' ); ?>	
+
+<div class="content-area__wrapper">
 	
-		<div class="content-area__wrapper">
-			
-			<?php do_action('bitcoin_before_posts_loop'); ?>
+	<?php do_action('bitcoin_before_posts_loop'); ?>
+	
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">	
 			
 			<?php if (have_posts()) : ?>
 
@@ -51,12 +52,12 @@ get_header();
 				<?php get_template_part( 'template-parts/content', 'none' ); ?>
 			<?php endif; ?>
 
-			<?php do_action('bitcoin_after_posts_loop'); ?>
 		
-		</div>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
+<?php do_action('bitcoin_after_posts_loop'); ?>
+</div>
 
 <?php
 get_footer();

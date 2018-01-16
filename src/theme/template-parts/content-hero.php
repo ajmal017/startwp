@@ -82,7 +82,7 @@
 
             } elseif ( is_search()  ) { ?>
 
-                <div class="content-area__wrapper">
+                <div class="hero-header__content-area__wrapper">
                     <h1 class="hero-title"><?php printf( esc_html__( 'Search results for: %s', 'bitcoin' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
                     <?php if( ! have_posts() ) : ?>	
                         <?php get_template_part( 'template-parts/content', 'none' ); ?>
@@ -90,7 +90,7 @@
                 </div>
             <?php } elseif ( is_404()  ) { ?>
 
-            <div class="content-area__wrapper">
+            <div class="hero-header__content-area__wrapper">
 
                 <h1 class="hero-title"><?php esc_html_e( '404', 'bitcoin' ); ?></h1>
                 <?php get_template_part( 'template-parts/content', 'none' ); ?>

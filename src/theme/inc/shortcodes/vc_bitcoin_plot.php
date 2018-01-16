@@ -8,31 +8,13 @@ class WPBakeryShortCode_BitcoinPlot extends  WPBakeryShortCode{
      */
     public function content($atts, $content = null)
     {
-        $contact_form = $link = $modal = $type = $title = $link = $color = $align = $size = $css = $css_animation = '';
-        $add_icon = $i_align = $icon_lib = $icon_fontawesome = $icon_openiconic = $icon_typicons = $icon_entypo = $icon_linecons = '';
+        $css = '';
         $output = '';
 
         $css_classes = array();
         $wrap_classes = array();
 
         extract(shortcode_atts(array(
-            'link' => '',
-            'modal' => '',
-            'type' => '',
-            'title' => '',
-            'color' => 'color',
-            'align' => 'left',
-            'size' => '',
-            'contact_form' => '',
-            'css_animation' => '',
-            'add_icon' => '',
-            'i_align' => 'left',
-            'icon_lib' => 'fontawesome',
-            'icon_fontawesome' => '',
-            'icon_openiconic' => '',
-            'icon_typicons' => '',
-            'icon_entypo' => '',
-            'icon_linecons' => '',
             'css' => ''
         ), $atts));
 
@@ -43,14 +25,14 @@ class WPBakeryShortCode_BitcoinPlot extends  WPBakeryShortCode{
         wp_enqueue_script('highcharts');
 
         $output = '<div class="bitcoin-shortcode__plot" style="height: 340px">
-                    <div id="bitcoin-plot" class="bitcoin-shortcode__plot__in" style="height: 300px; width: 100%;"></div>
-                    
-                    <button class="bitcoin-shortcode__plot-change__timeframe" data-timeframe="3month"> 3 month</button>
-                    
-                    <button data-timeframe="1year" class="bitcoin-shortcode__plot-change__timeframe"> 1 year</button>
+                    <div id="bitcoin-plot" class="bitcoin-shortcode__plot__in" style="height: 300px; width: 100%;"></div>';
+        $output .= '<button class="bitcoin-shortcode__plot-change__timeframe" data-timeframe="7day">'. esc_html('7 day','bitcoin') . '</button>';
+        $output .= '<button class="bitcoin-shortcode__plot-change__timeframe" data-timeframe="1month">' . esc_html('1 month','bitcoin') . '</button>';
+        $output .= '<button class="bitcoin-shortcode__plot-change__timeframe" data-timeframe="3month">' . esc_html('3 month','bitcoin') . '</button>';
+        $output .= '<button class="bitcoin-shortcode__plot-change__timeframe" data-timeframe="1year">' . esc_html('1 year','bitcoin') . '</button>';
+        $output .= '<button class="bitcoin-shortcode__plot-change__timeframe active" data-timeframe="all">' . esc_html('All time','bitcoin') . '</button>';
 
-                    <button  data-timeframe="all" class="bitcoin-shortcode__plot-change__timeframe active">All time</button>
-                </div>';
+        $output .=  '</div>';
 
         return $output;
     }

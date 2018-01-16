@@ -33,7 +33,11 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/s
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/sidebar_none.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/sidebar_right.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/tile.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/vc/bitcoin_blog.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img/vc 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/vc/bitcoin_container.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img/vc 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/vc/bitcoin_item_container.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img/vc 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/vc/bitcoin_plot.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img/vc 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/vc/bitcoin_testimonials.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img/vc 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/vc/blue_btn.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img/vc 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/vc/theme_button.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img/vc 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/img/vc/white_btn.png d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/assets/img/vc 
@@ -127,6 +131,7 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/integrat
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/integrations/wpml.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/integrations 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/integrations/yoast-seo.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/integrations 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/class-tgm-plugin-activation.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/required-plugins 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/languages/tgmpa.pot d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/required-plugins/languages 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/LICENSE.md d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/required-plugins 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/required-plugins.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/required-plugins 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/visual-composer/js_composer.zip d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/required-plugins/visual-composer 
@@ -134,6 +139,7 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/visual-composer/Licensing/README_License.txt d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/required-plugins/visual-composer/Licensing 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/visual-composer/README_FIRST.html d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/required-plugins/visual-composer 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/visual-composer/README-FIRST.html d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/required-plugins/visual-composer 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/cv_bitcoin_testimonials.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/extend_vc.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/init.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/params/vc_forit_datepicker.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes/params 
@@ -144,11 +150,19 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcod
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/params/vc_range.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes/params 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/params/vc_responsive_param.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes/params 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/params/vc_social_share.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes/params 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/vc_bitcoin_blog.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/vc_bitcoin_container.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/vc_bitcoin_plot.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/vc_bitcoin_testimonials.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/vc_bitcoin_testomonials.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/vc_theme_btn.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/vс_bitcoin_testimonial.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/vс_bitcoin_testimonials.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcodes/vс_bitcoin_testimonialss.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc/shortcodes 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/template-tags.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/widgets.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/inc 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/index.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/. 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/languages/bitcoin.pot d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/languages 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/languages/readme.txt d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/languages 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/page-templates/front_page.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/page-templates 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/page.php d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/. 

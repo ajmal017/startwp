@@ -13,9 +13,9 @@
  */
 
 get_header();  ?>
+<div class="page-area__wrapper">	
 <div id="primary" class="page-area">
 	<main id="main" class="site-main" role="main">
-		<div class="page-area__wrapper">	
 
 			<?php // get_template_part( 'template-parts/content', 'hero' ); ?>	
 
@@ -31,9 +31,9 @@ get_header();  ?>
 				endif;
 
 			endwhile; // End of the loop. ?>
-		</div>
 	</main><!-- #main -->
 </div><!-- #primary -->
+</div>
 <?php
 get_footer();
 

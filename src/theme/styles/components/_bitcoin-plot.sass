@@ -1,18 +1,51 @@
 .highcharts-tooltip-box
     background: #ffffff
     opacity: 1 !important
+    stroke: none
+    border-radius: 5px
+    overflow: hidden
 
 .highcharts-credits
     display: none
 .bitcoin-shortcode__plot
     height: 292px
+    max-width: 789px
+    margin: 0 auto
+    .highcharts-container 
+        overflow: visible !important
+    .highcharts-data-labels
+        & .highcharts-label 
+            & text
+                text-anchor: middle
+                font-weight: 300
+                & tspan
+                    font-size: 11px
+                    font-weight: 300
+                    & + tspan
+                        font-size: 16px
+                        font-weight: 600
+                        letter-spacing: 0px
+                transform: translate(-50px,0)
+                +r(900)
+                    transform: translate(0,0)
+        & .highcharts-label + .highcharts-label  text
+            text-anchor: middle
+            transform: translate(110px,0)
+            +r(900)
+                transform: translate(-40px,40px)
+
     &-time
         display: inline-block
         text-align: center
-        color: #e1e1e1
+        color: #a0b0bb
+
     &-price
         display: inline-block
         text-align: center
+        font-size: 17px
+        font-weight: 600
+        color: #3893f3 !important
+
     &-change__timeframe 
         text-decoration: none
         display: inline-block
@@ -33,4 +66,5 @@
         &.active
             border: 1px solid #ffffff
             background-color: rgba(#fff, .3) 
+
 

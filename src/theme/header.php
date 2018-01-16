@@ -22,6 +22,19 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'bitcoin' ); ?></a>
 
+	<?php	$preloader = bitcoin_get_option('preloader');
+	if( true == $preloader  ){ ?>
+	
+		<div class="site-preloader">
+			<div class="coin-circle">
+				<div></div>
+			</div>
+		</div>
+
+	<?php } ?>
+
+
+
 	<header id="masthead" class="site-header  
 		<?php if( is_page_template( 'page-templates/front_page.php' ) && (bitcoin_get_option( 'header_transparent', true ) == true) ) echo 'header--transparent'; ?>
 		<?php if(  !is_front_page() && is_home() && (bitcoin_get_option( 'header_transparent_blog', true ) == true) ) echo 'header--transparent'; ?>
@@ -64,4 +77,4 @@
 		</div><!-- site-header__in -->
 	</header><!-- #masthead -->
 	
-	<div id="content" class="site-content js-header-height-padding-top">
+	<div id="content" class="site-content ">

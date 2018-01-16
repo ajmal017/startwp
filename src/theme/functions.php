@@ -202,17 +202,10 @@ function bitcoin_scripts() {
 				'url' => admin_url('admin-ajax.php'),
 				'likes_action' => 'bitcoin_set_likes_number'
 			),
-		'login_url' => rtrim( esc_url( wp_login_url() ) , '/'),
-		'strings' => array(
-			'wp-job-manager-file-upload' => esc_html__( 'Add Photo', 'bitcoin' ),
-			'no_job_listings_found' => esc_html__( 'No results', 'bitcoin' ),
-			'results-no' => esc_html__( 'Results', 'bitcoin'), //@todo this is not quite right as it is tied to the number of results - they can 1 or 0
-			'select_some_options' => esc_html__( 'Select Some Options', 'bitcoin' ),
-			'select_an_option' => esc_html__( 'Select an Option', 'bitcoin' ),
-			'no_results_match' => esc_html__( 'No results match', 'bitcoin' ),
-			'social_login_string' => esc_html__( 'or', 'bitcoin' ),
-		)
+		'login_url' => rtrim( esc_url( wp_login_url() ) , '/')
 	) ); 
+
+
 
 }
 

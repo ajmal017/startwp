@@ -13,7 +13,10 @@ const babelPlugin = require('rollup-plugin-babel');
 const resolve = require('rollup-plugin-node-resolve');
 
 var browserSync = require('browser-sync').create();
+var mysql      = require('mysql');
 
+
+// Configs ---------------------------------------------------------------------------------------------
 const cssoConfig = {
   restructure: false,
   sourceMap: true,
@@ -27,26 +30,45 @@ const babelConfig = {
 
 const funcTable = {
   "watch": [watch],
+  "wpDev": [wpDev],
   "png,jpeg,jpg,svg,woff2,eot,ttf,otf,php,txt,zip,html,xml,pot": [copyStatic],
   "js": [minifyJs],
   "css": [minifyCss],
   "sass,scss": [handleSass],
-  "wpDev": [wpDev],
-  "default": [noop]
+  "default": [noop],
+  "siteMap": [createSiteMap]
 }
 
 const templateData = {
   'VERSION': package.version,
 };
 
-function noop() {}
 
-async function call (ext, ... opt) {
+if (process.argv.length > 2) { 
+  // With params
+  call(process.argv.slice(2));
+
+}else{
+  // Standard build
+  Promise.all([
+    copyStatic(),
+    copySystemJS(),
+    copyCustomElements(),
+    minifyCss(),
+    minifyJs(),
+  ])
+    .then(_ => console.log('Done All'))
+    .catch(err => console.log(err.stack, '\nError while building'));
+}
+
+// Build Func ------------------------------------------------------------------------------------------
+
+async function call(task, ... opt) {
   console.time('task');
   
   fnStack = funcTable['default'];
   Object.entries(funcTable).map(item => {
-    if(item[0].split(/(\,)/).some(extComp => ext.includes(extComp))){
+    if(item[0].split(/(\,)/).some(extComp => task.includes(extComp))){
       fnStack = item[1];
     }
   })
@@ -65,55 +87,40 @@ async function call (ext, ... opt) {
   return Promise.resolve()
 }
 
-
-
-
-if (process.argv.length > 2) {
-  call(process.argv.slice(2));
-  return 0
-}
-
-function debounce(func, wait) {
-  var timeout;
-  var eventTypeLast;
-  return function () {
-    var context = this, args = arguments, eventType = args[0];
-    
-    var later = function () {
-      timeout = null;
-      func.apply(context, args);
-    };
-
-    if (eventTypeLast && eventTypeLast === eventType)
-      clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    eventTypeLast = args[0];
-  };
-};
-
 function watch(){
 
   fs.watch('./src', { recursive: true }, debounce(async (eventType, filename) => {
-    let spltdFFP = filename.split(/\.(.{2,4}$)/);
-    if (eventType == "rename"){
-      files = null;
-      filesDist = null;
-      if(fs.existsSync(`./src/${filename.split('\\').join('/')}`)) {
-        console.log('\x1b[36m%s\x1b[0m', 'create');
-        await call(spltdFFP[spltdFFP.length - 2], filename)
-      }else{
-        console.log('\x1b[36m%s\x1b[0m', 'delete');
-        try{
-          await fs.unlink(`./dist/${filename.split('\\').join('/')}`);
+    let task = filename.split(/\.(.{2,4}$)/);
+
+    switch (eventType) {
+      case "rename":
+        files = filesDist = null;
+        if(fs.existsSync(`./src/${filename.split('\\').join('/')}`)) { // win bug
+        
+          console.log('\x1b[36m%s\x1b[0m', 'create');
+          await call(task[task.length - 2], filename)
+  
+        }else{
+  
+          console.log('\x1b[36m%s\x1b[0m', 'delete');
+          try{
+            await fs.unlink(`./dist/${filename.split('\\').join('/')}`);  // win bug
+          }
+          catch(err) { }
         }
-        catch(err) { }
-      }
-      call('wpDev');
-      return
+        
+        call('wpDev');
+
+        break;
+      case "change":
+        
+        call(task[task.length - 2 ], filename)
+        break;
+    
+      default:
+        break;
     }
 
-    //event === 'change'
-    call(spltdFFP[spltdFFP.length - 2 ], filename)
   },500));
 
   return Promise.resolve();
@@ -121,19 +128,7 @@ function watch(){
 }
 
 
-
-
-
-
-Promise.all([
-  copyStatic(),
-  copySystemJS(),
-  copyCustomElements(),
-  minifyCss(),
-  minifyJs(),
-])
-  .then(_ => console.log('Done All'))
-  .catch(err => console.log(err.stack, '\nError while building'));
+// Tast Funcs -----------------------------------------------------------------------------------------
 
 async function copyStatic() {
   console.time('copyStatic');
@@ -215,6 +210,8 @@ async function handleSass() {
 }
 
 
+
+
 var cache;
 async function minifyJs(filename) {
   console.time('minifyJs');
@@ -287,45 +284,8 @@ async function minifyJs(filename) {
   return await Promise.all([orig]);
 }
 
-function flatten(arr) {
-  return Array.prototype.concat.apply([], arr);
-}
 
-var files;
-function filesWithPatterns(regexps) {
-  if (!files) {
-    files = AsyncArray.from(new Promise((resolve, reject) => glob('src/**', { dot: true }, (err, f) => err ? reject(err) : resolve(f))))
-      .map(async file => file.substr(4));
-  }
-  return files.filter(async file => regexps.some(regexp => regexp.test(file)));
-}
-
-async function copy(from, to) {
-  const data = await fs.readFile(from);
-  const dir = path.dirname(to);
-  await mkdirAll(dir);
-  await fs.writeFile(to, data);
-}
-
-async function mkdirAll(dir) {
-  const elems = dir.split('/');
-  await elems.reduce(async (p, newPath) => {
-    const oldPath = await p;
-    const newDir = path.join(oldPath, newPath);
-    await fs.mkdir(newDir).catch(_ => { });
-    return newDir;
-  }, Promise.resolve(''));
-}
-
-
-var filesDist;
-function filesWithPatternsDist(regexps) {
-  if (!filesDist) {
-    filesDist = AsyncArray.from(new Promise((resolve, reject) => glob('dist/**', { dot: true }, (err, f) => err ? reject(err) : resolve(f))))
-      .map(async file => file.substr(4));
-  }
-  return filesDist.filter(async file => regexps.some(regexp => regexp.test(file))); 
-}
+// Link files with folder in wordpress
 
 async function wpDev() {
   console.log('\x1b[36m%s\x1b[40m', 'Linking ...');  
@@ -347,6 +307,8 @@ async function wpDev() {
 
 
 
+
+// Change onSave with Broserify ------------------------------------------------------------------------
 
 function serve(){
 
@@ -383,4 +345,99 @@ function serve(){
     reloadDelay: 0
   });
   return Promise.resolve();
+}
+
+
+// Utils func ------------------------------------------------------------------------------------------
+
+async function copy(from, to) {
+  const data = await fs.readFile(from);
+  const dir = path.dirname(to);
+  await mkdirAll(dir);
+  await fs.writeFile(to, data);
+}
+
+async function mkdirAll(dir) {
+  const elems = dir.split('/');
+  await elems.reduce(async (p, newPath) => {
+    const oldPath = await p;
+    const newDir = path.join(oldPath, newPath);
+    await fs.mkdir(newDir).catch(_ => { });
+    return newDir;
+  }, Promise.resolve(''));
+}
+
+function flatten(arr) {
+  return Array.prototype.concat.apply([], arr);
+}
+
+function debounce(func, wait) {
+  var timeout;
+  var eventTypeLast;
+  return function () {
+    var context = this, args = arguments, eventType = args[0];
+    
+    var later = function () {
+      timeout = null;
+      func.apply(context, args);
+    };
+
+    if (eventTypeLast && eventTypeLast === eventType)
+      clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    eventTypeLast = args[0];
+  };
+};
+
+function noop() {console.log('Not found.')}
+
+
+
+
+function createSiteMap(){
+
+  var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'bitcoin'
+  });
+  let pages = new Set(),
+      acc = '';
+  
+  connection.connect();
+  connection.query(`SELECT guid 
+                    FROM  wp_posts 
+                    WHERE guid REGEXP 'wordpress/.p' 
+                    AND guid NOT LIKE '%wp-content%' 
+                    LIMIT 300`,
+  function (error, results, fields) {
+    if (error) throw error;
+    results.map( o => pages.add( o.guid ));
+    for (let item of pages.values()) acc += `- file: ${item} \n  ready: 50\n`;
+    fs.writeFile('site-map.yaml',`ProjectTitle: Bitcoin \nPageList:\n`.concat(acc));
+  });
+  
+  connection.end();
+
+}
+
+// Create obsorved files -------------------------------------------------------------------------------
+var files;
+function filesWithPatterns(regexps) {
+  if (!files) {
+    files = AsyncArray.from(new Promise((resolve, reject) => glob('src/**', { dot: true }, (err, f) => err ? reject(err) : resolve(f))))
+      .map(async file => file.substr(4));
+  }
+  return files.filter(async file => regexps.some(regexp => regexp.test(file)));
+}
+
+
+var filesDist;
+function filesWithPatternsDist(regexps) {
+  if (!filesDist) {
+    filesDist = AsyncArray.from(new Promise((resolve, reject) => glob('dist/**', { dot: true }, (err, f) => err ? reject(err) : resolve(f))))
+      .map(async file => file.substr(4));
+  }
+  return filesDist.filter(async file => regexps.some(regexp => regexp.test(file))); 
 }

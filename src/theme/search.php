@@ -10,11 +10,13 @@
 get_header(); 
 
 ?>
+<?php get_template_part('template-parts/content', 'hero'); ?>
+
+<div class="content-area__wrapper">
+
 <div id="primary" class="content-area search-results">
 	<main id="main" class="site-main" role="main">
-		<?php get_template_part('template-parts/content', 'hero'); ?>
 		<?php if(have_posts()) : ?>								
-			<div class="content-area__wrapper">
 					<div class="postcards">
 						<div class="grid grid--<?php echo bitcoin_get_option('blog_type_style'); ?>" id="posts-container">
 						<?php /* Start the Loop */ ?>
@@ -38,12 +40,12 @@ get_header();
 					</div>
 					
 				</div>	
-			</div>
 			
 	<?php endif; ?>
 	</main><!-- #main -->
 </div><!-- #primary -->
 
+</div>
 
 
 <?php get_footer(); ?>

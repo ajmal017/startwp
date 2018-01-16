@@ -8,14 +8,14 @@
  */
 
 get_header(); ?>
+<div class="content-area__wrapper">
 
+	<?php do_action('bitcoin_before_posts_loop'); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
-			<div class="content-area__wrapper">
-				<?php do_action('bitcoin_before_posts_loop'); ?>
 					<?php while ( have_posts() ) : the_post(); ?>
-						<div class="content-area__wrapperIn">
+					
 							<?php get_template_part( 'template-parts/content', 'single' ); ?>
 
 							<?php get_template_part('template-parts/related', 'posts'); ?>
@@ -25,16 +25,13 @@ get_header(); ?>
 									comments_template();
 								endif;
 							?>
-						</div>
-
+				
 
 					<?php endwhile; // End of the loop. ?>
-				<?php do_action('bitcoin_after_posts_loop'); ?>
 		
-			</div>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-
-
+<?php do_action('bitcoin_after_posts_loop'); ?>
+</div>
 <?php get_footer(); ?>

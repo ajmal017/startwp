@@ -102,25 +102,27 @@ class Bitcoin_Coinmarketcap extends WP_Widget {
 
 		if( is_array( $currencies ) ){
 
-			$output .= "<ul class='widget-coinmarketcap' >";
+			$output .= "<ul class='widget-coinmarketcap' id='coinmarketcap' >";
 			foreach( $currencies as $coin ){
 
-				$response = wp_remote_get('https://api.coinmarketcap.com/v1/ticker/' . trim($coin) );
-				if( $response['response']['code'] !== 200 ){
-					continue;
-				}
-				$data =  json_decode($response['body']);
-				if( !is_array($data) ){
-					continue;
-				}
+				// $response = wp_remote_get('https://api.coinmarketcap.com/v1/ticker/' . trim($coin) );
+				
+				// if( is_wp_error($response) || $response['response']['code'] !== 200 ){
+				// 	continue;
+				// }
+				// $data =  json_decode($response['body']);
+				// if( !is_array($data) ){
+				// 	continue;
+				// }
 
 				$output .= sprintf(
-					'<li class="widget-coinmarketcap__item "><img class="widget-coinmarketcap__icon" alt="%1$s" src="%2$s" />  %1$s <span class="widget-coinmarketcap__space"> </span>
-					<span class="widget-coinmarketcap__price"> $ %3$s </span>
+					'<li class="widget-coinmarketcap__item "  data-url="%1$s" ><img class="widget-coinmarketcap__icon" alt="%2$s" src="%3$s" /> <span class="widget-coinmarketcap__name"> </span> <span class="widget-coinmarketcap__space"> </span>
+					<span class="widget-coinmarketcap__price"></span>
 					</li>',
-					$data[0]->name,
-					'https://files.coinmarketcap.com/static/img/coins/64x64/' . $coin . '.png',
-					$data[0]->price_usd
+					'https://api.coinmarketcap.com/v1/ticker/'. trim($coin) . '/',
+					$coin,
+					'https://files.coinmarketcap.com/static/img/coins/64x64/' . $coin . '.png'
+
 				);
 			}
 

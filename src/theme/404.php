@@ -14,9 +14,11 @@
 
 get_header(); ?>
 
+<?php get_template_part('template-parts/content', 'hero'); ?>
+
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
-		<?php get_template_part('template-parts/content', 'hero'); ?>
+	<!-- should be nothing -->
 	</main><!-- #main -->
 </div><!-- #primary -->
 

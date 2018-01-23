@@ -138,7 +138,7 @@ class Bitcoin_Coinmarketcap extends WP_Widget {
 
 	public function update($new_instance, $old_instance)
 	{
-		var_dump( $new_instance );
+	
 		$instance = $old_instance;
 		if (!empty($new_instance['title'])) {
 			$instance['title'] = strip_tags(stripslashes($new_instance['title']));
@@ -160,6 +160,7 @@ class Bitcoin_Coinmarketcap extends WP_Widget {
 		}
 		$data =  json_decode($response['body']);
 		
+
 		if( !is_array($data) ){
 			return -1;
 		}
@@ -175,7 +176,9 @@ class Bitcoin_Coinmarketcap extends WP_Widget {
 					<?php foreach($data as $coin ){ ?>
 						
 						<option 
-							<?php echo in_array($coin->id ,$instance['currencies']) ? 'selected="selected"' : ''; ?> value="<?php echo $coin->id; ?>">
+							<?php 
+							if(array_key_exists('currencies', $instance )){
+							echo in_array($coin->id ,$instance['currencies']) ? 'selected="selected"' : ''; }?> value="<?php echo $coin->id; ?>">
 							<?php echo $coin->name; ?>
 						</option>
 

@@ -7,19 +7,28 @@
   .content-area
     width: 100%
     overflow: hidden
-    .single-post &
+    .single &
       padding: 0 20px 50px
       box-shadow: 0 16px 20px rgba(0, 0, 0, 0.02)
       margin-top: 50px
+      margin-bottom: 50px
       padding: 45px 50px
       border-radius: 4px
       +r(768)
         padding: 15px 20px
         margin-top: 30px
+        margin-bottom: 0px
+
 
 .page-area__wrapper
   margin: 0 auto
   padding: 0px 20px
+  .postcards--frontpage
+      .grid__item
+          max-width: 30%
+          +r(768)
+              max-width: 100%
+
 
 .site    
   min-height: 100vh

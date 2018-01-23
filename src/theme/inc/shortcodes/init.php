@@ -15,5 +15,7 @@ function bitcoin_init_vc_shortcodes(){
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_blog.php' );
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_testimonials.php' );
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_container.php' );
+    include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_calc.php' );
+    include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_counter.php' );
 
 }

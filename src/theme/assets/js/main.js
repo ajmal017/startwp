@@ -1,8 +1,12 @@
+import "./calc.js"
+import { _formatCurrency } from "./calc.js"
+
 (function($, undefined) {
     "use strict";
     /**
      * Shared variables
      */
+
 
     var ua = navigator.userAgent.toLowerCase(),
         platform = navigator.platform.toLowerCase(),
@@ -601,20 +605,20 @@
 
     var Coinmarketcap = (function($){
         function init() {
-            Array.from($('#coinmarketcap')).forEach(element => {
+            Array.from($('.widget-coinmarketcap')).forEach(element => {
                 Array.from($(element).find('> li')).map(el => {
                     let url = new URL($(el).data('url'));
                     fetch(url.href, {
                         method: 'GET',
                         mode: 'cors'
                     }).then(res => res.json()).then( data => {
-                        $(el).find('.widget-coinmarketcap__price').text(data[0].price_usd +  " $");
+
+                        $(el).find('.widget-coinmarketcap__price').text(_formatCurrency(data[0].price_usd) +  " $");
                         $(el).find('.widget-coinmarketcap__name').text(data[0].name);
                     });
                 })
             })
         }
-
         return {
             init: init
         }
@@ -706,16 +710,146 @@
 
     })(jQuery);
 
+
+
+    var Counter = (function($){
+    
+        class CounterClass {
+
+            constructor( $elem ){
+                this.$elem = $elem;
+                this.$chart = this.$elem.find('.bitcoin-counter__holder');
+                this.blocked = false;
+                this.elemOffset = this.$elem.offset();
+                var _self = this;
+        
+                this.settings = {
+                    type: this.$elem.data('type'),
+                    bgColor: this.$elem.data('bg-color'),
+                    activeColor: this.$elem.data('active-color'),
+                    percentage: parseInt(this.$elem.data('percentage')),
+                    duration: 3
+                };
+        
+                if(this.settings.type == 'pie')
+                    this.initPieChart();
+                else if(this.settings.type == 'linear')
+                    this.initLinearChart();
+        
+                function update(){
+                    if(_self.blocked) return
+                    _self.blocked = true;
+                    _self.updateChart();
+                    _self.updateLabel();
+                }
+
+                if( window.outerHeight > _self.elemOffset.top) {
+                    console.log('start screen');
+                    update(); 
+                }
+
+                $window.on('wheel', function(e) {
+                    const deltaY = e.originalEvent && e.originalEvent.deltaY;
+                    const direction = (deltaY < 0) ? 'up' : 'down';
+                    if( _self.blocked ) return
+                    _self.elemOffset = _self.$elem.offset(); // perf?
+
+
+                    if(direction === 'down' && window.scrollY + window.outerHeight * 0.9 > _self.elemOffset.top){
+                    
+                        console.log('scroll down');
+                        update(); 
+                    }   
+                    if(direction === 'up' && window.scrollY + window.outerHeight * 0.1 < _self.elemOffset.top){
+                        console.log('scroll up');
+
+                        update(); 
+                    }
+
+                    if( window.scrollY + window.outerHeight * 1.5 <  _self.elemOffset.top || window.scrollY - window.outerHeight * 0.5   > _self.elemOffset.top){
+                        console.log('outer');
+                        _self.blocked = false;
+                    }
+                })
+            }
+    
+            initPieChart(){
+                var width = this.$chart.width(),
+                    height = 100,
+                    radius = Math.min(width, height) / 2,
+                    $svg = this.$chart.find('svg');
+        
+                this.$active = this.$chart.find('circle.active');
+        
+                $svg.attr('width', width).attr('height', height);
+                $svg.find('circle').attr('cx', radius).attr('cy', radius).attr('r', radius - 10);
+        
+                TweenMax.set(this.$active, {drawSVG:"0% 0%"});
+            }
+        
+            initLinearChart(){
+                var width = this.$chart.width(),
+                    height = 100,
+                    $svg = this.$chart.find('svg');
+        
+                this.$active = this.$chart.find('line.active');
+        
+                $svg.attr('width', width).attr('height', height);
+                $svg.find('line').attr('x2', width);
+        
+                TweenMax.set(this.$active, {drawSVG:"0% 0%"});
+            }
+        
+            updateLabel(){
+                var _self = this;
+        
+                this.$elem.find('.bitcoin-counter-label__wrap__data .label__number').each(function(){
+                    var counter = { var: 0},
+                        $this = $(this);
+        
+                    TweenMax.to(counter, _self.settings.duration, {
+                        var: parseInt( $this.data('number') ),
+                        onUpdate: function () {
+                            $this.text(~~counter.var);
+                        }
+                    });
+                });
+            }
+        
+            updateChart(){
+                if(!this.$active)
+                    return;
+        
+                TweenMax.to(this.$active, this.settings.duration, {drawSVG:"0% "+this.settings.percentage+"%"});
+            }
+        }
+
+        function init(){
+            $('.bitcoin-counter').each(function(){
+                new CounterClass($(this));
+            });
+
+        }
+
+        return {
+            init: init
+        }
+    
+    })(jQuery );
+    
+
     // /* ====== ON WINDOW LOAD ====== */
     $window.load(function() {
         $('html').addClass('is--loaded');
- 
+
+        
         Sliders.init();
         Likes.init();
         Share.init();
         BitcoinPlot.init();
         Coinmarketcap.init();
         BitcoinSlider.init();
+        Counter.init();
 
         tooltipTrigger();
         keepSubmenusInViewport(); 
@@ -806,16 +940,6 @@
         handleLongSubMenus();
         hideCategoryDescription();
 
-        // After FacetWP fetches new items,
-        // scroll listings page to top to see
-        // all new loaded items.
-        if ($body.is('.page-listings')) {
-            $(document).on('facetwp-loaded', function() {
-                TweenLite.to(window, 1, {
-                    scrollTo: 0
-                });
-            });
-        }
     }
     /* ====== HELPER FUNCTIONS ====== */
 

@@ -157,8 +157,8 @@ function bitcoin_scripts() {
 
 	global $post;
 	$bitcoin_scripts_deps = array('jquery');
-	wp_enqueue_script( 'tween-lite', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js', array( 'jquery' ) );
-	$bitcoin_scripts_deps[] = 'tween-lite';
+	wp_enqueue_script( 'tween-max', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js', array( 'jquery' ) );
+	$bitcoin_scripts_deps[] = 'tween-max';
 	wp_enqueue_script('imagesloaded', '//unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js', array( 'jquery' ) );
 	$bitcoin_scripts_deps[] = 'imagesloaded';
 	wp_enqueue_script('polyfill', '//cdn.polyfill.io/v2/polyfill.min.js', array( 'jquery' ) );
@@ -177,7 +177,7 @@ function bitcoin_scripts() {
 	$bitcoin_scripts_deps[] = 'slick';
 
 	wp_enqueue_style( 'slick-style', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css' );
-	wp_enqueue_style('slick-style-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
+	//wp_enqueue_style('slick-style-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
 
 	wp_register_script('highcharts', '//code.highcharts.com/highcharts.js', array( 'jquery' ));
 	$bitcoin_scripts_deps[] = 'highcharts';

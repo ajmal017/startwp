@@ -219,7 +219,7 @@ async function minifyJs(filename) {
   const orig = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
     .map(async file  => {
       const name = file;
-      if(filename && filename.split('\\').join('/') != name) return
+      //if(filename && filename.split('\\').join('/') != name) return
 
       console.log('bundling... \n %s', path.parse(name).name)
       const bundle = await rollup.rollup({

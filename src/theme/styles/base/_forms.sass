@@ -163,6 +163,9 @@ textarea
     box-shadow: none
     font-size: 14.95px
     line-height: normal
+    -webkit-appearance: none
+    appearance: none
+
 
 input::-webkit-input-placeholder,
 select::-webkit-input-placeholder,
@@ -172,15 +175,20 @@ textarea::-webkit-input-placeholder
     font-weight: 300
     opacity: 1
 
+option
+    font-size: 18px
+    background-color: #ffffff
 
 
 select 
     background-image: url("assets/img/select-arrow.svg")
-    background-position: calc(100% - 10px) 15px
+    background-position: calc(100% - 10px) 18px
     background-repeat: no-repeat
     cursor: pointer 
     padding-right: 32px
     white-space: nowrap
+    padding-top: 0px 
+    padding-bottom: 0px 
 
 
 label 
@@ -211,6 +219,12 @@ input[type="checkbox"]:checked:before
 
 input[type="checkbox"]:focus 
     border-color: #484848
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button 
+    -webkit-appearance: none
+    margin: 0
 
 /**
  ------------------------------------*	2. $Checkboxes and radios

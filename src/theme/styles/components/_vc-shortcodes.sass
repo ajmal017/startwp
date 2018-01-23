@@ -1,4 +1,5 @@
 .site
+    // Visual Composer shortcodes
     .vc_general.vc_btn3
         padding-top: 10px 
         padding-bottom: 10px 
@@ -35,6 +36,26 @@
     .wpb_video_wrapper .jetpack-video-wrapper
         margin-bottom: 0
 
+
+    .vc_tta-panel-heading
+        border: none !important
+
+    .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel-title>a,
+    .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel-body > div
+        padding-left: 80px !important
+
+    .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading:focus, 
+    .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading:hover
+        background-color: transparent !important
+
+
+    .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-title>a:hover,
+    .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel-heading:focus .vc_tta-controls-icon::after, .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel-heading:focus .vc_tta-controls-icon::before, .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel-heading:hover .vc_tta-controls-icon::after, .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel-heading:hover .vc_tta-controls-icon::before
+        color: inherit !important
+        border-color:  inherit !important
+
+    // Bitcoin Shortcodes 
+
     .bitcoin__slider 
         margin-left: -20px  
         margin-right: -20px
@@ -42,16 +63,23 @@
         .slick-next
             right: 15px
             &:before
-                display: block
-                transform: scale(.5)
-                content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAdCAYAAADsMO9vAAABZ0lEQVRYR9WYfU0EMRTEZxSABFAAKGBxgAM4BzgAFCABHIADDgUcDpAACoZM0t2UpWzaHOReX7L/tdn5te+zxI5N0gGAVwBPJFetcti64a/XJ4ANgD0AtyRvWv6xcwCLlXQMYJ0gViQfaiFCACSIAcBzEl4NEQYgQVwCuG+BCAVQgDgjadf61cIBzCA+ABjCQV60kAAJwtnoGsAiRFiABOFsdLEEERqgAHFI0jcyWXiAGYRjwTExQXQBkCCcjU4BfIPoCWA/VeujHIKSrgDc1ZbuhnXvAPxtY270/JVsQ/LkPwG2EV6z94Xk0JsLuVdy4/cGYHAw9wTwCOA8F+9r6gJAkhs8N3rTyY8+Fh4gE//pgO6qkM3E2+d/NHVhb0DS2Mz55Iviw8aApHGwWRQfEiATb319DTQz8VVzcZgYkNTvUJ+eVVxl3bBVnXyYOpC9zFl8fw9bkizc+X1N0tmnycLEQJPqbPEXQA2cHjYWjdwAAAAASUVORK5CYII=')
+                @extend %icon
+                content: $fa-var-long-arrow-right
+                color: white
+                font-size: 25px
+                margin-right: -5px
+                margin-top: 2px
         .slick-prev
             left: 15px
             &:before
-                display: block
-                transform: rotateY(180deg) scale(.5)
-                content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAdCAYAAADsMO9vAAABZ0lEQVRYR9WYfU0EMRTEZxSABFAAKGBxgAM4BzgAFCABHIADDgUcDpAACoZM0t2UpWzaHOReX7L/tdn5te+zxI5N0gGAVwBPJFetcti64a/XJ4ANgD0AtyRvWv6xcwCLlXQMYJ0gViQfaiFCACSIAcBzEl4NEQYgQVwCuG+BCAVQgDgjadf61cIBzCA+ABjCQV60kAAJwtnoGsAiRFiABOFsdLEEERqgAHFI0jcyWXiAGYRjwTExQXQBkCCcjU4BfIPoCWA/VeujHIKSrgDc1ZbuhnXvAPxtY270/JVsQ/LkPwG2EV6z94Xk0JsLuVdy4/cGYHAw9wTwCOA8F+9r6gJAkhs8N3rTyY8+Fh4gE//pgO6qkM3E2+d/NHVhb0DS2Mz55Iviw8aApHGwWRQfEiATb319DTQz8VVzcZgYkNTvUJ+eVVxl3bBVnXyYOpC9zFl8fw9bkizc+X1N0tmnycLEQJPqbPEXQA2cHjYWjdwAAAAASUVORK5CYII=)           
+                @extend %icon
+                content: $fa-var-long-arrow-left
+                color: white
+                font-size: 25px
+                margin-right: -5px
+                margin-top: 2px
         .slick-arrow
+            font-size: 0px
             width: 50px
             height: 50px
             border-radius: 50%
@@ -75,7 +103,8 @@
                     width: 60px
                     height: 4px
                     display: block
-                    background: black
+                    background: rgba(0,0,0,.7)
+
 
 
 
@@ -102,8 +131,9 @@
                 .testimonials__image
                     height: 164px
                     img
-                        height: 100%
-                        width: auto
+                        width: 100%
+                        object-fit: cover
+                        height: auto
 
         &__content
             padding: 40px 60px
@@ -114,27 +144,216 @@
                 display: inline-block
     
     .bitcoin-video-right
-        perspective: 1000px
-        perspective-origin: center
-        > div
-            transition: transform .5s ease-in-out   
-            transform: rotate3d(0, 1, 0, -20deg) scale(.95)
-            transform-origin:  center
-            &:hover
-                transform: rotate3d(0,1,0,0deg) scale(1)
-            iframe
-                border-radius: 8px
-                overflow: hidden
-                box-shadow: 0 16px 30px rgba(0, 0, 0, 0.10)
+        +rmin(769)
+            perspective: 1000px
+            perspective-origin: center
+            > div
+                transition: transform .5s ease-in-out   
+                transform: rotate3d(0, 1, 0, -20deg) scale(.95)
+                transform-origin:  center
+                &:hover
+                    transform: rotate3d(0,1,0,0deg) scale(1)
+                iframe
+                    border-radius: 8px
+                    overflow: hidden
+                    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.10)
 
     .bitcoin-video-left
-        perspective: 1000px
-        perspective-origin: center
-        > div
-            transition: transform .5s ease-in-out   
-            border-radius: 10px
+        +rmin(769)
+            perspective: 1000px
+            perspective-origin: center
+            > div
+                transition: transform .5s ease-in-out   
+                border-radius: 10px
+                overflow: hidden
+                transform: rotate3d(0, 1, 0, 20deg) scale(.95)
+                transform-origin:  center
+                &:hover
+                    transform: rotate3d(0,1,0,0deg) scale(1)
+        
+    .bitcoin-calc
+        &__in
+            display: flex
+            flex-flow: column
+            justify-content: center
+            align-items: center
+            width: 100%
+            margin: 40px 0
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12)
+
+        
+        &__header
+            width: 263px
+            height: 35px
+            line-height: 35px
+            border-radius: 27px
+            background-color: #6b7c93
+            color: #ffffff
+            font-size: 17px
+            text-transform: uppercase
+            text-align: center
+            margin-top: -15px
+        &__entry,
+        &__stats
+            display: flex
+            align-items: baseline
+            justify-content: center
+            height: auto
+            width: 100%
             overflow: hidden
-            transform: rotate3d(0, 1, 0, 20deg) scale(.95)
-            transform-origin:  center
-            &:hover
-                transform: rotate3d(0,1,0,0deg) scale(1)
+            background-color: #ffffff
+            +r(768)
+                flex-direction: column
+        &__entry
+            border-radius: 4px 4px 0 0
+            display: flex
+            align-items: center
+            justify-content: space-around
+            width: 760px
+            padding: 0 0 20px
+            position: relative
+            +r(768)
+                width: 100%
+            input,
+            select
+                width: 94px
+                border: 1px solid #e4e6ea
+            input
+                width: 160px
+            &__coin,
+            &__currency
+                .bitcoin-calc__error
+                    display: none
+                    position: absolute
+                    top: 80px
+                    color: rgba(219, 0, 0, .63)
+                    font-size: 10px
+                &.invalid 
+                    .bitcoin-calc__error
+                        display: block
+                    input
+                        border-color: rgba(219, 0, 0, .63)
+            &__coin
+                &:after
+                    content: ''
+                    position: absolute
+                    left: 50%
+                    top: 5px
+                    display: block
+                    width: 2px
+                    height: 65px
+                    border: 1px solid #e4e6ea
+                    +r(768)
+                        content: none
+        &__stats
+            border-radius:  0 0 4px 4px
+            background-color: #f6f9fc
+            &__row
+                display: flex
+            ul
+                display: flex
+                justify-content: space-between
+                width: 100%
+                padding: 70px
+                list-style: none
+                +r(768)
+                    flex-direction: column
+                li
+                    display: flex
+                    flex-direction: column
+                    align-items: center
+                    justify-content: center
+                    .bitcoin-calc__stats__symbol
+                        margin-right: 5px 
+                        color: #8f6ed5
+                    .bitcoin-calc__stats__amount
+                        color: #8f6ed5
+                        font-size: 17px
+                        font-weight: 700
+                        line-height: 26px
+                        margin: 0
+                    .bitcoin-calc__stats__decs
+                        color: #586881
+                        font-size: 16px
+                        font-weight: 400
+                        line-height: 26px
+
+    .bitcoin-counter
+        position: relative
+        &__wrap 
+            max-width: 600px
+            margin-left: auto
+            margin-right: auto
+            position: relative
+    
+            
+        
+        &--pie 
+            .bitcoin-counter__holder
+                transform: rotate(-90deg)
+            
+        
+
+        &--linear 
+            margin-bottom: 20px
+            .bitcoin-counter__description 
+                padding: 0
+                text-align: left
+            
+            .bitcoin-counter__wrap 
+                max-width: 100%
+            
+
+            .bitcoin-counter__holder,
+            .label__wrap 
+                position: relative
+                display: inline-block
+                vertical-align: middle
+                letter-spacing: 0
+                line-height: 0
+                font-size: 0
+            
+
+            .bitcoin-counter__holder 
+                width: calc(100% - 95px)
+            
+            .bitcoin-counter-label__wrap 
+                position: relative
+                top: -2px
+                width: 90px
+                padding-left: 10px
+                text-align: right
+                &__data 
+                    font-size: 20px
+                    line-height: 27px
+                
+            
+        &__image
+            width: 74px
+            margin: 0 auto
+            img
+                width: 100%
+                height: auto
+                padding-bottom: 20px 
+        &--text 
+            text-align: center
+
+            .bitcoin-counter__holder,
+            .bitcoin-counter-label__wrap 
+                position: relative
+                &__data 
+                    margin: auto
+                    font-size: 30px
+                    line-height: 41px
+                    font-weight: 400
+
+        .bitcoin-counter__description 
+            font-weight: 400
+            text-align: center
+            padding: 5px 0 20px
+            margin-top: 0
+        
+
+        .bitcoin-counter__holder 
+            padding-bottom: 100%
+    

@@ -242,7 +242,6 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				'front_page_layouts_section' => array(
 					'title'   => __( 'Front Page', 'bitcoin' ),
 					'options' => array(
-
 						'frontpage_content_width'   => array(
 							'type'        => 'range',
 							'label'       => __( 'Container Width', 'bitcoin' ),
@@ -260,32 +259,6 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'property' => 'max-width',
 									'selector' => '.frontpage-area',
 									'unit'     => 'px',
-								)
-							)
-						),
-						'sections_vertical_margins' => array(
-							'type'        => 'range',
-							'label'       => __( 'Sections Vertical Margins', 'bitcoin' ),
-							'live'        => true,
-							'default'     => 90,
-							'input_attrs' => array(
-								'min'          => 30,
-								'max'          => 120,
-								'step'         => 6,
-								'data-preview' => true
-							),
-							'css'         => array(
-								array(
-									'property' => 'padding-top',
-									'selector' => '.front-page-section',
-									'unit'     => 'px',
-									'media'    => ' only screen and (min-width: 900px)',
-								),
-								array(
-									'property' => 'padding-bottom',
-									'selector' => '.front-page-section',
-									'unit'     => 'px',
-									'media'    => 'only screen and (min-width: 900px) ',
 								)
 							)
 						)
@@ -339,7 +312,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'type'        => 'range',
 							'label'       => __( 'Sections Vertical Margins', 'bitcoin' ),
 							'live'        => true,
-							'default'     => 20,
+							'default'     => 50,
 							'input_attrs' => array(
 								'min'          => 0,
 								'max'          => 120,
@@ -348,16 +321,16 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							),
 							'css'         => array(
 								array(
-									'property' => 'padding-top',
+									'property' => 'margin-top',
 									'selector' => '.content-area',
 									'unit'     => 'px',
 									'media'    => ' only screen and (min-width: 900px)',
 								),
 								array(
-									'property' => 'padding-bottom',
+									'property' => 'margin-bottom',
 									'selector' => '.content-area',
 									'unit'     => 'px',
-									'media'    => 'only screen and (min-width: 900px) ',
+									'media'    => ' only screen and (min-width: 900px) ',
 								)
 							)
 							
@@ -1083,7 +1056,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'color',
-									'selector' => '.form-control, input',
+									'selector' => '.form-control, input, textarea',
 									'callback_filter' => 'bitcoin_customify_darker_callback'
 								),
 								array(
@@ -1719,9 +1692,9 @@ if ( ! function_exists( 'bitcoin_customify_darker_callback' ) ) {
 
 if ( ! function_exists( 'bitcoin_customify_lighter_callback' ) ) {
 	function bitcoin_customify_lighter_callback( $value, $selector, $property, $unit ) {
-		$lighenValue = -10000;
+		$lighenValue = -100;
 		if ( $value == '#ffffff' ) {
-			$lighenValue = -10000;
+			$lighenValue = -100;
 		} // #FFFFFF -> #F9F9F9
 		$output = $selector . '{' . $property . ': ' . bitcoin_color_darken( $value, $lighenValue ) . '}';
 

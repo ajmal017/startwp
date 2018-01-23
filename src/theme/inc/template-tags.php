@@ -353,9 +353,12 @@ function bitcoin_wrap_images_in_figure( $content ) {
 				$content );
 	}
 
+
 	return $content;
 }
 add_filter( 'the_content', 'bitcoin_wrap_images_in_figure' );
+
+
 
 //We need to use a class so we can pass the $class variable to the callback function
 class BitcoinWrapImagesInFigureCallback {
@@ -363,7 +366,9 @@ class BitcoinWrapImagesInFigureCallback {
 	function __construct( $class ) {
 		$this->class = $class;
 	}
+
 	public function callback( $match ) {
+
 		if ( empty( $match[1] ) ) {
 			return $match[0];
 		}

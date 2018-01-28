@@ -60,12 +60,12 @@ if ( ! function_exists( 'bitcoin_display_logo' ) ) {
 		$header_transparent = bitcoin_get_option( 'header_transparent' );
 		$header_transparent_blog = bitcoin_get_option( 'header_transparent_blog' );
 		
-		if ( ( $header_transparent && is_page_template( 'page-templates/front_page.php' ) ) || ( !is_front_page() && is_home()  &&  $header_transparent_blog ) && ! empty( $logo_invert[0] ) ) {
-			$html = sprintf( '<div class="site-branding  site-branding--image"><a href="%1$s" class="custom-logo-link  custom-logo-link--light" rel="home" itemprop="url">%2$s</a></div>',
+		if ((( $header_transparent && is_page_template( 'page-templates/front_page.php' ) ) || ( !is_front_page() && is_home()  &&  $header_transparent_blog )) && ! empty( $logo_invert[0] ) ) {
+			
+			$html = sprintf( '<div class="site-branding  site-branding--image"><a href="%1$s" class="custom-logo-link  custom-logo-link--light" rel="home" >%2$s</a></div>',
 				esc_url( home_url( '/' ) ),
 				wp_get_attachment_image( bitcoin_get_option('logo_invert'), 'full', false, array(
-					'class'    => 'custom-logo',
-					'itemprop' => 'logo',
+					'class'    => 'custom-logo'
 				) )
 			);
 
@@ -85,6 +85,7 @@ if ( ! function_exists( 'bitcoin_display_logo' ) ) {
 		}
 		// or else display the text logo.
 		else { ?>
+		
 			<div class="site-branding">
 				<h1 class="site-title  site-title--text"><a class="site-logo-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			</div><!-- .site-branding -->

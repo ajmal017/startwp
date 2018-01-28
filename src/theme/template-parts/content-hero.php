@@ -90,10 +90,11 @@
                 </div>
             <?php } elseif ( is_404()  ) { ?>
 
-            <div class="hero-header__content-area__wrapper">
-
+            <div class="hero-header__content-area__wrapper hero-header__content--404 ">
+                <div style="height: 150px"></div>
                 <h1 class="hero-title"><?php esc_html_e( '404', 'bitcoin' ); ?></h1>
                 <?php get_template_part( 'template-parts/content', 'none' ); ?>
+                <div style="height: 150px"></div>
                
             </div>
 

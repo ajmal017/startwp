@@ -18,14 +18,11 @@ class WPBakeryShortCode_Bitcoin_Testimonials extends  WPBakeryShortCode
 
         $output = '';
 
-        //var_dump($content);
-
-
         $output .= '<div class="testimonials"> <div class="testimonials__in '.$css_class.'">';
                 
         $output .= '<div class="testimonials__image">' .wp_get_attachment_image( $image, 'full') . '</div>';
     
-        $output .= '<div class="testimonials__content">' . $content . '</div>';
+        $output .= '<div class="testimonials__content">' .  wpb_js_remove_wpautop($content, true) . '</div>';
 
         $output .= '</div></div>';
 
@@ -53,9 +50,7 @@ $opts = array(
             'type' => 'textarea_html',
             'holder' => 'div',
             'heading' => esc_html__( 'Content', 'bitcoin' ),
-            'param_name' => 'content',
-            'description' => esc_html__( 'Select image', 'bitcoin' ),
-            'value' => __( '<p>I am text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>', 'js_composer' ),
+            'param_name' => 'content'
         ),
         array(
             'type' => 'css_editor',

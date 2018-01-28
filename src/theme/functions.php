@@ -106,6 +106,7 @@ if ( ! function_exists( 'bitcoin_setup' ) ) :
 
 		add_action('loop_start', 'jptweak_remove_share');
 
+
 	}
 endif; // bitcoin_setup
 add_action( 'after_setup_theme', 'bitcoin_setup' );
@@ -118,7 +119,7 @@ add_action( 'after_setup_theme', 'bitcoin_setup' );
  * @global int $content_width
  */
 function bitcoin_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'bitcoin_content_width', 1050, 0 );
+	$GLOBALS['content_width'] = apply_filters( 'bitcoin_content_width', 1140, 0 );
 }
 add_action( 'after_setup_theme', 'bitcoin_content_width', 0 );
 

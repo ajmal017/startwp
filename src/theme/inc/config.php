@@ -303,7 +303,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'         => array(
 								array(
 									'property' => 'max-width',
-									'selector' => '.blog .content-area__wrapper',
+									'selector' => '.blog .content-area__wrapper, .hero-header__content-area__wrapper',
 									'unit'     => 'px',
 								)
 							)
@@ -322,13 +322,13 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'         => array(
 								array(
 									'property' => 'margin-top',
-									'selector' => '.content-area',
+									'selector' => '.content-area, .widget-area__posts',
 									'unit'     => 'px',
 									'media'    => ' only screen and (min-width: 900px)',
 								),
 								array(
 									'property' => 'margin-bottom',
-									'selector' => '.content-area',
+									'selector' => '.content-area, .widget-area__posts',
 									'unit'     => 'px',
 									'media'    => ' only screen and (min-width: 900px) ',
 								)
@@ -813,7 +813,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'fill',
-									'selector' => '.grid .card.format-quote .bitcoin__icon svg use'
+									'selector' => '.grid .card.format-quote .bitcoin__icon svg use, .grid .card.format-quote .bitcoin__icon svg path'
 								)
 							)
 						),
@@ -933,7 +933,10 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'selector' => '
 									.grid--tile .bitcoin__icon use,
 									.single-post .likes-count .bitcoin__icon use, 
-									.single-post .comments-count .bitcoin__icon use'
+									.single-post .comments-count .bitcoin__icon use,
+									.grid--tile .bitcoin__icon path,
+									.single-post .likes-count .bitcoin__icon path, 
+									.single-post .comments-count .bitcoin__icon path'
 								)
 							)
 						)
@@ -965,6 +968,10 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'color',
 									'selector' => '.widget--footer',
+								),
+								array(
+									'property' => 'fill',
+									'selector' => '.widget_bitcoin_socials use,.widget_bitcoin_socials path' 
 								)
 							)
 						),
@@ -1002,11 +1009,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'background',
 									'selector' => 'progress::-webkit-progress-bar,
-									progress::-moz-progress-bar. progress::-webkit-progress-value',
-								),
-								array(
-									'property' => 'background',
-									'selector' => '*::selection, *::-moz-selection',
+									progress::-moz-progress-bar, progress::-webkit-progress-value',
 								),
 								array(
 									'property' => 'background',
@@ -1052,7 +1055,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'color',
-									'selector' => '.form-control::placeholder, input::placeholder'
+									'selector' => '.form-control:placeholder, input:placeholder'
 								),
 								array(
 									'property' => 'color',
@@ -1061,8 +1064,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'color',
-									'selector' => '.form-control::focus::placeholder,
-									input::focus::placeholder',
+									'selector' => '.form-control:focus:placeholder,
+									input:focus:placeholder',
 									'callback_filter ' => 'bitcoin_customify_lighter_callback'
 								),
 								array(

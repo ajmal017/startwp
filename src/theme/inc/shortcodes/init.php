@@ -9,7 +9,7 @@ function bitcoin_init_vc_params(){
 }
 
 function bitcoin_init_vc_shortcodes(){
-    
+
     include_once( get_template_directory() . '/inc/shortcodes/extend_vc.php' );
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_plot.php' );
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_blog.php' );
@@ -17,5 +17,10 @@ function bitcoin_init_vc_shortcodes(){
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_container.php' );
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_calc.php' );
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_counter.php' );
+    include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_team.php' );
+    include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_card.php' );
+    include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_mark.php' );
+    include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_distribution.php' );
+    include_once( get_template_directory() . '/inc/shortcodes/vc_bitcoin_counterdown.php' );
 
 }

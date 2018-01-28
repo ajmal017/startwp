@@ -116,7 +116,23 @@ hr
     text-rendering: auto
     vertical-align: middle
     margin-right: 5px
+    +tr(opacity .5s)
     &--opacity2
         opacity: .2
+        &:hover
+            opacity: 1
     &--opacity5
         opacity: .5
+        &:hover
+            opacity: 1
+
+    &--anim
+        animation: 1s linear 0s infinite alternate wait
+
+
++keyframes(wait) 
+  from 
+    opacity: .2
+  to 
+    opacity: 1
+  

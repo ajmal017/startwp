@@ -33,10 +33,20 @@ if ( class_exists( 'SitePress' ) ) {
 
 
 /**
+ * Load Timeline Express compatibility file.
+ */
+if ( class_exists( 'TimelineExpressBase' ) ) {
+	require get_template_directory() . '/inc/integrations/timeline-express.php';
+}
+
+/**
  * Load ShortCodes .
  */
 if ( class_exists( 'WPBakeryShortCode' ) ) {
 	require get_template_directory() . '/inc/shortcodes/init.php';
 }
+
+
+
 
 

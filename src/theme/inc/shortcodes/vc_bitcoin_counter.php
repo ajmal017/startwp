@@ -87,7 +87,7 @@ $opts = array(
     'name'		    => esc_html__( 'Dynamic Counter', 'bitcoin'),
     'base'		    => 'bitcoin_counter',
     'controls'	    => 'edit_popup_delete',
-    'icon' => get_template_directory_uri() . '/assets/img/vc/bitcoin_counter.png',
+    'icon'          => get_template_directory_uri() . '/assets/img/vc/bitcoin_counter.png',
     'category'		=> esc_html__('Developed for Bitcoin', 'bitcoin'),
     'params'		=> array(
 
@@ -122,13 +122,13 @@ $opts = array(
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Dynamic Counter Label(Ex. 100)', 'bitcoin' ),
+            'heading' => esc_html__( 'Label(Ex. 100)', 'bitcoin' ),
             'description' => esc_html__('Set numeric values, will be dynamically changed.', 'bitcoin'),
             'param_name' => 'label',
         ),
         array(
             'type' => 'textarea',
-            'heading' => esc_html__( 'Counter Description(Ex. Days since the start)', 'bitcoin' ),
+            'heading' => esc_html__( 'Description(Ex. Days since the start)', 'bitcoin' ),
             'param_name' => 'desc',
         ),
         array(
@@ -139,13 +139,13 @@ $opts = array(
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Dynamic Counter Label Color', 'bitcoin' ),
+            'heading' => esc_html__( 'Label color', 'bitcoin' ),
             'param_name' => 'number_color',
             "value" => '#32325d',
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Counter Description Color', 'bitcoin' ),
+            'heading' => esc_html__( 'Description color', 'bitcoin' ),
             'param_name' => 'text_color',
             "value" => '#6b7c93',
         ),

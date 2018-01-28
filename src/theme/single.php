@@ -25,9 +25,9 @@ get_header(); ?>
 									comments_template();
 								endif;
 							?>
-				
 
 					<?php endwhile; // End of the loop. ?>
+					<? wp_link_pages(); ?>
 		
 
 		</main><!-- #main -->

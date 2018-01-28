@@ -2,8 +2,6 @@
 /**
  * Bitcoin required or recommended plugins
  *
- * @package Bitcoin
- * @since Bitcoin 1.0
  */
 
 require_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
@@ -47,17 +45,23 @@ function bitcoin_register_required_plugins() {
 		),
 
 		array(
-			'name' => 'Contact Form 7',
-			'slug' => 'contact-form-7',
-			'required' => false
+			'name'      		 => 'Timeline Express',
+			'slug'      		 => 'timeline-express',
+			'required'  		 => true
 		),
 
 		array(
-            'name'      => esc_html__('WPBakery Visual Composer', 'forit' ),
-            'slug'      => 'js_composer',
-            'source'    => get_template_directory() . '/inc/required-plugins/visual-composer/js_composer.zip',
-            'required'  => true,
-        )
+			'name' => 'Contact Form 7',
+			'slug' => 'contact-form-7',
+			'required' => true
+		),
+
+		array(
+			'name'      => esc_html__('WPBakery Visual Composer', 'forit' ),
+			'slug'      => 'js_composer',
+			'source'    => get_template_directory() . '/inc/required-plugins/visual-composer/js_composer.zip',
+			'required'  => true,
+		)
 		
 	);
 

@@ -201,15 +201,14 @@ label
 input[type="checkbox"] 
     border: 1px solid rgba(0, 0, 0, 0.075) 
     cursor: pointer
-    height: 22px
+    height: 22px !important
     position: relative
     vertical-align: middle
-    width: 22px
-
-    -webkit-appearance: none
+    width: 22px !important
+    -webkit-appearance: none !important
 
 input[type="checkbox"]:checked:before 
-    content: ""
+    content: "✔"
     left: 50%
     position: absolute
     top: 50%

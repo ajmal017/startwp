@@ -45,10 +45,201 @@ function bitcoin_register_widget_areas() {
 	
 	register_widget('Bitcoin_Coinmarketcap' );
 
+	register_widget('Bitcoin_WPCOM_social_media_icons_widget' );
 
 }
 
+
+class Bitcoin_WPCOM_social_media_icons_widget extends WP_Widget {
+
+	/**
+	 * Defaults
+	 *
+	 * @var mixed
+	 * @access private
+	 */
+	private $defaults;
+
+	/**
+	 * Services
+	 *
+	 * @var mixed
+	 * @access private
+	 */
+	private $services;
+
+
+	/**
+	 * __construct function.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function __construct() {
+		parent::__construct(
+			'bitcoin_socials', // Base ID
+			'&#x1f535; ' . esc_html__( 'Bitcoin', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'Social Media Icons', 'bitcoin' ), // Name
+			array( 'description' => esc_html__( 'A simple widget that displays social media icons.', 'bitcoin' ), ) // Args
+		);
+
+		$this->defaults = array(
+			'facebook_username'   => '',
+			'twitter_username'    => '',
+			'linkedin_username'   => '',
+			'instagram_username'  => ''
+		);
+
+		$this->services = array(
+			'facebook'   => array( 'Facebook', 'https://www.facebook.com/%s/', file_get_contents(locate_template('assets/svg/social-fb.php', false, false )) ),
+			'twitter'    => array( 'Twitter', 'https://twitter.com/%s/', file_get_contents(locate_template('assets/svg/social-tw.php', false, false ))),
+			'linkedin'   => array( 'LinkedIn', 'https://www.linkedin.com/in/%s/',  file_get_contents(locate_template('assets/svg/social-in.php', false, false )) ),
+			'instagram'  => array( 'Instagram', 'https://www.instagram.com/%s/',  file_get_contents(locate_template('assets/svg/social-ig.php', false, false )) )
+		);
+	
+	}
+
+
+	/**
+	 * Widget Front End.
+	 *
+	 * @access public
+	 * @param mixed $args Arguments.
+	 * @param mixed $instance Instance.
+	 * @return void
+	 */
+	public function widget( $args, $instance ) {
+		$instance = wp_parse_args( (array) $instance, $this->defaults );
+	
+
+		$index = 10;
+		$html = array();
+		$alt_text = esc_attr__( 'View %1$s&#8217;s profile on %2$s', 'bitcoin' );
+		foreach ( $this->services as $service => $data ) {
+			list( $service_name, $url, $svg ) = $data;
+			if ( ! isset( $instance[ $service . '_username' ] ) ) {
+				continue;
+			}
+			$username = $link_username = $instance[ $service . '_username' ];
+			if ( empty( $username ) ) {
+				continue;
+			}
+			$index += 10;
+			$predefined_url = false;
+
+			/** Check if full URL entered in configuration, use it instead of tinkering **/
+			if (
+				in_array(
+					parse_url( $username, PHP_URL_SCHEME ),
+					array( 'http', 'https' )
+				)
+			) {
+				$predefined_url = $username;
+
+				// In case of a predefined link we only display the service name
+				// for screen readers
+				$alt_text = '%2$s';
+			}
+
+
+			if ( 'googleplus' === $service
+				&& ! is_numeric( $username )
+				&& substr( $username, 0, 1 ) !== '+'
+			) {
+				$link_username = '+' . $username;
+			}
+			if ( 'youtube' === $service && 'UC' === substr( $username, 0, 2 ) ) {
+				$link_username = 'channel/' . $username;
+			} else if ( 'youtube' === $service ) {
+				$link_username = 'user/' . $username;
+			}
+
+			if ( ! $predefined_url ) {
+				$predefined_url = sprintf( $url, $link_username );
+			}
+
+			$link = apply_filters(
+				'bitcoin_social_media_icons_widget_profile_link',
+				$predefined_url,
+				$service
+			);
+			$html[ $index ] = sprintf(
+				'<a href="%1$s" class="widget_bitcoin_socials__item" target="_blank"><span class="screen-reader-text">%3$s</span><i class="bitcoin-icon">%4$s</i></a>',
+				esc_attr( $link ),
+				esc_attr( $service ),
+				sprintf( $alt_text, esc_html( $username ), $service_name ),
+				$svg
+			);
+		}
+		ksort( $html );
+		$html = '<ul><li>' . join( '</li><li>', $html ) . '</li></ul>';
+
+		$html = $args['before_widget'] . $html . $args['after_widget'];
+
+
+		echo  $html;
+	}
+
+	/**
+	 * Widget Settings.
+	 *
+	 * @access public
+	 * @param mixed $instance Instance.
+	 * @return void
+	 */
+	public function form( $instance ) {
+		$instance = wp_parse_args( (array) $instance, $this->defaults );
+		
+		foreach ( $this->services as $service => $data ) {
+			list( $service_name, $url ) = $data;
+			?>
+				<p>
+					<label for="<?php echo esc_attr( $this->get_field_id( $service . '_username' ) ); ?>">
+					<?php
+						/* translators: %s is a social network name, e.g. Facebook. */
+						printf( __( '%s username:', 'bitcoin' ), $service_name );
+					?>
+				</label>
+				<input
+						class="widefat"
+						id="<?php echo esc_attr( $this->get_field_id( $service . '_username' ) ); ?>"
+						name="<?php echo esc_attr( $this->get_field_name( $service . '_username' ) ); ?>"
+						type="text"
+						value="<?php echo esc_attr( $instance[ $service . '_username' ] ); ?>"
+					/>
+				</p>
+			<?php
+		}
+	}
+
+	/**
+	 * Update Widget Settings.
+	 *
+	 * @access public
+	 * @param mixed $new_instance New Instance.
+	 * @param mixed $old_instance Old Instance.
+	 * @return Instance.
+	 */
+	public function update( $new_instance, $old_instance ) {
+		$instance = (array) $old_instance;
+		foreach ( $new_instance as $field => $value ) {
+			$instance[ $field ] = sanitize_text_field( $new_instance[ $field ] );
+		}
+
+		return $instance;
+	}
+
+
+} 
+
+
+
+
+
+
+
 add_action('widgets_init', 'bitcoin_register_widget_areas' );
+
+
 
 
 function bitcoin_sidebar(){

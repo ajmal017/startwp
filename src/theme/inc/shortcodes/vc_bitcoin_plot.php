@@ -43,7 +43,7 @@ $opts = array(
     'base'		=> 'bitcoinplot',
     'controls'	=> 'edit_popup_delete',
     'category'  => esc_html__('Developed for Bitcoin', 'bitcoin'),
-    'icon' => get_template_directory_uri() . '/assets/img/vc/bitcoin_plot.png',
+    'icon'      => get_template_directory_uri() . '/assets/img/vc/bitcoin_plot.png',
     'params'	=> array(
         array(
             'type' => 'css_editor',

@@ -31,7 +31,7 @@
 			<div class="site-info">
 				<?php
 				$footer_copyright = bitcoin_get_option('footer_copyright');
-				if ( $footer_copyright ) : ?>
+				if ( $footer_copyright || $footer_copyright == '' ) : ?>
 					<div class="site-copyright-area">
 						<?php echo $footer_copyright; ?>
 					</div>

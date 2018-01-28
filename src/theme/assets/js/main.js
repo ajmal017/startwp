@@ -325,26 +325,31 @@ import { _formatCurrency } from "./calc.js"
                 event.preventDefault();
                 if(stop) return
                 var $this = $(this);
+                $this.addClass('bitcoin__icon--anim');
                 stop = true;
                 $.post(BitcoinParams.ajax.url, {
                     action: BitcoinParams.ajax.likes_action,
                     ID: $this.data("post-id")
                 }).done(function(response) {
                     stop = false
-                if (response.data.liked) {
-                    $this.addClass("likes-count--active");
+                    if (response.data.liked) {
+                        $this.addClass("likes-count--active");
 
-                    var n = $this.find(".likes-count__number").text() || 0;
+                        var n = $this.find(".likes-count__number").text() || 0;
 
-                    if (n) $this.find(".likes-count__number").text(parseInt(n) + 1);
-                } else {
-                    $this.removeClass("likes-count--active");
+                        if( !isNaN(n) ) $this.find(".likes-count__number").text(parseInt(n) + 1);
+                    } else {
+                        $this.removeClass("likes-count--active");
 
-                    var n = $this.find(".likes-count__number").text() || 0
-                    if (n) $this
-                        .find(".likes-count__number")
-                        .text(parseInt(n) <= 0 ? 0 : parseInt(n) - 1);
-                }
+                        var n = $this.find(".likes-count__number").text() || 0
+                        if(!isNaN(n)) $this
+                            .find(".likes-count__number")
+                            .text(parseInt(n) <= 0 ? 0 : parseInt(n) - 1);
+                    }
+                    $this.removeClass('bitcoin__icon--anim');
+                }).fail( _ => {
+                    stop = false;
+                    $this.removeClass('bitcoin__icon--anim');
                 });
             });
         }
@@ -744,7 +749,6 @@ import { _formatCurrency } from "./calc.js"
                 }
 
                 if( window.outerHeight > _self.elemOffset.top) {
-                    console.log('start screen');
                     update(); 
                 }
 
@@ -757,17 +761,14 @@ import { _formatCurrency } from "./calc.js"
 
                     if(direction === 'down' && window.scrollY + window.outerHeight * 0.9 > _self.elemOffset.top){
                     
-                        console.log('scroll down');
                         update(); 
                     }   
                     if(direction === 'up' && window.scrollY + window.outerHeight * 0.1 < _self.elemOffset.top){
-                        console.log('scroll up');
 
                         update(); 
                     }
 
                     if( window.scrollY + window.outerHeight * 1.5 <  _self.elemOffset.top || window.scrollY - window.outerHeight * 0.5   > _self.elemOffset.top){
-                        console.log('outer');
                         _self.blocked = false;
                     }
                 })
@@ -838,6 +839,182 @@ import { _formatCurrency } from "./calc.js"
     })(jQuery );
     
 
+ var CounterDown = (function($){
+    function initializeCounter($container){
+
+        //Useful vars
+        var isPast = false;
+
+        var countMoment = new Date( $container.data('date') ),
+            MarkLabels = {
+                data: {},
+                getLabel: function(num, labelsKey) {
+                    var label = "";
+                    this.data[labelsKey].forEach(function(elem) {
+                        if(elem.type == 'num') {
+                            if( num >= elem.rule )
+                                label = elem.label;
+                        } else if(elem.rule.test(num)) {
+                            label = elem.label;
+                            return false;
+                        }
+                    });
+                    return label;
+                },
+                setLabels: function( labelsObj ){
+                    var key = 'bitcoin-' + Math.round(Math.random() * 1000)
+                    this.data[key] = labelsObj;
+                    return key;
+                }
+            };
+        
+        $container.find('.counterDown__timer__in').each(function(index) {
+            var newLabels = $(this).find('.counterDown__timer__datamark').data('labels').split('|').map(function (elem) {
+                var rule = elem.trim().split(':');
+
+                if (!isNaN(parseInt(rule[0])))
+                    return {
+                        rule: parseInt(rule[0]),
+                        label: rule[1],
+                        type: 'num'
+                    };
+                else
+                    return {
+                        rule: new RegExp(rule[0].replace(/\#/g, '')),
+                        label: rule[1],
+                        type: 'reg'
+                    };
+            });
+
+            $(this).find('.counterDown__timer__datamark').data('labelsKey', MarkLabels.setLabels(newLabels));
+        });
+
+        setInterval(function(){
+            var borrow =  {
+                    minute: 0,
+                    hour: 0,
+                    day: 0,
+                    month: 0,
+                    year: 0
+                }
+            
+            Array.from($container.find('.counterDown__timer__in')).reverse().map(function(el) {
+                var $el = $(el),
+                    mark = $el.data('mark'),
+                    time = '',
+                    $datatime = $el.find('.counterDown__timer__datatime'),
+                    $datamark = $el.find('.counterDown__timer__datamark'),
+                    labelsKey = $datamark.data('labelsKey');
+
+                switch (mark) {
+                    case 'years':
+                        time = countMoment.getFullYear() - (new Date()).getFullYear() - borrow.year;
+                        
+                        borrow =  {
+                            minute: 0,
+                            hour: 0,
+                            day: 0,
+                            month: 0,
+                            year: 0
+                        }
+                        if(time < 0){
+                            isPast = true;
+                        }
+                        
+                        if( isPast ) time = 0;
+                        if( time == 0 )
+                            $el.addClass('counterDown__timer__datatime--hide-years');
+                        
+                        break;
+                    case 'months':
+                        time = countMoment.getMonth()  - (new Date()).getMonth() - borrow.month;
+                        if(time < 0){
+                            time += 12;
+                            borrow.year = 1
+                        }
+                        if( isPast ) time = 0;
+                        if( time == 0 )
+                            $el.addClass('counterDown__timer__datatime--hide-months');
+
+                        break;
+                    case 'days':
+                        time = countMoment.getDate() -  (new Date()).getDate() - borrow.day;
+                        if(time < 0){
+                            time += 31;
+                            borrow.month = 1
+                        }
+                        if( isPast ) time = '--';
+                        if( time == 0 )
+                            $el.addClass('counterDown__timer__datatime--hide-days');
+                            
+                        break;
+                    case 'hours':
+                        time = countMoment.getHours() - (new Date()).getHours() - borrow.hour;
+                        if(time < 0){
+                            time += 24;
+                            borrow.day = 1
+                        }
+                        if( isPast ) time = '--';
+                        if( time == 0 )
+                            $el.addClass('counterDown__timer__datatime--hide-hours');
+                        
+                        break;
+                    case 'minutes':
+                        time = countMoment.getMinutes() - (new Date()).getMinutes() - borrow.minute;
+                        if(time < 0){
+                            time += 60;
+                            borrow.hour = 1
+                        }
+                        if( isPast ) time = '--';
+                        if( time == 0 )
+                            $el.addClass('counterDown__timer__datatime--hide-minutes');
+
+                        
+                        break;
+                    case 'seconds':
+                        time = countMoment.getSeconds() - (new Date()).getSeconds();
+                        if(time < 0){
+                            time += 60;
+                            borrow.minute = 1
+                        }
+                        if( isPast ) time = '--';
+                        if( time == 0 )
+                            $el.addClass('counterDown__timer__datatime--hide-seconds');
+                        
+
+                        break;
+                
+                    default:
+                        break;
+                } 
+
+
+                $el.removeClass('hidden');
+                $datatime.text(time);
+                $datamark.text(MarkLabels.getLabel(time, labelsKey));
+
+            });
+
+        }, 1000);
+    }
+
+    function init(){
+        Array.from($('.counterDown__timer')).map(v=>{
+            initializeCounter($(v));
+        })
+    }
+
+
+    return {
+        init: init
+    }
+
+    })(jQuery);
+
+
+
+    
+
     // /* ====== ON WINDOW LOAD ====== */
     $window.load(function() {
         $('html').addClass('is--loaded');
@@ -850,6 +1027,7 @@ import { _formatCurrency } from "./calc.js"
         Coinmarketcap.init();
         BitcoinSlider.init();
         Counter.init();
+        CounterDown.init();
 
         tooltipTrigger();
         keepSubmenusInViewport(); 

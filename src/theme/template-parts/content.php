@@ -67,7 +67,7 @@
 			} elseif( $type == 'sc') {
 
 				if (filter_var($url, FILTER_VALIDATE_URL)) {
-					$audio = sprintf('[soundcloud  url="%s" %s ]', $url, 'params="color=#ff5500&auto_play=false&visual=true" width="100%" height="250" iframe="true"');
+					$audio = sprintf('[soundcloud  url="%s" %s ]', $url, 'params="color=#ff5500&auto_play=false&visual=true"  iframe="true"');
 				}
 
 			}

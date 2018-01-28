@@ -54,7 +54,65 @@
         color: inherit !important
         border-color:  inherit !important
 
-    // Bitcoin Shortcodes 
+    // TimeLine shortcode
+    .cd-timeline-icon-link:hover
+        opacity: 1 !important
+
+    .cd-timeline-img
+        width: 18px 
+        height: 18px 
+        margin-left: -9px 
+        box-shadow: -6px 4px 15px rgba(0,0,0,0.15)  
+        +tr(transform .5s)
+        +r(881)
+            margin-left: 15px
+        > span
+            display: none !important
+        &:hover,
+        &:focus
+            transform: scale(1.2)
+    #cd-timeline:before
+        top: 20px 
+        box-shadow: -6px 4px 15px rgba(0,0,0,0.15) 
+
+    .timeline-express-read-more-link
+        display: none !important
+
+    .cd-timeline-block
+        .cd-timeline-content
+            background: transparent !important
+            box-shadow: none !important
+            padding-top: 0px !important
+            margin-top: -20px
+            +r(881)
+                margin-top: 0px
+            &:before
+                +r(881)
+                    display: none
+                +rmin(822)
+                    top: 8px 
+                    left: 100% 
+        .cd-timeline-item-title
+            font-size: 22px 
+            font-weight: 700 
+            line-height: 40px 
+        .timeline-date
+            color: #5e6ee0 
+            font-size: 17px 
+            font-weight: 700 
+            font-style: normal 
+        .the-excerpt p
+            font-size: 14px
+            font-weight: 400
+
+        &:nth-child(odd)
+            +rmin(882)
+                .cd-timeline-title-container
+                    text-align: right !important
+                .the-excerpt
+                    text-align: right !important
+
+    // Bitcoin shortcodes 
 
     .bitcoin__slider 
         margin-left: -20px  
@@ -357,3 +415,278 @@
         .bitcoin-counter__holder 
             padding-bottom: 100%
     
+.team
+    &__in
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        padding: 20px
+        border-radius: 10px
+        overflow: hidden
+        margin-bottom: 20px
+        +clr
+        &.team__in--excerpt
+            display: block
+            float: left
+            min-height: 276px
+            min-width: 280px
+    &__picture
+        height: 86px
+        width: 86px
+        border-radius: 50%
+        overflow: hidden
+        .team__in--excerpt &
+            float: left
+        img
+            width: 100%
+            height: auto
+    &-info
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        padding-top: 20px
+        .team__in--excerpt &
+            display: block
+            float: left
+            padding-left: 20px 
+            padding-top: 0
+        &__name
+            margin: 0
+            margin-top: 3px
+        &__position
+            margin-bottom: 7px
+        &__social
+            display: flex
+            list-style: none  !important
+            margin: 0 !important
+            padding-left: 0 !important
+    .team__in--excerpt &__excerpt
+        padding-top: 110px
+        font-size: 14px
+        font-weight: 400
+        line-height: 26px
+
+
+.bitcoinCard
+    &__in
+        position: relative
+        width: 556px
+        margin: 0 auto
+        border-radius: 10px
+        +r(768)
+            width: 100%
+    &__title
+        font-size: 26px
+        font-weight: 700
+        position: absolute
+        top: 0
+        left: 0
+        right: 65px
+        text-transform: uppercase
+        line-height: 100%
+        bottom: 0%
+        height: 100%
+        width: 65px
+        display: flex
+        align-items: center
+        justify-content: center
+        span
+            display: inline-block
+            white-space: nowrap
+            transform: rotate(-90deg)
+
+    &__content
+        padding: 10px 35px 
+        margin-left: 65px
+        border-left: 2px solid
+    .bitcoinCard__content table
+            table-layout: fixed
+            background: transparent
+            border: none
+            border-collapse: separate
+            border-radius: 0
+            border-spacing: 0
+            font-size: inherit
+            width: 100%
+            td
+                height: 40px
+                vertical-align: top
+            td:first-child
+                padding: 0 30px 0 0
+
+.bitcoinMark
+    display: flex
+    align-content: center
+    justify-content: flex-start
+    padding: 20px 0
+    +r(768)
+        padding: 5px 0
+    &__mark
+        width: 20px
+        height: 10px
+        border-radius: 12px
+        flex: 0 0 20px
+        overflow: hidden
+        margin: 6px
+        margin-right: 15%
+    &__content
+        font-size: 14px
+        font-weight: 700
+
+
+.bitcoinDistibution
+    padding: 20px 0
+    +r(768)
+        display: flex
+    &__line
+        display: flex
+        border-radius: 10px
+        overflow: hidden
+        height: 10px
+        +r(768)
+            height: auto
+            flex-direction: column
+            width: 50%
+            border-radius: 0
+            overflow: visible
+            > div
+                height: 10px
+                margin-bottom: 10px
+
+
+    &__percentage
+        display: flex
+        justify-content: center
+        align-items: center
+        height: 10px
+        margin-top: 20px
+        +r(768)
+            margin-top: 0px
+            height: auto
+            flex-direction: column
+            width: 50%
+        > div
+            display: flex
+            justify-content: center
+            align-items: center
+            font-weight: 700
+            +r(768)
+                height: 10px
+                margin-bottom: 10px
+
+.counterDown
+    &__in
+        min-width: 360px
+        border-radius: 10px
+        overflow: hidden
+        padding: 20px 30px
+    &__title
+        margin: 0px 0 20px
+        text-align: center
+        font-size: 17px
+        font-weight: 700
+        text-transform: uppercase
+    &__timer 
+        display: flex
+        justify-content: space-between
+        text-align: center
+        margin-bottom: 10px
+        flex-wrap: wrap
+        &__datatime
+            width: 54px
+            height: 54px
+            border-radius: 4px
+            border: 1px solid #e4e6ea
+            text-align: center
+            margin-bottom: 5px
+            vertical-align: middle
+            line-height: 52px
+        &__datamark
+            height: 15px
+            opacity: .8
+            font-size: 11px
+            text-align: center
+            font-weight: 600
+    &__row
+        display: flex
+        justify-content: space-between
+        align-items: flex-start
+        position: relative
+    &-s1
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        flex: 1 1 auto
+        &__title
+            min-width: 127px
+            height: 36px
+            font-size: 26px
+            font-weight: 700
+            text-align: center
+        &__subtitle
+            height: 15px
+            font-size: 11px
+            font-weight: 600
+            text-align: center
+            opacity: .8
+    &-s2
+        display: flex
+        justify-content: center
+        flex-direction: column
+        flex: 1 1 auto
+        margin-top: 30px 
+        &__title
+            height: 23px
+            font-size: 17px
+            font-weight: 700
+            text-align: center
+        &__subtitle
+            height: 15px
+            font-size: 11px
+            font-weight: 600
+            text-align: center
+            margin-top: 30px
+            opacity: .8
+        &--left
+            align-items: flex-start
+        &--right
+            align-items: flex-end
+    &-progress
+        position: absolute
+        top: 60px
+        z-index: 10
+        height: 10px
+        width: 100%
+        opacity: .7
+        border-radius: 12px
+        overflow: hidden
+        &__done
+            position: absolute
+            z-index: 11
+            top: 0
+            height: 10px
+    &-contect
+        padding-top: 20px
+        table
+            background: transparent !important
+            border: transparent !important
+            td
+                height: auto  !important
+                padding: 0  !important
+        span
+            margin: 0
+    &__timer__datatime--hide-years
+        display: none
+        & + .counterDown__timer__datatime--hide-months
+            display: none
+            & + .counterDown__timer__datatime--hide-days
+                display: none
+                & + .counterDown__timer__datatime--hide-hours
+                    display: none
+                    & + .counterDown__timer__datatime--hide-minutes
+                        display: none
+                        & + .counterDown__timer__datatime--hide-seconds
+                            display: none

@@ -44,7 +44,7 @@ if ( ! function_exists( 'bitcoin_setup' ) ) :
 
 		// Used for Listing Cards
 		// Max Width of 450px
-		add_image_size( 'bitcoin-card-image', 350, 250, false );
+		add_image_size( 'bitcoin-card-image', 700, 500, true);
 
 		// Used for Single Listing carousel images
 		// Max Height of 800px
@@ -56,8 +56,7 @@ if ( ! function_exists( 'bitcoin_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary'            => esc_html__( 'Primary Menu', 'bitcoin' ),
-			'footer_menu'        => esc_html__( 'Footer Menu', 'bitcoin' ),
+			'primary'            => esc_html__( 'Primary Menu', 'bitcoin' )
 		) );
 
 		/*
@@ -220,6 +219,10 @@ function bitcoin_admin_scripts() {
 		wp_enqueue_script( 'bitcoin-admin-edit-scripts', get_template_directory_uri() . '/assets/js/admin/edit-page.js', array( 'jquery', 'polyfill' ), '1.0.0', true );
 
 		wp_enqueue_style( 'bitcoin-admin-edit-styles', get_template_directory_uri() . '/assets/css/admin/edit-page.css' );
+
+		wp_localize_script( 'bitcoin-admin-edit-scripts', 'BitcoinParams', array(
+			'blog_id' => get_option('page_for_posts')
+		) ); 
 		
 	}
 
@@ -231,7 +234,6 @@ add_action( 'admin_enqueue_scripts', 'bitcoin_admin_scripts' );
 
 /**
  * Load custom javascript set by theme options
- * This method is invoked by wpgrade_callback_themesetup
  * The function is executed on wp_enqueue_scripts
  */
 function bitcoin_load_custom_js_header() {

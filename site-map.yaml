@@ -40,41 +40,69 @@ PageList:
   ready: 50
 - file: http://wordpress/?post_type=wpcf7_contact_form&#038;p=11188 
   ready: 50
-- file: http://wordpress/?p=11206 
+- file: http://wordpress/?p=11384 
   ready: 50
-- file: http://wordpress/?p=11207 
+- file: http://wordpress/?p=11388 
   ready: 50
-- file: http://wordpress/?p=11210 
+- file: http://wordpress/?p=11400 
   ready: 50
-- file: http://wordpress/?p=11215 
+- file: http://wordpress/?post_type=te_announcements&#038;p=11417 
   ready: 50
-- file: http://wordpress/?p=11216 
+- file: http://wordpress/?p=11442 
   ready: 50
-- file: http://wordpress/?p=11217 
+- file: http://wordpress/?p=11443 
   ready: 50
-- file: http://wordpress/?p=11221 
+- file: http://wordpress/?p=11458 
   ready: 50
-- file: http://wordpress/?p=11223 
+- file: http://wordpress/?post_type=te_announcements&#038;p=11459 
   ready: 50
-- file: http://wordpress/?p=11256 
+- file: http://wordpress/?post_type=te_announcements&#038;p=11460 
   ready: 50
-- file: http://wordpress/?p=11266 
+- file: http://wordpress/?post_type=te_announcements&#038;p=11461 
   ready: 50
-- file: http://wordpress/?page_id=11267 
+- file: http://wordpress/?p=11462 
   ready: 50
-- file: http://wordpress/?p=11272 
+- file: http://wordpress/?p=11463 
   ready: 50
-- file: http://wordpress/?p=11294 
+- file: http://wordpress/?post_type=te_announcements&p=11464 
   ready: 50
-- file: http://wordpress/?p=11314 
+- file: http://wordpress/?p=11466 
   ready: 50
-- file: http://wordpress/?p=11315 
+- file: http://wordpress/?page_id=11467 
   ready: 50
-- file: http://wordpress/?p=11320 
+- file: http://wordpress/?post_type=te_announcements&p=11519 
   ready: 50
-- file: http://wordpress/?p=11323 
+- file: http://wordpress/?post_type=te_announcements&p=11520 
   ready: 50
-- file: http://wordpress/?p=11334 
+- file: http://wordpress/?post_type=te_announcements&p=11521 
   ready: 50
-- file: http://wordpress/?p=11345 
+- file: http://wordpress/?post_type=te_announcements&p=11522 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11523 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11524 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11525 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11526 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11527 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11528 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11529 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11530 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11531 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11532 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11533 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11534 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11535 
+  ready: 50
+- file: http://wordpress/?post_type=te_announcements&p=11536 
   ready: 50

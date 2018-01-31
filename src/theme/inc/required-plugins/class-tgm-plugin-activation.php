@@ -8,7 +8,7 @@
  * or theme author for support.
  *
  * @package   TGM-Plugin-Activation
- * @version   2.6.1 for parent theme Sad for publication on ThemeForest
+ * @version   2.6.1 for parent theme Listable for publication on ThemeForest
  * @link      http://tgmpluginactivation.com/
  * @author    Thomas Griffin, Gary Jones, Juliette Reinders Folmer
  * @copyright Copyright (c) 2011, Thomas Griffin
@@ -31,6 +31,8 @@
 	along with this program; if not, write to the Free Software
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+// forked from https://github.com/andreilupu/TGM-Plugin-Activation to avoid some errors
 
 if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
@@ -55,7 +57,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 		 *
 		 * @const string Version number.
 		 */
-		const TGMPA_VERSION = '2.6.1';
+		const TGMPA_VERSION = '2.5.2';
 
 		/**
 		 * Regular expression to test if a URL is a WP plugin repo URL.
@@ -430,6 +432,10 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					add_action( 'admin_init', array( $this, 'admin_init' ), 1 );
 					add_action( 'admin_enqueue_scripts', array( $this, 'thickbox' ) );
 				}
+			} else {
+				// Otherwise register a hidden page to avoid the "You do not have sufficient permissions to access
+				// this page." error page
+				add_action( 'admin_menu', array( $this, 'register_ghost_admin_menu' ) );
 			}
 
 			// If needed, filter plugin action links.
@@ -708,6 +714,32 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			);
 
 			$this->add_admin_menu( $args );
+		}
+
+		/**
+		 * In case there are no plugin update notices we still need to register our page since we could get redirects
+		 * on it even when there are no update notices (eg: customizer close button, or a simple back button )
+		 */
+		public function register_ghost_admin_menu() {
+			// Make sure privileges are correct to see the page.
+			if ( ! current_user_can( 'install_plugins' ) ) {
+				return;
+			}
+
+			$args = apply_filters(
+				'tgmpa_admin_menu_args',
+				array(
+					'parent_slug' => $this->parent_slug,                     // Parent Menu slug.
+					'page_title'  => $this->strings['page_title'],           // Page title.
+					'menu_title'  => $this->strings['menu_title'],           // Menu title.
+					'capability'  => $this->capability,                      // Capability.
+					'menu_slug'   => $this->menu,                            // Menu slug.
+					'function'    => array( $this, 'install_plugins_page' ), // Callback.
+				)
+			);
+
+			// register a page with a null parent, in this case it will not apear in the dashboard menu
+			$this->page_hook = call_user_func( 'add_submenu_page', null, $args['page_title'], $args['menu_title'], $args['capability'], $args['menu_slug'], $args['function'] );
 		}
 
 		/**

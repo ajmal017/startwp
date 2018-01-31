@@ -34,9 +34,7 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 					'pages'      => array( 'page' ), // Post type
 					'context'    => 'side',
 					'priority'   => 'low',
-					'show_names' => false, // Show field names on the left
-					'show_on'    => array('key'   => 'id',
-											'value' => get_option('page_for_posts')),
+					'show_names' => true, // Show field names on the left
 					'fields'     => array(
 						array(
 							'name' => esc_html__( 'Gallery Image', 'bitcoin' ),
@@ -159,27 +157,6 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 				)
 			)
 
-
-
-				// '_page_frontpage_categories' => array(
-				// 	'id'         => '_page_frontpage_listing_categories',
-				// 	'title'      => '&#x1f535; ' . esc_html__( 'Front Page &raquo; Highlighted Categories', 'bitcoin' ) . ' <a class="tooltip" title="' . esc_html__( '<p>You can select which categories to highlight, by adding their <em>slugs</em>, separated by a comma: <em>food, hotels, restaurants</em></p><p> You can change their <em>shown name</em> (in case it is too long) with this pattern: <em>slug (My Custom Name)</em></p>', 'bitcoin' ) . '"></a>',
-				// 	'pages'      => array( 'page' ), // Post type
-				// 	'priority'   => 'high',
-				// 	'show_names' => false, // Show field names on the left
-				// 	'show_on'    => array(
-				// 		'key'   => 'page-template',
-				// 		'value' => array( 'page-templates/front_page.php' ),
-				// 	),
-				// 	'fields'     => array(
-				// 		array(
-				// 			'name' => esc_html__( 'Frontend Categories', 'bitcoin' ),
-				// 			'id'   => 'frontpage_listing_categories',
-				// 			'type' => 'text',
-				// 		),
-				// 	)
-				// ),
-
 			)
 		);
 
@@ -205,48 +182,52 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 
 			$current_widgets = get_option( 'sidebars_widgets' );
 
-			// prepare the default widgets
-			$current_widgets['listing_content']         = array(
-				'listing_actions-2',
-				'listing_content-2',
-				'listing_comments-2'
-			);
-			$current_widgets['listing_sidebar']         = array(
-				'listing_sidebar_categories-2',
-				'listing_sidebar_hours-2',
-				'listing_sidebar_gallery-2',
-			);
-			$current_widgets['front_page_sections']     = array(
-				'front_page_listing_categories-2',
-				'front_page_listing_cards-2',
-				'front_page_spotlights-2',
-				'front_page_recent_posts-2',
-			);
 
+			// prepare the default widgets
+	
+
+
+			$current_widgets['sidebar-1']         = array(
+				'bitcoin_coinmarketcap-4',
+				'custom_html-2',
+				'wpcom_social_media_icons_widget-3',
+				'search-5',
+				'recent-posts-3',
+				'categories-3',
+				'tag_cloud-2'
+			);
+			$current_widgets['footer-widget-area-social']         = array(
+				'wpcom_social_media_icons_widget-2'
+			);
+			$current_widgets['footer-widget-area-1']     = array(
+				'media_image-2',
+				'text-6'
+			);
+			$current_widgets['footer-widget-area-2']     = array(
+				'nav_menu-5'
+			);
+			$current_widgets['footer-widget-area-3']     = array(
+				'categories-5'
+			);
+			$current_widgets['footer-widget-area-4']     = array(
+				'text-7',
+				'bitcoin_footer_form-3'
+			);
+			
 			update_option( 'sidebars_widgets', $current_widgets );
 			update_option( 'bitcoin_default_widgets_added', '1' );
 
-			update_option( 'widget_listing_content', array( '2' => array(), '_multiwidget' => 1 ) );
-			update_option( 'widget_listing_actions', array( '2' => array(), '_multiwidget' => 1 ) );
-			update_option( 'widget_listing_comments', array( '2' => array(), '_multiwidget' => 1 ) );
-
-			update_option( 'widget_listing_sidebar_categories', array( '2' => array(), '_multiwidget' => 1 ) );
-			update_option( 'widget_listing_sidebar_hours', array( '2' => array(), '_multiwidget' => 1 ) );
-			update_option( 'widget_listing_sidebar_gallery', array( '2' => array(), '_multiwidget' => 1 ) );
-
-			update_option( 'widget_front_page_listing_categories', array( '2' => array(), '_multiwidget' => 1 ) );
-			update_option( 'widget_front_page_listing_cards', array( '2' => array(), '_multiwidget' => 1 ) );
-			update_option( 'widget_front_page_spotlights', array( '2' => array(), '_multiwidget' => 1 ) );
-			update_option( 'widget_front_page_recent_posts', array( '2' => array(), '_multiwidget' => 1 ) );
+			update_option( 'widget_nav_menu', array('5'=> array('title' => 'INFORMATION','nav_menu'=> 28),'_multiwidget' => 1 ));
 		}
+		
 	}
 endif; // end bitcoin_config_getting_active
+
 
 add_action( 'after_switch_theme', 'bitcoin_config_getting_active' );
 
 
-// pixtypes requires these things below for a pixelgrade theme
-// for the moment we'll shim them until we update pixtypes
+// pixtypes requires these things 
 if ( ! class_exists( 'wpgrade' ) ) :
 	class wpgrade {
 		static function shortname() {

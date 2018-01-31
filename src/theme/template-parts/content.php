@@ -31,7 +31,7 @@
 
 			if( !empty( $post_meta) ) :
 				$images_id = explode(',', current( $post_meta ));
-				$image_size = array(350, 250);
+				$image_size = array(700, 500);
 
 				echo '<div class="card-gallery__slider js-gallery__slider">';
 				foreach( $images_id as $image_id){
@@ -49,6 +49,22 @@
 
 				}
 				echo '</div>';
+			else:
+				if (has_post_thumbnail()) :
+
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image'); ?>
+				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
+					<aside class="card__image" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');"></aside>
+				</a>
+
+				<?php else : ?>
+
+					<a class="card__toplink" href="<?php the_permalink(); ?>">
+						<aside class="card__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"></aside>
+					</a>
+
+				<?php endif; 
+
 			endif;
 		break;
 
@@ -103,8 +119,21 @@
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 				</div>
-			<?php endif; 
+			<?php elseif( has_post_thumbnail() ): 
+
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image'); ?>
+
+					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
+						<aside class="card__image" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');"></aside>
+					</a>
+
+			<?php else : ?>
 		
+					<a class="card__toplink" href="<?php the_permalink(); ?>">
+						<aside class="card__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"></aside>
+					</a>
+
+			<?php endif;
 		break;
 
 		case('video'):
@@ -141,13 +170,14 @@
 
 		default:
 			if (has_post_thumbnail()) :
-
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image'); ?>
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image');
+					 ?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
 					<aside class="card__image" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');"></aside>
 				</a>
 
-			<?php else : ?>
+			<?php else : 
+				?>
 
 				<a class="card__toplink" href="<?php the_permalink(); ?>">
 					<aside class="card__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"></aside>
@@ -177,7 +207,18 @@
 		<?php } ?>
 		<?php the_title( sprintf( '<h2 class="card__title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );?>
 		<div class="card__excerpt">
-			<?php the_excerpt(); ?>
+			<?php 
+				if($format == 'quote'){
+				  $c = get_the_excerpt();
+				  if( strpos($c, 'blockquote') > 0 ){
+					  echo $c;
+				  }else{
+					echo '<blockquote><strong>' . $c . '</strong></blockquote>';
+				  }
+				}else{
+					 $c = get_the_excerpt();
+					 echo '<p>' . $c . '</p>'; 
+				 } ?>
 		</div>
 		<!-- READ MORE-->
 		<?php bitcoin_permabutton(

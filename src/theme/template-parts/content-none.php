@@ -26,7 +26,7 @@
 
 		<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'bitcoin' ); ?></p>
 		
-		<a href="<?php echo get_bloginfo('url') ?>" class="btn"><?php esc_html_e('GO HOME','bitcoin'); ?></a>
+		<a href="<?php echo esc_url(home_url()) ?>" class="btn"><?php esc_html_e('GO HOME','bitcoin'); ?></a>
 
 
 	<?php endif; ?>

@@ -1,6 +1,6 @@
 {
   "name": "WPT",
-  "version": "1.0.104",
+  "version": "1.0.112",
   "description": "Wordpress, JS, Compile",
   "main": "index.js",
   "author": "IONDIGITAL",
@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.18.13",
-    "mysql": "mysqljs/mysql"
+    "mysql": "mysqljs/mysql",
+    "rollup-plugin-babel-minify": "^3.1.2"
   }
 }

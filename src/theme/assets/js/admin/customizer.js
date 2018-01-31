@@ -194,22 +194,22 @@
 	function import_demodata() {
 
 		//The demo data import-----------------------------------------------------
-		var importButton = jQuery( '#wpGrade_import_demodata_button' ),
+		var importButton = jQuery( '#Bitcoin_import_demodata_button' ),
 			container = jQuery( '#customize-control-bitcoin_options-import_demodata_button_control' );
 
 		var saveData = {
 			container: container,
-			ajaxUrl: $( 'input[name=wpGrade_import_ajax_url]', container ).val(),
-			optionSlug: $( 'input[name=wpGrade_options_page_slug]', container ).val(),
-			nonceImportPostsPages: $( 'input[name=wpGrade-nonce-import-posts-pages]', container ).val(),
-			nonceImportThemeOptions: $( 'input[name=wpGrade-nonce-import-theme-options]', container ).val(),
-			nonceImportWidgets: $( 'input[name=wpGrade-nonce-import-widgets]', container ).val(),
+			ajaxUrl: $( 'input[name=Bitcoin_import_ajax_url]', container ).val(),
+			optionSlug: $( 'input[name=Bitcoin_options_page_slug]', container ).val(),
+			nonceImportPostsPages: $( 'input[name=Bitcoin-nonce-import-posts-pages]', container ).val(),
+			nonceImportThemeOptions: $( 'input[name=Bitcoin-nonce-import-theme-options]', container ).val(),
+			nonceImportWidgets: $( 'input[name=Bitcoin-nonce-import-widgets]', container ).val(),
 			ref: $( 'input[name=_wp_http_referer]', container ).val()
 		};
 
 		//this is the ajax queue
 		var this_data = {},
-			resultcontainer = $( '.wpGrade-import-results', this_data.container );
+			resultcontainer = $( '.Bitcoin-import-results', this_data.container );
 			qInst = $.qjax( {
 				timeout: 3000,
 				ajaxSettings: {
@@ -276,14 +276,14 @@
 
 			var button = $( this );
 
-			if ( button.is( '.wpGrade_button_inactive' ) ) return false;
+			if ( button.is( '.Bitcoin_button_inactive' ) ) return false;
 
 			var activate = confirm( bitcoin_admin_js_texts.import_confirm );
 
 			if ( activate == false ) return false;
 
 			//show loader
-			$( '.wpGrade-loading-wrap', this_data.container ).css( {
+			$( '.Bitcoin-loading-wrap', this_data.container ).css( {
 				opacity: 0,
 				display: "block",
 				visibility: 'visible'
@@ -311,7 +311,7 @@
 				type: "POST",
 				url: this_data.ajaxUrl,
 				data: {
-					action: 'wpGrade_ajax_import_posts_pages',
+					action: 'Bitcoin_ajax_import_posts_pages',
 					_wpnonce: this_data.nonceImportPostsPages,
 					_wp_http_referer: this_data.ref,
 					step_number: stepNumber,
@@ -356,7 +356,7 @@
 			type: "POST",
 			url: this_data.ajaxUrl,
 			data: {
-				action: 'wpGrade_ajax_import_theme_options',
+				action: 'Bitcoin_ajax_import_theme_options',
 				_wpnonce: this_data.nonceImportThemeOptions,
 				_wp_http_referer: this_data.ref
 			}
@@ -390,7 +390,7 @@
 			type: "POST",
 			url: this_data.ajaxUrl,
 			data: {
-				action: 'wpGrade_ajax_import_widgets',
+				action: 'Bitcoin_ajax_import_widgets',
 				_wpnonce: this_data.nonceImportWidgets,
 				_wp_http_referer: this_data.ref
 			}

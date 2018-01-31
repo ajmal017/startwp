@@ -211,6 +211,24 @@ if ( ! function_exists('bitcoin_tags' ) ) :
 	}
 endif;
 
+
+if ( ! function_exists('bitcoin_blog_style' ) ) :
+	/**
+	 *  Blog style
+	 */
+	function bitcoin_blog_style() {
+		
+		$style = bitcoin_get_option('blog_type_style');
+		
+		if( empty($style) ){
+			echo 'tile';
+		}else{
+			echo $style;
+		}
+
+	}
+endif;
+
 /**
  * Returns true if a blog has more than 1 category.
  *

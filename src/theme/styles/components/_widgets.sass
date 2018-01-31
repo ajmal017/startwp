@@ -43,6 +43,7 @@
 .widget-area__posts
   padding: 0px 25px 50px
   margin: 0 5px
+  margin-top: 20px
   +r(768)
     padding-top: 50px 
   
@@ -51,7 +52,8 @@
   
 
   .widget:first-child   
-      margin-top: rhythm(-.3)
+    //margin-top: rhythm(-.3)
+    margin-top: 0    
 
 .widget-area__footer
   display: flex
@@ -80,7 +82,9 @@
         width: 50%
       +r(414)
         width: 100%
-
+  .social-info
+    .widget-sidebar-title
+      display: none
 .widget
   .widget-sidebar-title
     position: relative
@@ -107,6 +111,7 @@
     @extend %no-bullets
   
   img 
+    max-width: 100%
     border-radius: 5px
 
   

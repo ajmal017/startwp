@@ -11,6 +11,8 @@ const exec = util.promisify(require('child_process').exec);
 const rollup = require('rollup');
 const babelPlugin = require('rollup-plugin-babel');
 const resolve = require('rollup-plugin-node-resolve');
+const minify = require('rollup-plugin-babel-minify');
+
 
 var browserSync = require('browser-sync').create();
 var mysql      = require('mysql');
@@ -132,7 +134,7 @@ function watch(){
 
 async function copyStatic() {
   console.time('copyStatic');
-  await filesWithPatterns([/\.php$/i, /\.htaccess$/i, /\.(png|jpe?g|svg)$/i, /\.(woff?2|eot|ttf|otf)$/i, /\.xml$/i, /\.txt$/i, /\.zip$/i, /\.html$/i, /\.md$/i, /\.pot$/i])
+  await filesWithPatterns([/\.php$/i, /\.htaccess$/i, /\.(png|jpe?g|svg)$/i, /\.(woff?2|eot|ttf|otf)$/i, /\.xml$/i, /\.txt$/i, /\.zip$/i, /\.html$/i, /\.md$/i, /\.pot$/i, , /\.min\.js$/i])
     .map(async file => copy(`src/${file}`, `dist/${file}`))
     .array || Promise.resolve(); 
   console.timeEnd('copyStatic')
@@ -228,7 +230,10 @@ async function minifyJs(filename) {
           resolve(),
           babelPlugin({
             exclude: 'node_modules/**' // only transpile our source code
-          })
+          }),
+          // minify({
+          //   comments: false
+          // })
         ],
         cache
       });

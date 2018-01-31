@@ -214,13 +214,13 @@ $opts = array(
     'params'        => array(
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Title', 'bitcoin' ),
-            'value' => esc_html__('ICO ENDS IN'),
+            'heading' => esc_html__( 'Title', 'bitcoin'),
+            'value' => esc_html__('ICO ENDS IN', 'bitcoin'),
             'param_name' => 'title'
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Date', 'bitcoin' ),
+            'heading' => esc_html__( 'Date', 'bitcoin'),
             'param_name' => 'date',
             'edit_field_class' => 'vc_col-sm-6 vc_column vc_column-with-padding',
             'value'		=> '2018-03-31',
@@ -228,33 +228,33 @@ $opts = array(
         ),
         array(
             'type' => 'dropdown',
-            'heading' => esc_html__( 'Time', 'bitcoin' ),
+            'heading' => esc_html__( 'Time', 'bitcoin'),
             'param_name' => 'time',
             'value' => array('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23'),
-            'description' => esc_html__( 'Choose hour when you complete,from 00 to 23.', '' )
+            'description' => esc_html__( 'Choose hour when you complete,from 00 to 23.', 'bitcoin')
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Text Color', 'bitcoin' ),
+            'heading' => esc_html__( 'Text Color', 'bitcoin'),
             'param_name' => 'text_color',
             "value" => '#ffffff',
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Background color', 'bitcoin' ),
+            'heading' => esc_html__( 'Background color', 'bitcoin'),
             'param_name' => 'bg_color1',
             "value" => '#323a5a',
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Shadows in card', 'bitcoin' ),
+            'heading' => esc_html__( 'Shadows in card', 'bitcoin'),
             'param_name' => 'shadow_color',
             "value" => '#474e65',
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Title under counter', 'bitcoin' ),
-            'value' => esc_html__('Raised'),
+            'heading' => esc_html__( 'Title under counter', 'bitcoin'),
+            'value' => esc_html__('Raised', 'bitcoin'),
             'param_name' => 'title1'
         ),
         array(
@@ -271,37 +271,37 @@ $opts = array(
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Start progress from, in dollars, also after " | " mark, you may denote subtitle', 'bitcoin' ),
+            'heading' => esc_html__( 'Start progress from, in dollars, also after " | " mark, you may denote subtitle', 'bitcoin'),
             'value' => esc_html__('2000000 | Softcap in just 10 hours', 'bitcoin'),
             'param_name' => 'start'
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Stop progress till, in dollars, also after " | " mark, you may denote subtitle', 'bitcoin' ),
+            'heading' => esc_html__( 'Stop progress till, in dollars, also after " | " mark, you may denote subtitle', 'bitcoin'),
             'value' => esc_html__('20000000 | Hardcup', 'bitcoin'),
             'param_name' => 'stop'
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Progress bar color', 'bitcoin' ),
+            'heading' => esc_html__( 'Progress bar color', 'bitcoin'),
             'param_name' => 'progress_color',
             "value" => '#0de8e8',
         ),
         array(
             'type' => 'textarea_html',
             'holder' => 'div',
-            'heading' => esc_html__( 'Anding content', 'bitcoin' ),
+            'heading' => esc_html__( 'Anding content', 'bitcoin'),
             'param_name' => 'content',
-            'value' => esc_html__( '','bitcoin' ),
+            'value' => esc_html__( '<p> Sample data </p>', 'bitcoin'),
         ),
         array(
             'type' => 'css_editor',
-            'heading' => esc_html__( 'Css', 'bitcoin' ),
+            'heading' => esc_html__( 'Css', 'bitcoin'),
             'param_name' => 'css',
-            'group' => esc_html__( 'Design options', 'bitcoin' ),
+            'group' => esc_html__( 'Design options', 'bitcoin'),
         )
     )
 );
-
+ 
 vc_map($opts);
 new WPBakeryShortCode_Bitcoin_CounterDown($opts);

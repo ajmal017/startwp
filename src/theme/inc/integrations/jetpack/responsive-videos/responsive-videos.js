@@ -44,6 +44,13 @@
 			
 			video_element = $( this );
 
+
+			if ( ! video_element.attr( 'width' ) || ! video_element.attr( 'height' ) ) {
+				video_element
+					.attr( 'data-ratio', 9 / 16 );
+			}
+
+
 			if ( ! video_element.attr( 'data-ratio' ) ) {
 				video_element
 					.attr( 'data-ratio', this.height / this.width )
@@ -82,7 +89,6 @@
 		} );
 
 	}
-
 	/**
 	 * Load responsive_videos().
 	 * Trigger resize to make sure responsive_videos() is loaded after IS.
@@ -91,3 +97,6 @@
 	$( document ).on( 'post-load', responsive_videos );
 
 } )( jQuery );
+
+
+

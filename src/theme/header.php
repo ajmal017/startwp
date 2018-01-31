@@ -64,13 +64,7 @@
 					'fallback_cb' => false,
 					'walker' => new Bitcoin_Walker_Nav_Menu(),
 				) );
-				wp_nav_menu( array(
-					'container_class' => 'secondary-menu-wrapper',
-					'theme_location' => 'secondary',
-					'menu_class' => 'primary-menu secondary-menu',
-					'fallback_cb' => false,
-					'walker' => new Bitcoin_Walker_Nav_Menu(),
-				) ); ?>
+				?>
 
 			</nav>
 			<?php endif; ?>

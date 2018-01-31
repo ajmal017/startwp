@@ -124,15 +124,15 @@
 
 		var saveData = {
 			container: container,
-			ajaxUrl: $( 'input[name=wpGrade_import_ajax_url]', container ).val(),
-			optionSlug: $( 'input[name=wpGrade_options_page_slug]', container ).val(),
-			nonceImportListingCategories: $( 'input[name=wpGrade-nonce-import-listing-categories]', container ).val(),
+			ajaxUrl: $( 'input[name=Bitcoin_import_ajax_url]', container ).val(),
+			optionSlug: $( 'input[name=Bitcoin_options_page_slug]', container ).val(),
+			nonceImportListingCategories: $( 'input[name=Bitcoin-nonce-import-listing-categories]', container ).val(),
 			ref: $( 'input[name=_wp_http_referer]', container ).val()
 		};
 
 		//this is the ajax queue
 		var this_data = {},
-			resultcontainer = $( '.wpGrade-import-results', this_data.container );
+			resultcontainer = $( '.Bitcoin-import-results', this_data.container );
 		qInst = $.qjax( {
 			timeout: 3000,
 			ajaxSettings: {
@@ -200,14 +200,14 @@
 
 			var button = $( this );
 
-			if ( button.is( '.wpGrade_button_inactive' ) ) return false;
+			if ( button.is( '.Bitcoin_button_inactive' ) ) return false;
 
 			var activate = confirm( bitcoin_admin_js_texts.import_confirm );
 
 			if ( activate == false ) return false;
 
 			//show loader
-			$( '.wpGrade-loading-wrap', this_data.container ).css( {
+			$( '.Bitcoin-loading-wrap', this_data.container ).css( {
 				opacity: 0,
 				display: "block",
 				visibility: 'visible'
@@ -234,7 +234,7 @@
 					type: "POST",
 					url: this_data.ajaxUrl,
 					data: {
-						action: 'wpGrade_ajax_import_listing_categories',
+						action: 'Bitcoin_ajax_import_listing_categories',
 						_wpnonce: this_data.nonceImportListingCategories,
 						_wp_http_referer: this_data.ref,
 						step_number: stepNumber,
@@ -283,15 +283,15 @@
 
 		var saveData = {
 			container: container,
-			ajaxUrl: $( 'input[name=wpGrade_import_ajax_url]', container ).val(),
-			optionSlug: $( 'input[name=wpGrade_options_page_slug]', container ).val(),
-			nonceImportListingTags: $( 'input[name=wpGrade-nonce-import-listing-tags]', container ).val(),
+			ajaxUrl: $( 'input[name=Bitcoin_import_ajax_url]', container ).val(),
+			optionSlug: $( 'input[name=Bitcoin_options_page_slug]', container ).val(),
+			nonceImportListingTags: $( 'input[name=Bitcoin-nonce-import-listing-tags]', container ).val(),
 			ref: $( 'input[name=_wp_http_referer]', container ).val()
 		};
 
 		//this is the ajax queue
 		var this_data = {},
-			resultcontainer = $( '.wpGrade-import-results', this_data.container );
+			resultcontainer = $( '.Bitcoin-import-results', this_data.container );
 		qInst = $.qjax( {
 			timeout: 3000,
 			ajaxSettings: {
@@ -357,13 +357,13 @@
 			this_data = receivedData.data.set;
 
 			var button = $( this );
-			if ( button.is( '.wpGrade_button_inactive' ) ) return false;
+			if ( button.is( '.Bitcoin_button_inactive' ) ) return false;
 
 			var activate = confirm( bitcoin_admin_js_texts.import_confirm );
 			if ( activate == false ) return false;
 
 			//show loader
-			$( '.wpGrade-loading-wrap', this_data.container ).css( {
+			$( '.Bitcoin-loading-wrap', this_data.container ).css( {
 				opacity: 0,
 				display: "block",
 				visibility: 'visible'
@@ -389,7 +389,7 @@
 					type: "POST",
 					url: this_data.ajaxUrl,
 					data: {
-						action: 'wpGrade_ajax_import_listing_tags',
+						action: 'Bitcoin_ajax_import_listing_tags',
 						_wpnonce: this_data.nonceImportListingTags,
 						_wp_http_referer: this_data.ref,
 						step_number: stepNumber,

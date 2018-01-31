@@ -138,7 +138,14 @@ $has_image = false; ?>
 					
 					<div class="entry-featured__qoute" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');">
 						<aside class="entry-featured__qoute__bkgrnd">
-							<?php the_excerpt (); ?>
+							<?php 
+								$c = get_the_excerpt();
+								if( strpos($c, 'blockquote') > 0 ){
+									echo $c;
+								}else{
+									echo '<blockquote><strong>' . $c . '</strong></blockquote>';
+								}
+							?>
 						</aside>
 					</div>
 					<?php

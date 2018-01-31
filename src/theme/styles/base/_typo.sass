@@ -12,7 +12,7 @@ body
 .entry-content,
 .comment-content,
 .bitcoin-sidebar .widget_bitcoin_content 
-    line-height: 1.4
+    line-height: 1.6
 
 .entry-content > *:first-child,
 .comment-content > *:first-child,
@@ -35,6 +35,10 @@ h1, %h1, h2, %h2, h3, %h3, h4, %h4, h5, %h5, h6
     font-weight: 400
     margin-bottom: rhythm(.8)
    
+
+@for $i from 1 through 6
+    p + h#{$i}
+        margin-bottom: rhythm(.3)
 
 h1
     font-size: rem(40px)

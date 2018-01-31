@@ -57,7 +57,7 @@ function bitcoin_register_required_plugins() {
 		),
 
 		array(
-			'name'      => esc_html__('WPBakery Visual Composer', 'forit' ),
+			'name'      => esc_html__('WPBakery Visual Composer', 'bitcoin' ),
 			'slug'      => 'js_composer',
 			'source'    => get_template_directory() . '/inc/required-plugins/visual-composer/js_composer.zip',
 			'required'  => true,
@@ -103,6 +103,6 @@ function bitcoin_register_required_plugins() {
 		)
 	);
 
-	tgmpa( $plugins, $config );
+	tgmpa( $plugins, $config ); 
 
 } ?>

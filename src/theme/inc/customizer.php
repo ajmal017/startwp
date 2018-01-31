@@ -49,10 +49,10 @@ function bitcoin_customize_js() {
 		'import_all_done' => esc_html__( "All done!", 'bitcoin'),
 		'import_working' => esc_html__( "Working...", 'bitcoin'),
 		'import_widgets_failed' => esc_html__( "The setting up of the demo widgets failed...", 'bitcoin'),
-		'import_widgets_error' => esc_html__( 'The setting up of the demo widgets failed', 'bitcoin') . '</i><br />' . esc_html__( '(The script returned the following message', 'bitcoin'),
+		'import_widgets_error' => esc_html__( 'The setting up of the demo widgets failed', 'bitcoin') . '</i><br />' . esc_html__( 'The script returned the following message', 'bitcoin'),
 		'import_widgets_done' => esc_html__( 'Finished setting up the demo widgets...', 'bitcoin'),
 		'import_theme_options_failed' => esc_html__( "The importing of the theme options has failed...", 'bitcoin'),
-		'import_theme_options_error' => esc_html__( 'The importing of the theme options has failed', 'bitcoin') . '</i><br />' . esc_html__( '(The script returned the following message', 'bitcoin'),
+		'import_theme_options_error' => esc_html__( 'The importing of the theme options has failed', 'bitcoin') . '</i><br />' . esc_html__( 'The script returned the following message', 'bitcoin'),
 		'import_theme_options_done' => esc_html__( 'Finished importing the demo theme options...', 'bitcoin'),
 		'import_posts_failed' => esc_html__( "The importing of the theme options has failed...", 'bitcoin'),
 		'import_posts_step' => esc_html__( 'Importing posts | Step', 'bitcoin'),
@@ -71,8 +71,8 @@ add_action( 'customize_controls_enqueue_scripts', 'bitcoin_customize_js' );
 /**
  * Imports the demo data from the demo_data.xml file
  */
-if ( ! function_exists( 'wpGrade_ajax_import_posts_pages' ) ) {
-	function wpGrade_ajax_import_posts_pages() {
+if ( ! function_exists( 'Bitcoin_ajax_import_posts_pages' ) ) {
+	function Bitcoin_ajax_import_posts_pages() {
 		// initialize the step importing
 		$stepNumber    = 1;
 		$numberOfSteps = 1;
@@ -100,7 +100,7 @@ if ( ! function_exists( 'wpGrade_ajax_import_posts_pages' ) ) {
 		// check if user is allowed to save and if its his intention with
 		// a nonce check
 		if ( function_exists( 'check_ajax_referer' ) ) {
-			check_ajax_referer( 'wpGrade_nonce_import_demo_posts_pages' );
+			check_ajax_referer( 'Bitcoin_nonce_import_demo_posts_pages' );
 		}
 
 		require_once( get_template_directory() . '/inc/import/import-demo-posts-pages.php' );
@@ -110,14 +110,14 @@ if ( ! function_exists( 'wpGrade_ajax_import_posts_pages' ) ) {
 	}
 
 	// hook into wordpress admin.php
-	add_action( 'wp_ajax_wpGrade_ajax_import_posts_pages', 'wpGrade_ajax_import_posts_pages' );
+	add_action( 'wp_ajax_Bitcoin_ajax_import_posts_pages', 'Bitcoin_ajax_import_posts_pages' );
 }
 
 /**
  * Imports the theme options from the demo_data.php file
  */
-if ( ! function_exists( 'wpGrade_ajax_import_theme_options' ) ) {
-	function wpGrade_ajax_import_theme_options() {
+if ( ! function_exists( 'Bitcoin_ajax_import_theme_options' ) ) {
+	function Bitcoin_ajax_import_theme_options() {
 		$response = array(
 			'what'   => 'import_theme_options',
 			'action' => 'import_submit',
@@ -127,7 +127,7 @@ if ( ! function_exists( 'wpGrade_ajax_import_theme_options' ) ) {
 		// check if user is allowed to save and if its his intention with
 		// a nonce check
 		if ( function_exists( 'check_ajax_referer' ) ) {
-			check_ajax_referer( 'wpGrade_nonce_import_demo_theme_options' );
+			check_ajax_referer( 'Bitcoin_nonce_import_demo_theme_options' );
 		}
 		require_once( get_template_directory() . '/inc/import/import-demo-theme-options' . EXT );
 
@@ -136,14 +136,14 @@ if ( ! function_exists( 'wpGrade_ajax_import_theme_options' ) ) {
 	}
 
 	// hook into wordpress admin.php
-	add_action( 'wp_ajax_wpGrade_ajax_import_theme_options', 'wpGrade_ajax_import_theme_options' );
+	add_action( 'wp_ajax_Bitcoin_ajax_import_theme_options', 'Bitcoin_ajax_import_theme_options' );
 }
 
 /**
  * This function imports the widgets from the demo_data.php file and the menus
  */
-if ( ! function_exists( 'wpGrade_ajax_import_widgets' ) ) {
-	function wpGrade_ajax_import_widgets() {
+if ( ! function_exists( 'Bitcoin_ajax_import_widgets' ) ) {
+	function Bitcoin_ajax_import_widgets() {
 		$response = array(
 			'what'   => 'import_widgets',
 			'action' => 'import_submit',
@@ -153,7 +153,7 @@ if ( ! function_exists( 'wpGrade_ajax_import_widgets' ) ) {
 		// check if user is allowed to save and if its his intention with
 		// a nonce check
 		if ( function_exists( 'check_ajax_referer' ) ) {
-			check_ajax_referer( 'wpGrade_nonce_import_demo_widgets' );
+			check_ajax_referer( 'Bitcoin_nonce_import_demo_widgets' );
 		}
 
 		require_once( get_template_directory() . '/inc/import/import-demo-widgets.php' );
@@ -163,5 +163,5 @@ if ( ! function_exists( 'wpGrade_ajax_import_widgets' ) ) {
 	}
 
 	//hook into wordpress admin.php
-	add_action( 'wp_ajax_wpGrade_ajax_import_widgets', 'wpGrade_ajax_import_widgets' );
+	add_action( 'wp_ajax_Bitcoin_ajax_import_widgets', 'Bitcoin_ajax_import_widgets' );
 }

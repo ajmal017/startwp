@@ -31,13 +31,13 @@
 			<div class="site-info">
 				<?php
 				$footer_copyright = bitcoin_get_option('footer_copyright');
-				if ( $footer_copyright || $footer_copyright == '' ) : ?>
+				if ( $footer_copyright ) : ?>
 					<div class="site-copyright-area">
 						<?php echo $footer_copyright; ?>
 					</div>
 				<?php else: ?>
 					<div class="site-copyright-area">
-						<?php echo  esc_html__('Copyright © 2017 Bitcoin theme. All Rights Reserved.','bitcoin') ?>
+						<?php echo  esc_html__('Copyright © 2018 Bitcoin theme. All Rights Reserved.','bitcoin') ?>
 					</div>
 				<?php endif; ?>
 			</div><!-- .site-info -->

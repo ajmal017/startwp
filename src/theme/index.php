@@ -28,7 +28,7 @@ get_header();
 			<?php if (have_posts()) : ?>
 
 			<div class="postcards">
-				<div class="grid grid--<?php echo bitcoin_get_option('blog_type_style'); ?>" id="posts-container">
+				<div class="grid grid--<?php bitcoin_blog_style(); ?>" id="posts-container">
 					<?php /* Start the Loop */ ?>
 					<?php while ( have_posts() ) : the_post(); ?>
 						<div class="grid__item  postcard">

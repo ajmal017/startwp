@@ -26,8 +26,11 @@ get_header(); ?>
 								endif;
 							?>
 
-					<?php endwhile; // End of the loop. ?>
-					<? wp_link_pages(); ?>
+					<?php endwhile; // End of the loop.
+
+					wp_link_pages();
+					
+					?>
 		
 
 		</main><!-- #main -->

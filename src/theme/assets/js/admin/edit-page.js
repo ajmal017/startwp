@@ -3,6 +3,13 @@
 	$(document).ready(function(){
 		
 
+		//setPostFormat('gallery');
+		if($('#post_ID').length > 0){
+			if( $('#post_ID').val() == BitcoinParams.blog_id ){
+				$('#postimagediv').hide();
+			}
+		}
+
 		function postPage(){
 			let format = document.querySelector('input[name=\'post_format\']:checked');
 			if( !format ) return
@@ -46,15 +53,18 @@
 		/**
 		 * On page template change hide the Featured Image box since we show the Hero one
 		 */
-		$('#page_template').on('change', function () {
-			if ( $('select#page_template').val() == 'page-templates/front_page.php' ) {
-				//hide the Featured Image box
-				$('#postimagediv').hide();
-			} else {
-				//show the Featured Image box otherwise
-				$('#postimagediv').show();
-			}
-		});
+		// $('#page_template').on('change', function () {
+		// 	if ( $('select#page_template').val() == 'page-templates/front_page.php' ) {
+		// 		//hide the Featured Image box
+		// 		$('#postimagediv').hide();
+		// 	} else {
+		// 		//show the Featured Image box otherwise
+		// 		$('#postimagediv').show();
+		// 	}
+		// });
+		if( $('#page_template').length > 0 ){
+			$('#postimagediv').hide();
+		}
 	});
 
 	var check_the_number_of_images = function( $this ) {

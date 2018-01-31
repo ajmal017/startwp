@@ -358,11 +358,11 @@ class Bitcoin_Coinmarketcap extends WP_Widget {
 
 		?>
 			<p>
-				<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'forit') ?></label>
+				<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'bitcoin') ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr( isset($instance['title'])?$instance['title']:''); ?>" />
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id('currencies'); ?>"><?php esc_html_e('Currencies:', 'forit') ?></label>
+				<label for="<?php echo $this->get_field_id('currencies'); ?>"><?php esc_html_e('Currencies:', 'bitcoin') ?></label>
 				<select class="widefat" multiple="multiple" id="<?php echo $this->get_field_id('currencies'); ?>" name="<?php echo $this->get_field_name('currencies') . '[]'; ?>"  size="10">
 					<?php foreach($data as $coin ){ ?>
 						
@@ -448,20 +448,19 @@ class Bitcoin_Footer_Forms_Widget extends WP_Widget
 
 		?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'forit') ?></label>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'bitcoin') ?></label>
             <input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr($title); ?>" />
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('contact_form'); ?>"><?php esc_html_e('Select Menu:', 'forit'); ?></label>
+            <label for="<?php echo $this->get_field_id('contact_form'); ?>"><?php esc_html_e('Select Menu:', 'bitcoin'); ?></label>
             <select id="<?php echo $this->get_field_id('contact_form'); ?>" name="<?php echo $this->get_field_name('contact_form'); ?>">
-                <option value="0"><?php esc_html_e('&mdash; Select &mdash;', 'forit') ?></option>
-				<?php
-					array_map(function($item){
+                <option value="0"><?php esc_html_e('&mdash; Select &mdash;', 'bitcoin') ?></option>
+				<?php foreach($cf as $item ){ 
 						echo '<option value="' . $item['value'] . '"'
 							. selected($contact_form,  $item['value'], false)
 							. '>' . esc_html($item['name']) . '</option>';
-					}, $cf);
-				?>
+
+				 } ?>
             </select>
         </p>
     <?php

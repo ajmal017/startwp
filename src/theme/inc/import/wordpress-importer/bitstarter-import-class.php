@@ -5,7 +5,7 @@
  * added import for the Front and Blog static pages
  */
 
-class wpGrade_import extends WPGrade_WP_Import {
+class Bitcoin_import extends Bitcoin_WP_Import {
 	var $preStringOption;
 	var $results;
 	var $getOptions;
@@ -488,7 +488,7 @@ class wpGrade_import extends WPGrade_WP_Import {
 		$locations = get_theme_mod( 'nav_menu_locations' );
 
 		//get all created menus
-		$wpGrade_menus = wp_get_nav_menus();
+		$Bitcoin_menus = wp_get_nav_menus();
 
 		if ( file_exists( $option_file ) ) {
 			@include_once( $option_file );
@@ -501,15 +501,15 @@ class wpGrade_import extends WPGrade_WP_Import {
 		//get the configuration
 		$menu_conf = $demo_menus;
 
-		if ( ! empty( $wpGrade_menus ) && ! empty( $menu_conf ) ) {
-			foreach ( $wpGrade_menus as $wpGrade_menu ) {
-				//check if we got a menu that corresponds to the Menu name array ($wpGrade_config->get('nav_menus')) we have set in menus.php
-				if ( is_object( $wpGrade_menu ) && in_array( $wpGrade_menu->name, $menu_conf ) ) {
-					$key = array_search( $wpGrade_menu->name, $menu_conf );
+		if ( ! empty( $Bitcoin_menus ) && ! empty( $menu_conf ) ) {
+			foreach ( $Bitcoin_menus as $Bitcoin_menu ) {
+				//check if we got a menu that corresponds to the Menu name array ($Bitcoin_config->get('nav_menus')) we have set in menus.php
+				if ( is_object( $Bitcoin_menu ) && in_array( $Bitcoin_menu->name, $menu_conf ) ) {
+					$key = array_search( $Bitcoin_menu->name, $menu_conf );
 
 					if ( $key !== false ) {
 						//if we have found a menu with the correct menu name apply the id to the menu location
-						$locations[ $key ] = $wpGrade_menu->term_id;
+						$locations[ $key ] = $Bitcoin_menu->term_id;
 					}
 				}
 			}

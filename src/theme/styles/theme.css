@@ -212,7 +212,9 @@ input[type="submit"],
 .block-picker > li a.selected,
 .block-picker > li a:hover,
 .lwa-form input[type="submit"]:hover,
-.no-results .clear-results-btn {
+.no-results .clear-results-btn,
+.card__links li a,
+html body .mejs-container, html body .mejs-container .mejs-controls, html body .mejs-embed, html body .mejs-embed body, .entry-header-categories__links li a, .site .bitcoin__slider .slick-arrow, .coin-circle div {
   background-color: #22dfb5;
 }
 
@@ -277,7 +279,7 @@ input[type="submit"] {
 }
 .format-quote .card__toplink,
 .entry-featured__qoute__bkgrnd {
-  background-color: rgba(2, 2, 13, 0.95);
+  background-color: #22dfb5;
 }
 .grid--tile .bitcoin__icon use,
 .single-post .likes-count .bitcoin__icon use,
@@ -491,4 +493,11 @@ input[type="submit"],
   ul.primary-menu .sub-menu {
     background-color: #e1e1e1;
   }
+}
+
+.nav-links a{
+  box-shadow: 0 2px 4px rgba(18, 104, 85, 0.2);
+}
+.comments-count .bitcoin__icon svg{
+  fill: #6b7c93;
 }

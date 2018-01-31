@@ -106,25 +106,25 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						'import_demodata_button' => array(
 							'title' => 'Import',
 							'type'  => 'html',
-							'html'  => '<input type="hidden" name="wpGrade-nonce-import-posts-pages" value="' . wp_create_nonce( 'wpGrade_nonce_import_demo_posts_pages' ) . '" />
-										<input type="hidden" name="wpGrade-nonce-import-theme-options" value="' . wp_create_nonce( 'wpGrade_nonce_import_demo_theme_options' ) . '" />
-										<input type="hidden" name="wpGrade-nonce-import-widgets" value="' . wp_create_nonce( 'wpGrade_nonce_import_demo_widgets' ) . '" />
-										<input type="hidden" name="wpGrade_import_ajax_url" value="' . admin_url( "admin-ajax.php" ) . '" />' .
+							'html'  => '<input type="hidden" name="Bitcoin-nonce-import-posts-pages" value="' . wp_create_nonce( 'Bitcoin_nonce_import_demo_posts_pages' ) . '" />
+										<input type="hidden" name="Bitcoin-nonce-import-theme-options" value="' . wp_create_nonce( 'Bitcoin_nonce_import_demo_theme_options' ) . '" />
+										<input type="hidden" name="Bitcoin-nonce-import-widgets" value="' . wp_create_nonce( 'Bitcoin_nonce_import_demo_widgets' ) . '" />
+										<input type="hidden" name="Bitcoin_import_ajax_url" value="' . admin_url( "admin-ajax.php" ) . '" />' .
 							           '<span class="description customize-control-description">' . esc_html__( '(Note: We cannot serve you the original images due the ', 'bitcoin' ) . '<strong>&copy;</strong>)</span></br>' .
-							           '<a href="#" class="button button-primary" id="wpGrade_import_demodata_button" style="width: 70%; text-align: center; padding: 10px; display: inline-block; height: auto;  margin: 0 15% 10% 15%;">
+							           '<a href="#" class="button button-primary" id="Bitcoin_import_demodata_button" style="width: 70%; text-align: center; padding: 10px; display: inline-block; height: auto;  margin: 0 15% 10% 15%;">
 											' . __( 'Import demo data', 'bitcoin' ) . '
 										</a>
 
-										<div class="wpGrade-loading-wrap hidden">
-											<span class="wpGrade-loading wpGrade-import-loading"></span>
-											<div class="wpGrade-import-wait">' .
+										<div class="Bitcoin-loading-wrap hidden">
+											<span class="Bitcoin-loading Bitcoin-import-loading"></span>
+											<div class="Bitcoin-import-wait">' .
 							           esc_html__( 'Please wait a few minutes (between 1 and 3 minutes usually, but depending on your hosting it can take longer) and ', 'bitcoin' ) .
 							           '<strong>' . esc_html__( 'don\'t reload the page', 'bitcoin' ) . '</strong>.' .
 							           esc_html__( 'You will be notified as soon as the import has finished!', 'bitcoin' ) . '
 											</div>
 										</div>
 
-										<div class="wpGrade-import-results hidden"></div>
+										<div class="Bitcoin-import-results hidden"></div>
 										<div class="hr"><div class="inner"><span>&nbsp;</span></div></div>'
 						)
 					)
@@ -322,13 +322,13 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							'css'         => array(
 								array(
 									'property' => 'margin-top',
-									'selector' => '.content-area, .widget-area__posts',
+									'selector' => '.content-area__wrapper .content-area, .widget-area__posts',
 									'unit'     => 'px',
 									'media'    => ' only screen and (min-width: 900px)',
 								),
 								array(
 									'property' => 'margin-bottom',
-									'selector' => '.content-area, .widget-area__posts',
+									'selector' => '.content-area__wrapper .content-area, .widget-area__posts',
 									'unit'     => 'px',
 									'media'    => ' only screen and (min-width: 900px) ',
 								)
@@ -629,7 +629,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 					'site_blogheroarea_cat_radius' => array(
 						'type' => 'range',
-						'label' => __('Line Width', 'bitcoin'),
+						'label' => __('Line Corner Radius', 'bitcoin'),
 						'live' => true,
 						'default' => 20,
 						'input_attrs' => array(
@@ -738,6 +738,10 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'property' => 'background',
 									'selector' => '.widget-sidebar-title:after',
 									'callback_filter' => 'bitcoin_customify_lighter_callback'
+								),
+								array(
+									'property' => 'fill',
+									'selector' => '.entry-share__links svg'				
 								)
 							)
 						),
@@ -931,9 +935,6 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'fill',
 									'selector' => '
-									.grid--tile .bitcoin__icon use,
-									.single-post .likes-count .bitcoin__icon use, 
-									.single-post .comments-count .bitcoin__icon use,
 									.grid--tile .bitcoin__icon path,
 									.single-post .likes-count .bitcoin__icon path, 
 									.single-post .comments-count .bitcoin__icon path'

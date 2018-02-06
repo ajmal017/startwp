@@ -9,7 +9,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 get_header();
@@ -20,7 +20,7 @@ get_header();
 
 <div class="content-area__wrapper">
 	
-	<?php do_action('bitcoin_before_posts_loop'); ?>
+	<?php do_action('bitstarter_before_posts_loop'); ?>
 	
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">	
@@ -28,7 +28,7 @@ get_header();
 			<?php if (have_posts()) : ?>
 
 			<div class="postcards">
-				<div class="grid grid--<?php bitcoin_blog_style(); ?>" id="posts-container">
+				<div class="grid grid--<?php bitstarter_blog_style(); ?>" id="posts-container">
 					<?php /* Start the Loop */ ?>
 					<?php while ( have_posts() ) : the_post(); ?>
 						<div class="grid__item  postcard">
@@ -56,7 +56,7 @@ get_header();
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-<?php do_action('bitcoin_after_posts_loop'); ?>
+<?php do_action('bitstarter_after_posts_loop'); ?>
 </div>
 
 <?php

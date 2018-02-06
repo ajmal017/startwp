@@ -124,15 +124,15 @@
 
 		var saveData = {
 			container: container,
-			ajaxUrl: $( 'input[name=Bitcoin_import_ajax_url]', container ).val(),
-			optionSlug: $( 'input[name=Bitcoin_options_page_slug]', container ).val(),
-			nonceImportListingCategories: $( 'input[name=Bitcoin-nonce-import-listing-categories]', container ).val(),
+			ajaxUrl: $( 'input[name=Bitstarter_import_ajax_url]', container ).val(),
+			optionSlug: $( 'input[name=Bitstarter_options_page_slug]', container ).val(),
+			nonceImportListingCategories: $( 'input[name=Bitstarter-nonce-import-listing-categories]', container ).val(),
 			ref: $( 'input[name=_wp_http_referer]', container ).val()
 		};
 
 		//this is the ajax queue
 		var this_data = {},
-			resultcontainer = $( '.Bitcoin-import-results', this_data.container );
+			resultcontainer = $( '.Bitstarter-import-results', this_data.container );
 		qInst = $.qjax( {
 			timeout: 3000,
 			ajaxSettings: {
@@ -147,11 +147,11 @@
 					if ( res.errors == false ) {
 
 						setTimeout( function() {
-							resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_all_done + '</i><br />' );
+							resultcontainer.append( '<i>' + bitstarter_admin_js_texts.import_all_done + '</i><br />' );
 						}, 1000 );
 
 						setTimeout( function() {
-							resultcontainer.append( '<h4>' + bitcoin_admin_js_texts.import_phew + '</h4><br /><p>' + bitcoin_admin_js_texts.import_success_note + '</p>' );
+							resultcontainer.append( '<h4>' + bitstarter_admin_js_texts.import_phew + '</h4><br /><p>' + bitstarter_admin_js_texts.import_success_note + '</p>' );
 						}, 1000 );
 
 						// dismiss this pointer after import
@@ -165,7 +165,7 @@
 						button.removeClass( 'button-disabled' );
 
 						setTimeout( function() {
-							resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_failed + '</i><br />' );
+							resultcontainer.append( '<i>' + bitstarter_admin_js_texts.import_failed + '</i><br />' );
 						}, 1000 );
 					}
 
@@ -200,14 +200,14 @@
 
 			var button = $( this );
 
-			if ( button.is( '.Bitcoin_button_inactive' ) ) return false;
+			if ( button.is( '.Bitstarter_button_inactive' ) ) return false;
 
-			var activate = confirm( bitcoin_admin_js_texts.import_confirm );
+			var activate = confirm( bitstarter_admin_js_texts.import_confirm );
 
 			if ( activate == false ) return false;
 
 			//show loader
-			$( '.Bitcoin-loading-wrap', this_data.container ).css( {
+			$( '.Bitstarter-loading-wrap', this_data.container ).css( {
 				opacity: 0,
 				display: "block",
 				visibility: 'visible'
@@ -215,7 +215,7 @@
 			//disable the import button
 			button.addClass( 'button-disabled' );
 			resultcontainer.removeClass( 'hidden' );
-			resultcontainer.append( '<br /><i>' + bitcoin_admin_js_texts.import_working + '</i><br />' );
+			resultcontainer.append( '<br /><i>' + bitstarter_admin_js_texts.import_working + '</i><br />' );
 
 			//queue the calls
 			ajax_import_listing_categories_stepped( resultcontainer, this_data );
@@ -234,7 +234,7 @@
 					type: "POST",
 					url: this_data.ajaxUrl,
 					data: {
-						action: 'Bitcoin_ajax_import_listing_categories',
+						action: 'Bitstarter_ajax_import_listing_categories',
 						_wpnonce: this_data.nonceImportListingCategories,
 						_wp_http_referer: this_data.ref,
 						step_number: stepNumber,
@@ -244,7 +244,7 @@
 				.fail( function( response ) {
 					responseRaw = response;
 					res = wpAjax.parseAjaxResponse( response, 'notifier' );
-					resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />' );
+					resultcontainer.append( '<i style="color:red">' + bitstarter_admin_js_texts.import_posts_failed + '</i><br />' );
 				} )
 				.done( function( response ) {
 					responseRaw = response;
@@ -252,22 +252,22 @@
 					if ( res != null && res.errors != null ) {
 						if ( res.errors == false ) {
 							if ( res.responses[0] != null ) {
-								resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_posts_step + ' ' + +res.responses[0].supplemental.stepNumber + ' of ' + res.responses[0].supplemental.numberOfSteps + '</i><br />' );
+								resultcontainer.append( '<i>' + bitstarter_admin_js_texts.import_posts_step + ' ' + +res.responses[0].supplemental.stepNumber + ' of ' + res.responses[0].supplemental.numberOfSteps + '</i><br />' );
 								//for debuging purposes
 								resultcontainer.append( '<div style="display:none;visibility:hidden;">Return data:<br />' + res.responses[0].data + '</div>' );
 							} else {
-								resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />' + bitcoin_admin_js_texts.import_error + ' ' + res.responses[0].data );
+								resultcontainer.append( '<i style="color:red">' + bitstarter_admin_js_texts.import_posts_failed + '</i><br />' + bitstarter_admin_js_texts.import_error + ' ' + res.responses[0].data );
 							}
 						}
 						else {
 							if ( res.responses[0] != null ) {
-								resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />( ' + res.responses[0].errors[0].message + ' )<br/>' );
+								resultcontainer.append( '<i style="color:red">' + bitstarter_admin_js_texts.import_posts_failed + '</i><br />( ' + res.responses[0].errors[0].message + ' )<br/>' );
 							} else {
-								resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />' + bitcoin_admin_js_texts.import_error + ' ' + res.responses[0].data );
+								resultcontainer.append( '<i style="color:red">' + bitstarter_admin_js_texts.import_posts_failed + '</i><br />' + bitstarter_admin_js_texts.import_error + ' ' + res.responses[0].data );
 							}
 						}
 					} else {
-						resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + ' ' + bitcoin_admin_js_texts.import_try_reload + ' </i><br />' );
+						resultcontainer.append( '<i style="color:red">' + bitstarter_admin_js_texts.import_posts_failed + ' ' + bitstarter_admin_js_texts.import_try_reload + ' </i><br />' );
 					}
 				} );
 		}
@@ -283,15 +283,15 @@
 
 		var saveData = {
 			container: container,
-			ajaxUrl: $( 'input[name=Bitcoin_import_ajax_url]', container ).val(),
-			optionSlug: $( 'input[name=Bitcoin_options_page_slug]', container ).val(),
-			nonceImportListingTags: $( 'input[name=Bitcoin-nonce-import-listing-tags]', container ).val(),
+			ajaxUrl: $( 'input[name=Bitstarter_import_ajax_url]', container ).val(),
+			optionSlug: $( 'input[name=Bitstarter_options_page_slug]', container ).val(),
+			nonceImportListingTags: $( 'input[name=Bitstarter-nonce-import-listing-tags]', container ).val(),
 			ref: $( 'input[name=_wp_http_referer]', container ).val()
 		};
 
 		//this is the ajax queue
 		var this_data = {},
-			resultcontainer = $( '.Bitcoin-import-results', this_data.container );
+			resultcontainer = $( '.Bitstarter-import-results', this_data.container );
 		qInst = $.qjax( {
 			timeout: 3000,
 			ajaxSettings: {
@@ -306,11 +306,11 @@
 					if ( res.errors == false ) {
 
 						setTimeout( function() {
-							resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_all_done + '</i><br />' );
+							resultcontainer.append( '<i>' + bitstarter_admin_js_texts.import_all_done + '</i><br />' );
 						}, 1000 );
 
 						setTimeout( function() {
-							resultcontainer.append( '<h4>' + bitcoin_admin_js_texts.import_phew + '</h4><br /><p>' + bitcoin_admin_js_texts.import_success_note + '</p>' );
+							resultcontainer.append( '<h4>' + bitstarter_admin_js_texts.import_phew + '</h4><br /><p>' + bitstarter_admin_js_texts.import_success_note + '</p>' );
 						}, 1000 );
 
 						// dismiss this pointer after import
@@ -324,7 +324,7 @@
 						button.removeClass( 'button-disabled' );
 
 						setTimeout( function() {
-							resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_failed + '</i><br />' );
+							resultcontainer.append( '<i>' + bitstarter_admin_js_texts.import_failed + '</i><br />' );
 						}, 1000 );
 					}
 					// we are done, let the user see what has been done
@@ -357,13 +357,13 @@
 			this_data = receivedData.data.set;
 
 			var button = $( this );
-			if ( button.is( '.Bitcoin_button_inactive' ) ) return false;
+			if ( button.is( '.Bitstarter_button_inactive' ) ) return false;
 
-			var activate = confirm( bitcoin_admin_js_texts.import_confirm );
+			var activate = confirm( bitstarter_admin_js_texts.import_confirm );
 			if ( activate == false ) return false;
 
 			//show loader
-			$( '.Bitcoin-loading-wrap', this_data.container ).css( {
+			$( '.Bitstarter-loading-wrap', this_data.container ).css( {
 				opacity: 0,
 				display: "block",
 				visibility: 'visible'
@@ -371,7 +371,7 @@
 			//disable the import button
 			button.addClass( 'button-disabled' );
 			resultcontainer.removeClass( 'hidden' );
-			resultcontainer.append( '<br /><i>' + bitcoin_admin_js_texts.import_working + '</i><br />' );
+			resultcontainer.append( '<br /><i>' + bitstarter_admin_js_texts.import_working + '</i><br />' );
 
 			//queue the calls
 			ajax_import_listing_tags_stepped( resultcontainer, this_data );
@@ -389,7 +389,7 @@
 					type: "POST",
 					url: this_data.ajaxUrl,
 					data: {
-						action: 'Bitcoin_ajax_import_listing_tags',
+						action: 'Bitstarter_ajax_import_listing_tags',
 						_wpnonce: this_data.nonceImportListingTags,
 						_wp_http_referer: this_data.ref,
 						step_number: stepNumber,
@@ -399,7 +399,7 @@
 				.fail( function( response ) {
 					responseRaw = response;
 					res = wpAjax.parseAjaxResponse( response, 'notifier' );
-					resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />' );
+					resultcontainer.append( '<i style="color:red">' + bitstarter_admin_js_texts.import_posts_failed + '</i><br />' );
 				} )
 				.done( function( response ) {
 					responseRaw = response;
@@ -407,22 +407,22 @@
 					if ( res != null && res.errors != null ) {
 						if ( res.errors == false ) {
 							if ( res.responses[0] != null ) {
-								resultcontainer.append( '<i>' + bitcoin_admin_js_texts.import_posts_step + ' ' + +res.responses[0].supplemental.stepNumber + ' of ' + res.responses[0].supplemental.numberOfSteps + '</i><br />' );
+								resultcontainer.append( '<i>' + bitstarter_admin_js_texts.import_posts_step + ' ' + +res.responses[0].supplemental.stepNumber + ' of ' + res.responses[0].supplemental.numberOfSteps + '</i><br />' );
 								//for debuging purposes
 								resultcontainer.append( '<div style="display:none;visibility:hidden;">Return data:<br />' + res.responses[0].data + '</div>' );
 							} else {
-								resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />' + bitcoin_admin_js_texts.import_error + ' ' + res.responses[0].data );
+								resultcontainer.append( '<i style="color:red">' + bitstarter_admin_js_texts.import_posts_failed + '</i><br />' + bitstarter_admin_js_texts.import_error + ' ' + res.responses[0].data );
 							}
 						}
 						else {
 							if ( res.responses[0] != null ) {
-								resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />( ' + res.responses[0].errors[0].message + ' )<br/>' );
+								resultcontainer.append( '<i style="color:red">' + bitstarter_admin_js_texts.import_posts_failed + '</i><br />( ' + res.responses[0].errors[0].message + ' )<br/>' );
 							} else {
-								resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + '</i><br />' + bitcoin_admin_js_texts.import_error + ' ' + res.responses[0].data );
+								resultcontainer.append( '<i style="color:red">' + bitstarter_admin_js_texts.import_posts_failed + '</i><br />' + bitstarter_admin_js_texts.import_error + ' ' + res.responses[0].data );
 							}
 						}
 					} else {
-						resultcontainer.append( '<i style="color:red">' + bitcoin_admin_js_texts.import_posts_failed + ' ' + bitcoin_admin_js_texts.import_try_reload + ' </i><br />' );
+						resultcontainer.append( '<i style="color:red">' + bitstarter_admin_js_texts.import_posts_failed + ' ' + bitstarter_admin_js_texts.import_try_reload + ' </i><br />' );
 					}
 				} );
 		}

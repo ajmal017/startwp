@@ -1,6 +1,6 @@
 <?php
 
-class WPBakeryShortCode_Bitcoin_Blog extends  WPBakeryShortCode
+class WPBakeryShortCode_Bitstarter_Blog extends  WPBakeryShortCode
 {
     /**
      * @param $atts
@@ -79,16 +79,16 @@ class WPBakeryShortCode_Bitcoin_Blog extends  WPBakeryShortCode
 }
 
 $opts = array(
-    'name'		=> esc_html__( 'Post Feed', 'bitcoin'),
-    'base'		=> 'bitcoin_blog',
+    'name'		=> esc_html__( 'Post Feed', 'bitstarter'),
+    'base'		=> 'bitstarter_blog',
     'controls'		=> 'edit_popup_delete',
-    'category'		=> esc_html__('Developed for Bitcoin', 'bitcoin'),
-    'icon'		=> get_template_directory_uri() . '/assets/img/vc/bitcoin_blog.png',
+    'category'		=> esc_html__('Developed for Bitstarter', 'bitstarter'),
+    'icon'		=> get_template_directory_uri() . '/assets/img/vc/bitstarter_blog.png',
 
     'params'		=> array(
         array(
             'type' => 'loop',
-            'heading' => esc_html__( 'Posts', 'bitcoin' ),
+            'heading' => esc_html__( 'Posts', 'bitstarter' ),
             'param_name' => 'data_query',
             'value' => '',
             'settings' => array(
@@ -96,17 +96,17 @@ $opts = array(
                 'authors'       => array( 'hidden' => true ),
                 'tax_query'     => array( 'hidden' => true ),
             ),
-            'description' => esc_html__( 'Create WordPress loop, to populate content from your posts.', 'bitcoin' ),
+            'description' => esc_html__( 'Create WordPress loop, to populate content from your posts.', 'bitstarter' ),
         ),
 
         array(
             'type' => 'css_editor',
-            'heading' => esc_html__( 'Css', 'bitcoin' ),
+            'heading' => esc_html__( 'Css', 'bitstarter' ),
             'param_name' => 'css',
-            'group' => esc_html__( 'Design options', 'bitcoin' ),
+            'group' => esc_html__( 'Design options', 'bitstarter' ),
         ),
     )
 );
 
 vc_map($opts);
-new WPBakeryShortCode_Bitcoin_Blog($opts);
+new WPBakeryShortCode_Bitstarter_Blog($opts);

@@ -3,7 +3,7 @@
 
 # let's set some variables
 E_XCD=86       # Can't change directory?
-THEME_NAME=bitcoin
+THEME_NAME=bitstarter
 THEME_STAGGING_BRANCH=test
 DEMO_REPO=demos
 DEMO_BRANCH=test

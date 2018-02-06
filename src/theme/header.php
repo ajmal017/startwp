@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 ?><!DOCTYPE html>
@@ -20,9 +20,9 @@
 </head>
 <body <?php body_class(); ?> >
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'bitcoin' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'bitstarter' ); ?></a>
 
-	<?php	$preloader = bitcoin_get_option('preloader');
+	<?php	$preloader = bitstarter_get_option('preloader');
 	if( true == $preloader  ){ ?>
 	
 		<div class="site-preloader">
@@ -36,12 +36,12 @@
 
 
 	<header id="masthead" class="site-header  
-		<?php if( is_page_template( 'page-templates/front_page.php' ) && (bitcoin_get_option( 'header_transparent', true ) == true) ) echo 'header--transparent'; ?>
-		<?php if(  !is_front_page() && is_home() && (bitcoin_get_option( 'header_transparent_blog', true ) == true) ) echo 'header--transparent'; ?>
+		<?php if( is_page_template( 'page-templates/front_page.php' ) && (bitstarter_get_option( 'header_transparent', true ) == true) ) echo 'header--transparent'; ?>
+		<?php if(  !is_front_page() && is_home() && (bitstarter_get_option( 'header_transparent_blog', true ) == true) ) echo 'header--transparent'; ?>
 		" role="banner">
 		<div class="site-header__in">
 		
-			<?php bitcoin_display_logo(); ?>
+			<?php bitstarter_display_logo(); ?>
 
 			<?php
 			// Output the navigation and mobile nav button only if there is a nav
@@ -62,7 +62,7 @@
 					'theme_location' => 'primary',
 					'menu_class' => 'primary-menu',
 					'fallback_cb' => false,
-					'walker' => new Bitcoin_Walker_Nav_Menu(),
+					'walker' => new Bitstarter_Walker_Nav_Menu(),
 				) );
 				?>
 

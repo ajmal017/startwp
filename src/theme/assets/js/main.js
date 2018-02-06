@@ -211,7 +211,7 @@ import { _formatCurrency } from "./calc.js"
             var $input = $(obj),
                 id = $(obj).attr('id'),
                 $label = $('label[for="' + id + '"]'),
-                $btn = $('<div class="uploader-btn"><div class="spacer"><div class="text">' + BitcoinParams.strings['wp-job-manager-file-upload'] + '</div></div></div>').insertAfter($input);
+                $btn = $('<div class="uploader-btn"><div class="spacer"><div class="text">' + BitstarterParams.strings['wp-job-manager-file-upload'] + '</div></div></div>').insertAfter($input);
 
             $btn.on('click', function() {
                 $label.trigger('click'); 
@@ -325,10 +325,10 @@ import { _formatCurrency } from "./calc.js"
                 event.preventDefault();
                 if(stop) return
                 var $this = $(this);
-                $this.addClass('bitcoin__icon--anim');
+                $this.addClass('bitstarter__icon--anim');
                 stop = true;
-                $.post(BitcoinParams.ajax.url, {
-                    action: BitcoinParams.ajax.likes_action,
+                $.post(BitstarterParams.ajax.url, {
+                    action: BitstarterParams.ajax.likes_action,
                     ID: $this.data("post-id")
                 }).done(function(response) {
                     stop = false
@@ -346,10 +346,10 @@ import { _formatCurrency } from "./calc.js"
                             .find(".likes-count__number")
                             .text(parseInt(n) <= 0 ? 0 : parseInt(n) - 1);
                     }
-                    $this.removeClass('bitcoin__icon--anim');
+                    $this.removeClass('bitstarter__icon--anim');
                 }).fail( _ => {
                     stop = false;
-                    $this.removeClass('bitcoin__icon--anim');
+                    $this.removeClass('bitstarter__icon--anim');
                 });
             });
         }
@@ -416,7 +416,7 @@ import { _formatCurrency } from "./calc.js"
         }
     })(jQuery);
 
-    const BitcoinPlot = (function($, Highcharts) {
+    const BitstarterPlot = (function($, Highcharts) {
         
         var allTimeData = [], threeMonth = [], oneYear = [], sevenDay = [], oneMonth = [];  
 
@@ -429,7 +429,7 @@ import { _formatCurrency } from "./calc.js"
         function printPlot(data, el){
 
 
-            Highcharts.chart('bitcoin-plot', {
+            Highcharts.chart('bitstarter-plot', {
                 chart: {
                     zoomType: 'x',
                     backgroundColor: 'transparent',
@@ -486,7 +486,7 @@ import { _formatCurrency } from "./calc.js"
                                         fPrice= String.prototype.substring.call(this.y, lPrice - 3, 0),
                                         sPrice =  String.prototype.substr.call(this.y, -3),
                                         time = new Date(this.key);
-                                    return '<tspan class="bitcoin-shortcode__plot-time">' +  getMonthName(time.getMonth())  + ' ' +time.getFullYear() + '</tspan> <br/> <tspan dy="20" class="bitcoin-shortcode__plot-price">' + this.series.name + ( lPrice > 3 ? fPrice + ' ' : '' )  + sPrice + '</tspan>';
+                                    return '<tspan class="bitstarter-shortcode__plot-time">' +  getMonthName(time.getMonth())  + ' ' +time.getFullYear() + '</tspan> <br/> <tspan dy="20" class="bitstarter-shortcode__plot-price">' + this.series.name + ( lPrice > 3 ? fPrice + ' ' : '' )  + sPrice + '</tspan>';
                                 } else {
                                     return null;
                                 }
@@ -504,7 +504,7 @@ import { _formatCurrency } from "./calc.js"
             
                     formatter: function() {
                         var time = new Date(this.key);
-                        return '<p class="bitcoin-shortcode__plot-time">' + time.getDate() + ' ' + getMonthName(time.getMonth())  + ' ' +time.getFullYear() + '</p> <br/> <p dy= "20" class="bitcoin-shortcode__plot-price">' + this.series.name + this.y + '</p>';
+                        return '<p class="bitstarter-shortcode__plot-time">' + time.getDate() + ' ' + getMonthName(time.getMonth())  + ' ' +time.getFullYear() + '</p> <br/> <p dy= "20" class="bitstarter-shortcode__plot-price">' + this.series.name + this.y + '</p>';
                     },
                     backgroundColor: 'rgba(255, 255, 255, 1)',
                     borderWidth: 1,
@@ -523,19 +523,19 @@ import { _formatCurrency } from "./calc.js"
                 }]
             });
 
-            Array.from($('.bitcoin-shortcode__plot-price')).forEach(el => $(el).attr('dy','20'));
+            Array.from($('.bitstarter-shortcode__plot-price')).forEach(el => $(el).attr('dy','20'));
 
         }
 
         function bindActions(context){
             var canGo = true
-            $('.bitcoin-shortcode__plot-change__timeframe', context).on('click touchend', function(e){
+            $('.bitstarter-shortcode__plot-change__timeframe', context).on('click touchend', function(e){
                 e.preventDefault();
                 if(!canGo) return -1
                 canGo =false;
                 setTimeout(() => {canGo = true;}, 1000);
 
-                $('.bitcoin-shortcode__plot-change__timeframe', context).removeClass('active');
+                $('.bitstarter-shortcode__plot-change__timeframe', context).removeClass('active');
 
                 $(this).addClass('active');
                 var timeframe = $(this).data('timeframe');
@@ -596,7 +596,7 @@ import { _formatCurrency } from "./calc.js"
 
         
         function init(){
-            Array.from($('.bitcoin-shortcode__plot')).forEach(element => {
+            Array.from($('.bitstarter-shortcode__plot')).forEach(element => {
                 getData(element);
             })
         }
@@ -632,7 +632,7 @@ import { _formatCurrency } from "./calc.js"
 
 
 
-    var BitcoinSlider = (function($){
+    var BitstarterSlider = (function($){
         function init() {
             var container = (defaultOptions.container instanceof $)? defaultOptions.container : $(defaultOptions.container) ;
             container.each(function(i){
@@ -641,13 +641,13 @@ import { _formatCurrency } from "./calc.js"
         };
 
         var defaultOptions = {
-            container : '.bitcoin__slider',
+            container : '.bitstarter__slider',
         };
         
         function initialize($container){
             var options = Object.assign({},defaultOptions, _getHTMLdata($container));
             options.container = $container;
-            $( '.bitcoin__slider-in', options.container ).imagesLoaded( (function() {
+            $( '.bitstarter__slider-in', options.container ).imagesLoaded( (function() {
 
                 $( '#' + options.id ).slick({
                     slidesToShow: options.slidesToShow || 1,
@@ -723,7 +723,7 @@ import { _formatCurrency } from "./calc.js"
 
             constructor( $elem ){
                 this.$elem = $elem;
-                this.$chart = this.$elem.find('.bitcoin-counter__holder');
+                this.$chart = this.$elem.find('.bitstarter-counter__holder');
                 this.blocked = false;
                 this.elemOffset = this.$elem.offset();
                 var _self = this;
@@ -804,7 +804,7 @@ import { _formatCurrency } from "./calc.js"
             updateLabel(){
                 var _self = this;
         
-                this.$elem.find('.bitcoin-counter-label__wrap__data .label__number').each(function(){
+                this.$elem.find('.bitstarter-counter-label__wrap__data .label__number').each(function(){
                     var counter = { var: 0},
                         $this = $(this);
         
@@ -826,7 +826,7 @@ import { _formatCurrency } from "./calc.js"
         }
 
         function init(){
-            $('.bitcoin-counter').each(function(){
+            $('.bitstarter-counter').each(function(){
                 new CounterClass($(this));
             });
 
@@ -862,7 +862,7 @@ import { _formatCurrency } from "./calc.js"
                     return label;
                 },
                 setLabels: function( labelsObj ){
-                    var key = 'bitcoin-' + Math.round(Math.random() * 1000)
+                    var key = 'bitstarter-' + Math.round(Math.random() * 1000)
                     this.data[key] = labelsObj;
                     return key;
                 }
@@ -1023,9 +1023,9 @@ import { _formatCurrency } from "./calc.js"
         Sliders.init();
         Likes.init();
         Share.init();
-        BitcoinPlot.init();
+        BitstarterPlot.init();
         Coinmarketcap.init();
-        BitcoinSlider.init();
+        BitstarterSlider.init();
         Counter.init();
         CounterDown.init();
 
@@ -1403,7 +1403,7 @@ import { _formatCurrency } from "./calc.js"
         }
     }
 
-    var bitcoinDocumentCookies = {
+    var bitstarterDocumentCookies = {
         getItem: function(sKey) {
             if (!sKey) {
                 return null;

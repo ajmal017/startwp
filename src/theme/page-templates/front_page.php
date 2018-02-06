@@ -2,7 +2,7 @@
 /**
  * Template Name: Front Page
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 get_header();

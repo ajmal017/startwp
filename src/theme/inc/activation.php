@@ -2,14 +2,14 @@
 /**
  * Theme activation hook
  *
- * @package bitcoin
- * @since bitcoin 1.0
+ * @package bitstarter
+ * @since bitstarter 1.0
  */
 
 
 
-if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
-	function bitcoin_config_getting_active() {
+if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
+	function bitstarter_config_getting_active() {
 
 		/**
 		 * ACTIVATION SETTINGS
@@ -19,17 +19,17 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 		$pixtypes_conf_settings = array(
 			'first_activation' => true,
 			'metaboxes'        => array(
-				'bitcoin_page_background' => array(
-					'id'         => 'bitcoin_page_background',
+				'bitstarter_page_background' => array(
+					'id'         => 'bitstarter_page_background',
 					'title'      => sprintf(
 							'%s <a class="tooltip" title="%s.<p>%s <strong>%s</strong>, %s <strong>%s</strong> %s.</p>"></a>',
-							esc_html__( 'Hero Area', 'bitcoin' ) ,
-							esc_html__( 'Add an image to be used as a Background for the Hero Area on the Page', 'bitcoin' ),
-							esc_html__( 'Tip: Uploading', 'bitcoin' ),
-							esc_html__( 'multiple images and/or videos', 'bitcoin' ),
-							esc_html__( 'will', 'bitcoin' ),
-							esc_html__( 'randomly', 'bitcoin' ),
-							esc_html__( 'pick one when page is loaded', 'bitcoin' )
+							esc_html__( 'Hero Area', 'bitstarter' ) ,
+							esc_html__( 'Add an image to be used as a Background for the Hero Area on the Page', 'bitstarter' ),
+							esc_html__( 'Tip: Uploading', 'bitstarter' ),
+							esc_html__( 'multiple images and/or videos', 'bitstarter' ),
+							esc_html__( 'will', 'bitstarter' ),
+							esc_html__( 'randomly', 'bitstarter' ),
+							esc_html__( 'pick one when page is loaded', 'bitstarter' )
 					),
 					'pages'      => array( 'page' ), // Post type
 					'context'    => 'side',
@@ -37,19 +37,19 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 					'show_names' => true, // Show field names on the left
 					'fields'     => array(
 						array(
-							'name' => esc_html__( 'Gallery Image', 'bitcoin' ),
+							'name' => esc_html__( 'Gallery Image', 'bitstarter' ),
 							'id'   => 'blog_image_backgrounds',
 							'type' => 'gallery',
 
 						)
 					)
 				),
-				'bitcoin_post_gallery' => array(
-					'id' => 'bitcoin_post_gallery',
+				'bitstarter_post_gallery' => array(
+					'id' => 'bitstarter_post_gallery',
 					'title' => sprintf(
 						'%s <a class="tooltip" title="%s"></a>',
-						esc_html__('Gallery', 'bitcoin'),
-						esc_html__('Add an images to be used as a gallery for the Gallery Post Type Card', 'bitcoin')
+						esc_html__('Gallery', 'bitstarter'),
+						esc_html__('Add an images to be used as a gallery for the Gallery Post Type Card', 'bitstarter')
 					),
 					'pages' => array('post'), // Post type
 					'context' => 'side',
@@ -57,19 +57,19 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 					'show_names' => true, // Show field names on the left
 					'fields' => array(
 						array(
-							'name' => esc_html__('Gallery Image', 'bitcoin'),
+							'name' => esc_html__('Gallery Image', 'bitstarter'),
 							'id' => 'post_gallery_input',
 							'type' => 'gallery',
 
 						)
 					)
 				),
-				'bitcoin_post_audio' => array(
-					'id' => 'bitcoin_post_audio',
+				'bitstarter_post_audio' => array(
+					'id' => 'bitstarter_post_audio',
 					'title' => sprintf(
 						'%s <a class="tooltip" title="%s"></a>',
-						esc_html__('Audio', 'bitcoin'),
-						esc_html__('Put Url to your audio file to be used in the Audio Post Type Card', 'bitcoin')
+						esc_html__('Audio', 'bitstarter'),
+						esc_html__('Put Url to your audio file to be used in the Audio Post Type Card', 'bitstarter')
 					),
 					'pages' => array('post'), // Post type
 					'context' => 'side',
@@ -77,12 +77,12 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 					'show_names' => true, // Show field names on the left
 					'fields' => array(
 						array(
-							'name' => esc_html__('Audio File Source', 'bitcoin'),
+							'name' => esc_html__('Audio File Source', 'bitstarter'),
 							'id' => 'post_audio_file',
 							'type' => 'textarea_code'
 						),
 						array(
-							'name' => esc_html__('Audio Type', 'bitcoin'),
+							'name' => esc_html__('Audio Type', 'bitstarter'),
 							'id' => 'post_audio_type',
 							'type' => 'radio_inline',
 							'std' => 'wp',
@@ -100,12 +100,12 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 						)
 					)
 			),
-			'bitcoin_post_video' => array(
-				'id' => 'bitcoin_post_video',
+			'bitstarter_post_video' => array(
+				'id' => 'bitstarter_post_video',
 				'title' => sprintf(
 					'%s <a class="tooltip" title="%s"></a>',
-					esc_html__('Video', 'bitcoin'),
-					esc_html__('Put Url from youtube or vimeo to be used in the Video Post Type Card', 'bitcoin')
+					esc_html__('Video', 'bitstarter'),
+					esc_html__('Put Url from youtube or vimeo to be used in the Video Post Type Card', 'bitstarter')
 				),
 				'pages' => array('post'), // Post type
 				'context' => 'side',
@@ -113,12 +113,12 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 				'show_names' => true, // Show field names on the left
 				'fields' => array(
 					array(
-						'name' => esc_html__('Video File Source', 'bitcoin'),
+						'name' => esc_html__('Video File Source', 'bitstarter'),
 						'id' => 'post_video_file',
 						'type' => 'textarea_code'
 					),
 					array(
-						'name' => esc_html__('Video Type', 'bitcoin'),
+						'name' => esc_html__('Video Type', 'bitstarter'),
 						'id' => 'post_video_type',
 						'type' => 'radio_inline',
 						'std' => 'yt',
@@ -136,12 +136,12 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 					)
 				)
 			),
-			'bitcoin_post_likes' => array(
-				'id' => 'bitcoin_post_likes',
+			'bitstarter_post_likes' => array(
+				'id' => 'bitstarter_post_likes',
 				'title' => sprintf(
 					'%s <a class="tooltip" title="%s"></a>',
-					esc_html__('Likes', 'bitcoin'),
-					esc_html__('Amount of Likes made on this post', 'bitcoin')
+					esc_html__('Likes', 'bitstarter'),
+					esc_html__('Amount of Likes made on this post', 'bitstarter')
 				),
 				'pages' => array('post'), // Post type
 				'context' => 'side',
@@ -149,7 +149,7 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 				'show_names' => true, // Show field names on the left
 				'fields' => array(
 					array(
-						'name' => esc_html__('Amount of likes', 'bitcoin'),
+						'name' => esc_html__('Amount of likes', 'bitstarter'),
 						'id' => 'post_likes',
 						'type' => 'text'
 					)
@@ -172,12 +172,12 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 			$types_options = array();
 		}
 
-		$types_options['bitcoin_pixtypes_theme'] = $pixtypes_conf_settings;
+		$types_options['bitstarter_pixtypes_theme'] = $pixtypes_conf_settings;
 		update_option( 'pixtypes_themes_settings', $types_options );
 
 
 		// add defaults widgets
-		$already_added = get_option( 'bitcoin_default_widgets_added' );
+		$already_added = get_option( 'bitstarter_default_widgets_added' );
 		if ( empty( $already_added ) || $already_added !== '1' ) {
 
 			$current_widgets = get_option( 'sidebars_widgets' );
@@ -188,7 +188,7 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 
 
 			$current_widgets['sidebar-1']         = array(
-				'bitcoin_coinmarketcap-4',
+				'bitstarter_coinmarketcap-4',
 				'custom_html-2',
 				'wpcom_social_media_icons_widget-3',
 				'search-5',
@@ -211,27 +211,27 @@ if ( ! function_exists( 'bitcoin_config_getting_active' ) ) :
 			);
 			$current_widgets['footer-widget-area-4']     = array(
 				'text-7',
-				'bitcoin_footer_form-3'
+				'bitstarter_footer_form-3'
 			);
 			
 			update_option( 'sidebars_widgets', $current_widgets );
-			update_option( 'bitcoin_default_widgets_added', '1' );
+			update_option( 'bitstarter_default_widgets_added', '1' );
 
 			update_option( 'widget_nav_menu', array('5'=> array('title' => 'INFORMATION','nav_menu'=> 28),'_multiwidget' => 1 ));
 		}
 		
 	}
-endif; // end bitcoin_config_getting_active
+endif; // end bitstarter_config_getting_active
 
 
-add_action( 'after_switch_theme', 'bitcoin_config_getting_active' );
+add_action( 'after_switch_theme', 'bitstarter_config_getting_active' );
 
 
 // pixtypes requires these things 
 if ( ! class_exists( 'wpgrade' ) ) :
 	class wpgrade {
 		static function shortname() {
-			return 'bitcoin';
+			return 'bitstarter';
 		}
 
 		/** @var WP_Theme */
@@ -262,7 +262,7 @@ if ( ! class_exists( 'wpgrade' ) ) :
 	}
 
 	function wpgrade_callback_geting_active() {
-		bitcoin_config_getting_active();
+		bitstarter_config_getting_active();
 	}
 
 endif;

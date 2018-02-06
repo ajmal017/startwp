@@ -1,7 +1,7 @@
 <?php
 
 
-class WPBakeryShortCode_Bitcoin_Team extends  WPBakeryShortCode
+class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
 {
     
     public function hex2rgb($color){
@@ -59,11 +59,11 @@ class WPBakeryShortCode_Bitcoin_Team extends  WPBakeryShortCode
             $output .= '<ul class="team-info__social">';
 
                 if( !empty($fb) ):
-                    $output .= '<li><a href="' . esc_url( $fb ) . '"><i class="bitcoin__icon">' . file_get_contents(locate_template('assets/svg/sc-team-fb.php')) . '</i></a></li>';
+                    $output .= '<li><a href="' . esc_url( $fb ) . '"><i class="bitstarter__icon">' . file_get_contents(locate_template('assets/svg/sc-team-fb.php')) . '</i></a></li>';
                 endif;
                 
                 if( !empty($in) ):
-                    $output .= '<li><a href="' . esc_url( $in ) . '"><i class="bitcoin__icon ">' .  file_get_contents(locate_template('assets/svg/sc-team-in.php')) . '</i></a></li>';
+                    $output .= '<li><a href="' . esc_url( $in ) . '"><i class="bitstarter__icon ">' .  file_get_contents(locate_template('assets/svg/sc-team-in.php')) . '</i></a></li>';
                 endif;
 
             $output .= '</ul>';
@@ -81,73 +81,73 @@ class WPBakeryShortCode_Bitcoin_Team extends  WPBakeryShortCode
 
 
 $opts = array(
-    'name'          => esc_html__( 'Team', 'bitcoin'),
-    'base'          => 'bitcoin_team',
+    'name'          => esc_html__( 'Team', 'bitstarter'),
+    'base'          => 'bitstarter_team',
     'controls'      => 'edit_popup_delete',
-    'icon'          => get_template_directory_uri() . '/assets/img/vc/bitcoin_team.png',
-    'category'      => esc_html__('Developed for Bitcoin', 'bitcoin'),
+    'icon'          => get_template_directory_uri() . '/assets/img/vc/bitstarter_team.png',
+    'category'      => esc_html__('Developed for Bitstarter', 'bitstarter'),
     'params'        => array(
         array(
             'type' => 'attach_image',
-            'heading' => esc_html__( 'Image', 'bitcoin' ),
+            'heading' => esc_html__( 'Image', 'bitstarter' ),
             'param_name' => 'image',
             'admin_label'=> true,
             'vc_single_param_edit_holder_class'=> array("vc_col-xs-12","wpb_el_type_attach_image","vc_wrapper-param-type-attach_image","vc_shortcode-param","vc_column"),
-            'description' => esc_html__( 'Select image (200x200)', 'bitcoin' )
+            'description' => esc_html__( 'Select image (200x200)', 'bitstarter' )
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'First & last name', 'bitcoin' ),
+            'heading' => esc_html__( 'First & last name', 'bitstarter' ),
             'param_name' => 'name'
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Position held', 'bitcoin' ),
+            'heading' => esc_html__( 'Position held', 'bitstarter' ),
             'param_name' => 'position'
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Color of position held', 'bitcoin' ),
+            'heading' => esc_html__( 'Color of position held', 'bitstarter' ),
             'param_name' => 'position_color',
             "value" => '#5e6ee0',
         ),
         array(
             'type' => 'textarea',
-            'heading' => esc_html__( 'Excerpt', 'bitcoin' ),
+            'heading' => esc_html__( 'Excerpt', 'bitstarter' ),
             'param_name' => 'excerpt',
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Shadows in card', 'bitcoin' ),
+            'heading' => esc_html__( 'Shadows in card', 'bitstarter' ),
             'param_name' => 'shadow_color',
             "value" => '#474e65',
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Background color', 'bitcoin' ),
+            'heading' => esc_html__( 'Background color', 'bitstarter' ),
             'param_name' => 'bg_color',
             "value" => '#f6f9fc',
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Facebok (optional)', 'bitcoin' ),
+            'heading' => esc_html__( 'Facebok (optional)', 'bitstarter' ),
             'param_name' => 'fb',
-            'group' => esc_html__( 'Social networks', 'bitcoin' ),
+            'group' => esc_html__( 'Social networks', 'bitstarter' ),
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Linkedin (optional)', 'bitcoin' ),
+            'heading' => esc_html__( 'Linkedin (optional)', 'bitstarter' ),
             'param_name' => 'in',
-            'group' => esc_html__( 'Social networks', 'bitcoin' ),
+            'group' => esc_html__( 'Social networks', 'bitstarter' ),
         ),
         array(
             'type' => 'css_editor',
-            'heading' => esc_html__( 'Css', 'bitcoin' ),
+            'heading' => esc_html__( 'Css', 'bitstarter' ),
             'param_name' => 'css',
-            'group' => esc_html__( 'Design options', 'bitcoin' ),
+            'group' => esc_html__( 'Design options', 'bitstarter' ),
         )
     )
 );
 
 vc_map($opts);
-new WPBakeryShortCode_Bitcoin_Team($opts);
+new WPBakeryShortCode_Bitstarter_Team($opts);

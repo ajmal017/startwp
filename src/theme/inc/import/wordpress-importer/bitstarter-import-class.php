@@ -5,7 +5,7 @@
  * added import for the Front and Blog static pages
  */
 
-class Bitcoin_import extends Bitcoin_WP_Import {
+class Bitstarter_import extends Bitstarter_WP_Import {
 	var $preStringOption;
 	var $results;
 	var $getOptions;
@@ -53,7 +53,7 @@ class Bitcoin_import extends Bitcoin_WP_Import {
 				}
 			}
 
-			update_option( 'bitcoin_demo_data_imported', true );
+			update_option( 'bitstarter_demo_data_imported', true );
 			do_action('import_demo_data_end');
 		}
 
@@ -133,7 +133,7 @@ class Bitcoin_import extends Bitcoin_WP_Import {
 			$post = apply_filters( 'wp_import_post_data_raw', $post );
 
 			if ( ! post_type_exists( $post['post_type'] ) ) {
-				printf( __( 'Failed to import "%s": Invalid post type %s', 'bitcoin' ), esc_html( $post['post_title'] ), esc_html( $post['post_type'] ) );
+				printf( __( 'Failed to import "%s": Invalid post type %s', 'bitstarter' ), esc_html( $post['post_title'] ), esc_html( $post['post_type'] ) );
 				echo '<br />';
 				do_action( 'wp_import_post_exists', $post );
 				continue;
@@ -157,7 +157,7 @@ class Bitcoin_import extends Bitcoin_WP_Import {
 
 			$post_exists = post_exists( $post['post_title'] );
 			if ( $post_exists && get_post_type( $post_exists ) == $post['post_type'] ) {
-				//printf( __('%s &#8220;%s&#8221; already exists.', 'bitcoin'), $post_type_object->labels->singular_name, esc_html($post['post_title']) );
+				//printf( __('%s &#8220;%s&#8221; already exists.', 'bitstarter'), $post_type_object->labels->singular_name, esc_html($post['post_title']) );
 				//echo '<br />';
 
 				//save it for later check if it exists - it may be unattached to it's parent
@@ -241,7 +241,7 @@ class Bitcoin_import extends Bitcoin_WP_Import {
 				}
 
 				if ( is_wp_error( $post_id ) ) {
-					printf( __( 'Failed to import %s "%s"', 'bitcoin' ), $post_type_object->labels->singular_name, esc_html( $post['post_title'] ) );
+					printf( __( 'Failed to import %s "%s"', 'bitstarter' ), $post_type_object->labels->singular_name, esc_html( $post['post_title'] ) );
 					if ( defined( 'IMPORT_DEBUG' ) && IMPORT_DEBUG ) {
 						echo ': ' . $post_id->get_error_message();
 					}
@@ -277,7 +277,7 @@ class Bitcoin_import extends Bitcoin_WP_Import {
 							$term_id = $t['term_id'];
 							do_action( 'wp_import_insert_term', $t, $term, $post_id, $post );
 						} else {
-							printf( __( 'Failed to import %s %s', 'bitcoin' ), esc_html( $taxonomy ), esc_html( $term['name'] ) );
+							printf( __( 'Failed to import %s %s', 'bitstarter' ), esc_html( $taxonomy ), esc_html( $term['name'] ) );
 							if ( defined( 'IMPORT_DEBUG' ) && IMPORT_DEBUG ) {
 								echo ': ' . $t->get_error_message();
 							}
@@ -403,8 +403,8 @@ class Bitcoin_import extends Bitcoin_WP_Import {
 		wp_defer_term_counting( false );
 		wp_defer_comment_counting( false );
 
-		//echo '<p>' . __( 'All done.', 'bitcoin' ) . ' <a href="' . admin_url() . '">' . __( 'Have fun!', 'bitcoin' ) . '</a>' . '</p>';
-		//echo '<p>' . __( 'Remember to update the passwords and roles of imported users.', 'bitcoin' ) . '</p>';
+		//echo '<p>' . __( 'All done.', 'bitstarter' ) . ' <a href="' . admin_url() . '">' . __( 'Have fun!', 'bitstarter' ) . '</a>' . '</p>';
+		//echo '<p>' . __( 'Remember to update the passwords and roles of imported users.', 'bitstarter' ) . '</p>';
 
 		do_action( 'import_end' );
 	}
@@ -422,7 +422,7 @@ class Bitcoin_import extends Bitcoin_WP_Import {
 			$post = apply_filters( 'wp_import_post_data_raw', $post );
 
 			//			if ( ! post_type_exists( $post['post_type'] ) ) {
-			//				printf( __( 'Failed to import &#8220;%s&#8221;: Invalid post type %s', 'bitcoin' ),
+			//				printf( __( 'Failed to import &#8220;%s&#8221;: Invalid post type %s', 'bitstarter' ),
 			//					esc_html($post['post_title']), esc_html($post['post_type']) );
 			//				echo '<br />';
 			//				do_action( 'wp_import_post_exists', $post );
@@ -488,7 +488,7 @@ class Bitcoin_import extends Bitcoin_WP_Import {
 		$locations = get_theme_mod( 'nav_menu_locations' );
 
 		//get all created menus
-		$Bitcoin_menus = wp_get_nav_menus();
+		$Bitstarter_menus = wp_get_nav_menus();
 
 		if ( file_exists( $option_file ) ) {
 			@include_once( $option_file );
@@ -501,15 +501,15 @@ class Bitcoin_import extends Bitcoin_WP_Import {
 		//get the configuration
 		$menu_conf = $demo_menus;
 
-		if ( ! empty( $Bitcoin_menus ) && ! empty( $menu_conf ) ) {
-			foreach ( $Bitcoin_menus as $Bitcoin_menu ) {
-				//check if we got a menu that corresponds to the Menu name array ($Bitcoin_config->get('nav_menus')) we have set in menus.php
-				if ( is_object( $Bitcoin_menu ) && in_array( $Bitcoin_menu->name, $menu_conf ) ) {
-					$key = array_search( $Bitcoin_menu->name, $menu_conf );
+		if ( ! empty( $Bitstarter_menus ) && ! empty( $menu_conf ) ) {
+			foreach ( $Bitstarter_menus as $Bitstarter_menu ) {
+				//check if we got a menu that corresponds to the Menu name array ($Bitstarter_config->get('nav_menus')) we have set in menus.php
+				if ( is_object( $Bitstarter_menu ) && in_array( $Bitstarter_menu->name, $menu_conf ) ) {
+					$key = array_search( $Bitstarter_menu->name, $menu_conf );
 
 					if ( $key !== false ) {
 						//if we have found a menu with the correct menu name apply the id to the menu location
-						$locations[ $key ] = $Bitcoin_menu->term_id;
+						$locations[ $key ] = $Bitstarter_menu->term_id;
 					}
 				}
 			}

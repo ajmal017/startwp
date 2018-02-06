@@ -1,6 +1,6 @@
 <?php
 
-class WPBakeryShortCode_Bitcoin_Distribution extends  WPBakeryShortCode
+class WPBakeryShortCode_Bitstarter_Distribution extends  WPBakeryShortCode
 {
 
     /**
@@ -37,10 +37,10 @@ class WPBakeryShortCode_Bitcoin_Distribution extends  WPBakeryShortCode
             $line_perc .= '<div style="width: ' . $percent . '%"> <span>' .  $percent . '%</span></div>';
         }
         
-        $output .= '<div class="bitcoinDistibution ' . $css_class . '" >';
+        $output .= '<div class="bitstarterDistibution ' . $css_class . '" >';
                 
-        $output .= '<div class="bitcoinDistibution__line">' . $line_html . '</div>';
-        $output .= '<div class="bitcoinDistibution__percentage">' . $line_perc . '</div>';
+        $output .= '<div class="bitstarterDistibution__line">' . $line_html . '</div>';
+        $output .= '<div class="bitstarterDistibution__percentage">' . $line_perc . '</div>';
 
         $output .= '</div>';
 
@@ -49,27 +49,27 @@ class WPBakeryShortCode_Bitcoin_Distribution extends  WPBakeryShortCode
 }
 
 $opts = array(
-    'name'		=> esc_html__( 'Percentage Distribution', 'bitcoin' ),
-    'base'		=> 'bitcoin_distribution',
+    'name'		=> esc_html__( 'Percentage Distribution', 'bitstarter' ),
+    'base'		=> 'bitstarter_distribution',
     'controls'	=> 'edit_popup_delete',
-    'icon'      => get_template_directory_uri() . '/assets/img/vc/bitcoin_distribution.png',
-    'category'  => esc_html__( 'Developed for Bitcoin', 'bitcoin' ),
+    'icon'      => get_template_directory_uri() . '/assets/img/vc/bitstarter_distribution.png',
+    'category'  => esc_html__( 'Developed for Bitstarter', 'bitstarter' ),
     'params'	=> array(
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Distribution', 'bitcoin' ),
+            'heading' => esc_html__( 'Distribution', 'bitstarter' ),
             'param_name' => 'param_to_parse',
-            'value' =>  esc_html__( '#fc3868|23,#ffd529|1,#47f15a|20,#9575f4|12,#c24078|24,#3023ae|6,#00eaf8|14', 'bitcoin' ),
-            'description' =>  esc_html__( 'Enter the params of distribution line in format "color|value,color|value", where color is in hex format (ex. #000000) and value is a number (ex. 10)', 'bitcoin' )
+            'value' =>  esc_html__( '#fc3868|23,#ffd529|1,#47f15a|20,#9575f4|12,#c24078|24,#3023ae|6,#00eaf8|14', 'bitstarter' ),
+            'description' =>  esc_html__( 'Enter the params of distribution line in format "color|value,color|value", where color is in hex format (ex. #000000) and value is a number (ex. 10)', 'bitstarter' )
         ),
         array(
             'type' => 'css_editor',
-            'heading' => esc_html__( 'Css', 'bitcoin' ),
+            'heading' => esc_html__( 'Css', 'bitstarter' ),
             'param_name' => 'css',
-            'group' => esc_html__( 'Design options', 'bitcoin' ),
+            'group' => esc_html__( 'Design options', 'bitstarter' ),
         ),
     )
 );
 
 vc_map($opts);
-new WPBakeryShortCode_Bitcoin_Distribution($opts);
+new WPBakeryShortCode_Bitstarter_Distribution($opts);

@@ -2,14 +2,14 @@
 
 /**
  * Timeline Express compatibility
- * WE ensure that Bitcoin plays nicely with Timeline Express
+ * WE ensure that Bitstarter plays nicely with Timeline Express
  * See: https://wordpress.org/plugins/timeline-express/
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
-if ( ! function_exists( 'bitcoin_timeline_express_options' ) ) {
-	function bitcoin_timeline_express_options( $options ) {
+if ( ! function_exists( 'bitstarter_timeline_express_options' ) ) {
+	function bitstarter_timeline_express_options( $options ) {
 
         array_merge($options, array(
             'read-more-visibility'                        =>  false,
@@ -22,4 +22,4 @@ if ( ! function_exists( 'bitcoin_timeline_express_options' ) ) {
 		return $options;
 	}
 }
-add_filter( 'timeline_express_options', 'bitcoin_timeline_express_options', 100, 1 );
+add_filter( 'timeline_express_options', 'bitstarter_timeline_express_options', 100, 1 );

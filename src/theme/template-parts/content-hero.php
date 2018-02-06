@@ -4,14 +4,14 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 ?>
 <?php
 
     $page_for_posts = get_option( 'page_for_posts' );
-    $the_random_hero = bitcoin_get_random_hero_object( $page_for_posts );
+    $the_random_hero = bitstarter_get_random_hero_object( $page_for_posts );
     $has_image       = false;	
 
     if ( ( empty( $the_random_hero ) || property_exists( $the_random_hero, 'post_mime_type' ) ) && is_object( $the_random_hero ) && property_exists( $the_random_hero, 'post_mime_type' ) && strpos( $the_random_hero->post_mime_type, 'image' ) !== false ) {
@@ -21,13 +21,13 @@
 
 <header class="hero-header<?php 
         if($has_image) echo ' has__featured__image'; 
-        if(bitcoin_categorized_blog() && !is_category() && !is_search()) echo ' has__categories';
+        if(bitstarter_categorized_blog() && !is_category() && !is_search()) echo ' has__categories';
              ?>">
     <div class="hero-header__background"<?php if ( ! empty( $has_image ) ) {
-        echo ' style="background-image: url(' . bitcoin_get_inline_background_image( $has_image ) . ');"';
+        echo ' style="background-image: url(' . bitstarter_get_inline_background_image( $has_image ) . ');"';
     } ?>>
 
-        <?php if ( bitcoin_get_option( 'site_blogheroarea_gradover', false ) == true ):?>
+        <?php if ( bitstarter_get_option( 'site_blogheroarea_gradover', false ) == true ):?>
             <!--  Gradient start -->
             <div class="hero-header__overlay1">
                 <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -61,7 +61,7 @@
             
         <?php endif; ?>
 
-        <?php if ( bitcoin_get_option( 'site_blogheroarea_linover', false ) == true ):?>
+        <?php if ( bitstarter_get_option( 'site_blogheroarea_linover', false ) == true ):?>
             <!-- Trasparancy Overlay-->
             <div class="hero-header__overlay3">
                 <!-- Should be empty-->
@@ -73,7 +73,7 @@
         <div class="hero-header__content">
             <?php if( is_category() ) { ?>
 
-                <h1 class="hero-title"><?php single_cat_title(esc_html__('Category: ', 'bitcoin')); ?></h1>
+                <h1 class="hero-title"><?php single_cat_title(esc_html__('Category: ', 'bitstarter')); ?></h1>
 
             <?php } elseif ( is_archive() ) {
 
@@ -83,7 +83,7 @@
             } elseif ( is_search()  ) { ?>
 
                 <div class="hero-header__content-area__wrapper">
-                    <h1 class="hero-title"><?php printf( esc_html__( 'Search results for: %s', 'bitcoin' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+                    <h1 class="hero-title"><?php printf( esc_html__( 'Search results for: %s', 'bitstarter' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
                     <?php if( ! have_posts() ) : ?>	
                         <?php get_template_part( 'template-parts/content', 'none' ); ?>
                     <?php endif; ?>
@@ -92,7 +92,7 @@
 
             <div class="hero-header__content-area__wrapper hero-header__content--404 ">
                 <div style="height: 150px"></div>
-                <h1 class="hero-title"><?php esc_html_e( '404', 'bitcoin' ); ?></h1>
+                <h1 class="hero-title"><?php esc_html_e( '404', 'bitstarter' ); ?></h1>
                 <?php get_template_part( 'template-parts/content', 'none' ); ?>
                 <div style="height: 150px"></div>
                
@@ -107,7 +107,7 @@
             <?php } ?>
 
             <?php
-            if( bitcoin_categorized_blog() && !is_category() && !is_archive() && !is_search() && !is_404()):
+            if( bitstarter_categorized_blog() && !is_category() && !is_archive() && !is_search() && !is_404()):
                 $categories = get_categories();
                 if( $categories ):
                     echo '<ul class="hero-category__list">';

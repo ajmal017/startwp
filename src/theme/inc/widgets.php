@@ -3,10 +3,10 @@
  * Register our sidebars and widgetized areas.
  *
  */
-function bitcoin_register_widget_areas() {
+function bitstarter_register_widget_areas() {
 
 	register_sidebar( array(
-		'name'          => '&#x1f537; ' . esc_html__( 'Sidebar', 'bitcoin' ),
+		'name'          => '&#x1f537; ' . esc_html__( 'Sidebar', 'bitstarter' ),
 		'id'            => 'sidebar',
 		'before_widget' => '<div id="%1$s" class="widget  %2$s">',
 		'after_widget' => '	</div>',
@@ -16,7 +16,7 @@ function bitcoin_register_widget_areas() {
 
 
 	register_sidebar( array(
-		'name'          => '&#x1f535; ' . esc_html__('Footer Area Bottom Info', 'bitcoin' ),
+		'name'          => '&#x1f535; ' . esc_html__('Footer Area Bottom Info', 'bitstarter' ),
 		'id'            => 'footer-widget-area-social',
 		'before_widget' => '<div id="%1$s" class="widget  %2$s">',
 		'after_widget' => '	</div>',
@@ -25,11 +25,11 @@ function bitcoin_register_widget_areas() {
 	) );
 
 
-	$footer_sidebar_number = (int) bitcoin_get_option('footer_sidebar_number', 4, false);
+	$footer_sidebar_number = (int) bitstarter_get_option('footer_sidebar_number', 4, false);
 
 	for($i = 0; $i < $footer_sidebar_number; $i++){
 		register_sidebar(array(
-			'name' => '&#x1f536; ' .  esc_html__('Footer Area ' . ($i + 1), 'bitcoin'),
+			'name' => '&#x1f536; ' .  esc_html__('Footer Area ' . ($i + 1), 'bitstarter'),
 			'id' => 'footer-widget-area-' . ($i + 1),
 			'before_widget' => '<aside id="%1$s" class="widget  widget--footer  %2$s">',
 			'after_widget' => '</aside>',
@@ -40,17 +40,17 @@ function bitcoin_register_widget_areas() {
 
 
 	if( class_exists('WPCF7')){
-		register_widget('Bitcoin_Footer_Forms_Widget' );
+		register_widget('Bitstarter_Footer_Forms_Widget' );
 	}
 	
-	register_widget('Bitcoin_Coinmarketcap' );
+	register_widget('Bitstarter_Coinmarketcap' );
 
-	register_widget('Bitcoin_WPCOM_social_media_icons_widget' );
+	register_widget('Bitstarter_WPCOM_social_media_icons_widget' );
 
 }
 
 
-class Bitcoin_WPCOM_social_media_icons_widget extends WP_Widget {
+class Bitstarter_WPCOM_social_media_icons_widget extends WP_Widget {
 
 	/**
 	 * Defaults
@@ -77,9 +77,9 @@ class Bitcoin_WPCOM_social_media_icons_widget extends WP_Widget {
 	 */
 	public function __construct() {
 		parent::__construct(
-			'bitcoin_socials', // Base ID
-			'&#x1f535; ' . esc_html__( 'Bitcoin', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'Social Media Icons', 'bitcoin' ), // Name
-			array( 'description' => esc_html__( 'A simple widget that displays social media icons.', 'bitcoin' ), ) // Args
+			'bitstarter_socials', // Base ID
+			'&#x1f535; ' . esc_html__( 'Bitstarter', 'bitstarter' ) . ' &raquo; ' . esc_html__( 'Social Media Icons', 'bitstarter' ), // Name
+			array( 'description' => esc_html__( 'A simple widget that displays social media icons.', 'bitstarter' ), ) // Args
 		);
 
 		$this->defaults = array(
@@ -113,7 +113,7 @@ class Bitcoin_WPCOM_social_media_icons_widget extends WP_Widget {
 
 		$index = 10;
 		$html = array();
-		$alt_text = esc_attr__( 'View %1$s&#8217;s profile on %2$s', 'bitcoin' );
+		$alt_text = esc_attr__( 'View %1$s&#8217;s profile on %2$s', 'bitstarter' );
 		foreach ( $this->services as $service => $data ) {
 			list( $service_name, $url, $svg ) = $data;
 			if ( ! isset( $instance[ $service . '_username' ] ) ) {
@@ -158,12 +158,12 @@ class Bitcoin_WPCOM_social_media_icons_widget extends WP_Widget {
 			}
 
 			$link = apply_filters(
-				'bitcoin_social_media_icons_widget_profile_link',
+				'bitstarter_social_media_icons_widget_profile_link',
 				$predefined_url,
 				$service
 			);
 			$html[ $index ] = sprintf(
-				'<a href="%1$s" class="widget_bitcoin_socials__item" target="_blank"><span class="screen-reader-text">%3$s</span><i class="bitcoin-icon">%4$s</i></a>',
+				'<a href="%1$s" class="widget_bitstarter_socials__item" target="_blank"><span class="screen-reader-text">%3$s</span><i class="bitstarter-icon">%4$s</i></a>',
 				esc_attr( $link ),
 				esc_attr( $service ),
 				sprintf( $alt_text, esc_html( $username ), $service_name ),
@@ -196,7 +196,7 @@ class Bitcoin_WPCOM_social_media_icons_widget extends WP_Widget {
 					<label for="<?php echo esc_attr( $this->get_field_id( $service . '_username' ) ); ?>">
 					<?php
 						/* translators: %s is a social network name, e.g. Facebook. */
-						printf( __( '%s username:', 'bitcoin' ), $service_name );
+						printf( __( '%s username:', 'bitstarter' ), $service_name );
 					?>
 				</label>
 				<input
@@ -237,21 +237,21 @@ class Bitcoin_WPCOM_social_media_icons_widget extends WP_Widget {
 
 
 
-add_action('widgets_init', 'bitcoin_register_widget_areas' );
+add_action('widgets_init', 'bitstarter_register_widget_areas' );
 
 
 
 
-function bitcoin_sidebar(){
+function bitstarter_sidebar(){
 	// Output the sidebar.php
 	global $post;
-	$sidebar = bitcoin_get_option('blog_sidebar');
+	$sidebar = bitstarter_get_option('blog_sidebar');
 	$show_on_posts_page = true;
 
 
 	if( is_home() ){
 		$show_on_posts_page = false;
-		$show_on_posts_page = bitcoin_get_option('blog_sidebar_posts');
+		$show_on_posts_page = bitstarter_get_option('blog_sidebar_posts');
 	}
 
 	if ( 'sidebar__none' != $sidebar && $show_on_posts_page ) {
@@ -262,16 +262,16 @@ function bitcoin_sidebar(){
 	
 }
 
-add_action('bitcoin_after_posts_loop', 'bitcoin_sidebar');
+add_action('bitstarter_after_posts_loop', 'bitstarter_sidebar');
 
 
-class Bitcoin_Coinmarketcap extends WP_Widget {
+class Bitstarter_Coinmarketcap extends WP_Widget {
 	function __construct()
 	{
 		parent::__construct(
-			'bitcoin_coinmarketcap', // Base ID
-			'&#x1F536; ' . esc_html__( 'Bitcoin', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'Cryptocurrency Monitor', 'bitcoin' ), // Name
-			array( 'description' => esc_html__( 'A list of the Coin Market Cap cryptocurrencies', 'bitcoin' ), ) // Args
+			'bitstarter_coinmarketcap', // Base ID
+			'&#x1F536; ' . esc_html__( 'Bitstarter', 'bitstarter' ) . ' &raquo; ' . esc_html__( 'Cryptocurrency Monitor', 'bitstarter' ), // Name
+			array( 'description' => esc_html__( 'A list of the Coin Market Cap cryptocurrencies', 'bitstarter' ), ) // Args
 		);
 	
 	}
@@ -358,11 +358,11 @@ class Bitcoin_Coinmarketcap extends WP_Widget {
 
 		?>
 			<p>
-				<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'bitcoin') ?></label>
+				<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'bitstarter') ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr( isset($instance['title'])?$instance['title']:''); ?>" />
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id('currencies'); ?>"><?php esc_html_e('Currencies:', 'bitcoin') ?></label>
+				<label for="<?php echo $this->get_field_id('currencies'); ?>"><?php esc_html_e('Currencies:', 'bitstarter') ?></label>
 				<select class="widefat" multiple="multiple" id="<?php echo $this->get_field_id('currencies'); ?>" name="<?php echo $this->get_field_name('currencies') . '[]'; ?>"  size="10">
 					<?php foreach($data as $coin ){ ?>
 						
@@ -385,15 +385,15 @@ class Bitcoin_Coinmarketcap extends WP_Widget {
 /**
  *  Display CF7 in footer sidebar
  */
-class Bitcoin_Footer_Forms_Widget extends WP_Widget
+class Bitstarter_Footer_Forms_Widget extends WP_Widget
 {
 
 
 	function __construct() {
 		parent::__construct(
-			'bitcoin_footer_form', // Base ID
-			'&#x1F536; ' . esc_html__( 'Bitcoin', 'bitcoin' ) . ' &raquo; ' . esc_html__( 'CF7 Form', 'bitcoin' ), // Name
-			array( 'description' => esc_html__( 'Add a Contact Form 7 to your footer.', 'bitcoin' ), ) // Args
+			'bitstarter_footer_form', // Base ID
+			'&#x1F536; ' . esc_html__( 'Bitstarter', 'bitstarter' ) . ' &raquo; ' . esc_html__( 'CF7 Form', 'bitstarter' ), // Name
+			array( 'description' => esc_html__( 'Add a Contact Form 7 to your footer.', 'bitstarter' ), ) // Args
 		);
 	}
 
@@ -439,22 +439,22 @@ class Bitcoin_Footer_Forms_Widget extends WP_Widget
 		$contact_form = isset($instance['contact_form']) ? $instance['contact_form'] : '';
 
         // Get CF7 enties
-		$cf = bitcoin_get_posts_array(array('post_type' => 'wpcf7_contact_form', 'numberposts' => -1));
+		$cf = bitstarter_get_posts_array(array('post_type' => 'wpcf7_contact_form', 'numberposts' => -1));
         // If no menus exists, direct the user to go and create some.
 		if (!$cf) {
-			echo '<p>' . esc_html__('No forms have been created yet. Create some.', 'bitcoin') . '</p>';
+			echo '<p>' . esc_html__('No forms have been created yet. Create some.', 'bitstarter') . '</p>';
 			return;
 		}
 
 		?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'bitcoin') ?></label>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'bitstarter') ?></label>
             <input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr($title); ?>" />
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('contact_form'); ?>"><?php esc_html_e('Select Menu:', 'bitcoin'); ?></label>
+            <label for="<?php echo $this->get_field_id('contact_form'); ?>"><?php esc_html_e('Select Menu:', 'bitstarter'); ?></label>
             <select id="<?php echo $this->get_field_id('contact_form'); ?>" name="<?php echo $this->get_field_name('contact_form'); ?>">
-                <option value="0"><?php esc_html_e('&mdash; Select &mdash;', 'bitcoin') ?></option>
+                <option value="0"><?php esc_html_e('&mdash; Select &mdash;', 'bitstarter') ?></option>
 				<?php foreach($cf as $item ){ 
 						echo '<option value="' . $item['value'] . '"'
 							. selected($contact_form,  $item['value'], false)

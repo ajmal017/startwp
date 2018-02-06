@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 get_header(); ?>
@@ -22,7 +22,7 @@ get_header(); ?>
 			<?php /* Start the Loop */ ?>
 
 			<div class="postcards">
-				<div class="grid grid--<?php bitcoin_blog_style(); ?>">
+				<div class="grid grid--<?php bitstarter_blog_style(); ?>">
 					<?php /* Start the Loop */ ?>
 					<?php while ( have_posts() ) : the_post(); ?>
 						<div class="grid__item  postcard">

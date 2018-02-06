@@ -3,13 +3,6 @@
 	$(document).ready(function(){
 		
 
-		//setPostFormat('gallery');
-		if($('#post_ID').length > 0){
-			if( $('#post_ID').val() == BitcoinParams.blog_id ){
-				$('#postimagediv').hide();
-			}
-		}
-
 		function postPage(){
 			let format = document.querySelector('input[name=\'post_format\']:checked');
 			if( !format ) return
@@ -17,7 +10,7 @@
 			setPostFormat(startFormat);
 
 			function setPostFormat(postFormat){
-				let contentPostBlocks = Array.from(document.querySelectorAll('div[id*=bitcoin_post]'));
+				let contentPostBlocks = Array.from(document.querySelectorAll('div[id*=bitstarter_post]'));
 				contentPostBlocks.map(item => $(item).slideUp());
 				if (postFormat == 'gallery') {
 					$('#postimagediv').slideUp();
@@ -25,7 +18,7 @@
 					$('#postimagediv').slideDown();
 				}
 				
-				$(`#bitcoin_post_${postFormat}`).slideDown();
+				$(`#bitstarter_post_${postFormat}`).slideDown();
 				
 					
 			}
@@ -45,9 +38,16 @@
 		});
 
 		// determine if we should see the Featured Image box depending on the current page template
-		if ( $('select#page_template').val() == 'page-templates/front_page.php' ) {
+		if ( $('select#page_template').val() == 'default' || $('select#page_template').val() == 'page-templates/front_page.php' ) {
 			// hide the Featured Image box
 			$('#postimagediv').hide();
+
+			if($('#post_ID').length > 0){
+				if( $('#post_ID').val() !== BitstarterParams.blog_id ){
+					$('#bitstarter_page_background').hide();
+				}
+			}
+	
 		}
 
 		/**
@@ -72,7 +72,7 @@
 		var $gallery = $this.children('ul'),
 			nr_of_images = $gallery.children('li').length,
 			metabox_class = '',
-			options_container = $('#bitcoin_page_background tr:not(.display_on.hidden):not(:first-child)');
+			options_container = $('#bitstarter_page_background tr:not(.display_on.hidden):not(:first-child)');
 
 		if ( nr_of_images == 0 ) {
 			metabox_class = 'no-image';
@@ -83,7 +83,7 @@
 		}
 
 		if ( metabox_class !== '' ) {
-			$( '#bitcoin_page_background')
+			$( '#bitstarter_page_background')
 				.removeClass('no-image single-image multiple-images')
 				.addClass(metabox_class);
 		}

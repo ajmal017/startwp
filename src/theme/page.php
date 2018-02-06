@@ -9,7 +9,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 get_header();  ?>
@@ -21,7 +21,7 @@ get_header();  ?>
 
 			<?php while ( have_posts() ) : the_post();
 
-				do_action( 'bitcoin_before_page_content' );
+				do_action( 'bitstarter_before_page_content' );
 
 				get_template_part( 'template-parts/content', 'page' );
 

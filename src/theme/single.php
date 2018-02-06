@@ -4,13 +4,13 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 get_header(); ?>
 <div class="content-area__wrapper">
 
-	<?php do_action('bitcoin_before_posts_loop'); ?>
+	<?php do_action('bitstarter_before_posts_loop'); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
@@ -35,6 +35,6 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-<?php do_action('bitcoin_after_posts_loop'); ?>
+<?php do_action('bitstarter_after_posts_loop'); ?>
 </div>
 <?php get_footer(); ?>

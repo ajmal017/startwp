@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 $has_image = false; ?>
@@ -133,10 +133,10 @@ $has_image = false; ?>
 
 				case ('quote'):
 				
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-featured-image'); ?>
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-featured-image'); ?>
 
 					
-					<div class="entry-featured__qoute" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');">
+					<div class="entry-featured__qoute" style="background-image: url('<?php echo bitstarter_get_inline_background_image($image[0]); ?>');">
 						<aside class="entry-featured__qoute__bkgrnd">
 							<?php 
 								$c = get_the_excerpt();
@@ -198,22 +198,22 @@ $has_image = false; ?>
 
 		?> <div class="entry-meta"> <?php
 			?>  <div class="entry-meta__1stLine"> <?php
-				bitcoin_posted_by();
+				bitstarter_posted_by();
 
 				?> <span class="entry-meta__delimiter" > | </span> <?php
 
-				bitcoin_posted_on();
+				bitstarter_posted_on();
 
-				bitcoin_comments_number();
+				bitstarter_comments_number();
 
-				bitcoin_likes();
+				bitstarter_likes();
 				
 				get_template_part('template-parts/social-share')
 
 			?> </div> <?php
 		?> <hr/> <?php
 										
-		bitcoin_tags();
+		bitstarter_tags();
 
 		?> </div> <?php
 

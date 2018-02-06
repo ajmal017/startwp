@@ -1,9 +1,9 @@
 <?php
 /**
- * Bitcoin Options Config
+ * Bitstarter Options Config
  *
- * @package Bitcoin
- * @since Bitcoin 1.0
+ * @package Bitstarter
+ * @since Bitstarter 1.0
  */
 
 /**
@@ -13,8 +13,8 @@
  *
  * @return mixed
  */ 
-if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
-	function bitcoin_add_customify_options( $options ) {
+if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
+	function bitstarter_add_customify_options( $options ) {
 
 		// Recommended Fonts List
 		// Headings
@@ -53,78 +53,78 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 			'Droid Serif'
 		);
 
-		$options['opt-name'] = 'bitcoin_options';
+		$options['opt-name'] = 'bitstarter_options';
 
 		// keep this empty now
 		$options['sections'] = array();
 
 
 		$options['panels']['theme_options'] = array(
-			'title'    => '&#x1f506; ' . esc_html__( 'Theme Options', 'bitcoin' ),
+			'title'    => '&#x1f506; ' . esc_html__( 'Theme Options', 'bitstarter' ),
 			'sections' => array(
 				'general'     => array(
-					'title'   => esc_html__( 'General', 'bitcoin' ),
+					'title'   => esc_html__( 'General', 'bitstarter' ),
 					'options' => array(
 						'preloader' => array(
 							'type' => 'checkbox',
 							'default' => true,
-							'label' => esc_html__('Enable preloader?', 'bitcoin')
+							'label' => esc_html__('Enable preloader?', 'bitstarter')
 						),
 						'footer_copyright' => array(
 							'type'              => 'textarea',
-							'label'             => esc_html__( 'Footer Copyright Text', 'bitcoin' ),
-							//'desc' => esc_html__( 'The copyright text which should appear in footer.', 'bitcoin' ),
-							'default'           => esc_html__('Copyright © 2017 Bitcoin theme. All Rights Reserved.', 'bitcoin' ),
+							'label'             => esc_html__( 'Footer Copyright Text', 'bitstarter' ),
+							//'desc' => esc_html__( 'The copyright text which should appear in footer.', 'bitstarter' ),
+							'default'           => esc_html__('Copyright © 2017 Bitstarter theme. All Rights Reserved.', 'bitstarter' ),
 							'sanitize_callback' => 'wp_kses_post',
 							'live'              => array( '.site-info .site-copyright-area' )
 						),
 					)
 				),
 				'custom_js'   => array(
-					'title'   => esc_html__( 'Custom JavaScript', 'bitcoin' ),
+					'title'   => esc_html__( 'Custom JavaScript', 'bitstarter' ),
 					'options' => array(
 						'custom_js'        => array(
 							'type'        => 'ace_editor',
-							'label'       => esc_html__( 'Header', 'bitcoin' ),
-							'desc'        => esc_html__( 'Easily add Custom Javascript code. This code will be loaded in the <head> section.', 'bitcoin' ),
+							'label'       => esc_html__( 'Header', 'bitstarter' ),
+							'desc'        => esc_html__( 'Easily add Custom Javascript code. This code will be loaded in the <head> section.', 'bitstarter' ),
 							'editor_type' => 'javascript',
 						),
 						'custom_js_footer' => array(
 							'type'        => 'ace_editor',
-							'label'       => esc_html__( 'Footer', 'bitcoin' ),
-							'desc'        => esc_html__( 'You can paste here your Google Analytics tracking code (or for what matters any tracking code) and we will put it on every page.', 'bitcoin' ),
+							'label'       => esc_html__( 'Footer', 'bitstarter' ),
+							'desc'        => esc_html__( 'You can paste here your Google Analytics tracking code (or for what matters any tracking code) and we will put it on every page.', 'bitstarter' ),
 							'editor_type' => 'javascript',
 						),
 					)
 				),
 
 				'import_demo_data' => array(
-					'title'       => __( 'Demo Data', 'bitcoin' ),
-					'description' => esc_html__( 'If you would like to have a "ready to go" website as the Bitcoin\'s demo page here is the button', 'bitcoin' ),
+					'title'       => __( 'Demo Data', 'bitstarter' ),
+					'description' => esc_html__( 'If you would like to have a "ready to go" website as the Bitstarter\'s demo page here is the button', 'bitstarter' ),
 					'priority'    => 999999,
 					'options'     => array(
 						'import_demodata_button' => array(
 							'title' => 'Import',
 							'type'  => 'html',
-							'html'  => '<input type="hidden" name="Bitcoin-nonce-import-posts-pages" value="' . wp_create_nonce( 'Bitcoin_nonce_import_demo_posts_pages' ) . '" />
-										<input type="hidden" name="Bitcoin-nonce-import-theme-options" value="' . wp_create_nonce( 'Bitcoin_nonce_import_demo_theme_options' ) . '" />
-										<input type="hidden" name="Bitcoin-nonce-import-widgets" value="' . wp_create_nonce( 'Bitcoin_nonce_import_demo_widgets' ) . '" />
-										<input type="hidden" name="Bitcoin_import_ajax_url" value="' . admin_url( "admin-ajax.php" ) . '" />' .
-							           '<span class="description customize-control-description">' . esc_html__( '(Note: We cannot serve you the original images due the ', 'bitcoin' ) . '<strong>&copy;</strong>)</span></br>' .
-							           '<a href="#" class="button button-primary" id="Bitcoin_import_demodata_button" style="width: 70%; text-align: center; padding: 10px; display: inline-block; height: auto;  margin: 0 15% 10% 15%;">
-											' . __( 'Import demo data', 'bitcoin' ) . '
+							'html'  => '<input type="hidden" name="Bitstarter-nonce-import-posts-pages" value="' . wp_create_nonce( 'Bitstarter_nonce_import_demo_posts_pages' ) . '" />
+										<input type="hidden" name="Bitstarter-nonce-import-theme-options" value="' . wp_create_nonce( 'Bitstarter_nonce_import_demo_theme_options' ) . '" />
+										<input type="hidden" name="Bitstarter-nonce-import-widgets" value="' . wp_create_nonce( 'Bitstarter_nonce_import_demo_widgets' ) . '" />
+										<input type="hidden" name="Bitstarter_import_ajax_url" value="' . admin_url( "admin-ajax.php" ) . '" />' .
+							           '<span class="description customize-control-description">' . esc_html__( '(Note: We cannot serve you the original images due the ', 'bitstarter' ) . '<strong>&copy;</strong>)</span></br>' .
+							           '<a href="#" class="button button-primary" id="Bitstarter_import_demodata_button" style="width: 70%; text-align: center; padding: 10px; display: inline-block; height: auto;  margin: 0 15% 10% 15%;">
+											' . __( 'Import demo data', 'bitstarter' ) . '
 										</a>
 
-										<div class="Bitcoin-loading-wrap hidden">
-											<span class="Bitcoin-loading Bitcoin-import-loading"></span>
-											<div class="Bitcoin-import-wait">' .
-							           esc_html__( 'Please wait a few minutes (between 1 and 3 minutes usually, but depending on your hosting it can take longer) and ', 'bitcoin' ) .
-							           '<strong>' . esc_html__( 'don\'t reload the page', 'bitcoin' ) . '</strong>.' .
-							           esc_html__( 'You will be notified as soon as the import has finished!', 'bitcoin' ) . '
+										<div class="Bitstarter-loading-wrap hidden">
+											<span class="Bitstarter-loading Bitstarter-import-loading"></span>
+											<div class="Bitstarter-import-wait">' .
+							           esc_html__( 'Please wait a few minutes (between 1 and 3 minutes usually, but depending on your hosting it can take longer) and ', 'bitstarter' ) .
+							           '<strong>' . esc_html__( 'don\'t reload the page', 'bitstarter' ) . '</strong>.' .
+							           esc_html__( 'You will be notified as soon as the import has finished!', 'bitstarter' ) . '
 											</div>
 										</div>
 
-										<div class="Bitcoin-import-results hidden"></div>
+										<div class="Bitstarter-import-results hidden"></div>
 										<div class="hr"><div class="inner"><span>&nbsp;</span></div></div>'
 						)
 					)
@@ -133,16 +133,16 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 		);
 
 		$options['panels']['layouts_panel'] = array(
-			'title'    => __( '&#x1f4bb; Layout', 'bitcoin' ),
+			'title'    => __( '&#x1f4bb; Layout', 'bitstarter' ),
 			'sections' => array(
 
 				'header_layouts_section'     => array(
-					'title'   => __( 'Header', 'bitcoin' ),
+					'title'   => __( 'Header', 'bitstarter' ),
 					'options' => array(
 
 						'header_logo_height' => array(
 							'type'        => 'range',
-							'label'       => __( 'Logo Height', 'bitcoin' ),
+							'label'       => __( 'Logo Height', 'bitstarter' ),
 							'desc'        => 'This setting only applies to images',
 							'default'     => 32,
 							'live'        => true,
@@ -157,14 +157,14 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'property'        => 'max-height',
 									'selector'        => '.site-branding img',
 									'unit'            => 'px',
-									'callback_filter' => 'bitcoin_update_header_height'
+									'callback_filter' => 'bitstarter_update_header_height'
 								)
 							)
 						),
 
 						'header_vertical_margins' => array(
 							'type'        => 'range',
-							'label'       => __( 'Header Vertical Margins', 'bitcoin' ),
+							'label'       => __( 'Header Vertical Margins', 'bitstarter' ),
 							'default'     => 0,
 							'live'        => true,
 							'input_attrs' => array(
@@ -179,7 +179,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'selector'        => '.site-header',
 									'unit'            => 'px',
 									'media'           => ' screen and (min-width: 900px)',
-									'callback_filter' => 'bitcoin_update_header_height'
+									'callback_filter' => 'bitstarter_update_header_height'
 								),
 								array(
 									'property' => 'padding-bottom',
@@ -192,7 +192,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 						'navigation_menu_items_spacing' => array(
 							'type'        => 'range',
-							'label'       => __( 'Menu Items Spacing', 'bitcoin' ),
+							'label'       => __( 'Menu Items Spacing', 'bitstarter' ),
 							'default'     => 20,
 							'live'        => true,
 							'input_attrs' => array(
@@ -219,8 +219,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 						'navigation_menu_items_spacing_content_width'   => array(
 							'type'        => 'range',
-							'label'       => __( 'Container Width', 'bitcoin' ),
-							// 'desc'        => __( 'Set the width of the container.', 'bitcoin' ),
+							'label'       => __( 'Container Width', 'bitstarter' ),
+							// 'desc'        => __( 'Set the width of the container.', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 1140,
 							'input_attrs' => array(
@@ -240,12 +240,12 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 					)
 				),
 				'front_page_layouts_section' => array(
-					'title'   => __( 'Front Page', 'bitcoin' ),
+					'title'   => __( 'Front Page', 'bitstarter' ),
 					'options' => array(
 						'frontpage_content_width'   => array(
 							'type'        => 'range',
-							'label'       => __( 'Container Width', 'bitcoin' ),
-							// 'desc'        => __( 'Set the width of the container.', 'bitcoin' ),
+							'label'       => __( 'Container Width', 'bitstarter' ),
+							// 'desc'        => __( 'Set the width of the container.', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 1140,
 							'input_attrs' => array(
@@ -265,13 +265,13 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 					),
 				),
 				'content_layouts_section'    => array(
-					'title'   => __( 'Content', 'bitcoin' ),
+					'title'   => __( 'Content', 'bitstarter' ),
 					'options' => array(
 
 						'content_width' => array(
 							'type'        => 'range',
-							'label'       => __( 'Container Width', 'bitcoin' ),
-							// 'desc'        => __( 'Set the width of the container.', 'bitcoin' ),
+							'label'       => __( 'Container Width', 'bitstarter' ),
+							// 'desc'        => __( 'Set the width of the container.', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 1140,
 							'input_attrs' => array(
@@ -290,8 +290,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'content_width_blog' => array(
 							'type'        => 'range',
-							'label'       => __( 'Container Width On Posts Page', 'bitcoin' ),
-							// 'desc'        => __( 'Set the width of the container.', 'bitcoin' ),
+							'label'       => __( 'Container Width On Posts Page', 'bitstarter' ),
+							// 'desc'        => __( 'Set the width of the container.', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 1140,
 							'input_attrs' => array(
@@ -310,7 +310,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'sections_vertical_margins' => array(
 							'type'        => 'range',
-							'label'       => __( 'Sections Vertical Margins', 'bitcoin' ),
+							'label'       => __( 'Sections Vertical Margins', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 50,
 							'input_attrs' => array(
@@ -337,7 +337,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'blog_type_style' => array(
 							'type' => 'radio_image',
-							'label' => esc_html__('Blog Postcards Layout', 'bitcoin'),
+							'label' => esc_html__('Blog Postcards Layout', 'bitstarter'),
 							'default' => 'tile',
 							'choices' => array(
 								'tile' => get_template_directory_uri() . '/assets/img/tile.png',
@@ -346,7 +346,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'blog_sidebar' => array(
 							'type' => 'radio_image',
-							'label' => esc_html__('Blog Sidebar', 'bitcoin'),
+							'label' => esc_html__('Blog Sidebar', 'bitstarter'),
 							'default' => 'sidebar__none',
 							'choices' => array(
 								'sidebar__left' => get_template_directory_uri() . '/assets/img/sidebar_left.png',
@@ -357,16 +357,16 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						'blog_sidebar_posts' => array(
 							'type' => 'checkbox',
 							'default' => true,
-							'label' => esc_html__('Also appear it on Posts Page', 'bitcoin')
+							'label' => esc_html__('Also appear it on Posts Page', 'bitstarter')
 						)
 					),
 				),
 				'footer_layouts_section' => array(
-					'title' => __('Footer', 'bitcoin'),
+					'title' => __('Footer', 'bitstarter'),
 					'options' => array(
 						'footer_sidebar_number' => array(
 							'type' => 'radio',
-							'label' => esc_html__('Column Number', 'bitcoin'),
+							'label' => esc_html__('Column Number', 'bitstarter'),
 							'default' => '4',
 							'choices' => array(
 								'1' => '1',
@@ -377,8 +377,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'footer_content_width' => array(
 							'type' => 'range',
-							'label' => __('Container Width', 'bitcoin'),
-								// 'desc'        => __( 'Set the width of the container.', 'bitcoin' ),
+							'label' => __('Container Width', 'bitstarter'),
+								// 'desc'        => __( 'Set the width of the container.', 'bitstarter' ),
 							'live' => true,
 							'default' => 1140,
 							'input_attrs' => array(
@@ -401,24 +401,24 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 		);
 
 		$options['panels']['colors'] = array(
-			'title'    => '&#x1f3a8; ' . esc_html__( 'Colors', 'bitcoin' ),
+			'title'    => '&#x1f3a8; ' . esc_html__( 'Colors', 'bitstarter' ),
 			'sections' => array(
 				'site_header' => array(
-					'title'   => esc_html__( 'Site Header', 'bitcoin' ),
+					'title'   => esc_html__( 'Site Header', 'bitstarter' ),
 					'options' => array(
 						'header_transparent'      => array(
 							'type'    => 'checkbox',
 							'default' => true,
-							'label'   => esc_html__( 'Transparent on Front Page Hero', 'bitcoin' ),
+							'label'   => esc_html__( 'Transparent on Front Page Hero', 'bitstarter' ),
 						),
 						'header_transparent_blog'      => array(
 							'type'    => 'checkbox',
 							'default' => true,
-							'label'   => esc_html__( 'Transparent on Blog Posts Page', 'bitcoin' ),
+							'label'   => esc_html__( 'Transparent on Blog Posts Page', 'bitstarter' ),
 						),
 						'header_background_color' => array(
 							'type'    => 'color',
-							'label'   => esc_html__( 'Header Background Color', 'bitcoin' ),
+							'label'   => esc_html__( 'Header Background Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#F6F9FC',
 							'css'     => array(
@@ -436,13 +436,13 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'property' => 'background-color',
 									'media'    => 'not screen and (min-width: 900px)',
 									'selector' => '.primary-menu ul .children, ul.primary-menu .sub-menu',
-									'callback_filter' => 'bitcoin_customify_darker_callback'
+									'callback_filter' => 'bitstarter_customify_darker_callback'
 								),
 							)
 						),
 						'site_title_color'        => array(
 							'type'    => 'color',
-							'label'   => __( 'Site Title Color', 'bitcoin' ),
+							'label'   => __( 'Site Title Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#32325d',
 							'css'     => array(
@@ -464,7 +464,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'nav_link_color'          => array(
 							'type'    => 'color',
-							'label'   => __( 'Nav Link Color', 'bitcoin' ),
+							'label'   => __( 'Nav Link Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#6b7c93',
 							'css'     => array(
@@ -488,13 +488,13 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								// 	'property'        => 'border-color',
 								// 	'media'           => 'only screen and  (min-width: 900px)',
 								// 	'selector'        => '.primary-menu ul .children, ul.primary-menu .sub-menu',
-								// 	'callback_filter' => 'bitcoin_customify_lighter_callback'
+								// 	'callback_filter' => 'bitstarter_customify_lighter_callback'
 								// ),
 							)
 						),
 						'nav_active_color'        => array(
 							'type'    => 'color',
-							'label'   => __( 'Nav Active Color', 'bitcoin' ),
+							'label'   => __( 'Nav Active Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#2d7df0',
 							'css'     => array(
@@ -507,7 +507,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'nav_button_color'        => array(
 							'type'    => 'color',
-							'label'   => __( 'Nav Button Color', 'bitcoin' ),
+							'label'   => __( 'Nav Button Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#EBEBEB',
 							'css'     => array(
@@ -522,11 +522,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				),
 
 				'site_blogheroarea' => array(
-					'title'   => esc_html__( 'Blog Hero Area', 'bitcoin' ),
+					'title'   => esc_html__( 'Blog Hero Area', 'bitstarter' ),
 					'options' => array(
 						'site_blogheroarea_textcolor' => array(
 							'type'    => 'color',
-							'label'   => __( 'Text Color', 'bitcoin' ),
+							'label'   => __( 'Text Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#ffffff',
 							'css'     => array(
@@ -541,18 +541,18 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'background-color',
 									'selector' => '.hero-category__list li a:hover',
-									'callback_filter' => 'bitcoin_site_blogheroarea_color_with_opacity_callback'
+									'callback_filter' => 'bitstarter_site_blogheroarea_color_with_opacity_callback'
 								)
 							)
 						),
 						'site_blogheroarea_gradover' => array(
 							'type'    => 'checkbox',
 							'default' => false,
-							'label'   => __( 'Apply Gradient Overlay', 'bitcoin' ),
+							'label'   => __( 'Apply Gradient Overlay', 'bitstarter' ),
 						),
 						'site_blogheroarea_color1' => array(
 							'type'    => 'color',
-							'label'   => __( 'Gradient Background Color From Left Top Corner', 'bitcoin' ),
+							'label'   => __( 'Gradient Background Color From Left Top Corner', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#6d42ef',
 							'css'     => array(
@@ -564,7 +564,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'site_blogheroarea_color2' => array(
 							'type'    => 'color',
-							'label'   => __( 'Gradient Background Color From Right Bottom Corner', 'bitcoin' ),
+							'label'   => __( 'Gradient Background Color From Right Bottom Corner', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#00eaf8',
 							'css'     => array(
@@ -577,11 +577,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						'site_blogheroarea_linover' => array(
 							'type'    => 'checkbox',
 							'default' => false,
-							'label'   => __( 'Apply Linear Overlay', 'bitcoin' ),
+							'label'   => __( 'Apply Linear Overlay', 'bitstarter' ),
 						),
 						'site_blogheroarea_color3' => array(
 							'type'    => 'color',
-							'label'   => __( 'Linear Overlay Color', 'bitcoin' ),
+							'label'   => __( 'Linear Overlay Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#ffffff',
 							'css'     => array(
@@ -610,7 +610,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'site_blogheroarea_line_width' => array(
 							'type' => 'range',
-							'label' => __('Line Width', 'bitcoin'),
+							'label' => __('Line Width', 'bitstarter'),
 							'live' => true,
 							'default' => 1,
 							'input_attrs' => array(
@@ -629,7 +629,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 					'site_blogheroarea_cat_radius' => array(
 						'type' => 'range',
-						'label' => __('Line Corner Radius', 'bitcoin'),
+						'label' => __('Line Corner Radius', 'bitstarter'),
 						'live' => true,
 						'default' => 20,
 						'input_attrs' => array(
@@ -650,11 +650,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				),
 
 				'main_content' => array(
-					'title'   => esc_html__( 'Main Content', 'bitcoin' ),
+					'title'   => esc_html__( 'Main Content', 'bitstarter' ),
 					'options' => array(
 						'content_background' => array(
 							'type'    => 'color',
-							'label'   => __( 'Content Background', 'bitcoin' ),
+							'label'   => __( 'Content Background', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#FFFFFF',
 							'css'     => array(
@@ -667,7 +667,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'page_background'    => array(
 							'type'    => 'color',
-							'label'   => __( 'Page Background', 'bitcoin' ),
+							'label'   => __( 'Page Background', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#f6f9fc',
 							'css'     => array(
@@ -686,7 +686,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'page_titles_color'  => array(
 							'type'    => 'color',
-							'label'   => __( 'Page Titles Color', 'bitcoin' ),
+							'label'   => __( 'Page Titles Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#32325d',
 							'css'     => array(
@@ -704,7 +704,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 						'page_subtitles_color' => array(
 							'type'    => 'color',
-							'label'   => __( 'Page Subtitles Color', 'bitcoin' ),
+							'label'   => __( 'Page Subtitles Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#919191',
 							'css'     => array(
@@ -716,7 +716,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'text_color'           => array(
 							'type'    => 'color',
-							'label'   => __( 'Text Color', 'bitcoin' ),
+							'label'   => __( 'Text Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#6b7c93',
 							'css'     => array(
@@ -737,7 +737,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'background',
 									'selector' => '.widget-sidebar-title:after',
-									'callback_filter' => 'bitcoin_customify_lighter_callback'
+									'callback_filter' => 'bitstarter_customify_lighter_callback'
 								),
 								array(
 									'property' => 'fill',
@@ -747,7 +747,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'buttons_color'        => array(
 							'type'    => 'color',
-							'label'   => __( 'Buttons Color', 'bitcoin' ),
+							'label'   => __( 'Buttons Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#22dfb5',
 							'css'     => array(
@@ -759,13 +759,13 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'property' => 'box-shadow',
 									'unit' => '0 2px 6px|0.4',
 									'selector' => '.btn, input[type="submit"], .site button.vc_general.vc_btn3-style-custom, .nav-links a ',
-									'callback_filter' => 'bitcoin_box_shadow'
+									'callback_filter' => 'bitstarter_box_shadow'
 								),
 								array(
 									'property' => 'box-shadow',
 									'unit' => '0 4px 20px|0.8',
 									'selector' => '.btn:hover, input[type="submit"]:hover, .site button.vc_general.vc_btn3-style-custom:hover, input[type="submit"]:focus,button.vc_general.vc_btn3-style-custom:active,  .nav-links a:hover,  .nav-links a:focus',
-									'callback_filter' => 'bitcoin_box_shadow'
+									'callback_filter' => 'bitstarter_box_shadow'
 								),
 								array(
 									'property' => 'color',
@@ -779,7 +779,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'buttons_text_color' => array(
 							'type' => 'color',
-							'label' => __('Buttons Text Color', 'bitcoin'),
+							'label' => __('Buttons Text Color', 'bitstarter'),
 							'live' => true,
 							'default' => '#ffffff',
 							'css' => array(
@@ -797,11 +797,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				),
 
 				'cards' => array(
-					'title'   => esc_html__( 'Cards', 'bitcoin' ),
+					'title'   => esc_html__( 'Cards', 'bitstarter' ),
 					'options' => array(
 						'cards_background'            => array(
 							'type'    => 'color',
-							'label'   => __( 'Cards Background', 'bitcoin' ),
+							'label'   => __( 'Cards Background', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#FFFFFF',
 							'css'     => array(
@@ -817,7 +817,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'fill',
-									'selector' => '.grid .card.format-quote .bitcoin__icon svg use, .grid .card.format-quote .bitcoin__icon svg path'
+									'selector' => '.grid .card.format-quote .bitstarter__icon svg use, .grid .card.format-quote .bitstarter__icon svg path'
 								)
 							)
 						),
@@ -853,7 +853,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'unit' => 'px'
 								),
 								array(
-									'selector' => '.bitcoin-rounded',
+									'selector' => '.bitstarter-rounded',
 									'property' => 'border-radius',
 									'unit'     => 'px'
 								),
@@ -879,7 +879,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'cards_title_color'           => array(
 							'type'    => 'color',
-							'label'   => __( 'Title Color', 'bitcoin' ),
+							'label'   => __( 'Title Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#32325d',
 							'css'     => array(
@@ -891,7 +891,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'cards_text_color'            => array(
 							'type'    => 'color',
-							'label'   => __( 'Text Color', 'bitcoin' ),
+							'label'   => __( 'Text Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#6b7c93',
 							'css'     => array(
@@ -903,7 +903,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'cards_hover'            => array(
 							'type'    => 'color',
-							'label'   => __( 'Hover Color On Links', 'bitcoin' ),
+							'label'   => __( 'Hover Color On Links', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#22dfb5',
 							'css'     => array(
@@ -930,14 +930,14 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 									'property' => 'background-color',
 									'selector' => '.format-quote .card__toplink, .entry-featured__qoute__bkgrnd',
 									'unit' => '.95',
-									'callback_filter' => 'bitcoin_color_with_opacity_callback'
+									'callback_filter' => 'bitstarter_color_with_opacity_callback'
 								),
 								array(
 									'property' => 'fill',
 									'selector' => '
-									.grid--tile .bitcoin__icon path,
-									.single-post .likes-count .bitcoin__icon path, 
-									.single-post .comments-count .bitcoin__icon path'
+									.grid--tile .bitstarter__icon path,
+									.single-post .likes-count .bitstarter__icon path, 
+									.single-post .comments-count .bitstarter__icon path'
 								)
 							)
 						)
@@ -946,11 +946,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				),
 
 				'footer' => array(
-					'title'   => esc_html__( 'Footer', 'bitcoin' ),
+					'title'   => esc_html__( 'Footer', 'bitstarter' ),
 					'options' => array(
 						'footer_background' => array(
 							'type'    => 'color',
-							'label'   => __( 'Background', 'bitcoin' ),
+							'label'   => __( 'Background', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#f6f9fc',
 							'css'     => array(
@@ -962,7 +962,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'footer_text_color' => array(
 							'type'    => 'color',
-							'label'   => __( 'Text Color', 'bitcoin' ),
+							'label'   => __( 'Text Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#6b7c93',
 							'css'     => array(
@@ -972,13 +972,13 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'fill',
-									'selector' => '.widget_bitcoin_socials use,.widget_bitcoin_socials path' 
+									'selector' => '.widget_bitstarter_socials use,.widget_bitstarter_socials path' 
 								)
 							)
 						),
 						'footer_credits_color' => array(
 							'type' => 'color',
-							'label' => __('Credits&Social Colors', 'bitcoin'),
+							'label' => __('Credits&Social Colors', 'bitstarter'),
 							'live' => true,
 							'default' => '#6b7c93',
 							'css' => array(
@@ -994,18 +994,18 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 
 				'other_color' => array(
-					'title'   => esc_html__( 'Other Colors', 'bitcoin' ),
+					'title'   => esc_html__( 'Other Colors', 'bitstarter' ),
 					'options' => array(
 						'accent_color' => array(
 							'type'    => 'color',
-							'label'   => __( 'Accent Color', 'bitcoin' ),
+							'label'   => __( 'Accent Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#22dfb5',
 							'css'     => array(
 								array(
 									'property' => 'background-color',
 									'selector' => '.card__links li a,
-									html body .mejs-container, html body .mejs-container .mejs-controls, html body .mejs-embed, html body .mejs-embed body, .entry-header-categories__links li a, .site .bitcoin__slider .slick-arrow, .coin-circle div',
+									html body .mejs-container, html body .mejs-container .mejs-controls, html body .mejs-embed, html body .mejs-embed body, .entry-header-categories__links li a, .site .bitstarter__slider .slick-arrow, .coin-circle div',
 								),
 								array(
 									'property' => 'background',
@@ -1041,7 +1041,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 						'fields_color' => array(
 							'type'    => 'color',
-							'label'   => __( 'Meta Fields Color', 'bitcoin' ),
+							'label'   => __( 'Meta Fields Color', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#8fa0ad',
 							'css'     => array(
@@ -1061,18 +1061,18 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'color',
 									'selector' => '.form-control, input, textarea',
-									'callback_filter' => 'bitcoin_customify_darker_callback'
+									'callback_filter' => 'bitstarter_customify_darker_callback'
 								),
 								array(
 									'property' => 'color',
 									'selector' => '.form-control:focus:placeholder,
 									input:focus:placeholder',
-									'callback_filter ' => 'bitcoin_customify_lighter_callback'
+									'callback_filter ' => 'bitstarter_customify_lighter_callback'
 								),
 								array(
 									'property' => 'border-color',
 									'selector' => 'input, textarea',
-									'callback_filter ' => 'bitcoin_customify_lighter_callback'
+									'callback_filter ' => 'bitstarter_customify_lighter_callback'
 								),
 								array(
 									'property' => 'color',
@@ -1082,7 +1082,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						),
 						'micro_color'  => array(
 							'type'    => 'color',
-							'label'   => __( 'Micro Elements', 'bitcoin' ),
+							'label'   => __( 'Micro Elements', 'bitstarter' ),
 							'live'    => true,
 							'default' => '#ABABAB',
 							'css'     => array(
@@ -1101,8 +1101,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 								array(
 									'property' => 'box-shadow',
 									'unit' => '0 1px 40px|0.6',
-									'selector' => '.bitcoin-shadow',
-									'callback_filter' => 'bitcoin_box_shadow'
+									'selector' => '.bitstarter-shadow',
+									'callback_filter' => 'bitstarter_box_shadow'
 								)
 							)
 						),
@@ -1113,15 +1113,15 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 		);
 
 		$options['panels']['fonts'] = array(
-			'title'    => '&#x1f4dd; ' . esc_html__( 'Fonts', 'bitcoin' ),
+			'title'    => '&#x1f4dd; ' . esc_html__( 'Fonts', 'bitstarter' ),
 			'sections' => array(
 
 				'navigation_font' => array(
-					'title'   => esc_html__( 'Navigation Text', 'bitcoin' ),
+					'title'   => esc_html__( 'Navigation Text', 'bitstarter' ),
 					'options' => array(
 						'navigation_font'           => array(
 							'type'             => 'typography',
-							'label'            => esc_html__( 'Navigation Text', 'bitcoin' ),
+							'label'            => esc_html__( 'Navigation Text', 'bitstarter' ),
 							'selector'         => '.primary-menu > ul, ul.primary-menu a',
 							'load_all_weights' => false,
 							'default'          => array(
@@ -1135,7 +1135,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						// Font Size
 						'navigation_font_size'      => array(
 							'type'        => 'range',
-							'label'       => __( 'Font Size', 'bitcoin' ),
+							'label'       => __( 'Font Size', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 16,
 							'input_attrs' => array(
@@ -1156,7 +1156,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 						// Text Transform
 						'navigation_text_transform' => array(
-							'label'   => __( 'Text Transform', 'bitcoin' ),
+							'label'   => __( 'Text Transform', 'bitstarter' ),
 							'live'    => true,
 							'type'    => 'select',
 							'choices' => array(
@@ -1178,7 +1178,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						// Letter Spacing
 						'navigation_letter-spacing' => array(
 							'type'        => 'range',
-							'label'       => __( 'Letter Spacing', 'bitcoin' ),
+							'label'       => __( 'Letter Spacing', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 0,
 							'input_attrs' => array(
@@ -1200,11 +1200,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				),
 
 				'body_font'        => array(
-					'title'   => esc_html__( 'Body Text', 'bitcoin' ),
+					'title'   => esc_html__( 'Body Text', 'bitstarter' ),
 					'options' => array(
 						'body_font' => array(
 							'type'             => 'typography',
-							'label'            => esc_html__( 'Body Font', 'bitcoin' ),
+							'label'            => esc_html__( 'Body Font', 'bitstarter' ),
 							'selector'         => 'html,body',
 							'load_all_weights' => true,
 							'default'          => array(
@@ -1219,11 +1219,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 				// $Headings
 				'page_titles_font_test' => array(
-					'title'   => esc_html__( 'Blog Titles', 'bitcoin' ),
+					'title'   => esc_html__( 'Blog Titles', 'bitstarter' ),
 					'options' => array(
 						'page_titles_font' => array(
 							'type'             => 'typography',
-							'label'            => esc_html__( 'Headings', 'bitcoin' ),
+							'label'            => esc_html__( 'Headings', 'bitstarter' ),
 							'selector'         => '
 									.entry-title,
 									.widget-sidebar-title,
@@ -1240,7 +1240,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						
 						// Text Transform
 						'page_titles_text_transform' => array(
-							'label' => __('Text Transform', 'bitcoin'),
+							'label' => __('Text Transform', 'bitstarter'),
 							'live' => true,
 							'type' => 'select',
 							'choices' => array(
@@ -1265,11 +1265,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				),
 
 				'page_subtitles_font' => array(
-					'title'   => esc_html__( 'Blog Subtitles', 'bitcoin' ),
+					'title'   => esc_html__( 'Blog Subtitles', 'bitstarter' ),
 					'options' => array(
 						'page_subtitles_font' => array(
 							'type'             => 'typography',
-							'label'            => esc_html__( 'Page Subtitles', 'bitcoin' ),
+							'label'            => esc_html__( 'Page Subtitles', 'bitstarter' ),
 							'selector'         => ' .comments-title, .entry-related__title, comment-reply-title, .comment-reply-title, .entry-subtitle',
 							'load_all_weights' => false,
 							'subsets'          => false,
@@ -1279,7 +1279,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 						// Text Transform
 						'page_subtitles_font_text_transform' => array(
-							'label' => __('Text Transform', 'bitcoin'),
+							'label' => __('Text Transform', 'bitstarter'),
 							'live' => true,
 							'type' => 'select',
 							'choices' => array(
@@ -1301,7 +1301,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						// Font Size
 						'page_subtitles_font_size'      => array(
 							'type'        => 'range',
-							'label'       => __( 'Font Size', 'bitcoin' ),
+							'label'       => __( 'Font Size', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 22,
 							'input_attrs' => array(
@@ -1322,11 +1322,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				),
 
 				'card_title_font' => array(
-					'title'   => esc_html__( 'Card Title Font', 'bitcoin' ),
+					'title'   => esc_html__( 'Card Title Font', 'bitstarter' ),
 					'options' => array(
 						'card_title_font'           => array(
 							'type'             => 'typography',
-							'label'            => esc_html__( 'Card Title Font', 'bitcoin' ),
+							'label'            => esc_html__( 'Card Title Font', 'bitstarter' ),
 							'selector'         => '.card__title',
 							'load_all_weights' => false,
 							'default'          => array( 'Noto Sans', '700' ),
@@ -1335,7 +1335,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						// Font Size
 						'card_title_font_size'      => array(
 							'type'        => 'range',
-							'label'       => __( 'Font Size', 'bitcoin' ),
+							'label'       => __( 'Font Size', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 17,
 							'input_attrs' => array(
@@ -1355,7 +1355,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 						// Text Transform
 						'card_title_text_transform' => array(
-							'label'   => __( 'Text Transform', 'bitcoin' ),
+							'label'   => __( 'Text Transform', 'bitstarter' ),
 							'live'    => true,
 							'type'    => 'select',
 							'choices' => array(
@@ -1376,7 +1376,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						// Letter Spacing
 						'card_title_letter-spacing' => array(
 							'type'        => 'range',
-							'label'       => __( 'Letter Spacing', 'bitcoin' ),
+							'label'       => __( 'Letter Spacing', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 0,
 							'input_attrs' => array(
@@ -1397,11 +1397,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				),
 
 				'card_font' => array(
-					'title'   => esc_html__( 'Card Font', 'bitcoin' ),
+					'title'   => esc_html__( 'Card Font', 'bitstarter' ),
 					'options' => array(
 						'card_font' => array(
 							'type'             => 'typography',
-							'label'            => esc_html__( 'Card Font', 'bitcoin' ),
+							'label'            => esc_html__( 'Card Font', 'bitstarter' ),
 							'selector'         => '.card',
 							'load_all_weights' => false,
 							'default'          => array( 'Noto Sans', '400' ),
@@ -1411,11 +1411,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				),
 
 				'btn_font' => array(
-					'title'   => esc_html__( 'Buttons & Forms', 'bitcoin' ),
+					'title'   => esc_html__( 'Buttons & Forms', 'bitstarter' ),
 					'options' => array(
 						'btn_font' => array(
 							'type'             => 'typography',
-							'label'            => esc_html__( 'Buttons & Forms', 'bitcoin' ),
+							'label'            => esc_html__( 'Buttons & Forms', 'bitstarter' ),
 							'selector'         => '
 								input[type="submit"],
 								button[type="submit"],
@@ -1431,7 +1431,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						// Font Size
 						'btn_title_font_size'      => array(
 							'type'        => 'range',
-							'label'       => __( 'Font Size', 'bitcoin' ),
+							'label'       => __( 'Font Size', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 15,
 							'input_attrs' => array(
@@ -1457,7 +1457,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 						// Text Transform
 						'btn_title_text_transform' => array(
-							'label'   => __( 'Text Transform', 'bitcoin' ),
+							'label'   => __( 'Text Transform', 'bitstarter' ),
 							'live'    => true,
 							'type'    => 'select',
 							'choices' => array(
@@ -1482,7 +1482,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 						// Letter Spacing
 						'btn_title_letter-spacing' => array(
 							'type'        => 'range',
-							'label'       => __( 'Letter Spacing', 'bitcoin' ),
+							'label'       => __( 'Letter Spacing', 'bitstarter' ),
 							'live'        => true,
 							'default'     => 0.6,
 							'input_attrs' => array(
@@ -1508,11 +1508,11 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 				),
 				
 				'meta_font' => array(
-					'title' => esc_html__('Meta', 'bitcoin'),
+					'title' => esc_html__('Meta', 'bitstarter'),
 					'options' => array(
 						'meta_font' => array(
 							'type' => 'typography',
-							'label' => esc_html__('Meta', 'bitcoin'),
+							'label' => esc_html__('Meta', 'bitstarter'),
 							'selector' => '.card-meta, .post-meta',
 							'load_all_weights' => false,
 							'default' => array('Noto Sans', '400'),
@@ -1522,7 +1522,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							// Font Size
 						'meta_title_font_size' => array(
 							'type' => 'range',
-							'label' => __('Font Size', 'bitcoin'),
+							'label' => __('Font Size', 'bitstarter'),
 							'live' => true,
 							'default' => 14,
 							'input_attrs' => array(
@@ -1542,7 +1542,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 
 							// Text Transform
 						'meta_title_text_transform' => array(
-							'label' => __('Text Transform', 'bitcoin'),
+							'label' => __('Text Transform', 'bitstarter'),
 							'live' => true,
 							'type' => 'select',
 							'choices' => array(
@@ -1563,7 +1563,7 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 							// Letter Spacing
 						'meta_title_letter-spacing' => array(
 							'type' => 'range',
-							'label' => __('Letter Spacing', 'bitcoin'),
+							'label' => __('Letter Spacing', 'bitstarter'),
 							'live' => true,
 							'default' => 0,
 							'input_attrs' => array(
@@ -1592,8 +1592,8 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 			'options' => array(
 				'logo_invert' => array(
 					'type'    => 'media',
-					'label'   => esc_html__( 'Logo while on Transparent Hero Area', 'bitcoin' ),
-					'desc'    => esc_html__( 'Replace the default logo on the Front Page Hero.', 'bitcoin' ),
+					'label'   => esc_html__( 'Logo while on Transparent Hero Area', 'bitstarter' ),
+					'desc'    => esc_html__( 'Replace the default logo on the Front Page Hero.', 'bitstarter' ),
 					'show_on' => array( 'header_transparent' ),
 				),
 			)
@@ -1605,17 +1605,17 @@ if ( ! function_exists( 'bitcoin_add_customify_options' ) ) :
 endif;
 
 
-add_action( 'customize_register', 'bitcoin_adjust_cusotmizer_settings', 35 );
+add_action( 'customize_register', 'bitstarter_adjust_cusotmizer_settings', 35 );
 
 /**
  * Use this function to move or reorder options between sections
  *
  * @param $wp_customize
  */
-function bitcoin_adjust_cusotmizer_settings( $wp_customize ) {
+function bitstarter_adjust_cusotmizer_settings( $wp_customize ) {
 
 	// move the `logo_invert` option to the title_tagline section(just to keep the well grouped)
-	$logo_invert = $wp_customize->get_control( 'bitcoin_options[logo_invert]_control' );
+	$logo_invert = $wp_customize->get_control( 'bitstarter_options[logo_invert]_control' );
 
 	if ( ! empty( $logo_invert ) ) {
 		$logo_invert->section  = 'title_tagline';
@@ -1623,7 +1623,7 @@ function bitcoin_adjust_cusotmizer_settings( $wp_customize ) {
 	}
 }
 
-add_filter( 'customify_filter_fields', 'bitcoin_add_customify_options' );
+add_filter( 'customify_filter_fields', 'bitstarter_add_customify_options' );
 
 if ( ! function_exists( 'isLight' ) ) {
 	function isLight( $color = '#ffffff' ) {
@@ -1638,8 +1638,8 @@ if ( ! function_exists( 'isLight' ) ) {
 	}
 }
 
-if ( ! function_exists( 'bitcoin_getRGB' ) ) {
-	function bitcoin_getRGB( $color = '#ffffff' ) {
+if ( ! function_exists( 'bitstarter_getRGB' ) ) {
+	function bitstarter_getRGB( $color = '#ffffff' ) {
 		// Get our color
 		$color = ( $color ) ? $color : '#ffffff';
 		// Calculate straight from rbg
@@ -1663,8 +1663,8 @@ if ( ! function_exists( 'bitcoin_getRGB' ) ) {
 	}
 }
 
-if ( ! function_exists( 'bitcoin_color_darken' ) ) {
-	function bitcoin_color_darken( $color, $dif = 20 ) {
+if ( ! function_exists( 'bitstarter_color_darken' ) ) {
+	function bitstarter_color_darken( $color, $dif = 20 ) {
 
 		$color = str_replace( '#', '', $color );
 		if ( strlen( $color ) != 6 ) {
@@ -1682,82 +1682,82 @@ if ( ! function_exists( 'bitcoin_color_darken' ) ) {
 	}
 }
 
-if ( ! function_exists( 'bitcoin_customify_darker_callback' ) ) {
-	function bitcoin_customify_darker_callback( $value, $selector, $property, $unit ) {
+if ( ! function_exists( 'bitstarter_customify_darker_callback' ) ) {
+	function bitstarter_customify_darker_callback( $value, $selector, $property, $unit ) {
 		$darkenValue = 20;
 		if ( $value == '#ffffff' ) {
 			$darkenValue = 1;
 		} // #FFFFFF -> #F9F9F9
-		$output = $selector . '{' . $property . ': ' . bitcoin_color_darken( $value, $darkenValue ) . '}';
+		$output = $selector . '{' . $property . ': ' . bitstarter_color_darken( $value, $darkenValue ) . '}';
 
 		return $output;
 	}
 }
 
-if ( ! function_exists( 'bitcoin_customify_lighter_callback' ) ) {
-	function bitcoin_customify_lighter_callback( $value, $selector, $property, $unit ) {
+if ( ! function_exists( 'bitstarter_customify_lighter_callback' ) ) {
+	function bitstarter_customify_lighter_callback( $value, $selector, $property, $unit ) {
 		$lighenValue = -100;
 		if ( $value == '#ffffff' ) {
 			$lighenValue = -100;
 		} // #FFFFFF -> #F9F9F9
-		$output = $selector . '{' . $property . ': ' . bitcoin_color_darken( $value, $lighenValue ) . '}';
+		$output = $selector . '{' . $property . ': ' . bitstarter_color_darken( $value, $lighenValue ) . '}';
 
 		return $output;
 	}
 }
 
 
-if ( ! function_exists( 'bitcoin_site_blogheroarea_color1_callback' ) ) {
-	function bitcoin_site_blogheroarea_color1_callback( $value, $selector, $property, $unit ) {
+if ( ! function_exists( 'bitstarter_site_blogheroarea_color1_callback' ) ) {
+	function bitstarter_site_blogheroarea_color1_callback( $value, $selector, $property, $unit ) {
 
-		$output = $selector . ' { '. $property .': '. 'linear-gradient(-38deg, rgba(' . bitcoin_getRGB( $value ) . '0.9) 0%, rgba(255, 255, 255, 0) 100%)'. '; } \n';
+		$output = $selector . ' { '. $property .': '. 'linear-gradient(-38deg, rgba(' . bitstarter_getRGB( $value ) . '0.9) 0%, rgba(255, 255, 255, 0) 100%)'. '; } \n';
 	
 		return $output;
 	}
 }
 
-if ( ! function_exists( 'bitcoin_site_blogheroarea_color2_callback' ) ) {
-	function bitcoin_site_blogheroarea_color2_callback( $value, $selector, $property, $unit ) {
+if ( ! function_exists( 'bitstarter_site_blogheroarea_color2_callback' ) ) {
+	function bitstarter_site_blogheroarea_color2_callback( $value, $selector, $property, $unit ) {
 	
-		$output = $selector . ' { '. $property .': '. 'linear-gradient(-38deg, rgba(255, 255, 255, 0) 0%, rgba(' . bitcoin_getRGB( $value ) . ' 0.9) 100%)'. '; } \n';
-	
-		return $output;
-	}
-}
-
-if ( ! function_exists( 'bitcoin_site_blogheroarea_color_with_opacity_callback' ) ) {
-	function bitcoin_site_blogheroarea_color_with_opacity_callback( $value, $selector, $property, $unit ) {
-	
-		$output = $selector . ' { '. $property . ': rgba(' . bitcoin_getRGB( $value )  . ' 0.3);} ' ;
+		$output = $selector . ' { '. $property .': '. 'linear-gradient(-38deg, rgba(255, 255, 255, 0) 0%, rgba(' . bitstarter_getRGB( $value ) . ' 0.9) 100%)'. '; } \n';
 	
 		return $output;
 	}
 }
 
-if (!function_exists('bitcoin_color_with_opacity_callback')) {
-	function bitcoin_color_with_opacity_callback($value, $selector, $property, $unit)
+if ( ! function_exists( 'bitstarter_site_blogheroarea_color_with_opacity_callback' ) ) {
+	function bitstarter_site_blogheroarea_color_with_opacity_callback( $value, $selector, $property, $unit ) {
+	
+		$output = $selector . ' { '. $property . ': rgba(' . bitstarter_getRGB( $value )  . ' 0.3);} ' ;
+	
+		return $output;
+	}
+}
+
+if (!function_exists('bitstarter_color_with_opacity_callback')) {
+	function bitstarter_color_with_opacity_callback($value, $selector, $property, $unit)
 	{
 
-		$output = $selector . ' { ' . $property . ': rgba(' . bitcoin_getRGB($value) . ' '. $unit . ');} ';
+		$output = $selector . ' { ' . $property . ': rgba(' . bitstarter_getRGB($value) . ' '. $unit . ');} ';
  
 		return $output;
 	}
 }
 
 
-if (!function_exists('bitcoin_box_shadow')) {
-	function bitcoin_box_shadow($value, $selector, $property, $unit)
+if (!function_exists('bitstarter_box_shadow')) {
+	function bitstarter_box_shadow($value, $selector, $property, $unit)
 	{
 		$arr = explode('|', $unit);
 		$coverage = $arr[0];
 		$opacity = $arr[1];
-		$output = $selector . ' { ' . $property . ': '. $coverage .' rgba(' . bitcoin_getRGB($value) . ' '. $opacity . ');} ';
+		$output = $selector . ' { ' . $property . ': '. $coverage .' rgba(' . bitstarter_getRGB($value) . ' '. $opacity . ');} ';
  
 		return $output;
 	}
 }
 
-function bitcoin_add_customify_font_std_font( $fonts ) {
+function bitstarter_add_customify_font_std_font( $fonts ) {
 	$new_fonts           = array();
 	$new_fonts['Noto Sans'] = array(
 		'font_family' => 'Noto Sans',
@@ -1767,17 +1767,17 @@ function bitcoin_add_customify_font_std_font( $fonts ) {
 	return $new_fonts + $fonts;
 }
 
-//add_filter( 'customify_filter_standard_fonts_list', 'bitcoin_add_customify_font_std_font' );
+//add_filter( 'customify_filter_standard_fonts_list', 'bitstarter_add_customify_font_std_font' );
 
-if ( ! function_exists( 'bitcoin_update_header_height' ) ) {
-	function bitcoin_update_header_height( $value, $selector, $property, $unit ) {
+if ( ! function_exists( 'bitstarter_update_header_height' ) ) {
+	function bitstarter_update_header_height( $value, $selector, $property, $unit ) {
 		$output = $selector . '{' . $property . ': ' . $value . $unit . '}';
 
 		return $output;
 	}
 }
 
-function bitcoin_update_header_height_customizer_preview() {
+function bitstarter_update_header_height_customizer_preview() {
 	/**
 	 * The WP-Job-Manager ajax requsets captures this output for some reason, which is wrong
 	 * But also WP-Job-Manager defines the DOING_AJAX constant too late for the customizer preview hook
@@ -1788,7 +1788,7 @@ function bitcoin_update_header_height_customizer_preview() {
 	} ?>
 	<script type="text/javascript">
 
-		function bitcoin_update_header_height( value, selector, property, unit ) {
+		function bitstarter_update_header_height( value, selector, property, unit ) {
 			(function ( $ ) {
 				var headerPaddingBottom = parseInt($('.site-header').css('paddingTop'));
 				$('.site-header').css('paddingBottom', headerPaddingBottom);
@@ -1799,4 +1799,4 @@ function bitcoin_update_header_height_customizer_preview() {
 
 
 
-add_action( 'customize_preview_init', 'bitcoin_update_header_height_customizer_preview', 11 );
+add_action( 'customize_preview_init', 'bitstarter_update_header_height_customizer_preview', 11 );

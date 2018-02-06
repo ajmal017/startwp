@@ -12,37 +12,37 @@
  *
  * @link http://codex.wordpress.org/Custom_Headers
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses bitcoin_header_style()
- * @uses bitcoin_admin_header_style()
- * @uses bitcoin_admin_header_image()
+ * @uses bitstarter_header_style()
+ * @uses bitstarter_admin_header_style()
+ * @uses bitstarter_admin_header_image()
  */
-function bitcoin_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'bitcoin_custom_header_args', array(
+function bitstarter_custom_header_setup() {
+	add_theme_support( 'custom-header', apply_filters( 'bitstarter_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
 		'width'                  => 1000,
 		'height'                 => 250,
 		'flex-height'            => true,
-		'wp-head-callback'       => 'bitcoin_header_style',
-		'admin-head-callback'    => 'bitcoin_admin_header_style',
-		'admin-preview-callback' => 'bitcoin_admin_header_image',
+		'wp-head-callback'       => 'bitstarter_header_style',
+		'admin-head-callback'    => 'bitstarter_admin_header_style',
+		'admin-preview-callback' => 'bitstarter_admin_header_image',
 	) ) );
 }
-add_action( 'after_setup_theme', 'bitcoin_custom_header_setup' );
+add_action( 'after_setup_theme', 'bitstarter_custom_header_setup' );
 
-if ( ! function_exists( 'bitcoin_header_style' ) ) :
+if ( ! function_exists( 'bitstarter_header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog
  *
- * @see bitcoin_custom_header_setup().
+ * @see bitstarter_custom_header_setup().
  */
-function bitcoin_header_style() {
+function bitstarter_header_style() {
 	$header_text_color = get_header_textcolor();
 
 	// If no custom options for text are set, let's bail
@@ -75,15 +75,15 @@ function bitcoin_header_style() {
 	</style>
 	<?php
 }
-endif; // bitcoin_header_style
+endif; // bitstarter_header_style
 
-if ( ! function_exists( 'bitcoin_admin_header_style' ) ) :
+if ( ! function_exists( 'bitstarter_admin_header_style' ) ) :
 /**
  * Styles the header image displayed on the Appearance > Header admin panel.
  *
- * @see bitcoin_custom_header_setup().
+ * @see bitstarter_custom_header_setup().
  */
-function bitcoin_admin_header_style() {
+function bitstarter_admin_header_style() {
 ?>
 	<style type="text/css">
 		.appearance_page_custom-header #headimg {
@@ -103,15 +103,15 @@ function bitcoin_admin_header_style() {
 	</style>
 <?php
 }
-endif; // bitcoin_admin_header_style
+endif; // bitstarter_admin_header_style
 
-if ( ! function_exists( 'bitcoin_admin_header_image' ) ) :
+if ( ! function_exists( 'bitstarter_admin_header_image' ) ) :
 /**
  * Custom header image markup displayed on the Appearance > Header admin panel.
  *
- * @see bitcoin_custom_header_setup().
+ * @see bitstarter_custom_header_setup().
  */
-function bitcoin_admin_header_image() {
+function bitstarter_admin_header_image() {
 ?>
 	<div id="headimg">
 		<h1 class="displaying-header-text">
@@ -124,4 +124,4 @@ function bitcoin_admin_header_image() {
 	</div>
 <?php
 }
-endif; // bitcoin_admin_header_image
+endif; // bitstarter_admin_header_image

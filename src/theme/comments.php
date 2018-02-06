@@ -7,7 +7,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package bitcoin
+ * @package bitstarter
  */
 
 /*
@@ -31,14 +31,14 @@ if ( post_password_required() ) {
 		<div class="comments-header">
 		<h4 class="comments-title"><?php
 
-			echo esc_html('Comments', 'bitcoin');
+			echo esc_html('Comments', 'bitstarter');
 			
 		?></h4>
 
 		<span class="comments-number"><?php
 
 			printf( // WPCS: XSS OK.
-				esc_html( _nx( '1 comment', '%1$s comments', get_comments_number(), 'comments title', 'bitcoin' ) ),
+				esc_html( _nx( '1 comment', '%1$s comments', get_comments_number(), 'comments title', 'bitstarter' ) ),
 				number_format_i18n( get_comments_number() ),
 				'<span>' . get_the_title() . '</span>'
 			);
@@ -48,12 +48,12 @@ if ( post_password_required() ) {
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?> 
 			<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
-				<h4 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'bitcoin' ); ?></h4>
+				<h4 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'bitstarter' ); ?></h4>
 
 				<div class="nav-links">
 
-					<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'bitcoin' ) ); ?></div>
-					<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'bitcoin' ) ); ?></div>
+					<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'bitstarter' ) ); ?></div>
+					<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'bitstarter' ) ); ?></div>
 
 				</div><!-- .nav-links -->
 			</nav><!-- #comment-nav-above -->
@@ -63,19 +63,19 @@ if ( post_password_required() ) {
 			<?php
 			wp_list_comments( array(
 				'style'      => 'ol',
-				'callback' => 'bitcoin_shape_comment'
+				'callback' => 'bitstarter_shape_comment'
 			) );
 			?>
 		</ol><!-- .comment-list -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
 			<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
-				<h4 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'bitcoin' ); ?></h4>
+				<h4 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'bitstarter' ); ?></h4>
 
 				<div class="nav-links">
 
-					<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'bitcoin' ) ); ?></div>
-					<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'bitcoin' ) ); ?></div>
+					<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'bitstarter' ) ); ?></div>
+					<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'bitstarter' ) ); ?></div>
 
 				</div><!-- .nav-links -->
 			</nav><!-- #comment-nav-below -->
@@ -85,11 +85,11 @@ if ( post_password_required() ) {
 
 	// If comments are closed and there are comments, let's leave a little note, shall we?
 	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) { ?>
-		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'bitcoin' ); ?></p>
+		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'bitstarter' ); ?></p>
 	<?php }
 
 	$comment_args = array(
-		'title_reply_to'       => __( 'Leave a Reply to %s', 'bitcoin' ),
+		'title_reply_to'       => __( 'Leave a Reply to %s', 'bitstarter' ),
 		'title_reply_before'   => '<h4 id="reply-title" class="comment-reply-title">',
 		'title_reply_after'    => '</h4>',
 	);

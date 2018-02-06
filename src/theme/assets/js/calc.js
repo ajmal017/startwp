@@ -219,7 +219,7 @@ class ModelEntry {
    */
   _init() {
     // Trigger recalc.
-    this._rise = parseFloat(document.querySelector('#bitcoin-rise').getAttribute('data-rise'));
+    this._rise = parseFloat(document.querySelector('#bitstarter-rise').getAttribute('data-rise'));
     this._model.coin.name.value = 'bitcoin';
     this._model.currency.name.value = 'USD';
     this._model.currency.amount.value = this._model.data.value.get('bitcoin-USD');
@@ -232,8 +232,8 @@ class ModelEntry {
    */
   _initElements() {
 
-    const cryptoName = document.querySelector('#bitcoin-calc-cryptoname');
-    const currenctName = document.querySelector('#bitcoin-calc-currencyname');
+    const cryptoName = document.querySelector('#bitstarter-calc-cryptoname');
+    const currenctName = document.querySelector('#bitstarter-calc-currencyname');
 
 
     // Set up animations for conversion screen buttons.
@@ -245,10 +245,10 @@ class ModelEntry {
         this._model.currency.name.value = event.target.value;
     });
 
-    this._cryptoAmount = document.querySelector('#bitcoin-calc-cryptoamount');
-    this._currencyAmount = document.querySelector('#bitcoin-calc-currencyamount');
-    this._cryptoBlock = document.querySelector('.bitcoin-calc__entry__coin');
-    this._currencyBlock = document.querySelector('.bitcoin-calc__entry__currency');
+    this._cryptoAmount = document.querySelector('#bitstarter-calc-cryptoamount');
+    this._currencyAmount = document.querySelector('#bitstarter-calc-currencyamount');
+    this._cryptoBlock = document.querySelector('.bitstarter-calc__entry__coin');
+    this._currencyBlock = document.querySelector('.bitstarter-calc__entry__currency');
     // Set up event listeners for modifying the model.
     this._cryptoAmount.addEventListener('input', () => {
       this._model.coin.amount.value = parseFloat(this._cryptoAmount.value);
@@ -496,6 +496,6 @@ class ModelEntry {
       }
     });
 }
-if( document.querySelector('#bitcoin-calc')){
+if( document.querySelector('#bitstarter-calc')){
 let app = new App();
 }

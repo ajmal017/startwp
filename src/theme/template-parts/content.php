@@ -5,7 +5,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 ?>
@@ -52,9 +52,9 @@
 			else:
 				if (has_post_thumbnail()) :
 
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image'); ?>
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image'); ?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<aside class="card__image" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');"></aside>
+					<aside class="card__image" style="background-image: url('<?php echo bitstarter_get_inline_background_image($image[0]); ?>');"></aside>
 				</a>
 
 				<?php else : ?>
@@ -103,10 +103,10 @@
 
 			<?php elseif (has_post_thumbnail() && $type == 'wp') :
 
-				$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image'); ?>
+				$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image'); ?>
 				<div class="card-player" >
 					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-						<aside class="card__image" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');"></aside>
+						<aside class="card__image" style="background-image: url('<?php echo bitstarter_get_inline_background_image($image[0]); ?>');"></aside>
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 				</div>
@@ -121,10 +121,10 @@
 				</div>
 			<?php elseif( has_post_thumbnail() ): 
 
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image'); ?>
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image'); ?>
 
 					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-						<aside class="card__image" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');"></aside>
+						<aside class="card__image" style="background-image: url('<?php echo bitstarter_get_inline_background_image($image[0]); ?>');"></aside>
 					</a>
 
 			<?php else : ?>
@@ -170,10 +170,10 @@
 
 		default:
 			if (has_post_thumbnail()) :
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitcoin-card-image');
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image');
 					 ?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<aside class="card__image" style="background-image: url('<?php echo bitcoin_get_inline_background_image($image[0]); ?>');"></aside>
+					<aside class="card__image" style="background-image: url('<?php echo bitstarter_get_inline_background_image($image[0]); ?>');"></aside>
 				</a>
 
 			<?php else : 
@@ -221,19 +221,19 @@
 				 } ?>
 		</div>
 		<!-- READ MORE-->
-		<?php bitcoin_permabutton(
+		<?php bitstarter_permabutton(
 			array(
 			'classes' => 'btn btn-primary',
-			'title' =>  __( 'READ MORE', 'bitcoin')
+			'title' =>  __( 'READ MORE', 'bitstarter')
 			)
 		);?>
 
 		<?php if ( 'post' === get_post_type() ) {?>
 			<div class="card-meta">
-				<?php bitcoin_posted_by();?>
+				<?php bitstarter_posted_by();?>
 				<span class="card-meta__delimiter" > | </span>
-				<?php bitcoin_posted_on();?>
-				<?php bitcoin_comments_number( $format == 'quote' ? '5':'2' );?>
+				<?php bitstarter_posted_on();?>
+				<?php bitstarter_comments_number( $format == 'quote' ? '5':'2' );?>
 			</div><!-- .card-meta -->
 		<?php } ?>
 	</div>

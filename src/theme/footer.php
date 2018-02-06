@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 ?>
 
@@ -16,7 +16,7 @@
 		<?php if ( is_active_sidebar( 'footer-widget-area-1' ) ) : ?>
 			<div id="footer-sidebar" class="widget-area__footer" role="complementary">
 			<?php
-				$footer_sidebar_number = (int) bitcoin_get_option('footer_sidebar_number', 4, true);
+				$footer_sidebar_number = (int) bitstarter_get_option('footer_sidebar_number', 4, true);
 
 				for($i = 0; $i < $footer_sidebar_number; $i++){
 					echo '<div class="widget-area__footer__col widget-area__footer__col--' . $footer_sidebar_number . '">'; 
@@ -30,14 +30,14 @@
 		<div class="footer-infoarea">
 			<div class="site-info">
 				<?php
-				$footer_copyright = bitcoin_get_option('footer_copyright');
+				$footer_copyright = bitstarter_get_option('footer_copyright');
 				if ( $footer_copyright ) : ?>
 					<div class="site-copyright-area">
 						<?php echo $footer_copyright; ?>
 					</div>
 				<?php else: ?>
 					<div class="site-copyright-area">
-						<?php echo  esc_html__('Copyright © 2018 Bitcoin theme. All Rights Reserved.','bitcoin') ?>
+						<?php echo  esc_html__('Copyright © 2018 Bitstarter theme. All Rights Reserved.','bitstarter') ?>
 					</div>
 				<?php endif; ?>
 			</div><!-- .site-info -->

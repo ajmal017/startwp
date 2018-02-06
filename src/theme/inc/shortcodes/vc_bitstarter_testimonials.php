@@ -1,6 +1,6 @@
 <?php
 
-class WPBakeryShortCode_Bitcoin_Testimonials extends  WPBakeryShortCode
+class WPBakeryShortCode_Bitstarter_Testimonials extends  WPBakeryShortCode
 {
  
     public function content($atts, $content = null)
@@ -31,35 +31,35 @@ class WPBakeryShortCode_Bitcoin_Testimonials extends  WPBakeryShortCode
 }
 
 $opts = array(
-    'name'		=> esc_html__( 'Testimonials', 'bitcoin' ),
-    'base'		=> 'bitcoin_testimonials',
+    'name'		=> esc_html__( 'Testimonials', 'bitstarter' ),
+    'base'		=> 'bitstarter_testimonials',
     'controls'	=> 'edit_popup_delete',
-    'category'  => esc_html__( 'Developed for Bitcoin', 'bitcoin' ),
-    'icon' => get_template_directory_uri() . '/assets/img/vc/bitcoin_testimonials.png',
+    'category'  => esc_html__( 'Developed for Bitstarter', 'bitstarter' ),
+    'icon' => get_template_directory_uri() . '/assets/img/vc/bitstarter_testimonials.png',
     'params'	=> array(
 
         array(
             'type' => 'attach_image',
-            'heading' => esc_html__( 'Image', 'bitcoin' ),
+            'heading' => esc_html__( 'Image', 'bitstarter' ),
             'param_name' => 'image',
             'admin_label'=> true,
             'vc_single_param_edit_holder_class'=> array("vc_col-xs-12","wpb_el_type_attach_image","vc_wrapper-param-type-attach_image","vc_shortcode-param","vc_column"),
-            'description' => esc_html__( 'Select image', 'bitcoin' )
+            'description' => esc_html__( 'Select image', 'bitstarter' )
         ),
         array(
             'type' => 'textarea_html',
             'holder' => 'div',
-            'heading' => esc_html__( 'Content', 'bitcoin' ),
+            'heading' => esc_html__( 'Content', 'bitstarter' ),
             'param_name' => 'content'
         ),
         array(
             'type' => 'css_editor',
-            'heading' => esc_html__( 'Css', 'bitcoin' ),
+            'heading' => esc_html__( 'Css', 'bitstarter' ),
             'param_name' => 'css',
-            'group' => esc_html__( 'Design options', 'bitcoin' ),
+            'group' => esc_html__( 'Design options', 'bitstarter' ),
         ),
     )
 );
 
 vc_map($opts);
-new WPBakeryShortCode_Bitcoin_Testimonials($opts);
+new WPBakeryShortCode_Bitstarter_Testimonials($opts);

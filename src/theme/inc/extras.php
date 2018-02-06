@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 /**
@@ -16,7 +16,7 @@
  */
 
 
-function bitcoin_body_classes( $classes ) {
+function bitstarter_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
@@ -40,25 +40,25 @@ function bitcoin_body_classes( $classes ) {
 	$show_on_posts_page = true;
 	if (is_home()) {
 		$show_on_posts_page = false;
-		$show_on_posts_page = bitcoin_get_option('blog_sidebar_posts');
+		$show_on_posts_page = bitstarter_get_option('blog_sidebar_posts');
 	}
 
-	$sidebar = bitcoin_get_option('blog_sidebar');
+	$sidebar = bitstarter_get_option('blog_sidebar');
 	if( isset( $sidebar ) && 'sidebar__none' != $sidebar && $show_on_posts_page ){
 		$classes[] = $sidebar;
 	}
 
-	if((is_page_template( 'page-templates/front_page.php' ) && bitcoin_get_option( 'header_transparent', true)) || ( is_home() && bitcoin_get_option( 'header_transparent', true)) ) {
+	if((is_page_template( 'page-templates/front_page.php' ) && bitstarter_get_option( 'header_transparent', true)) || ( is_home() && bitstarter_get_option( 'header_transparent', true)) ) {
 		$classes[] = 'header--transparent'; 
 	}
 
 	return $classes;
 }
-add_filter( 'body_class', 'bitcoin_body_classes' );
+add_filter( 'body_class', 'bitstarter_body_classes' );
 
 
 
-if ( ! function_exists( 'bitcoin_display_image' ) ) {
+if ( ! function_exists( 'bitstarter_display_image' ) ) {
 	/**
 	 * Display an image from the given url
 	 * We use this function when the url may contain a svg file
@@ -67,7 +67,7 @@ if ( ! function_exists( 'bitcoin_display_image' ) ) {
 	 * @param string $class A CSS class
 	 * @param bool|true $wrap_as_img If the function should wrap the url in an image tag or not
 	 */
-	function bitcoin_display_image( $url, $class = '', $wrap_as_img = true, $attachment_id = null ) {
+	function bitstarter_display_image( $url, $class = '', $wrap_as_img = true, $attachment_id = null ) {
 		if ( ! empty( $url ) && is_string( $url ) ) {
 
 			//we try to inline svgs
@@ -113,7 +113,7 @@ if ( ! function_exists( 'bitcoin_display_image' ) ) {
 	}
 }
 
-if ( ! function_exists( 'bitcoin_get_listing_gallery_ids' ) ) {
+if ( ! function_exists( 'bitstarter_get_listing_gallery_ids' ) ) {
 	/**
 	 * Return the gallery of images attached to the listing
 	 *
@@ -121,7 +121,7 @@ if ( ! function_exists( 'bitcoin_get_listing_gallery_ids' ) ) {
 	 *
 	 * @return array|bool
 	 */
-	function bitcoin_get_listing_gallery_ids( $listing_ID = null ) {
+	function bitstarter_get_listing_gallery_ids( $listing_ID = null ) {
 
 		if ( empty( $listing_ID ) ) {
 			$listing_ID = get_the_ID();
@@ -165,7 +165,7 @@ if ( ! function_exists( 'bitcoin_get_listing_gallery_ids' ) ) {
 	}
 }
 
-if ( ! function_exists( 'bitcoin_get_post_image_id' ) ) {
+if ( ! function_exists( 'bitstarter_get_post_image_id' ) ) {
 	/**
 	 * Return the ID of the first image found in the post meta (featured image). In case of listings first we will look into the gallery (main_image) and then for the featured image
 	 *
@@ -173,14 +173,14 @@ if ( ! function_exists( 'bitcoin_get_post_image_id' ) ) {
 	 *
 	 * @return array|bool|string
 	 */
-	function bitcoin_get_post_image_id( $post_ID = null ) {
+	function bitstarter_get_post_image_id( $post_ID = null ) {
 
 		if ( empty( $post_ID ) ) {
 			$post_ID = get_the_ID();
 		}
 
 		//get the presentation gallery if present
-		$gallery_ids = bitcoin_get_listing_gallery_ids( $post_ID );
+		$gallery_ids = bitstarter_get_listing_gallery_ids( $post_ID );
 
 		//now lets get the image (either from the presentation gallery or the featured image
 		// if there are second images, use them
@@ -195,7 +195,7 @@ if ( ! function_exists( 'bitcoin_get_post_image_id' ) ) {
 	}
 }
 
-if ( ! function_exists( 'bitcoin_get_post_image_src' ) ) {
+if ( ! function_exists( 'bitstarter_get_post_image_src' ) ) {
 	/**
 	 * Return the src of the post image. In the case of listings we will try and get the first image of the gallery first, then the featured image.
 	 *
@@ -204,13 +204,13 @@ if ( ! function_exists( 'bitcoin_get_post_image_src' ) ) {
 	 *
 	 * @return bool
 	 */
-	function bitcoin_get_post_image_src( $post_id = null, $size = 'thumbnail' ) {
+	function bitstarter_get_post_image_src( $post_id = null, $size = 'thumbnail' ) {
 
 		if ( empty( $post_id ) ) {
 			$post_id = get_the_ID();
 		}
 
-		$attach_id = bitcoin_get_post_image_id( $post_id );
+		$attach_id = bitstarter_get_post_image_id( $post_id );
 
 		if ( empty( $attach_id ) || is_wp_error( $attach_id ) ) {
 			return false;
@@ -219,14 +219,14 @@ if ( ! function_exists( 'bitcoin_get_post_image_src' ) ) {
 		$data = wp_get_attachment_image_src( $attach_id, $size );
 		// if this attachment has an url for this size, return it
 		if ( isset( $data[0] ) && ! empty ( $data ) ) {
-			return bitcoin_get_inline_background_image( $data[0] );
+			return bitstarter_get_inline_background_image( $data[0] );
 		}
 
 		return false;
 	}
 }
 
-if ( ! function_exists( 'bitcoin_get_attachment_id_from_url' ) ) {
+if ( ! function_exists( 'bitstarter_get_attachment_id_from_url' ) ) {
 	/**
 	 * Given an URL we will try to find and return the ID of the attachment, if present
 	 *
@@ -234,7 +234,7 @@ if ( ! function_exists( 'bitcoin_get_attachment_id_from_url' ) ) {
 	 *
 	 * @return bool|null|string
 	 */
-	function bitcoin_get_attachment_id_from_url( $attachment_url = '' ) {
+	function bitstarter_get_attachment_id_from_url( $attachment_url = '' ) {
 
 		global $wpdb;
 		$attachment_id = false;
@@ -265,7 +265,7 @@ if ( ! function_exists( 'bitcoin_get_attachment_id_from_url' ) ) {
 	}
 }
 
-function bitcoin_is_edit_page( $new_edit = null ) {
+function bitstarter_is_edit_page( $new_edit = null ) {
 	global $pagenow;
 	//make sure we are on the backend
 	if ( ! is_admin() ) {
@@ -282,7 +282,7 @@ function bitcoin_is_edit_page( $new_edit = null ) {
 }
 
 
-function bitcoin_sort_array_by_priority( $a, $b ) {
+function bitstarter_sort_array_by_priority( $a, $b ) {
 	if ( $a['priority'] == $b['priority'] ) {
 		return 0;
 	}
@@ -296,16 +296,16 @@ function bitcoin_sort_array_by_priority( $a, $b ) {
  *
  * @return mixed
  */
-function bitcoin_add_comments_placeholders( $args ) {
-	$args['fields']['author'] = str_replace( 'name="author"', 'placeholder="' . esc_attr__( 'Enter your name', 'bitcoin' ) . '" name="author"', $args['fields']['author'] );
-	$args['fields']['email']  = str_replace( 'name="email"', 'placeholder="' . esc_attr__( 'Enter your mail', 'bitcoin' ) . '" name="email"', $args['fields']['email'] );
-	$args['fields']['url']  = str_replace( 'name="url"', 'placeholder="' . esc_attr__( 'Enter your website', 'bitcoin' ) . '" name="url"', $args['fields']['url'] );
+function bitstarter_add_comments_placeholders( $args ) {
+	$args['fields']['author'] = str_replace( 'name="author"', 'placeholder="' . esc_attr__( 'Enter your name', 'bitstarter' ) . '" name="author"', $args['fields']['author'] );
+	$args['fields']['email']  = str_replace( 'name="email"', 'placeholder="' . esc_attr__( 'Enter your mail', 'bitstarter' ) . '" name="email"', $args['fields']['email'] );
+	$args['fields']['url']  = str_replace( 'name="url"', 'placeholder="' . esc_attr__( 'Enter your website', 'bitstarter' ) . '" name="url"', $args['fields']['url'] );
 	return $args;
 }
-add_action( 'comment_form_defaults', 'bitcoin_add_comments_placeholders' );
+add_action( 'comment_form_defaults', 'bitstarter_add_comments_placeholders' );
 
 
-if ( ! function_exists( 'bitcoin_get_random_hero_object' ) ) {
+if ( ! function_exists( 'bitstarter_get_random_hero_object' ) ) {
 	/**
 	 * A post / page can hold images or videos, but sometimes we want to use only a random one as featured hero
 	 * This is what this functions returns
@@ -313,7 +313,7 @@ if ( ! function_exists( 'bitcoin_get_random_hero_object' ) ) {
 	 *
 	 * @return array|null|WP_Post
 	 */
-	function bitcoin_get_random_hero_object( $post_id = null ) {
+	function bitstarter_get_random_hero_object( $post_id = null ) {
 		if ( $post_id === null ) {
 			global $post;
 			$post_id = $post->ID;
@@ -341,7 +341,7 @@ if ( ! function_exists( 'bitcoin_get_random_hero_object' ) ) {
  *
  * @return mixed|void
  */
-function bitcoin_get_inline_background_image( $url ) {
+function bitstarter_get_inline_background_image( $url ) {
 	if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) && function_exists( 'jetpack_photon_url' ) ) {
 		return apply_filters( 'jetpack_photon_url', $url );
 	}
@@ -351,7 +351,7 @@ function bitcoin_get_inline_background_image( $url ) {
 /**
  * Add descriptions to menu items
  */
-function bitcoin_nav_description( $item_output, $item, $depth, $args ) {
+function bitstarter_nav_description( $item_output, $item, $depth, $args ) {
 
 	if ( 'search_suggestions' == $args->theme_location && $item->description ) {
 		$item_output = str_replace( $args->link_after . '</a>', '<span class="menu-item-description">' . $item->description . '</span>' . $args->link_after . '</a>', $item_output );
@@ -360,15 +360,15 @@ function bitcoin_nav_description( $item_output, $item, $depth, $args ) {
 	return $item_output;
 
 }
-add_filter( 'walker_nav_menu_start_el', 'bitcoin_nav_description', 10, 4 );
+add_filter( 'walker_nav_menu_start_el', 'bitstarter_nav_description', 10, 4 );
 
 
 
-function bitcoin_string_to_bool( $value ) {
+function bitstarter_string_to_bool( $value ) {
 	return ( is_bool( $value ) && $value ) || in_array( $value, array( '1', 'true', 'yes' ) ) ? true : false;
 }
 
-function bitcoin_get_shortcode_param_value( $content, $shortcode, $param, $default ) {
+function bitstarter_get_shortcode_param_value( $content, $shortcode, $param, $default ) {
 	$param_value = $default;
 	if ( has_shortcode( $content, $shortcode ) ) {
 		$pattern = get_shortcode_regex( array( $shortcode ) );
@@ -389,7 +389,7 @@ function bitcoin_get_shortcode_param_value( $content, $shortcode, $param, $defau
 			}
 
 			if ( ! empty( $result ) ) {
-				$value = bitcoin_preg_match_array_get_value_by_key( $result, $param );
+				$value = bitstarter_preg_match_array_get_value_by_key( $result, $param );
 
 				if ( null !== $value ) {
 					//just in case someone has magic_quotes activated
@@ -402,7 +402,7 @@ function bitcoin_get_shortcode_param_value( $content, $shortcode, $param, $defau
 	return $param_value;
 }
 
-function bitcoin_preg_match_array_get_value_by_key( $arrs, $searched ) {
+function bitstarter_preg_match_array_get_value_by_key( $arrs, $searched ) {
 	foreach ( $arrs as $arr ) {
 		foreach ( $arr as $key => $value ) {
 			if (  $key == $searched ) {
@@ -414,14 +414,14 @@ function bitcoin_preg_match_array_get_value_by_key( $arrs, $searched ) {
 	return null;
 }
 
-function bitcoin_map_get_posts($item){
+function bitstarter_map_get_posts($item){
 	return array(
 		'name' => $item->post_title,
 		'value' => $item->ID,
 	);
 }
 
-function bitcoin_get_posts_array($options)
+function bitstarter_get_posts_array($options)
 {
 	if (!isset($options) || !is_array($options))
 		$options = array();
@@ -433,10 +433,10 @@ function bitcoin_get_posts_array($options)
 	$posts_list = get_posts($options);
 
 	if (!empty($posts_list)) {
-		$posts_list = array_map('bitcoin_map_get_posts', $posts_list);
+		$posts_list = array_map('bitstarter_map_get_posts', $posts_list);
 	} else {
 		$post_type = get_post_type_object($options['post_type']);
-		$posts_list = array(sprintf(esc_html__("No %s found", 'bitcoin'), $post_type->labels->name) => 0);
+		$posts_list = array(sprintf(esc_html__("No %s found", 'bitstarter'), $post_type->labels->name) => 0);
 	}
 
 	return $posts_list;
@@ -446,7 +446,7 @@ function bitcoin_get_posts_array($options)
  * Retrive the relative post
  * @return WP_Post
  */
-function bitcoin_get_related_posts(){
+function bitstarter_get_related_posts(){
 	$tags = get_the_tags();
 	$cats = get_the_category();
 
@@ -485,7 +485,7 @@ function bitcoin_get_related_posts(){
 /**
  * Modify the output for our custom User Menu items
  */
-class Bitcoin_Walker_Nav_Menu extends Walker_Nav_Menu {
+class Bitstarter_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 	/**
 	 * Start the element output.
@@ -578,7 +578,7 @@ class Bitcoin_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$attributes = '';
 		foreach ( $atts as $attr => $value ) {
 			if ( ! empty( $value ) ) {
-				//Custom URL for the Current Username menu item since right now it should be #bitcoincurrentusername
+				//Custom URL for the Current Username menu item since right now it should be #bitstartercurrentusername
 
 				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
 				$attributes .= ' ' . $attr . '="' . $value . '"';
@@ -609,7 +609,7 @@ class Bitcoin_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$item_output .= '<a'. $attributes .'>';
 
 		//If this is a Current Username item
-		if( isset( $item->url ) && 'custom' == $item->type  && '#bitcoincurrentusername' == $item->url ) {
+		if( isset( $item->url ) && 'custom' == $item->type  && '#bitstartercurrentusername' == $item->url ) {
 			//Get the current user display name
 			global $current_user;
 
@@ -656,7 +656,7 @@ class Bitcoin_Walker_Nav_Menu extends Walker_Nav_Menu {
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 	}
 
-} //Bitcoin_Walker_Nav_Menu
+} //Bitstarter_Walker_Nav_Menu
 
 function archive_wpml_language_switcher() {
 	// a functions to remove the footer	language switcher added by WPML plugin
@@ -675,7 +675,7 @@ add_action('wp_footer', 'archive_wpml_language_switcher', 11);
 
 //
 
-function bitcoin_get_likes_number() {
+function bitstarter_get_likes_number() {
 
 	$likes = get_post_meta(get_the_ID(), 'post_likes', true);
 
@@ -684,7 +684,7 @@ function bitcoin_get_likes_number() {
 
 //
 
-function bitcoin_set_likes_number(){
+function bitstarter_set_likes_number(){
 
 
 
@@ -693,16 +693,16 @@ function bitcoin_set_likes_number(){
 		if(!$post_id)
 			wp_send_json_error();
 	
-		$data = array('cookie' => $_COOKIE['bitcoin_post_' . $post_id . '_liked']);
+		$data = array('cookie' => $_COOKIE['bitstarter_post_' . $post_id . '_liked']);
 	
-		if(empty($_COOKIE['bitcoin_post_' . $post_id . '_liked'])) {
+		if(empty($_COOKIE['bitstarter_post_' . $post_id . '_liked'])) {
 			$liked = get_post_meta($post_id, 'post_likes', true);
 			$liked = intval($liked) + 1;
 	
 			update_post_meta($post_id, 'post_likes', $liked);
 			
 	
-			setcookie('bitcoin_post_' . $post_id . '_liked', true, (time() + 24 * 3600 * 1000), SITECOOKIEPATH );
+			setcookie('bitstarter_post_' . $post_id . '_liked', true, (time() + 24 * 3600 * 1000), SITECOOKIEPATH );
 			$data['liked'] = true;
 		} else {
 			$liked = get_post_meta($post_id, 'post_likes', true);
@@ -711,7 +711,7 @@ function bitcoin_set_likes_number(){
 	
 			update_post_meta($post_id, 'post_likes', $liked);
 	
-			setcookie('bitcoin_post_' . $post_id . '_liked', false, (time() + 24 * 3600 * 1000), SITECOOKIEPATH );
+			setcookie('bitstarter_post_' . $post_id . '_liked', false, (time() + 24 * 3600 * 1000), SITECOOKIEPATH );
 			$data['liked'] = false;
 		}
 	
@@ -719,12 +719,12 @@ function bitcoin_set_likes_number(){
 
 }
 
-add_action('wp_ajax_bitcoin_set_likes_number', 'bitcoin_set_likes_number');
-add_action('wp_ajax_nopriv_bitcoin_set_likes_number', 'bitcoin_set_likes_number');
+add_action('wp_ajax_bitstarter_set_likes_number', 'bitstarter_set_likes_number');
+add_action('wp_ajax_nopriv_bitstarter_set_likes_number', 'bitstarter_set_likes_number');
 
 
-add_filter('comment_form_fields', 'bitcoin_reorder_comment_fields' );
-function bitcoin_reorder_comment_fields( $fields ){
+add_filter('comment_form_fields', 'bitstarter_reorder_comment_fields' );
+function bitstarter_reorder_comment_fields( $fields ){
 
 	$new_fields = array(); 
 	// Set new order 
@@ -750,6 +750,6 @@ function bitcoin_reorder_comment_fields( $fields ){
  * 
  * @return string unique id   
 */
-function bitcoin_get_unique_id() {
+function bitstarter_get_unique_id() {
     return mt_rand(1000,9000) . '_' . mt_rand(1000,9999);
 }

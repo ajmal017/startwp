@@ -6,7 +6,7 @@ if ( ! defined( 'WP_LOAD_IMPORTERS' ) ) {
 // Load Importer API file
 require_once ABSPATH . 'wp-admin/includes/import.php';
 //no errors yet :
-$Bitcoin_importerError = false;
+$Bitstarter_importerError = false;
 //the path to the demo files including the file name without the extension
 $import_filepath = get_template_directory() . '/inc/import/demo-data/demo_data';
 
@@ -16,24 +16,24 @@ if ( ! class_exists( 'WP_Importer' ) ) {
 	if ( file_exists( $class_wp_importer ) ) {
 		require_once( $class_wp_importer );
 	} else {
-		$Bitcoin_importerError = true;
+		$Bitstarter_importerError = true;
 	}
 }
 
 //check if the wp import class is available, this class handles the wordpress XML files. If not, include it
-if ( ! class_exists( 'Bitcoin_WP_Import' ) ) {
+if ( ! class_exists( 'Bitstarter_WP_Import' ) ) {
 	$class_wp_import = get_template_directory() . '/inc/import/wordpress-importer/wordpress-importer.php';
 	if ( file_exists( $class_wp_import ) ) {
 		require_once( $class_wp_import );
 	} else {
-		$Bitcoin_importerError = true;
+		$Bitstarter_importerError = true;
 	}
 }
 
-if ( $Bitcoin_importerError !== false ) {
+if ( $Bitstarter_importerError !== false ) {
 	$response['id'] = new WP_Error( 'import_theme_options_noscript', 'The Auto importing script could not be loaded. Please use the <a href="' . admin_url( 'import.php' ) . '">WordPress default import</a> and import the .XML file provided in the archive you\'ve received on purchase manually.' );
 } else {
-	if ( class_exists( 'Bitcoin_WP_Import' ) ) {
+	if ( class_exists( 'Bitstarter_WP_Import' ) ) {
 		include_once( 'wordpress-importer/bitstarter-import-class.php' );
 	}
 	if ( ! is_file( $import_filepath . '.php' ) ) {
@@ -41,7 +41,7 @@ if ( $Bitcoin_importerError !== false ) {
 	} else {
 		ob_start();
 
-		$wp_import                    = new Bitcoin_import();
+		$wp_import                    = new Bitstarter_import();
 		$wp_import->fetch_attachments = true;
 		$response['id']               = $wp_import->import_theme_options( $import_filepath . '.php' );
 

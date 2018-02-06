@@ -18,7 +18,7 @@
 /**
  * Load the Responsive videos plugin
  */
-function bitcoin_jetpack_responsive_videos_init() {
+function bitstarter_jetpack_responsive_videos_init() {
 
 	/* If the theme doesn't support 'jetpack-responsive-videos' or if Jetpack is already present, don't continue */
 	if ( ! current_theme_supports( 'jetpack-responsive-videos' ) && function_exists( 'jetpack_responsive_videos_embed_html' )  ) {
@@ -26,24 +26,24 @@ function bitcoin_jetpack_responsive_videos_init() {
 	}
 
 	/* If the theme does support 'jetpack-responsive-videos', wrap the videos */
-	add_filter( 'wp_video_shortcode', 'bitcoin_jetpack_responsive_videos_embed_html' );
-	add_filter( 'video_embed_html',   'bitcoin_jetpack_responsive_videos_embed_html' );
+	add_filter( 'wp_video_shortcode', 'bitstarter_jetpack_responsive_videos_embed_html' );
+	add_filter( 'video_embed_html',   'bitstarter_jetpack_responsive_videos_embed_html' );
 
 	/* Only wrap oEmbeds if video */
-	add_filter( 'embed_oembed_html',  'bitcoin_jetpack_responsive_videos_maybe_wrap_oembed', 10, 2 );
-	add_filter( 'embed_handler_html', 'bitcoin_jetpack_responsive_videos_maybe_wrap_oembed', 10, 2 );
+	add_filter( 'embed_oembed_html',  'bitstarter_jetpack_responsive_videos_maybe_wrap_oembed', 10, 2 );
+	add_filter( 'embed_handler_html', 'bitstarter_jetpack_responsive_videos_maybe_wrap_oembed', 10, 2 );
 
 	/* Wrap videos in Buddypress */
-	add_filter( 'bp_embed_oembed_html', 'bitcoin_jetpack_responsive_videos_embed_html' );
+	add_filter( 'bp_embed_oembed_html', 'bitstarter_jetpack_responsive_videos_embed_html' );
 }
-add_action( 'after_setup_theme', 'bitcoin_jetpack_responsive_videos_init', 99 );
+add_action( 'after_setup_theme', 'bitstarter_jetpack_responsive_videos_init', 99 );
 
 /**
  * Adds a wrapper to videos and enqueue script
  *
  * @return string
  */
-function bitcoin_jetpack_responsive_videos_embed_html( $html ) {
+function bitstarter_jetpack_responsive_videos_embed_html( $html ) {
 	if ( empty( $html ) || ! is_string( $html ) ) {
 		return $html;
 	}
@@ -62,7 +62,7 @@ function bitcoin_jetpack_responsive_videos_embed_html( $html ) {
  *
  * @return string
  */
-function bitcoin_jetpack_responsive_videos_maybe_wrap_oembed( $html, $url ) {
+function bitstarter_jetpack_responsive_videos_maybe_wrap_oembed( $html, $url ) {
 	if ( empty( $html ) || ! is_string( $html ) || ! $url ) {
 		return $html;
 	}
@@ -109,7 +109,7 @@ function bitcoin_jetpack_responsive_videos_maybe_wrap_oembed( $html, $url ) {
 
 	// If the oEmbed is a video, wrap it in the responsive wrapper.
 	if ( false === $already_wrapped && 1 === $is_video ) {
-		return bitcoin_jetpack_responsive_videos_embed_html( $html );
+		return bitstarter_jetpack_responsive_videos_embed_html( $html );
 	}
 
 	return $html;

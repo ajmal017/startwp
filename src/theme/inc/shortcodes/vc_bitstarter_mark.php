@@ -1,6 +1,6 @@
 <?php
 
-class WPBakeryShortCode_Bitcoin_Mark extends  WPBakeryShortCode
+class WPBakeryShortCode_Bitstarter_Mark extends  WPBakeryShortCode
 {
 
     /**
@@ -28,11 +28,11 @@ class WPBakeryShortCode_Bitcoin_Mark extends  WPBakeryShortCode
         $output = '';
 
 
-        $output .= '<div class="bitcoinMark ' . $css_class . '" >';
+        $output .= '<div class="bitstarterMark ' . $css_class . '" >';
                 
-        $output .= '<div class="bitcoinMark__mark" style="background-color: ' . $color . '"></div>';
+        $output .= '<div class="bitstarterMark__mark" style="background-color: ' . $color . '"></div>';
     
-        $output .= '<div class="bitcoinMark__content" style="color: ' . $desc_color . '">' . $title . '</div>';
+        $output .= '<div class="bitstarterMark__content" style="color: ' . $desc_color . '">' . $title . '</div>';
 
         $output .= '</div>';
 
@@ -41,38 +41,38 @@ class WPBakeryShortCode_Bitcoin_Mark extends  WPBakeryShortCode
 }
 
 $opts = array(
-    'name'		=> esc_html__( 'Colored Mark', 'bitcoin' ),
-    'base'		=> 'bitcoin_mark',
+    'name'		=> esc_html__( 'Colored Mark', 'bitstarter' ),
+    'base'		=> 'bitstarter_mark',
     'controls'	=> 'edit_popup_delete',
-    'icon' => get_template_directory_uri() . '/assets/img/vc/bitcoin_mark.png',
-    'category'  => esc_html__( 'Developed for Bitcoin', 'bitcoin' ),
+    'icon' => get_template_directory_uri() . '/assets/img/vc/bitstarter_mark.png',
+    'category'  => esc_html__( 'Developed for Bitstarter', 'bitstarter' ),
     'params'	=> array(
 
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Description', 'bitcoin' ),
+            'heading' => esc_html__( 'Description', 'bitstarter' ),
             'param_name' => 'title'
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Description color', 'bitcoin' ),
+            'heading' => esc_html__( 'Description color', 'bitstarter' ),
             'param_name' => 'desc_color',
             "value" => '#6b7c93',
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Colored Mark', 'bitcoin' ),
+            'heading' => esc_html__( 'Colored Mark', 'bitstarter' ),
             'param_name' => 'color',
             "value" => '#00eaf8',
         ),
         array(
             'type' => 'css_editor',
-            'heading' => esc_html__( 'Css', 'bitcoin' ),
+            'heading' => esc_html__( 'Css', 'bitstarter' ),
             'param_name' => 'css',
-            'group' => esc_html__( 'Design options', 'bitcoin' ),
+            'group' => esc_html__( 'Design options', 'bitstarter' ),
         ),
     )
 );
 
 vc_map($opts);
-new WPBakeryShortCode_Bitcoin_Mark($opts);
+new WPBakeryShortCode_Bitstarter_Mark($opts);

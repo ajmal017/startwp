@@ -56,6 +56,7 @@ if (process.argv.length > 2) {
     copyStatic(),
     copySystemJS(),
     copyCustomElements(),
+    handleSass(),
     minifyCss(),
     minifyJs(),
   ])
@@ -296,13 +297,13 @@ async function wpDev() {
   console.log('\x1b[36m%s\x1b[40m', 'Linking ...');  
   let paths = await filesWithPatternsDist([/theme\/.*\..{2,4}$/])
     .map(async filePath => {
-      return `ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/${filePath.substr(7)} d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/${path.dirname(filePath.substr(7))} \n`
+      return `ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/${filePath.substr(7)} d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/${path.dirname(filePath.substr(7))} \n`
     })
     .array;
-  let pre = `rm -rf d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/
-             mkdir d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin
+  let pre = `rm -rf d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/
+             mkdir d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter
               
-            ln -fs d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/* d:/OpenServer/domains/wordpress/wp-content/themes/bitcoin/ \n`; // hack to create dir
+            ln -fs d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/* d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/ \n`; // hack to create dir
 
   await fs.writeFile('wp-dev.sh', paths.reduce((acc, val) => acc.concat(val), pre));
   const { stdout, stderr } = await exec('sh wp-dev.sh');
@@ -405,7 +406,7 @@ function createSiteMap(){
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'bitcoin'
+    database : 'bitstarter'
   });
   let pages = new Set(),
       acc = '';
@@ -420,7 +421,7 @@ function createSiteMap(){
     if (error) throw error;
     results.map( o => pages.add( o.guid ));
     for (let item of pages.values()) acc += `- file: ${item} \n  ready: 50\n`;
-    fs.writeFile('site-map.yaml',`ProjectTitle: Bitcoin \nPageList:\n`.concat(acc));
+    fs.writeFile('site-map.yaml',`ProjectTitle: Bitstarter \nPageList:\n`.concat(acc));
   });
   
   connection.end();

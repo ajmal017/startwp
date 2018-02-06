@@ -4,9 +4,9 @@
  * This way we provide a smooth transition to those that decide to use Jetpack
  * See: http://jetpack.me/
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
-function bitcoin_load_jetpack_compatibility() {
+function bitstarter_load_jetpack_compatibility() {
 
 	//first test if Jetpack is present and activated
 	// only if it is not present load the duplicated code from the theme
@@ -22,38 +22,38 @@ function bitcoin_load_jetpack_compatibility() {
 		Jetpack::activate_module('tiled-gallery');
 	}
 }
-add_action( 'after_setup_theme', 'bitcoin_load_jetpack_compatibility' );
+add_action( 'after_setup_theme', 'bitstarter_load_jetpack_compatibility' );
 
 /**
  * Add theme support for Responsive Videos.
  */
-function bitcoin_responsive_videos_setup()
+function bitstarter_responsive_videos_setup()
 {
 	add_theme_support('jetpack-responsive-videos');
 }
-add_action('after_setup_theme', 'bitcoin_responsive_videos_setup');
+add_action('after_setup_theme', 'bitstarter_responsive_videos_setup');
 
 
 /**
  * Add theme support for Infinite Scroll.
  * See: https://jetpack.me/support/infinite-scroll/
  */
-function bitcoin_jetpack_setup() {
+function bitstarter_jetpack_setup() {
 	add_theme_support( 'infinite-scroll', array(
 		'container' => 'posts-container',
-		'render'    => 'bitcoin_infinite_scroll_render',
+		'render'    => 'bitstarter_infinite_scroll_render',
 		'footer'    => 'page',
 		'wrapper'   => false
 	) );
 	add_theme_support( 'jetpack-responsive-videos' );
 
-} // end function bitcoin_jetpack_setup
-add_action( 'after_setup_theme', 'bitcoin_jetpack_setup' );
+} // end function bitstarter_jetpack_setup
+add_action( 'after_setup_theme', 'bitstarter_jetpack_setup' );
 
 /**
  * Custom render function for Infinite Scroll.
  */
-function bitcoin_infinite_scroll_render() {
+function bitstarter_infinite_scroll_render() {
 	while ( have_posts() ) : the_post();
 	?>
 		<div class="grid__item  postcard">
@@ -67,4 +67,4 @@ function bitcoin_infinite_scroll_render() {
 		</div>
 
 	<?php endwhile;
-} // end function bitcoin_infinite_scroll_render
+} // end function bitstarter_infinite_scroll_render

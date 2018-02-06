@@ -1,7 +1,7 @@
 <?php
 
 
-class WPBakeryShortCode_Bitcoin_CounterDown extends  WPBakeryShortCode
+class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
 {
     
     public function hex2rgb($color){
@@ -60,27 +60,27 @@ class WPBakeryShortCode_Bitcoin_CounterDown extends  WPBakeryShortCode
         $output .= '<div class="counterDown__timer " style="color:'. $bg_color1 .'" data-date="' . $date . ' ' . $time . ':00">';
         $output .= '    <div class="counterDown__timer__in" data-mark="years">';
         $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
-        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0: years | 1:year | 2:years', 'bitcoin').'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0: years | 1:year | 2:years', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '    <div class="counterDown__timer__in" data-mark="months">';
         $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
-        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0:months | 1:month | 2:months', 'bitcoin').'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0:months | 1:month | 2:months', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '    <div class="counterDown__timer__in" data-mark="days">';
         $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
-        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0:days | 1:day | 2:days', 'bitcoin').'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0:days | 1:day | 2:days', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '    <div class="counterDown__timer__in" data-mark="hours">';
         $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
-        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0:hours | 1:hour | 2:hours', 'bitcoin').'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0:hours | 1:hour | 2:hours', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '    <div class="counterDown__timer__in" data-mark="minutes">';
         $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
-        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0 :minutes | 1:minute | 2:minutes', 'bitcoin').'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0 :minutes | 1:minute | 2:minutes', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '    <div class="counterDown__timer__in" data-mark="seconds">';
         $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
-        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0 :seconds | 1:second | 2:seconds', 'bitcoin').'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0 :seconds | 1:second | 2:seconds', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '</div>';
 
@@ -206,102 +206,102 @@ class WPBakeryShortCode_Bitcoin_CounterDown extends  WPBakeryShortCode
 
 
 $opts = array(
-    'name'          => esc_html__( 'Counter Down', 'bitcoin'),
-    'base'          => 'bitcoin_counterdown',
+    'name'          => esc_html__( 'Counter Down', 'bitstarter'),
+    'base'          => 'bitstarter_counterdown',
     'controls'      => 'edit_popup_delete',
-    'icon'          => get_template_directory_uri() . '/assets/img/vc/bitcoin_counterdown.png',
-    'category'      => esc_html__('Developed for Bitcoin', 'bitcoin'),
+    'icon'          => get_template_directory_uri() . '/assets/img/vc/bitstarter_counterdown.png',
+    'category'      => esc_html__('Developed for Bitstarter', 'bitstarter'),
     'params'        => array(
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Title', 'bitcoin'),
-            'value' => esc_html__('ICO ENDS IN', 'bitcoin'),
+            'heading' => esc_html__( 'Title', 'bitstarter'),
+            'value' => esc_html__('ICO ENDS IN', 'bitstarter'),
             'param_name' => 'title'
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Date', 'bitcoin'),
+            'heading' => esc_html__( 'Date', 'bitstarter'),
             'param_name' => 'date',
             'edit_field_class' => 'vc_col-sm-6 vc_column vc_column-with-padding',
             'value'		=> '2018-03-31',
-            'description'		=> esc_html__( 'Choose date when you complete in format YYYY-MM-DD (Ex. 2018-03-31)', 'bitcoin'),
+            'description'		=> esc_html__( 'Choose date when you complete in format YYYY-MM-DD (Ex. 2018-03-31)', 'bitstarter'),
         ),
         array(
             'type' => 'dropdown',
-            'heading' => esc_html__( 'Time', 'bitcoin'),
+            'heading' => esc_html__( 'Time', 'bitstarter'),
             'param_name' => 'time',
             'value' => array('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23'),
-            'description' => esc_html__( 'Choose hour when you complete,from 00 to 23.', 'bitcoin')
+            'description' => esc_html__( 'Choose hour when you complete,from 00 to 23.', 'bitstarter')
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Text Color', 'bitcoin'),
+            'heading' => esc_html__( 'Text Color', 'bitstarter'),
             'param_name' => 'text_color',
             "value" => '#ffffff',
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Background color', 'bitcoin'),
+            'heading' => esc_html__( 'Background color', 'bitstarter'),
             'param_name' => 'bg_color1',
             "value" => '#323a5a',
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Shadows in card', 'bitcoin'),
+            'heading' => esc_html__( 'Shadows in card', 'bitstarter'),
             'param_name' => 'shadow_color',
             "value" => '#474e65',
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Title under counter', 'bitcoin'),
-            'value' => esc_html__('Raised', 'bitcoin'),
+            'heading' => esc_html__( 'Title under counter', 'bitstarter'),
+            'value' => esc_html__('Raised', 'bitstarter'),
             'param_name' => 'title1'
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Raised amount in dollars, also after " | " mark, you may denote subtitle', 'bitcoin' ),
-            'value' => esc_html__('19564867 | raised', 'bitcoin'),
+            'heading' => esc_html__( 'Raised amount in dollars, also after " | " mark, you may denote subtitle', 'bitstarter' ),
+            'value' => esc_html__('19564867 | raised', 'bitstarter'),
             'param_name' => 'raised'
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Bakers amount, also after " | " mark, you may denote subtitle', 'bitcoin' ),
-            'value' => esc_html__('8756 | bakers', 'bitcoin'),
+            'heading' => esc_html__( 'Bakers amount, also after " | " mark, you may denote subtitle', 'bitstarter' ),
+            'value' => esc_html__('8756 | bakers', 'bitstarter'),
             'param_name' => 'bakers'
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Start progress from, in dollars, also after " | " mark, you may denote subtitle', 'bitcoin'),
-            'value' => esc_html__('2000000 | Softcap in just 10 hours', 'bitcoin'),
+            'heading' => esc_html__( 'Start progress from, in dollars, also after " | " mark, you may denote subtitle', 'bitstarter'),
+            'value' => esc_html__('2000000 | Softcap in just 10 hours', 'bitstarter'),
             'param_name' => 'start'
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Stop progress till, in dollars, also after " | " mark, you may denote subtitle', 'bitcoin'),
-            'value' => esc_html__('20000000 | Hardcup', 'bitcoin'),
+            'heading' => esc_html__( 'Stop progress till, in dollars, also after " | " mark, you may denote subtitle', 'bitstarter'),
+            'value' => esc_html__('20000000 | Hardcup', 'bitstarter'),
             'param_name' => 'stop'
         ),
         array(
             'type' => 'colorpicker',
-            'heading' => esc_html__( 'Progress bar color', 'bitcoin'),
+            'heading' => esc_html__( 'Progress bar color', 'bitstarter'),
             'param_name' => 'progress_color',
             "value" => '#0de8e8',
         ),
         array(
             'type' => 'textarea_html',
             'holder' => 'div',
-            'heading' => esc_html__( 'Anding content', 'bitcoin'),
+            'heading' => esc_html__( 'Anding content', 'bitstarter'),
             'param_name' => 'content',
-            'value' => esc_html__( '<p> Sample data </p>', 'bitcoin'),
+            'value' => esc_html__( '<p> Sample data </p>', 'bitstarter'),
         ),
         array(
             'type' => 'css_editor',
-            'heading' => esc_html__( 'Css', 'bitcoin'),
+            'heading' => esc_html__( 'Css', 'bitstarter'),
             'param_name' => 'css',
-            'group' => esc_html__( 'Design options', 'bitcoin'),
+            'group' => esc_html__( 'Design options', 'bitstarter'),
         )
     )
 );
  
 vc_map($opts);
-new WPBakeryShortCode_Bitcoin_CounterDown($opts);
+new WPBakeryShortCode_Bitstarter_CounterDown($opts);

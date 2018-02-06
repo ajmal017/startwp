@@ -4,12 +4,12 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package Bitcoin
+ * @package Bitstarter
  */
 
 
 // This function should come from Customify, but we need to do our best to make things happen
-if ( ! function_exists( 'bitcoin_get_option') ) {
+if ( ! function_exists( 'bitstarter_get_option') ) {
 	/**
 	 * Get option from the database
 	 *
@@ -22,7 +22,7 @@ if ( ! function_exists( 'bitcoin_get_option') ) {
 	 *
 	 * @return mixed
 	 */
-	function bitcoin_get_option( $option, $default = null, $force_default = true ) {
+	function bitstarter_get_option( $option, $default = null, $force_default = true ) {
 		/** @var PixCustomifyPlugin $pixcustomify_plugin */
 		global $pixcustomify_plugin;
 
@@ -49,22 +49,22 @@ if ( ! function_exists( 'bitcoin_get_option') ) {
 	}
 }
 
-if ( ! function_exists( 'bitcoin_display_logo' ) ) {
+if ( ! function_exists( 'bitstarter_display_logo' ) ) {
 	/**
 	 * Function to display the logo added by the theme support 'custom-logo'.
 	 * This was implemented in 4.5, to use the old logo install jetpack
 	 */
-	function bitcoin_display_logo() {
+	function bitstarter_display_logo() {
 		// Display the inverted logo if all the requirements are met
-		$logo_invert = wp_get_attachment_image_src( bitcoin_get_option('logo_invert') );
-		$header_transparent = bitcoin_get_option( 'header_transparent' );
-		$header_transparent_blog = bitcoin_get_option( 'header_transparent_blog' );
+		$logo_invert = wp_get_attachment_image_src( bitstarter_get_option('logo_invert') );
+		$header_transparent = bitstarter_get_option( 'header_transparent' );
+		$header_transparent_blog = bitstarter_get_option( 'header_transparent_blog' );
 		
 		if ((( $header_transparent && is_page_template( 'page-templates/front_page.php' ) ) || ( !is_front_page() && is_home()  &&  $header_transparent_blog )) && ! empty( $logo_invert[0] ) ) {
 			
 			$html = sprintf( '<div class="site-branding  site-branding--image"><a href="%1$s" class="custom-logo-link  custom-logo-link--light" rel="home" >%2$s</a></div>',
 				esc_url( home_url( '/' ) ),
-				wp_get_attachment_image( bitcoin_get_option('logo_invert'), 'full', false, array(
+				wp_get_attachment_image( bitstarter_get_option('logo_invert'), 'full', false, array(
 					'class'    => 'custom-logo'
 				) )
 			);
@@ -94,11 +94,11 @@ if ( ! function_exists( 'bitcoin_display_logo' ) ) {
 }
 
 
-if ( ! function_exists( 'bitcoin_posted_on' ) ) :
+if ( ! function_exists( 'bitstarter_posted_on' ) ) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time.
 	 */
-	function bitcoin_posted_on() {
+	function bitstarter_posted_on() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 
 		$time_string = sprintf( $time_string,
@@ -118,11 +118,11 @@ if ( ! function_exists( 'bitcoin_posted_on' ) ) :
 endif;
 
 
-if ( ! function_exists( 'bitcoin_posted_by' ) ) :
+if ( ! function_exists( 'bitstarter_posted_by' ) ) :
 	/**
 	 * Prints HTML with meta information for the current author.
 	 */
-	function bitcoin_posted_by() {
+	function bitstarter_posted_by() {
 
 		$posted_by = sprintf(
 			'<a href="%1$s" rel="bookmark">%2$s</a>',
@@ -133,10 +133,10 @@ if ( ! function_exists( 'bitcoin_posted_by' ) ) :
 	}
 endif;
 
-if ( ! function_exists('bitcoin_permabutton') ) :
+if ( ! function_exists('bitstarter_permabutton') ) :
 	
 	// Print the button with title and css classe
-	function bitcoin_permabutton($opt) {
+	function bitstarter_permabutton($opt) {
 		$default = array(
 			'classes' => 'btn btn--primary',
 			'title' => ''
@@ -150,16 +150,16 @@ if ( ! function_exists('bitcoin_permabutton') ) :
 	}
 endif;
 
-if( ! function_exists( 'bitcoin_comments_number' ) ):
+if( ! function_exists( 'bitstarter_comments_number' ) ):
 	/** 
 	 * Prints HTML with icon for comments
 	*/
 
-	function bitcoin_comments_number($opacity = 2) {
+	function bitstarter_comments_number($opacity = 2) {
 		$comment_html  = sprintf(
-		'<span class="comments-count"><i class="bitcoin__icon bitcoin__icon--opacity%3$s ">%1$s</i>%2$s</span>',
+		'<span class="comments-count"><i class="bitstarter__icon bitstarter__icon--opacity%3$s ">%1$s</i>%2$s</span>',
 			file_get_contents(locate_template('assets/svg/comment-icon.php')),
-			get_comments_number_text( __('0','bitcoin'), __('1','bitcoin'), __('%','bitcoin')),
+			get_comments_number_text( __('0','bitstarter'), __('1','bitstarter'), __('%','bitstarter')),
 			$opacity
 		);
 		echo $comment_html;
@@ -167,22 +167,22 @@ if( ! function_exists( 'bitcoin_comments_number' ) ):
 
 endif;
 
-if (!function_exists('bitcoin_likes')) :
+if (!function_exists('bitstarter_likes')) :
 /** 
  * Prints HTML with icon for comments
  */
 
-function bitcoin_likes(){
+function bitstarter_likes(){
 
 	$post_id = get_the_ID();
 
 	$html = sprintf(
-		'<span data-post-id="%3$s" class="likes-count %4$s"><i class="bitcoin__icon bitcoin__icon--opacity2 ">%1$s</i>
+		'<span data-post-id="%3$s" class="likes-count %4$s"><i class="bitstarter__icon bitstarter__icon--opacity2 ">%1$s</i>
 		<span class="likes-count__number">%2$s</span></span>',
 		file_get_contents(locate_template('assets/svg/likes-icon.php')),
-		bitcoin_get_likes_number(),
+		bitstarter_get_likes_number(),
 		$post_id ,
-		isset($_COOKIE['bitcoin_post_' . $post_id . '_liked'])?'likes-count--active':''
+		isset($_COOKIE['bitstarter_post_' . $post_id . '_liked'])?'likes-count--active':''
 	);
 
 	echo $html;
@@ -193,16 +193,16 @@ endif;
 
 
 
-if ( ! function_exists('bitcoin_tags' ) ) :
+if ( ! function_exists('bitstarter_tags' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
-	function bitcoin_tags() {
+	function bitstarter_tags() {
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
 
 			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( '<li>', esc_html__( ' ', 'bitcoin' ), '</li>' );
+			$tags_list = get_the_tag_list( '<li>', esc_html__( ' ', 'bitstarter' ), '</li>' );
 			if ( $tags_list ) {
 				printf( '<ul class="tags-links"> %1$s </ul>', $tags_list );
 			}
@@ -212,13 +212,13 @@ if ( ! function_exists('bitcoin_tags' ) ) :
 endif;
 
 
-if ( ! function_exists('bitcoin_blog_style' ) ) :
+if ( ! function_exists('bitstarter_blog_style' ) ) :
 	/**
 	 *  Blog style
 	 */
-	function bitcoin_blog_style() {
+	function bitstarter_blog_style() {
 		
-		$style = bitcoin_get_option('blog_type_style');
+		$style = bitstarter_get_option('blog_type_style');
 		
 		if( empty($style) ){
 			echo 'tile';
@@ -234,7 +234,7 @@ endif;
  *
  * @return bool
  */
-function bitcoin_categorized_blog() {
+function bitstarter_categorized_blog() {
 
 
 	
@@ -248,10 +248,10 @@ function bitcoin_categorized_blog() {
 
 
 	if ( $all_the_cool_cats[0] > 1 ) {
-		// This blog has more than 1 category so bitcoin_categorized_blog should return true.
+		// This blog has more than 1 category so bitstarter_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so bitcoin_categorized_blog should return false.
+		// This blog has only 1 category so bitstarter_categorized_blog should return false.
 		return false;
 	}
 }
@@ -286,28 +286,28 @@ function display_average_listing_rating( $post_id = null, $decimals = 2 ) {
 }
 
 
-if ( ! function_exists( 'bitcoin_shape_comment' ) ) :
+if ( ! function_exists( 'bitstarter_shape_comment' ) ) :
 	/**
 	 * Template for comments and pingbacks.
 	 *
 	 * Used as a callback by wp_list_comments() for displaying the comments.
 	 *
-	 * @since Bitcoin
+	 * @since Bitstarter
 	 */
-	function bitcoin_shape_comment( $comment, $args, $depth ) {
+	function bitstarter_shape_comment( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
 		switch ( $comment->comment_type ) :
 			case 'pingback' :
 			case 'trackback' : ?>
 				<li class="post pingback">
-				<p><?php esc_html_e( 'Pingback:', 'bitcoin' ); ?><?php comment_author_link(); ?><?php edit_comment_link( esc_html__( '(Edit)', 'bitcoin' ), ' ' ); ?></p>
+				<p><?php esc_html_e( 'Pingback:', 'bitstarter' ); ?><?php comment_author_link(); ?><?php edit_comment_link( esc_html__( '(Edit)', 'bitstarter' ), ' ' ); ?></p>
 				<?php
 				break;
 			default : ?>
 				<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 				<div class="comment-wrapper" id="div-comment-<?php comment_ID(); ?>">
 					<?php if ( $comment->comment_approved == '0' ) : ?>
-							<p><?php esc_html_e( 'Your comment is awaiting moderation.', 'bitcoin' ); ?></p>
+							<p><?php esc_html_e( 'Your comment is awaiting moderation.', 'bitstarter' ); ?></p>
 					<?php endif; ?>
 					<div class="comment-avatar"><?php echo get_avatar( $comment, 75 ); ?></div>
 					<header class="comment-header">
@@ -322,9 +322,9 @@ if ( ! function_exists( 'bitcoin_shape_comment' ) ) :
 					<div class="comment-meta">
 						<a class="text" href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
 							<time pubdate datetime="<?php comment_time( 'c' ); ?>">
-								<?php printf( esc_html__( 'on %1$s', 'bitcoin' ), get_comment_date() ); ?>
+								<?php printf( esc_html__( 'on %1$s', 'bitstarter' ), get_comment_date() ); ?>
 							</time>
-						</a><?php edit_comment_link( esc_html__( '(Edit)', 'bitcoin' ), ' ' ); ?>
+						</a><?php edit_comment_link( esc_html__( '(Edit)', 'bitstarter' ), ' ' ); ?>
 						<span class="comment-reply">
 							<?php comment_reply_link( array_merge( $args, array(
 								'add_below' => 'div-comment',
@@ -340,7 +340,7 @@ if ( ! function_exists( 'bitcoin_shape_comment' ) ) :
 				break;
 		endswitch;
 	}
-endif; // ends check for bitcoin_shape_comment()
+endif; // ends check for bitstarter_shape_comment()
 
 
 /**
@@ -351,7 +351,7 @@ endif; // ends check for bitcoin_shape_comment()
  *
  * @return string
  */
-function bitcoin_wrap_images_in_figure( $content ) {
+function bitstarter_wrap_images_in_figure( $content ) {
 	$classes = array( 'aligncenter', 'alignnone' );
 
 	foreach ( $classes as $class ) {
@@ -362,7 +362,7 @@ function bitcoin_wrap_images_in_figure( $content ) {
 		$regex = '~\[caption[^\]]*\].*\[\/caption\]|((?:<a[^>]*>\s*)?<img.*class="[^"]*' . $class . '[^"]*[^>]*>(?:\s*<\/a>)?)~i';
 
 		// php 5.2 valid
-		$callback = new BitcoinWrapImagesInFigureCallback( $class );
+		$callback = new BitstarterWrapImagesInFigureCallback( $class );
 		$content = preg_replace_callback(
 				$regex,
 				// in the callback function, if Group 1 is empty,
@@ -375,12 +375,12 @@ function bitcoin_wrap_images_in_figure( $content ) {
 
 	return $content;
 }
-add_filter( 'the_content', 'bitcoin_wrap_images_in_figure' );
+add_filter( 'the_content', 'bitstarter_wrap_images_in_figure' );
 
 
 
 //We need to use a class so we can pass the $class variable to the callback function
-class BitcoinWrapImagesInFigureCallback {
+class BitstarterWrapImagesInFigureCallback {
 	private $class;
 	function __construct( $class ) {
 		$this->class = $class;

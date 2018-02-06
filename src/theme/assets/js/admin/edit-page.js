@@ -37,6 +37,11 @@
 			check_the_number_of_images( $(this) );
 		});
 
+		if($('#post_ID').length > 0){
+			if( $('#post_ID').val() === BitstarterParams.blog_id ){
+				$('#postimagediv').hide();
+			}
+		}
 		// determine if we should see the Featured Image box depending on the current page template
 		if ( $('select#page_template').val() == 'default' || $('select#page_template').val() == 'page-templates/front_page.php' ) {
 			// hide the Featured Image box

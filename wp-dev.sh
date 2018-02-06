@@ -132,6 +132,7 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/languages/re
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/page-templates/front_page.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/page-templates 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/page.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/rtl.css d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/screenshort.png d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/screenshot.png d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/search.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/sidebar.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 

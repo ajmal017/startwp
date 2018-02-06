@@ -15,14 +15,9 @@ function bitstarter_load_jetpack_compatibility() {
 		require_once get_template_directory() . '/inc/integrations/jetpack/responsive-videos.php';
 	}
 
-	if( class_exists( 'Jetpack' )){
-
-		Jetpack::activate_module('shortcodes');
-		Jetpack::activate_module('widgets');
-		Jetpack::activate_module('tiled-gallery');
-	}
 }
 add_action( 'after_setup_theme', 'bitstarter_load_jetpack_compatibility' );
+
 
 /**
  * Add theme support for Responsive Videos.

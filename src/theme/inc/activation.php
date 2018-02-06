@@ -218,6 +218,12 @@ if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
 			update_option( 'bitstarter_default_widgets_added', '1' );
 
 			update_option( 'widget_nav_menu', array('5'=> array('title' => 'INFORMATION','nav_menu'=> 28),'_multiwidget' => 1 ));
+
+			if( class_exists( 'Jetpack' )){
+				Jetpack::activate_module('shortcodes');
+				Jetpack::activate_module('widgets');
+				Jetpack::activate_module('tiled-gallery');
+			}
 		}
 		
 	}

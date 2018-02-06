@@ -6,11 +6,6 @@
 */
 
 /**
- * Load PixCare compatibility file.
- */
-// require get_template_directory() . '/inc/integrations/pixcare.php';
-
-/**
  * Load Jetpack compatibility file.
  * http://jetpack.me/
  */

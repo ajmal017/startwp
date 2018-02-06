@@ -53,6 +53,7 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/ad
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/edit-page.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/group_panel_widget.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/calc.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/custom-elements.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/main.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/system.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/test.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 

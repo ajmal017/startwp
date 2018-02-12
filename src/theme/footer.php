@@ -14,18 +14,27 @@
 
 	<footer class="site-footer" role="contentinfo">
 		<?php if ( is_active_sidebar( 'footer-widget-area-1' ) ) : ?>
-			<div id="footer-sidebar" class="widget-area__footer" role="complementary">
 			<?php
-				$footer_sidebar_number = (int) bitstarter_get_option('footer_sidebar_number', 4, true);
-
-				for($i = 0; $i < $footer_sidebar_number; $i++){
-					echo '<div class="widget-area__footer__col widget-area__footer__col--' . $footer_sidebar_number . '">'; 
-					dynamic_sidebar('footer-widget-area-' . ($i + 1));
-					echo '</div>';
-				}
-			?>
+				
+				$footer_sidebar_number = (int) bitstarter_get_option('footer_sidebar_number', 0, false);
+				if($footer_sidebar_number > 0):
 			
-			</div><!-- #primary-sidebar -->
+			?>
+				
+					<div id="footer-sidebar" class="widget-area__footer" role="complementary">
+						
+						<?php
+							for($i = 0; $i < $footer_sidebar_number; $i++){
+								echo '<div class="widget-area__footer__col widget-area__footer__col--' . $footer_sidebar_number . '">'; 
+								dynamic_sidebar('footer-widget-area-' . ($i + 1));
+								echo '</div>';
+							}
+						?>
+						
+					</div><!-- #primary-sidebar -->
+
+				<?php endif; ?>
+			
 		<?php endif; ?>
 		<div class="footer-infoarea">
 			<div class="site-info">

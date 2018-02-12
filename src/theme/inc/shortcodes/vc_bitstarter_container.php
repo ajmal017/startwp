@@ -39,8 +39,8 @@ class WPBakeryShortCode_Bitstarter_Slider_Container extends  WPBakeryShortCodesC
         $output = '';
 
         $output .= '<div class="bitstarter__slider " 
-                    data-slider=\'{"id" : "'. $prefix . $id .'","slidesToShow" : "'. $slidestoshow .'","slidesToScroll" : "'. $slidestoscroll .'","dots" : "'. $dots .'", "centerMode" : "'. $centermode .'","focusOnSelect" : "'. $focusonselect .'","arrows" : "'. $arrows .'","adaptiveHeight" : "'. $adaptiveheight .'","autoplay" : "'. $autoplay .'","autoplaySpeed" : "'. $autoplayspeed .'","centerPadding" : "'. $centerpadding .'","draggable" : "'. $draggable .'","fade" : "'. $fadeel .'","variableWidth" : "'. $variablewidth .'","vertical" : "'. $vertical .'","speed" : "'. $speed .'"}\' >';
-        $output .= '    <div  id=bitstarter__slider-'. $id .' class="bitstarter__slider-in">';
+                    data-slider=\'{"id" : "'. $prefix . esc_attr($id) .'","slidesToShow" : "'. esc_attr($slidestoshow) .'","slidesToScroll" : "'. esc_attr($slidestoscroll) .'","dots" : "'. esc_attr($dots) .'", "centerMode" : "'. esc_attr($centermode) .'","focusOnSelect" : "'. esc_attr($focusonselect) .'","arrows" : "'. esc_attr($arrows) .'","adaptiveHeight" : "'. esc_attr($adaptiveheight) .'","autoplay" : "'. esc_attr($autoplay) .'","autoplaySpeed" : "'. esc_attr($autoplayspeed) .'","centerPadding" : "'. esc_attr($centerpadding) .'","draggable" : "'. esc_attr($draggable) .'","fade" : "'. esc_attr($fadeel) .'","variableWidth" : "'. esc_attr($variablewidth) .'","vertical" : "'. esc_attr($vertical) .'","speed" : "'. esc_attr($speed) .'"}\' >';
+        $output .= '    <div  id=bitstarter__slider-'. esc_attr($id) .' class="bitstarter__slider-in">';
         $output .=          do_shortcode($content);
         $output .= '    </div>';
         $output .= '</div>';

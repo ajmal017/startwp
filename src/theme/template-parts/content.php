@@ -13,12 +13,14 @@
 
 	<?php 
 
-
-
-
 	if( is_sticky() ):
+
+		global $wp_filesystem;
+		require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		WP_Filesystem();
+		
 		printf('<div class="card__sticky">%1$s</div>',
-		file_get_contents(locate_template('assets/svg/star.php')) 
+		$wp_filesystem->get_contents(locate_template('assets/svg/star.php')) 
 	);
 	endif;
 
@@ -43,7 +45,7 @@
 						$image[0],
 						$image[1],
 						$image[2],
-						wp_get_attachment_image_srcset($image_id, $image_size),
+						wp_get_attachment_image_srcset($image_id),
 						get_post_meta($image_id, '_wp_attachment_image_alt', true)
 					);
 
@@ -51,16 +53,19 @@
 				echo '</div>';
 			else:
 				if (has_post_thumbnail()) :
+	
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image');
 
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image'); ?>
+					$image_srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id());
+				?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<aside class="card__image" style="background-image: url('<?php echo bitstarter_get_inline_background_image($image[0]); ?>');"></aside>
+					<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>" />
 				</a>
 
 				<?php else : ?>
 
 					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<aside class="card__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"></aside>
+						<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
 					</a>
 
 				<?php endif; 
@@ -94,8 +99,7 @@
 
 				<div class="card-player" >
 					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<aside class="card__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')">
-						</aside>
+						<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
 						
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--sc"><?php echo do_shortcode($audio); ?></div>
@@ -103,34 +107,40 @@
 
 			<?php elseif (has_post_thumbnail() && $type == 'wp') :
 
-				$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image'); ?>
+				$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image');
+
+				$image_srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id());
+				
+				?>
 				<div class="card-player" >
 					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-						<aside class="card__image" style="background-image: url('<?php echo bitstarter_get_inline_background_image($image[0]); ?>');"></aside>
+						<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>" />
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 				</div>
 			<?php elseif($type == 'wp') : ?>
 				<div class="card-player" >
 					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<aside class="card__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')">
-						</aside>
+						<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>"/>
 						
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 				</div>
 			<?php elseif( has_post_thumbnail() ): 
 
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image'); ?>
+					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image');
 
-					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-						<aside class="card__image" style="background-image: url('<?php echo bitstarter_get_inline_background_image($image[0]); ?>');"></aside>
-					</a>
+					$image_srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id());
+
+				?>
+				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
+					<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>"/>
+				</a>
 
 			<?php else : ?>
 		
 					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<aside class="card__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"></aside>
+						<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>"/>
 					</a>
 
 			<?php endif;
@@ -160,27 +170,31 @@
 			
 			<div class="card-player" > 
 				<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<aside class="card__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')">
-						</aside>
+					<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
 				</a>
 				<div class="card-player__wrapper"><?php echo do_shortcode( $video ); ?></div>
 			</div>
 			<?php
 		break;
 
+		// standard
 		default:
 			if (has_post_thumbnail()) :
+				
 					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image');
-					 ?>
+
+					$image_srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id());
+					
+				?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<aside class="card__image" style="background-image: url('<?php echo bitstarter_get_inline_background_image($image[0]); ?>');"></aside>
+					<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>"/>
 				</a>
 
 			<?php else : 
 				?>
 
 				<a class="card__toplink" href="<?php the_permalink(); ?>">
-					<aside class="card__image"  style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"></aside>
+					<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
 				</a>
 
 			<?php endif; 

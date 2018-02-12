@@ -160,26 +160,6 @@ import { _formatCurrency } from "./calc.js"
     }); 
 
 
-    function customizerOptionsPadding() {
-        var $updatable = $('.page-listings .js-header-height-padding-top'),
-            $map = $('.map'),
-            $jobFilters = $(' .job_filters .search_jobs div.search_location'),
-            $findMeButton = $('.findme'),
-            headerHeight = $('.site-header').outerHeight();
-
-        // set padding top to certain elements which is equal to the header height
-
-        $updatable.css('paddingTop', '');
-        $updatable.css('paddingTop', headerHeight);
-
-        if ($('#wpadminbar').length) {
-            headerHeight += $('#wpadminbar').outerHeight();
-        }
-
-        $map.css('top', headerHeight);
-        $jobFilters.css('top', headerHeight);
-        $findMeButton.css('top', headerHeight + 70);
-    }
 
     function init() {
         platformDetect();
@@ -191,104 +171,16 @@ import { _formatCurrency } from "./calc.js"
         var headerPaddingBottom = parseInt($('.site-header').css('paddingTop')) + $('.secondary-menu').outerHeight();
         $('.site-header').css('paddingBottom', headerPaddingBottom);
 
-        customizerOptionsPadding();
+      
 
         $('html').addClass('is--ready');
 
-        var $email = $('input#account_email'),
-            $target = $('.field.account-sign-in'), 
-            $fieldset;
-
-        if ($email.length && $target.length) {
-            $fieldset = $email.closest('fieldset');
-            $email.insertAfter($target);
-            $fieldset.remove();
-        }
-
-        var $uploader = $('.wp-job-manager-file-upload');
-
-        $uploader.each(function(i, obj) {
-            var $input = $(obj),
-                id = $(obj).attr('id'),
-                $label = $('label[for="' + id + '"]'),
-                $btn = $('<div class="uploader-btn"><div class="spacer"><div class="text">' + BitstarterParams.strings['wp-job-manager-file-upload'] + '</div></div></div>').insertAfter($input);
-
-            $btn.on('click', function() {
-                $label.trigger('click'); 
-            });
-        });
-
-        $('#main_image').on('change', function(e) {
-            var self = this;
-            var this_logo = $('#company_logo').val();
-
-            if (this_logo === '') {
-                var url = self.value;
-            }
-        });
-
-        if ($('#job_preview').length) {
-            $body.addClass('single-job_listing single-job_listing_preview').removeClass('page-add-listing');
-            $('.page').removeClass('page');
-            $('.listing-map').css({
-                display: '',
-                height: ''
-            });
-            singleListingMapHeight();
-            $window.trigger('pxg:refreshmap');
-            $('#job_preview').css('opacity', 1);
-        }
-
-        $('.btn--filter').on('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            if ($body.hasClass('show-filters')) {
-                $window.scrollTop(0);
-            }
-            $body.toggleClass('show-filters');
-        });
-
-        $('.btn--view').on('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            $body.toggleClass('show-map');
-            $('html, body').scrollTop(0);
-            setTimeout(function() {
-                $window.trigger('pxg:refreshmap');
-            });
-        });
-
-        if ($('#job_package_selection').length) {
-            $body.addClass('page-package-selection');
-
-            var $nopackages = $('.no-packages');
-
-            if ($nopackages.length) {
-                var $form = $nopackages.closest('#job_package_selection');
-
-                if ($form.length) {
-                    $nopackages.insertAfter($form);
-                    $form.remove();
-                }
-            }
-        }
-
         detectLongMenu();
-        moveListingStickySidebar();
-        singleListingMapHeight();
-        moveSingleListingReviews();
-        moveSingleListingClaimWidget();
+        categories();
 
-        if ($('.search-field-wrapper.has--menu').length) {
-            searchSuggestionsTrigger();
-        }
 
         $reviewsParent = $('.widget_listing_comments').parent();
 
-        $('.showlogin').off('click').on('click', function() {
-            $('.login-container').slideToggle();
-        });
     }
      
 
@@ -1038,15 +930,7 @@ import { _formatCurrency } from "./calc.js"
         } else {
             // HandleSubmenusOnTouch.initHorizontalMenu();
         }
-
-        if ($('.site-header .search-form').is(':visible')) {
-            handleMobileHeaderSearch();
-        }
         
-
-        frontpageVideoInit();
-
-        loginWithAjaxHandlers();
 
         var $featuredVideo = $('.entry-featured video');
         if ($featuredVideo.length) {
@@ -1075,16 +959,9 @@ import { _formatCurrency } from "./calc.js"
         $window.on('debouncedresize', function() {
             browserSize();
             detectLongMenu();
-            moveListingStickySidebar();
-            singleListingMapHeight();
-            moveSingleListingReviews();
+            
+            categories();
 
-            customizerOptionsPadding();
-
-            setTimeout(function() {
-                $window.trigger('update:map');
-                $window.trigger('pxg:refreshmap');
-            });
 
             if (Modernizr.touchevents) {
                 if (windowWidth < 900) {
@@ -1114,9 +991,7 @@ import { _formatCurrency } from "./calc.js"
             // requestTick();
         });
 
-        handleHiddenFacets();
         handleLongSubMenus();
-        hideCategoryDescription();
 
     }
     /* ====== HELPER FUNCTIONS ====== */
@@ -1236,50 +1111,30 @@ import { _formatCurrency } from "./calc.js"
     }
 
     // Set the height of the single listing map
-    function singleListingMapHeight() {
+    function categories() {
         if (windowWidth > 900) {
-            var $listingMap = $('.listing-sidebar--top .widget_listing_sidebar_map:first-child .listing-map');
-
-            if ($('.entry-featured-image').length && $listingMap.length) {
-                var featuredTop = $('.entry-featured-image').offset().top;
-                var featuredHeight = $('.entry-featured-image').height();
-                var featuredBottom = featuredTop + featuredHeight;
-                var mapFeaturedDistance = $listingMap.offset().top - featuredBottom + 1;
-                var headerHeight = $('.single_job_listing .entry-header').outerHeight();
-                var mapComputedHeight = headerHeight - mapFeaturedDistance;
-                $listingMap.height(mapComputedHeight);
-
-                $window.trigger('pxg:refreshmap');
+            function slideToggleProgress(){
+                var height = $('.hero-header__background').outerHeight();
+                $('.hero-header__overlay1 svg rect').css({'height': height + 'px'});
+                $('.hero-header__overlay2 svg rect').css({'height': height + 'px'});
             }
+            $('.hero-category__list__more').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                $('.hero-category__list__additional').slideToggle({
+                    duration: 400,
+                    progress: slideToggleProgress,
+                    complete: function () {
+                      console.log('animation completed');
+                    }
+                });
+             
+            });
         }
     }
 
 
-    // Move listing sticky sidebar under header on mobile
-    function moveListingStickySidebar() {
-
-        var $sidebarTop = $('.listing-sidebar--top'),
-            $sidebarBottom = $('.listing-sidebar--bottom'),
-            isTop = $sidebarTop.data('isTop');
-
-        if (!$sidebarTop.length) {
-            return;
-        }
-
-        if (windowWidth < 900) {
-            if (isTop !== true) {
-                $sidebarTop.insertAfter($('.entry-header'));
-                isTop = true;
-            }
-        } else {
-            if (isTop !== false) {
-                $sidebarTop.insertBefore($sidebarBottom);
-                isTop = false;
-            }
-        }
-
-        $sidebarTop.data('isTop', isTop);
-    }
 
     // When there's a long menu, prevent it from breaking on two lines
     function detectLongMenu() {
@@ -1306,46 +1161,6 @@ import { _formatCurrency } from "./calc.js"
         });
     }
 
-    function searchSuggestionsTrigger() {
-        $('.js-search-suggestions-field').on('focus', function(e) {
-            $('.js-search-form').addClass('is--active');
-        });
-
-        $('.js-search-suggestions-field').on('blur', function(e) {
-            setTimeout(function closeSearchSuggestions() {
-                $('.js-search-form').removeClass('is--active');
-            }, 150);
-        });
-
-        $('.js-search-form').on('click', function(e) {
-            if (e.target.id != 'search_keywords') {
-                $('.js-search-suggestions-field').blur();
-                $('.js-search-form').removeClass('is--active');
-            }
-        });
-    }
-
-    function handleMobileHeaderSearch() {
-        // When clicking on search icon, show the search input
-        $('.js-search-trigger-mobile').on('click', toggleHeaderSearch);
-
-        // When the search input loses focus, hide the input
-        $('.js-search-mobile-field').on('blur', function(e) {
-            setTimeout(function closeMobileSearch() {
-                $('.js-search-form').removeClass('is--active');
-            }, 150);
-        });
-
-        function toggleHeaderSearch(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (!$('.js-search-form').hasClass('is--active')) {
-                $('.js-search-form').addClass('is--active');
-                $('.js-search-mobile-field').focus();
-            }
-        }
-    }
 
     // Detect the submenus that exceed the viewport
     // and add a class to make them open vertically
@@ -1366,42 +1181,7 @@ import { _formatCurrency } from "./calc.js"
         }
     }
 
-    function moveSingleListingReviews() {
-        // On mobile, when focusing on a review field, the keyboard appears thus
-        // triggering a resize. When a resize is triggered, trying to move the
-        // reviews causes fields to lose focus, hiding the keyboard. Prevent that.
-        if (Modernizr.touchevents && $('input, textarea').is(':focus')) {
-            return;
-        }
 
-        if ($('.widget_listing_comments').length) {
-            if (windowWidth < 900) {
-                if ($('.widget_listing_comments').parent().hasClass('column-sidebar')) {
-                    return;
-                }
-
-                $('.widget_listing_comments').appendTo($('.column-sidebar'));
-            } else {
-                $('.widget_listing_comments').appendTo($reviewsParent);
-            }
-        }
-    }
-
-    function moveSingleListingClaimWidget() {
-        var $claimWidget = $('.listing-sidebar--bottom .widget_listing_sidebar_claim_listing');
-
-        if ($claimWidget.length) {
-            var $parentSidebar = $claimWidget.parent();
-
-            $claimWidget.each(function() {
-                if ($(this).is(':first-of-type')) {
-                    $(this).insertBefore($parentSidebar).addClass('is--independent');
-                } else if ($(this).is(':last-of-type')) {
-                    $(this).insertAfter($parentSidebar).addClass('is--independent');
-                }
-            });
-        }
-    }
 
     var bitstarterDocumentCookies = {
         getItem: function(sKey) {
@@ -1465,61 +1245,6 @@ import { _formatCurrency } from "./calc.js"
         }
     };
 
-    function frontpageVideoInit() {
-        // video resizing
-        var $wrapper = $('.page-template-front_page .entry-header .wp-video'),
-            $video = $('.page-template-front_page .entry-header .mejs-video'),
-            $header,
-            $featured,
-            videoWidth,
-            videoHeight,
-            headerWidth,
-            headerHeight,
-            newWidth,
-            newHeight;
-
-        function stretch() {
-
-            if ((
-                    videoWidth / videoHeight
-                ) > (
-                    headerWidth / headerHeight
-                )) {
-                newHeight = headerHeight;
-                newWidth = newHeight * videoWidth / videoHeight;
-            } else {
-                newWidth = headerWidth;
-                newHeight = newWidth * videoHeight / videoWidth;
-            }
-
-            $wrapper.css({
-                width: newWidth,
-                height: newHeight
-            });
-        }
-
-        if ($wrapper.length) {
-            $header = $('.page-template-front_page .entry-header');
-            $featured = $('.page-template-front_page .entry-featured');
-            videoWidth = $video.outerWidth();
-            videoHeight = $video.outerHeight();
-            headerWidth = $header.outerWidth();
-            headerHeight = $header.outerHeight();
-
-            $wrapper.find('video').prop('muted', true)
-
-            stretch();
-            $wrapper.addClass('is--stretched').data('ar', newWidth / newHeight);
-
-            $window.on('debouncedresize', function() {
-                headerWidth = $header.outerWidth();
-                headerHeight = $header.outerHeight();
-                stretch();
-            });
-
-        }
-    }
-
     // iOS Multiple Select Bug Fix
     if (navigator.userAgent.match(/iPhone/i)) {
         $('select[multiple]').each(function() {
@@ -1539,37 +1264,6 @@ import { _formatCurrency } from "./calc.js"
             firstOption += '</option>';
             select.prepend(firstOption);
         });
-    }
-
-    function loginWithAjaxHandlers() {
-        if ($('.lwa-modal').length) {
-
-            $('.js-lwa-open-remember-form').on('click', function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-
-                $('.js-lwa-login, .js-lwa-remember').toggleClass('form-visible');
-            });
-
-            $('.js-lwa-close-remember-form').on('click', function() {
-                $('.js-lwa-login, .js-lwa-remember').toggleClass('form-visible');
-            });
-
-            $('.js-lwa-open-register-form').on('click', function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-
-                $('.js-lwa-login, .js-lwa-register').toggleClass('form-visible');
-            });
-
-            $('.js-lwa-close-register-form').on('click', function() {
-                $('.js-lwa-login, .js-lwa-register').toggleClass('form-visible');
-            });
-
-            $('.lwa-login-link').on('touchstart', function() {
-                closeMenu();
-            });
-        }
     }
 
     var HandleSubmenusOnTouch = (
@@ -1688,16 +1382,6 @@ import { _formatCurrency } from "./calc.js"
         }()
     );
 
-    function handleHiddenFacets() {
-        if (!$body.hasClass('is--using-facetwp')) {
-            return;
-        }
-
-        $('.js-toggle-hidden-facets').on('click', function() {
-            $body.toggleClass('is--showing-hidden-facets');
-            $('.hidden_facets').slideToggle(300);
-        })
-    }
 
     // Check if a sub menu's height is bigger that windows's width
     function handleLongSubMenus() {
@@ -1715,37 +1399,4 @@ import { _formatCurrency } from "./calc.js"
         });
     }
 
-    // Hide the category description after a FacetWP filtering
-    function hideCategoryDescription() {
-        if ($body.hasClass('is--using-facetwp')) {
-
-            checkAndHideForFacet();
-
-            $(document).on('facetwp-refresh', function() {
-                setTimeout(function() {
-                    checkAndHideForFacet();
-                }, 1);
-            });
-
-        } else {
-            $('.job_listings').on('update_results', function() {
-                $('.listing_category_description.do-hide').hide();
-
-                // An 'update_results' event is triggered on page load;
-                // hide it only after it gets the class do-hide;
-                // (only after the initial 'update_results' event is triggered)
-                $('.listing_category_description').addClass('do-hide');
-            });
-        }
-    }
-
-    function checkAndHideForFacet() {
-        var windowPath = window.location.href;
-
-        if (windowPath.indexOf("fwp") > -1) {
-            $('.listing_category_description').hide();
-        } else {
-            $('.listing_category_description').show();
-        }
-    }
 })(jQuery);

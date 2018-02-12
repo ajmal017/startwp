@@ -369,6 +369,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 							'label' => esc_html__('Column Number', 'bitstarter'),
 							'default' => '4',
 							'choices' => array(
+								'0' => '0',
 								'1' => '1',
 								'2' => '2',
 								'3' => '3',
@@ -936,6 +937,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 									'property' => 'fill',
 									'selector' => '
 									.grid--tile .bitstarter__icon path,
+									.grid--list .bitstarter__icon path,
 									.single-post .likes-count .bitstarter__icon path, 
 									.single-post .comments-count .bitstarter__icon path'
 								)

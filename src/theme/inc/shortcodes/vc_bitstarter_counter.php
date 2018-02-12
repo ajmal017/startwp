@@ -69,10 +69,10 @@ class WPBakeryShortCode_Bitstarter_Counter extends  WPBakeryShortCode
             $output .= '<div class="bitstarter-counter__wrap">';
             $output .= '<div class="bitstarter-counter__image">' .wp_get_attachment_image( $image, 'full') . '</div>';
             $output .= '    <div class="bitstarter-counter-label__wrap">';
-            $output .= '        <div class="bitstarter-counter-label__wrap__data" style="color:'.$number_color.'">' . preg_replace( '#([0-9]+)#', "<span data-number=\"$1\" class=\"label__number\">0</span>", esc_html($label) ) . '</div>';
+            $output .= '        <div class="bitstarter-counter-label__wrap__data" style="color:'. esc_attr($number_color).'">' . preg_replace( '#([0-9]+)#', "<span data-number=\"$1\" class=\"label__number\">0</span>", esc_html($label) ) . '</div>';
             $output .= '    </div>';
             $output .= '</div>';
-            $output .= '<div class="bitstarter-counter__description"  style="color:'.$text_color.'">' . esc_html( $desc ) . '</div>';
+            $output .= '<div class="bitstarter-counter__description"  style="color:'.esc_attr($text_color) .'">' . esc_html( $desc ) . '</div>';
 
         endif;
 
@@ -90,28 +90,6 @@ $opts = array(
     'icon'          => get_template_directory_uri() . '/assets/img/vc/bitstarter_counter.png',
     'category'		=> esc_html__('Developed for Bitstarter', 'bitstarter'),
     'params'		=> array(
-
-        // array(
-        //     'type' => 'dropdown',
-        //     'heading' => esc_html__('Layout Type', 'bitstarter'),
-        //     'param_name' => 'layout',
-        //     'description' => esc_html__('Choose counter layout.', 'bitstarter'),
-        //     'value'   => array(
-        //         esc_html__( 'Pie Counter', 'bitstarter' )  => 'pie',
-        //         esc_html__( 'Linear Counter', 'bitstarter' ) => 'linear',
-        //         esc_html__( 'Dynamic Text Numbers', 'bitstarter' ) => 'text',
-        //     )
-        // ),
-        // array(
-        //     'type' => 'textarea',
-        //     'heading' => esc_html__( 'Progress percentage(ex. 40%)', 'bitstarter' ),
-        //     'param_name' => 'percentage',
-        //     'dependency' => array(
-        //         'element' => 'layout',
-        //         'value' => array( 'pie', 'linear' ),
-        //     ),
-        //     'value' => '40%',
-        // ),
         array(
             'type' => 'attach_image',
             'heading' => esc_html__( 'Image', 'bitstarter' ),

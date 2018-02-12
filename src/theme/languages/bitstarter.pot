@@ -1,0 +1,1639 @@
+# Copyright (C) 2018 Bitstarter
+# This file is distributed under the same license as the Bitstarter package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Bitstarter\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#:  comments.php:41
+msgctxt "comments title"
+msgid "1 comment"
+msgid_plural "%1$s comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#:  comments.php:51,  comments.php:73
+msgid "Comment navigation"
+msgstr ""
+
+#:  comments.php:55,  comments.php:77
+msgid "Older Comments"
+msgstr ""
+
+#:  comments.php:56,  comments.php:78
+msgid "Newer Comments"
+msgstr ""
+
+#:  comments.php:88
+msgid "Comments are closed."
+msgstr ""
+
+#:  comments.php:92
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#:  footer.php:40
+msgid "Copyright © 2018 Bitstarter theme. All Rights Reserved."
+msgstr ""
+
+#:  functions.php:59,  inc/import/demo-data/demo_data.php:4
+msgid "Primary Menu"
+msgstr ""
+
+#:  header.php:23
+msgid "Skip to content"
+msgstr ""
+
+#:  inc/activation.php:26
+msgid "Hero Area"
+msgstr ""
+
+#:  inc/activation.php:27
+msgid "Add an image to be used as a Background for the Hero Area on the Page"
+msgstr ""
+
+#:  inc/activation.php:28
+msgid "Tip: Uploading"
+msgstr ""
+
+#:  inc/activation.php:29
+msgid "multiple images and/or videos"
+msgstr ""
+
+#:  inc/activation.php:30
+msgid "will"
+msgstr ""
+
+#:  inc/activation.php:31
+msgid "randomly"
+msgstr ""
+
+#:  inc/activation.php:32
+msgid "pick one when page is loaded"
+msgstr ""
+
+#:  inc/activation.php:40,  inc/activation.php:60
+msgid "Gallery Image"
+msgstr ""
+
+#:  inc/activation.php:51
+msgid "Gallery"
+msgstr ""
+
+#:  inc/activation.php:52
+msgid "Add an images to be used as a gallery for the Gallery Post Type Card"
+msgstr ""
+
+#:  inc/activation.php:71
+msgid "Audio"
+msgstr ""
+
+#:  inc/activation.php:72
+msgid "Put Url to your audio file to be used in the Audio Post Type Card"
+msgstr ""
+
+#:  inc/activation.php:80
+msgid "Audio File Source"
+msgstr ""
+
+#:  inc/activation.php:85
+msgid "Audio Type"
+msgstr ""
+
+#:  inc/activation.php:107
+msgid "Video"
+msgstr ""
+
+#:  inc/activation.php:108
+msgid "Put Url from youtube or vimeo to be used in the Video Post Type Card"
+msgstr ""
+
+#:  inc/activation.php:116
+msgid "Video File Source"
+msgstr ""
+
+#:  inc/activation.php:121
+msgid "Video Type"
+msgstr ""
+
+#:  inc/activation.php:143
+msgid "Likes"
+msgstr ""
+
+#:  inc/activation.php:144
+msgid "Amount of Likes made on this post"
+msgstr ""
+
+#:  inc/activation.php:152
+msgid "Amount of likes"
+msgstr ""
+
+#:  inc/config.php:63
+msgid "Theme Options"
+msgstr ""
+
+#:  inc/config.php:66
+msgid "General"
+msgstr ""
+
+#:  inc/config.php:71
+msgid "Enable preloader?"
+msgstr ""
+
+#:  inc/config.php:75
+msgid "Footer Copyright Text"
+msgstr ""
+
+#:  inc/config.php:77
+msgid "Copyright © 2017 Bitstarter theme. All Rights Reserved."
+msgstr ""
+
+#:  inc/config.php:84
+msgid "Custom JavaScript"
+msgstr ""
+
+#:  inc/config.php:88,  inc/config.php:140
+msgid "Header"
+msgstr ""
+
+#:  inc/config.php:89
+msgid "Easily add Custom Javascript code. This code will be loaded in the <head> section."
+msgstr ""
+
+#:  inc/config.php:94,  inc/config.php:365,  inc/config.php:949
+msgid "Footer"
+msgstr ""
+
+#:  inc/config.php:95
+msgid "You can paste here your Google Analytics tracking code (or for what matters any tracking code) and we will put it on every page."
+msgstr ""
+
+#:  inc/config.php:102
+msgid "Demo Data"
+msgstr ""
+
+#:  inc/config.php:103
+msgid "If you would like to have a \"ready to go\" website as the Bitstarter's demo page here is the button"
+msgstr ""
+
+#:  inc/config.php:113
+msgid "(Note: We cannot serve you the original images due the "
+msgstr ""
+
+#:  inc/config.php:115
+msgid "Import demo data"
+msgstr ""
+
+#:  inc/config.php:121
+msgid "Please wait a few minutes (between 1 and 3 minutes usually, but depending on your hosting it can take longer) and "
+msgstr ""
+
+#:  inc/config.php:122
+msgid "don't reload the page"
+msgstr ""
+
+#:  inc/config.php:123
+msgid "You will be notified as soon as the import has finished!"
+msgstr ""
+
+#:  inc/config.php:136
+msgid "&#x1f4bb; Layout"
+msgstr ""
+
+#:  inc/config.php:145
+msgid "Logo Height"
+msgstr ""
+
+#:  inc/config.php:167
+msgid "Header Vertical Margins"
+msgstr ""
+
+#:  inc/config.php:195
+msgid "Menu Items Spacing"
+msgstr ""
+
+#:  inc/config.php:222,  inc/config.php:247,  inc/config.php:273,  inc/config.php:380
+msgid "Container Width"
+msgstr ""
+
+#:  inc/config.php:243,  page-templates/front_page.php:2
+msgid "Front Page"
+msgstr ""
+
+#:  inc/config.php:268,  inc/shortcodes/vc_bitstarter_card.php:102,  inc/shortcodes/vc_bitstarter_testimonials.php:52
+msgid "Content"
+msgstr ""
+
+#:  inc/config.php:293
+msgid "Container Width On Posts Page"
+msgstr ""
+
+#:  inc/config.php:313
+msgid "Sections Vertical Margins"
+msgstr ""
+
+#:  inc/config.php:340
+msgid "Blog Postcards Layout"
+msgstr ""
+
+#:  inc/config.php:349
+msgid "Blog Sidebar"
+msgstr ""
+
+#:  inc/config.php:360
+msgid "Also appear it on Posts Page"
+msgstr ""
+
+#:  inc/config.php:369
+msgid "Column Number"
+msgstr ""
+
+#:  inc/config.php:404
+msgid "Colors"
+msgstr ""
+
+#:  inc/config.php:407
+msgid "Site Header"
+msgstr ""
+
+#:  inc/config.php:412
+msgid "Transparent on Front Page Hero"
+msgstr ""
+
+#:  inc/config.php:417
+msgid "Transparent on Blog Posts Page"
+msgstr ""
+
+#:  inc/config.php:421
+msgid "Header Background Color"
+msgstr ""
+
+#:  inc/config.php:445
+msgid "Site Title Color"
+msgstr ""
+
+#:  inc/config.php:467
+msgid "Nav Link Color"
+msgstr ""
+
+#:  inc/config.php:497
+msgid "Nav Active Color"
+msgstr ""
+
+#:  inc/config.php:510
+msgid "Nav Button Color"
+msgstr ""
+
+#:  inc/config.php:525
+msgid "Blog Hero Area"
+msgstr ""
+
+#:  inc/config.php:529,  inc/config.php:719,  inc/config.php:894,  inc/config.php:965,  inc/shortcodes/vc_bitstarter_counterdown.php:238
+msgid "Text Color"
+msgstr ""
+
+#:  inc/config.php:551
+msgid "Apply Gradient Overlay"
+msgstr ""
+
+#:  inc/config.php:555
+msgid "Gradient Background Color From Left Top Corner"
+msgstr ""
+
+#:  inc/config.php:567
+msgid "Gradient Background Color From Right Bottom Corner"
+msgstr ""
+
+#:  inc/config.php:580
+msgid "Apply Linear Overlay"
+msgstr ""
+
+#:  inc/config.php:584
+msgid "Linear Overlay Color"
+msgstr ""
+
+#:  inc/config.php:613
+msgid "Line Width"
+msgstr ""
+
+#:  inc/config.php:632
+msgid "Line Corner Radius"
+msgstr ""
+
+#:  inc/config.php:653
+msgid "Main Content"
+msgstr ""
+
+#:  inc/config.php:657
+msgid "Content Background"
+msgstr ""
+
+#:  inc/config.php:670
+msgid "Page Background"
+msgstr ""
+
+#:  inc/config.php:689
+msgid "Page Titles Color"
+msgstr ""
+
+#:  inc/config.php:707
+msgid "Page Subtitles Color"
+msgstr ""
+
+#:  inc/config.php:750
+msgid "Buttons Color"
+msgstr ""
+
+#:  inc/config.php:782
+msgid "Buttons Text Color"
+msgstr ""
+
+#:  inc/config.php:800
+msgid "Cards"
+msgstr ""
+
+#:  inc/config.php:804
+msgid "Cards Background"
+msgstr ""
+
+#:  inc/config.php:882
+msgid "Title Color"
+msgstr ""
+
+#:  inc/config.php:906
+msgid "Hover Color On Links"
+msgstr ""
+
+#:  inc/config.php:953
+msgid "Background"
+msgstr ""
+
+#:  inc/config.php:981
+msgid "Credits&Social Colors"
+msgstr ""
+
+#:  inc/config.php:997
+msgid "Other Colors"
+msgstr ""
+
+#:  inc/config.php:1001
+msgid "Accent Color"
+msgstr ""
+
+#:  inc/config.php:1044
+msgid "Meta Fields Color"
+msgstr ""
+
+#:  inc/config.php:1085
+msgid "Micro Elements"
+msgstr ""
+
+#:  inc/config.php:1116
+msgid "Fonts"
+msgstr ""
+
+#:  inc/config.php:1120,  inc/config.php:1124
+msgid "Navigation Text"
+msgstr ""
+
+#:  inc/config.php:1138,  inc/config.php:1304,  inc/config.php:1338,  inc/config.php:1434,  inc/config.php:1525
+msgid "Font Size"
+msgstr ""
+
+#:  inc/config.php:1159,  inc/config.php:1243,  inc/config.php:1282,  inc/config.php:1358,  inc/config.php:1460,  inc/config.php:1545
+msgid "Text Transform"
+msgstr ""
+
+#:  inc/config.php:1181,  inc/config.php:1379,  inc/config.php:1485,  inc/config.php:1566
+msgid "Letter Spacing"
+msgstr ""
+
+#:  inc/config.php:1203
+msgid "Body Text"
+msgstr ""
+
+#:  inc/config.php:1207
+msgid "Body Font"
+msgstr ""
+
+#:  inc/config.php:1222
+msgid "Blog Titles"
+msgstr ""
+
+#:  inc/config.php:1226
+msgid "Headings"
+msgstr ""
+
+#:  inc/config.php:1268
+msgid "Blog Subtitles"
+msgstr ""
+
+#:  inc/config.php:1272
+msgid "Page Subtitles"
+msgstr ""
+
+#:  inc/config.php:1325,  inc/config.php:1329
+msgid "Card Title Font"
+msgstr ""
+
+#:  inc/config.php:1400,  inc/config.php:1404
+msgid "Card Font"
+msgstr ""
+
+#:  inc/config.php:1414,  inc/config.php:1418
+msgid "Buttons & Forms"
+msgstr ""
+
+#:  inc/config.php:1511,  inc/config.php:1515
+msgid "Meta"
+msgstr ""
+
+#:  inc/config.php:1595
+msgid "Logo while on Transparent Hero Area"
+msgstr ""
+
+#:  inc/config.php:1596
+msgid "Replace the default logo on the Front Page Hero."
+msgstr ""
+
+#:  inc/customizer.php:43
+msgid "The import didn't work completely!"
+msgstr ""
+
+#:  inc/customizer.php:43
+msgid "Check out the errors given. You might want to try reloading the page and try again."
+msgstr ""
+
+#:  inc/customizer.php:44
+msgid "Importing the demo data will overwrite your current site content and options. Proceed anyway?"
+msgstr ""
+
+#:  inc/customizer.php:45
+msgid "Phew...that was a hard one!"
+msgstr ""
+
+#:  inc/customizer.php:46
+msgid "The demo data was imported without a glitch! Awesome! "
+msgstr ""
+
+#:  inc/customizer.php:47
+msgid "<i>We have reloaded the page on the right, so you can see the brand new data!</i>"
+msgstr ""
+
+#:  inc/customizer.php:48
+msgid "Remember to update the passwords and roles of imported users."
+msgstr ""
+
+#:  inc/customizer.php:49
+msgid "All done!"
+msgstr ""
+
+#:  inc/customizer.php:50
+msgid "Working..."
+msgstr ""
+
+#:  inc/customizer.php:51
+msgid "The setting up of the demo widgets failed..."
+msgstr ""
+
+#:  inc/customizer.php:52
+msgid "The setting up of the demo widgets failed"
+msgstr ""
+
+#:  inc/customizer.php:52,  inc/customizer.php:55
+msgid "The script returned the following message"
+msgstr ""
+
+#:  inc/customizer.php:53
+msgid "Finished setting up the demo widgets..."
+msgstr ""
+
+#:  inc/customizer.php:54,  inc/customizer.php:57
+msgid "The importing of the theme options has failed..."
+msgstr ""
+
+#:  inc/customizer.php:55
+msgid "The importing of the theme options has failed"
+msgstr ""
+
+#:  inc/customizer.php:56
+msgid "Finished importing the demo theme options..."
+msgstr ""
+
+#:  inc/customizer.php:58
+msgid "Importing posts | Step"
+msgstr ""
+
+#:  inc/customizer.php:59
+msgid "Error:"
+msgstr ""
+
+#:  inc/customizer.php:60
+msgid "You can reload the page and try again."
+msgstr ""
+
+#:  inc/extras.php:300
+msgid "Enter your name"
+msgstr ""
+
+#:  inc/extras.php:301
+msgid "Enter your mail"
+msgstr ""
+
+#:  inc/extras.php:302
+msgid "Enter your website"
+msgstr ""
+
+#:  inc/extras.php:439
+msgid "No %s found"
+msgstr ""
+
+#:  inc/template-tags.php:162
+msgid "0"
+msgstr ""
+
+#:  inc/template-tags.php:162
+msgid "1"
+msgstr ""
+
+#:  inc/template-tags.php:162
+msgid "%"
+msgstr ""
+
+#:  inc/template-tags.php:205
+msgid " "
+msgstr ""
+
+#:  inc/template-tags.php:303
+msgid "Pingback:"
+msgstr ""
+
+#:  inc/template-tags.php:303,  inc/template-tags.php:327
+msgid "(Edit)"
+msgstr ""
+
+#:  inc/template-tags.php:310
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#:  inc/template-tags.php:325
+msgid "on %1$s"
+msgstr ""
+
+#:  inc/widgets.php:9
+msgid "Sidebar"
+msgstr ""
+
+#:  inc/widgets.php:19
+msgid "Footer Area Bottom Info"
+msgstr ""
+
+#:  inc/widgets.php:32
+msgstr ""
+
+#:  inc/widgets.php:81,  inc/widgets.php:273,  inc/widgets.php:395
+msgid "Bitstarter"
+msgstr ""
+
+#:  inc/widgets.php:81
+msgid "Social Media Icons"
+msgstr ""
+
+#:  inc/widgets.php:82
+msgid "A simple widget that displays social media icons."
+msgstr ""
+
+#:  inc/widgets.php:116
+msgid "View %1$s&#8217;s profile on %2$s"
+msgstr ""
+
+#:  inc/widgets.php:199
+msgid "%s username:"
+msgstr ""
+
+#:  inc/widgets.php:273
+msgid "Cryptocurrency Monitor"
+msgstr ""
+
+#:  inc/widgets.php:274
+msgid "A list of the Coin Market Cap cryptocurrencies"
+msgstr ""
+
+#:  inc/widgets.php:361,  inc/widgets.php:451
+msgid "Title:"
+msgstr ""
+
+#:  inc/widgets.php:365
+msgid "Currencies:"
+msgstr ""
+
+#:  inc/widgets.php:395
+msgid "CF7 Form"
+msgstr ""
+
+#:  inc/widgets.php:396
+msgid "Add a Contact Form 7 to your footer."
+msgstr ""
+
+#:  inc/widgets.php:445
+msgid "No forms have been created yet. Create some."
+msgstr ""
+
+#:  inc/widgets.php:455
+msgid "Select Menu:"
+msgstr ""
+
+#:  inc/widgets.php:457
+msgid "&mdash; Select &mdash;"
+msgstr ""
+
+#:  template-parts/content-hero.php:76
+msgid "Category: "
+msgstr ""
+
+#:  template-parts/content-hero.php:86
+msgid "Search results for: %s"
+msgstr ""
+
+#:  template-parts/content-hero.php:95
+msgid "404"
+msgstr ""
+
+#:  template-parts/content-none.php:13
+msgid "Nothing Found"
+msgstr ""
+
+#:  template-parts/content-none.php:16
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#:  template-parts/content-none.php:20
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr ""
+
+#:  template-parts/content-none.php:27
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr ""
+
+#:  template-parts/content-none.php:29
+msgid "GO HOME"
+msgstr ""
+
+#:  template-parts/content-page.php:19
+msgid "Pages:"
+msgstr ""
+
+#:  template-parts/content-page.php:26
+msgid "Edit %s"
+msgstr ""
+
+#:  template-parts/content.php:227
+msgid "READ MORE"
+msgstr ""
+
+#:  inc/required-plugins/required-plugins.php:60
+msgid "WPBakery Visual Composer"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:10
+msgid "For layouts responsiveness below are some CSS classes to display this shortcode only on certain devices."
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:19
+msgid "only-xs"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:20
+msgid "Extra small devices (portrait phones, less than 576px)"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:21
+msgid "only-sm"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:22
+msgid "Small devices (landscape phones, 576px and up)"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:23
+msgid "only-md"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:24
+msgid "Medium devices (tablets, 768px and up)"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:25
+msgid "only-lg"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:26
+msgid "Large devices (desktops, 900px and up)"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:27
+msgid "only-xl"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:28
+msgid "Extra large devices (large desktops, 1200px and up)"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:29
+msgid "Put some css class(e.g. only-sm) in the Extra class name field above, in case you have to add many class separate them by empty space"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:40
+msgid "Text utils CSS class you may use to align some inline element(e.g. buttons)"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:47
+msgid "u-text-left"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:48
+msgid "Align inline element, that inside container(like column) to the left"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:49
+msgid "u-text-center"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:50
+msgid "Align inline element, that inside container(like column) to the center"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:51
+msgid "u-text-right"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:52
+msgid "AAlign inline element, that inside container(like column) to the right"
+msgstr ""
+
+#:  inc/shortcodes/extend_vc.php:53
+msgid "Put some css class(e.g. u-text-center) in the Extra class name field above, in case you have to add many class separate them by empty space"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_blog.php:82
+msgid "Post Feed"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_blog.php:85,  inc/shortcodes/vc_bitstarter_calc.php:193,  inc/shortcodes/vc_bitstarter_card.php:60,  inc/shortcodes/vc_bitstarter_container.php:58,  inc/shortcodes/vc_bitstarter_counter.php:91,  inc/shortcodes/vc_bitstarter_counterdown.php:213,  inc/shortcodes/vc_bitstarter_distribution.php:56,  inc/shortcodes/vc_bitstarter_mark.php:48,  inc/shortcodes/vc_bitstarter_plot.php:45,  inc/shortcodes/vc_bitstarter_team.php:88,  inc/shortcodes/vc_bitstarter_testimonials.php:37
+msgid "Developed for Bitstarter"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_blog.php:91
+msgid "Posts"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_blog.php:99
+msgid "Create WordPress loop, to populate content from your posts."
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_blog.php:104,  inc/shortcodes/vc_bitstarter_calc.php:208,  inc/shortcodes/vc_bitstarter_card.php:115,  inc/shortcodes/vc_bitstarter_container.php:182,  inc/shortcodes/vc_bitstarter_counter.php:136,  inc/shortcodes/vc_bitstarter_counterdown.php:299,  inc/shortcodes/vc_bitstarter_distribution.php:67,  inc/shortcodes/vc_bitstarter_mark.php:70,  inc/shortcodes/vc_bitstarter_plot.php:50,  inc/shortcodes/vc_bitstarter_team.php:145,  inc/shortcodes/vc_bitstarter_testimonials.php:57
+msgid "Css"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_blog.php:106,  inc/shortcodes/vc_bitstarter_calc.php:210,  inc/shortcodes/vc_bitstarter_card.php:117,  inc/shortcodes/vc_bitstarter_container.php:184,  inc/shortcodes/vc_bitstarter_counter.php:138,  inc/shortcodes/vc_bitstarter_counterdown.php:301,  inc/shortcodes/vc_bitstarter_distribution.php:69,  inc/shortcodes/vc_bitstarter_mark.php:72,  inc/shortcodes/vc_bitstarter_plot.php:52,  inc/shortcodes/vc_bitstarter_team.php:147,  inc/shortcodes/vc_bitstarter_testimonials.php:59
+msgid "Design options"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:34
+msgid "BTC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:35
+msgid "ETH"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:36
+msgid "XRP"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:37
+msgid "BCH"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:38
+msgid "ADA"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:39
+msgid "LTC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:40
+msgid "XEM"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:41
+msgid "NEO"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:42
+msgid "MIOTA"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:43
+msgid "XLM"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:44
+msgid "DASH"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:45
+msgid "EOS"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:46
+msgid "XMR"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:47
+msgid "TRX"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:48
+msgid "BTG"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:49
+msgid "ETC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:50
+msgid "QTUM"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:51
+msgid "ICX"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:52
+msgid "LSK"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:53
+msgid "USDT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:54
+msgid "XRB"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:55
+msgid "OMG"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:56
+msgid "SC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:57
+msgid "ZEC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:58
+msgid "ARDR"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:59
+msgid "PPT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:60
+msgid "STRAT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:61
+msgid "BNB"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:62
+msgid "VEN"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:63
+msgid "XVG"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:64
+msgid "BCN"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:65
+msgid "SNT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:66
+msgid "WAVES"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:67
+msgid "STEEM"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:68
+msgid "KCS"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:69
+msgid "BTS"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:70
+msgid "DOGE"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:71
+msgid "ZRX"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:72
+msgid "REP"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:73
+msgid "SMART"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:74
+msgid "DRGN"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:75
+msgid "VERI"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:76
+msgid "ETN"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:77
+msgid "DCR"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:78
+msgid "KMD"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:79
+msgid "DGB"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:80
+msgid "DCN"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:81
+msgid "SALT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:82
+msgid "ARK"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:83
+msgid "QASH"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:84
+msgid "PIVX"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:85
+msgid "GNT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:86
+msgid "GAS"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:87
+msgid "RHOC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:88
+msgid "HSR"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:89
+msgid "ETHOS"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:90
+msgid "WAX"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:91
+msgid "WTC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:92
+msgid "LRC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:93
+msgid "BAT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:94
+msgid "GBYTE"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:95
+msgid "DENT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:96
+msgid "DGD"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:97
+msgid "ZCL"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:98
+msgid "KNC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:99
+msgid "NEBL"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:100
+msgid "FCT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:101
+msgid "AION"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:102
+msgid "AE"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:103
+msgid "NXS"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:104
+msgid "MONA"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:105
+msgid "FUN"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:106
+msgid "BTM"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:107
+msgid "MAID"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:108
+msgid "SYS"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:109
+msgid "ELF"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:110
+msgid "GXS"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:111
+msgid "POWR"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:112
+msgid "RDD"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:113
+msgid "XZC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:114
+msgid "CNX"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:115
+msgid "NXT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:116
+msgid "KIN"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:117
+msgid "REQ"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:118
+msgid "GAME"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:119
+msgid "BTX"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:120
+msgid "MED"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:121
+msgid "ENG"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:122
+msgid "BNT"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:123
+msgid "SUB"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:124
+msgid "NAS"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:125
+msgid "QSP"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:126
+msgid "XDN"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:127
+msgid "EMC"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:128
+msgid "PAY"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:129
+msgid "PART"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:130
+msgid "SKY"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:131
+msgid "XP"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:132
+msgid "BTCD"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:133
+msgid "ICN"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:136,  inc/shortcodes/vc_bitstarter_calc.php:147
+msgid "Only numbers are allowed"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:143
+msgid "USD"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:144
+msgid "EUR"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:156
+msgid "Current daily interest"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:163
+msgid "Daily net income"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:170
+msgid "Weekly net income"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:177
+msgid "Monthly net income"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:190
+msgid "Crypto Calculator"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:198
+msgid "Enter header"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_calc.php:203
+msgid "Enter current daily interest in percentage(ex. 3.5)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_card.php:56
+msgid "Detailed Card"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_card.php:65,  inc/shortcodes/vc_bitstarter_counterdown.php:217
+msgid "Title"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_card.php:67
+msgid "Tokens"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_card.php:71
+msgid "Color of title"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_card.php:77
+msgid "Color of the line leftward from the title"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_card.php:83
+msgid "Background color (first value to make a gradient)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_card.php:89
+msgid "Background color (second value to make a gradient)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_card.php:95
+msgid "Shadow of container"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_card.php:104,  inc/shortcodes/vc_bitstarter_counter.php:121,  inc/shortcodes/vc_bitstarter_testimonials.php:47
+msgid "Select image"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_card.php:105
+msgid ""
+"
+\n"
+"            <table> 
+\n"
+"                <tr><td>Token:</td><td>CC</td></tr>
+\n"
+"                <tr><td>Maximum amount of tokens to be issued:</td><td>30 000 000 CC</td></tr>
+\n"
+"                <tr><td>Token type:</td><td>ERC20</td></tr>
+\n"
+"            </table>"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:53
+msgid "Slider Container"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:65
+msgid "Slides To Show"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:67
+msgid "Enter a number of slides to show on screen (min - 1)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:72
+msgid "Slides To Scroll"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:74
+msgid "Enter a number of slides to scroll (min - 1)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:79
+msgid "Speed"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:81
+msgid "Slide/Fade animation speed in milliseconds( ex. 500)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:86
+msgid "Dots?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:88
+msgid "Show dot indicators?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:89,  inc/shortcodes/vc_bitstarter_container.php:97,  inc/shortcodes/vc_bitstarter_container.php:112,  inc/shortcodes/vc_bitstarter_container.php:120,  inc/shortcodes/vc_bitstarter_container.php:128,  inc/shortcodes/vc_bitstarter_container.php:136,  inc/shortcodes/vc_bitstarter_container.php:152,  inc/shortcodes/vc_bitstarter_container.php:160,  inc/shortcodes/vc_bitstarter_container.php:168,  inc/shortcodes/vc_bitstarter_container.php:176
+msgid "Yes"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:94
+msgid "Center mode?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:96,  inc/shortcodes/vc_bitstarter_container.php:111
+msgid "Enables centered view with partial prev/next slides. Use with odd numbered Slides To Show counts"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:102
+msgid "Set Center Padding"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:104
+msgid "Side padding when in center mode in px (min - 0)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:109
+msgid "Focus On Select?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:117
+msgid "Arrows?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:119
+msgid "Prev/Next Arrows"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:125
+msgid "Adaptive Height?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:127
+msgid "Enables adaptive height for single slide horizontal carousels."
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:133
+msgid "autoplay?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:135
+msgid "Enables Autoplay"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:141
+msgid "Autoplay Speed"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:143
+msgid "Enter amount of time in milliseconds to slide change(ex. 3000)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:149
+msgid "Draggable?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:151
+msgid "Enable mouse dragging"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:157
+msgid "Fade?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:159
+msgid "Enable fade"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:165
+msgid "Variable Width?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:167
+msgid "Variable width slides"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:173
+msgid "Vertical?"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_container.php:175
+msgid "Vertical slide mode"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counter.php:87
+msgid "Dynamic Counter"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counter.php:117,  inc/shortcodes/vc_bitstarter_team.php:92,  inc/shortcodes/vc_bitstarter_testimonials.php:43
+msgid "Image"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counter.php:125
+msgid "Label(Ex. 100)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counter.php:126
+msgid "Set numeric values, will be dynamically changed."
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counter.php:131
+msgid "Description(Ex. Days since the start)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counter.php:142
+msgid "Label color"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counter.php:148,  inc/shortcodes/vc_bitstarter_mark.php:58
+msgid "Description color"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:63
+msgid "0: years | 1:year | 2:years"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:67
+msgid "0:months | 1:month | 2:months"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:71
+msgid "0:days | 1:day | 2:days"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:75
+msgid "0:hours | 1:hour | 2:hours"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:79
+msgid "0 :minutes | 1:minute | 2:minutes"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:83
+msgid "0 :seconds | 1:second | 2:seconds"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:209
+msgid "Counter Down"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:218
+msgid "ICO ENDS IN"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:223
+msgid "Date"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:227
+msgid "Choose date when you complete in format YYYY-MM-DD (Ex. 2018-03-31)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:231
+msgid "Time"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:234
+msgid "Choose hour when you complete,from 00 to 23."
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:244,  inc/shortcodes/vc_bitstarter_team.php:127
+msgid "Background color"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:250,  inc/shortcodes/vc_bitstarter_team.php:121
+msgid "Shadows in card"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:256
+msgid "Title under counter"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:257
+msgid "Raised"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:262
+msgid "Raised amount in dollars, also after \" | \" mark, you may denote subtitle"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:263
+msgid "19564867 | raised"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:268
+msgid "Bakers amount, also after \" | \" mark, you may denote subtitle"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:269
+msgid "8756 | bakers"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:274
+msgid "Start progress from, in dollars, also after \" | \" mark, you may denote subtitle"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:275
+msgid "2000000 | Softcap in just 10 hours"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:280
+msgid "Stop progress till, in dollars, also after \" | \" mark, you may denote subtitle"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:281
+msgid "20000000 | Hardcup"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:286
+msgid "Progress bar color"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:293
+msgid "Anding content"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_counterdown.php:295
+msgid "<p> Sample data </p>"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_distribution.php:52
+msgid "Percentage Distribution"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_distribution.php:60
+msgid "Distribution"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_distribution.php:62
+msgid "#fc3868|23,#ffd529|1,#47f15a|20,#9575f4|12,#c24078|24,#3023ae|6,#00eaf8|14"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_distribution.php:63
+msgid "Enter the params of distribution line in format \"color|value,color|value\", where color is in hex format (ex. #000000) and value is a number (ex. 10)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_mark.php:44,  inc/shortcodes/vc_bitstarter_mark.php:64
+msgid "Colored Mark"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_mark.php:53
+msgid "Description"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_plot.php:42
+msgid "Bitstarter Theme Plot"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_team.php:84
+msgid "Team"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_team.php:96
+msgid "Select image (200x200)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_team.php:100
+msgid "First & last name"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_team.php:105
+msgid "Position held"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_team.php:110
+msgid "Color of position held"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_team.php:116
+msgid "Excerpt"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_team.php:133
+msgid "Facebok (optional)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_team.php:135,  inc/shortcodes/vc_bitstarter_team.php:141
+msgid "Social networks"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_team.php:139
+msgid "Linkedin (optional)"
+msgstr ""
+
+#:  inc/shortcodes/vc_bitstarter_testimonials.php:34
+msgid "Testimonials"
+msgstr ""
+
+#:  inc/import/wordpress-importer/bitstarter-import-class.php:136
+msgid "Failed to import \"%s\": Invalid post type %s"
+msgstr ""
+
+#:  inc/import/wordpress-importer/bitstarter-import-class.php:244
+msgid "Failed to import %s \"%s\""
+msgstr ""
+
+#:  inc/import/wordpress-importer/bitstarter-import-class.php:280
+msgid "Failed to import %s %s"
+msgstr ""

@@ -45,25 +45,29 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
             $extra_class = 'team__in--excerpt';
         endif;
 
-        $output .= '<div class="team '.$css_class.' wpb_content_element"><div class="team__in ' . $extra_class . '" style="box-shadow: 0 20px 26px 10px rgba(' . $shadow_color . ',.12); background: ' . $bg_color . '">';
+        $output .= '<div class="team '.$css_class.' wpb_content_element"><div class="team__in ' . esc_attr($extra_class) . '" style="box-shadow: 0 20px 26px 10px rgba(' . esc_attr($shadow_color) . ',.12); background: ' . esc_attr($bg_color) . '">';
         $output .= '<div class="team__picture" style="box-shadow: 0 20px 26px rgba(' . $shadow_color . ',.2)">' . wp_get_attachment_image( $image, 'full') . '</div>';
 
         $output .= '<div class="team-info">';
         
         $output .=      '<h5 class="team-info__name">' . $name . '</h5>';
-        $output .=      '<h5 class="team-info__position" style="color: ' . $position_color . '">' . $position . '</h5>';
+        $output .=      '<h5 class="team-info__position" style="color: ' . esc_attr($position_color) . '">' . $position . '</h5>';
 
         
         if( !empty($fb) || !empty($in) ):
 
+            global $wp_filesystem;
+            require_once( ABSPATH . 'wp-admin/includes/file.php' );
+            WP_Filesystem();
+
             $output .= '<ul class="team-info__social">';
 
                 if( !empty($fb) ):
-                    $output .= '<li><a href="' . esc_url( $fb ) . '"><i class="bitstarter__icon">' . file_get_contents(locate_template('assets/svg/sc-team-fb.php')) . '</i></a></li>';
+                    $output .= '<li><a href="' . esc_url( $fb ) . '"><i class="bitstarter__icon">' . $wp_filesystem->get_contents(locate_template('assets/svg/sc-team-fb.php')) . '</i></a></li>';
                 endif;
                 
                 if( !empty($in) ):
-                    $output .= '<li><a href="' . esc_url( $in ) . '"><i class="bitstarter__icon ">' .  file_get_contents(locate_template('assets/svg/sc-team-in.php')) . '</i></a></li>';
+                    $output .= '<li><a href="' . esc_url( $in ) . '"><i class="bitstarter__icon ">' .  $wp_filesystem->get_contents(locate_template('assets/svg/sc-team-in.php')) . '</i></a></li>';
                 endif;
 
             $output .= '</ul>';

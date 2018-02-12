@@ -15,7 +15,7 @@
     $has_image       = false;	
 
     if ( ( empty( $the_random_hero ) || property_exists( $the_random_hero, 'post_mime_type' ) ) && is_object( $the_random_hero ) && property_exists( $the_random_hero, 'post_mime_type' ) && strpos( $the_random_hero->post_mime_type, 'image' ) !== false ) {
-            $has_image = wp_get_attachment_url( $the_random_hero->ID );
+            $has_image = wp_get_attachment_image_src( $the_random_hero->ID );
         } 
 ?>
 
@@ -23,9 +23,12 @@
         if($has_image) echo ' has__featured__image'; 
         if(bitstarter_categorized_blog() && !is_category() && !is_search()) echo ' has__categories';
              ?>">
-    <div class="hero-header__background"<?php if ( ! empty( $has_image ) ) {
-        echo ' style="background-image: url(' . bitstarter_get_inline_background_image( $has_image ) . ');"';
-    } ?>>
+    <div class="hero-header__background">
+
+        <?php if ( ! empty( $has_image ) ) { 
+            $hero_image_srcset  = wp_get_attachment_image_srcset( $the_random_hero->ID ); 
+            echo '<img class="hero-header__background__img"  src="' . $has_image[0] . '" srcset="' . $hero_image_srcset . '"/>';
+        } ?>
 
         <?php if ( bitstarter_get_option( 'site_blogheroarea_gradover', false ) == true ):?>
             <!--  Gradient start -->
@@ -91,10 +94,10 @@
             <?php } elseif ( is_404()  ) { ?>
 
             <div class="hero-header__content-area__wrapper hero-header__content--404 ">
-                <div style="height: 150px"></div>
+               
                 <h1 class="hero-title"><?php esc_html_e( '404', 'bitstarter' ); ?></h1>
                 <?php get_template_part( 'template-parts/content', 'none' ); ?>
-                <div style="height: 150px"></div>
+               
                
             </div>
 
@@ -111,11 +114,33 @@
                 $categories = get_categories();
                 if( $categories ):
                     echo '<ul class="hero-category__list">';
+                    if( count($categories) > 5 ):
+                       
+                        $showcats = array_slice($categories, 0, 5);
 
+                        foreach ( $showcats as $category ): ?>
+                        <li><a href="<?php echo esc_sql( get_category_link( $category->cat_ID ) ); ?>"><?php echo $category->cat_name; ?></a></li>
+                        <?php endforeach;
+
+                        echo '<span class="hero-category__list__more">&bull;&bull;&bull;</span>';
+
+                        echo '<div class="hero-category__list__additional">';
+                            
+                            $showcats = array_slice($categories,5);
+
+                            foreach ( $showcats as $category ): ?>
+                            <li><a href="<?php echo esc_sql( get_category_link( $category->cat_ID ) ); ?>"><?php echo $category->cat_name; ?></a></li>
+                            <?php endforeach;
+
+                        echo '</div>';
+
+                    else:
+                        
                     foreach ( $categories as $category ): ?>
                         <li><a href="<?php echo esc_sql( get_category_link( $category->cat_ID ) ); ?>"><?php echo $category->cat_name; ?></a></li>
                     <?php endforeach;
 
+                    endif;
                     echo '</ul>';
                 endif;
             endif; ?>

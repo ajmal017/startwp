@@ -43,16 +43,17 @@ function bitstarter_body_classes( $classes ) {
 		$show_on_posts_page = bitstarter_get_option('blog_sidebar_posts');
 	}
 
-	$sidebar = bitstarter_get_option('blog_sidebar');
+	$sidebar = bitstarter_get_option('blog_sidebar', 'sidebar__right');
 	if( isset( $sidebar ) && 'sidebar__none' != $sidebar && $show_on_posts_page ){
 		$classes[] = $sidebar;
 	}
 
-	if((is_page_template( 'page-templates/front_page.php' ) && bitstarter_get_option( 'header_transparent', true)) || ( is_home() && bitstarter_get_option( 'header_transparent', true)) ) {
+	if((is_page_template( 'page-templates/front_page.php' ) && bitstarter_get_option( 'header_transparent', true)) || ( is_home() && bitstarter_get_option( 'header_transparent', false)) ) {
 		$classes[] = 'header--transparent'; 
 	}
 
 	return $classes;
+	
 }
 add_filter( 'body_class', 'bitstarter_body_classes' );
 
@@ -72,22 +73,20 @@ if ( ! function_exists( 'bitstarter_display_image' ) ) {
 
 			//we try to inline svgs
 			if ( substr( $url, - 4 ) === '.svg' ) {
+				global $wp_filesystem;
+				//if not let's get the file contents using WP_Filesystem
+				WP_Filesystem();
+				require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
-				//first let's see if we have an attachment and inline it in the safest way - with readfile
+
+				//first let's see if we have an attachment and inline it in the safest way - with WP_Filesystem
 				//include is a little dangerous because if one has short_open_tags active, the svg header that starts with <? will be seen as PHP code
-				if ( ! empty( $attachment_id ) && false !== @readfile( get_attached_file( $attachment_id ) ) ) {
+				if ( ! empty( $attachment_id ) && false !== $wp_filesystem->get_contents( get_attached_file( $attachment_id ) ) ) {
 					//all good
 				} elseif ( false !== ( $svg_code = get_transient( md5( $url ) ) ) ) {
 					//now try to get the svg code from cache
 					echo $svg_code;
 				} else {
-
-					//if not let's get the file contents using WP_Filesystem
-					require_once( ABSPATH . 'wp-admin/includes/file.php' );
-
-					WP_Filesystem();
-
-					global $wp_filesystem;
 
 					$svg_code = $wp_filesystem->get_contents( $url );
 
@@ -117,22 +116,22 @@ if ( ! function_exists( 'bitstarter_get_listing_gallery_ids' ) ) {
 	/**
 	 * Return the gallery of images attached to the listing
 	 *
-	 * @param null $listing_ID
+	 * @param null $id
 	 *
 	 * @return array|bool
 	 */
-	function bitstarter_get_listing_gallery_ids( $listing_ID = null ) {
+	function bitstarter_get_listing_gallery_ids( $id = null ) {
 
-		if ( empty( $listing_ID ) ) {
-			$listing_ID = get_the_ID();
+		if ( empty( $id ) ) {
+			$id = get_the_ID();
 		}
 
 		//bail if we have no valid listing ID
-		if ( empty( $listing_ID ) ) {
+		if ( empty( $id ) ) {
 			return false;
 		}
 
-		$gallery_string = trim( get_post_meta( $listing_ID, 'main_image', true ) );
+		$gallery_string = trim( get_post_meta( $id, 'main_image', true ) );
 		//no spaces are allowed
 		$gallery_string = str_replace( ' ', '', $gallery_string );
 		//a little bit of sanity cleanup because sometimes (mainly during preview) an empty entry can be added at the end

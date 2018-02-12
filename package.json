@@ -1,13 +1,13 @@
 {
   "name": "WPT",
-  "version": "1.0.112",
+  "version": "1.0.114",
   "description": "Wordpress, JS, Compile",
   "main": "index.js",
   "author": "IONDIGITAL",
   "license": "MIT",
   "scripts": {
     "build": "npm version --no-git-tag-version -f patch && node build.js",
-    "watch": "npm-watch",
+    "watch": "node build watch",
     "copy-static": "node build.js copyStatic",
     "watch-js": "node build.js watchJS",
     "watch-css": "node build.js watchCSS",
@@ -54,7 +54,8 @@
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "systemjs": "^0.20.19",
-    "webcomponentsjs": "^1.0.2"
+    "webcomponentsjs": "^1.0.2",
+    "wp-pot": "^1.3.5"
   },
   "devDependencies": {
     "browser-sync": "^2.18.13",

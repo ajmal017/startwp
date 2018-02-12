@@ -24,19 +24,38 @@ function bitstarter_register_widget_areas() {
 		'after_title'   => '</h5>'
 	) );
 
-
-	$footer_sidebar_number = (int) bitstarter_get_option('footer_sidebar_number', 4, false);
-
-	for($i = 0; $i < $footer_sidebar_number; $i++){
-		register_sidebar(array(
-			'name' => '&#x1f536; ' .  esc_html__('Footer Area ' . ($i + 1), 'bitstarter'),
-			'id' => 'footer-widget-area-' . ($i + 1),
-			'before_widget' => '<aside id="%1$s" class="widget  widget--footer  %2$s">',
-			'after_widget' => '</aside>',
-			'before_title' => '<h5 class="widget-footer-title">',
-			'after_title' => '</h5>',
-		));
-	}
+	register_sidebar(array(
+		'name' => '&#x1f536; ' .  esc_html__('Footer Area 1', 'bitstarter'),
+		'id' => 'footer-widget-area-1',
+		'before_widget' => '<aside id="%1$s" class="widget  widget--footer  %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h5 class="widget-footer-title">',
+		'after_title' => '</h5>',
+	));
+	register_sidebar(array(
+		'name' => '&#x1f536; ' .  esc_html__('Footer Area 2', 'bitstarter'),
+		'id' => 'footer-widget-area-2',
+		'before_widget' => '<aside id="%1$s" class="widget  widget--footer  %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h5 class="widget-footer-title">',
+		'after_title' => '</h5>',
+	));
+	register_sidebar(array(
+		'name' => '&#x1f536; ' .  esc_html__('Footer Area 3', 'bitstarter'),
+		'id' => 'footer-widget-area-3',
+		'before_widget' => '<aside id="%1$s" class="widget  widget--footer  %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h5 class="widget-footer-title">',
+		'after_title' => '</h5>',
+	));
+	register_sidebar(array(
+		'name' => '&#x1f536; ' .  esc_html__('Footer Area 4', 'bitstarter'),
+		'id' => 'footer-widget-area-4',
+		'before_widget' => '<aside id="%1$s" class="widget  widget--footer  %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h5 class="widget-footer-title">',
+		'after_title' => '</h5>',
+	));
 
 
 	if( class_exists('WPCF7')){
@@ -88,14 +107,18 @@ class Bitstarter_WPCOM_social_media_icons_widget extends WP_Widget {
 			'linkedin_username'   => '',
 			'instagram_username'  => ''
 		);
+		
+		global $wp_filesystem;
+		require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		WP_Filesystem();
 
 		$this->services = array(
-			'facebook'   => array( 'Facebook', 'https://www.facebook.com/%s/', file_get_contents(locate_template('assets/svg/social-fb.php', false, false )) ),
-			'twitter'    => array( 'Twitter', 'https://twitter.com/%s/', file_get_contents(locate_template('assets/svg/social-tw.php', false, false ))),
-			'linkedin'   => array( 'LinkedIn', 'https://www.linkedin.com/in/%s/',  file_get_contents(locate_template('assets/svg/social-in.php', false, false )) ),
-			'instagram'  => array( 'Instagram', 'https://www.instagram.com/%s/',  file_get_contents(locate_template('assets/svg/social-ig.php', false, false )) )
+			'facebook'   => array( 'Facebook', 'https://www.facebook.com/%s/',  $wp_filesystem->get_contents(locate_template('assets/svg/social-fb.php', false, false ))),
+			'twitter'    => array( 'Twitter', 'https://twitter.com/%s/',  $wp_filesystem->get_contents(locate_template('assets/svg/social-tw.php', false, false ))),
+			'linkedin'   => array( 'LinkedIn', 'https://www.linkedin.com/in/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-in.php', false, false ))),
+			'instagram'  => array( 'Instagram', 'https://www.instagram.com/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-ig.php', false, false )))
 		);
-	
+
 	}
 
 

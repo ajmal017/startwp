@@ -30,9 +30,9 @@ class WPBakeryShortCode_Bitstarter_Mark extends  WPBakeryShortCode
 
         $output .= '<div class="bitstarterMark ' . $css_class . '" >';
                 
-        $output .= '<div class="bitstarterMark__mark" style="background-color: ' . $color . '"></div>';
+        $output .= '<div class="bitstarterMark__mark" style="background-color: ' . esc_attr($color) . '"></div>';
     
-        $output .= '<div class="bitstarterMark__content" style="color: ' . $desc_color . '">' . $title . '</div>';
+        $output .= '<div class="bitstarterMark__content" style="color: ' . esc_attr($desc_color) . '">' . $title . '</div>';
 
         $output .= '</div>';
 

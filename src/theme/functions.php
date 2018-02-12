@@ -182,22 +182,9 @@ function bitstarter_scripts() {
 	wp_register_script('highcharts', '//code.highcharts.com/highcharts.js', array( 'jquery' ));
 	$bitstarter_scripts_deps[] = 'highcharts';
 
-	wp_enqueue_script( 'system', get_template_directory_uri() . '/assets/js/system.js', $bitstarter_scripts_deps, $theme->get( 'Version' ), true );
-	$bitstarter_scripts_deps[] = 'system';
-	$template = get_template_directory_uri();
-	$systemjs_modules = json_encode(array('test.js', 'test1.js', 'main.js'));
-	// wp_add_inline_script('system', "$systemjs_modules.reduce(
-    //     async (chain, module) => {
-    //       await chain;
-    //       return SystemJS.import(`$template/assets/js/systemjs/\${module}`);
-    //     },
-    //     Promise.resolve() 
-    //   )");
-	// wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $bitstarter_scripts_deps, $theme->get( 'Version' ), true );
-	// wp_enqueue_script( 'test', get_template_directory_uri() . '/assets/js/systemjs/test.js', $bitstarter_scripts_deps, $theme->get( 'Version' ), true );
 	wp_enqueue_script( 'bitstarter-scripts', get_template_directory_uri() . '/assets/js/main.js', $bitstarter_scripts_deps, $theme->get( 'Version' ), true );
 
-	wp_localize_script( 'bitstarter-scripts', 'BitstarterParams', array(
+	wp_localize_script( 'jquery', 'BitstarterParams', array(
 		'ajax' => array (
 				'url' => admin_url('admin-ajax.php'),
 				'likes_action' => 'bitstarter_set_likes_number'
@@ -343,4 +330,3 @@ function bitstarter_formats( $init_array ) {
 }
 // Attach callback to 'tiny_mce_before_init'
 add_filter( 'tiny_mce_before_init', 'bitstarter_formats' );
-

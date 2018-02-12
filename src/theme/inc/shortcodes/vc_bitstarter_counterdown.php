@@ -53,38 +53,38 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
         $output = '';
         $shadow_color = implode(',', $this->hex2rgb(str_replace('#','',$shadow_color)));
 
-        $output .= '<div class="counterDown '.$css_class.'"><div class="counterDown__in" style="box-shadow: 0 20px 80px rgba(' . $shadow_color . ',.5); background: ' . $bg_color1 . '">';
+        $output .= '<div class="counterDown '.$css_class.'"><div class="counterDown__in" style="box-shadow: 0 20px 80px rgba(' . esc_attr($shadow_color) . ',.5); background: ' . esc_attr($bg_color1) . '">';
         
-        $output .= '<div class="counterDown__title " style="color: ' . $text_color . '; ">' . $title . '</div>';
+        $output .= '<div class="counterDown__title " style="color: ' . esc_attr($text_color) . '; ">' . $title . '</div>';
 
-        $output .= '<div class="counterDown__timer " style="color:'. $bg_color1 .'" data-date="' . $date . ' ' . $time . ':00">';
+        $output .= '<div class="counterDown__timer " style="color:'. esc_attr($bg_color1) .'" data-date="' . esc_attr($date) . ' ' . esc_attr($time) . ':00">';
         $output .= '    <div class="counterDown__timer__in" data-mark="years">';
-        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . esc_attr($text_color) . '; color:'. esc_attr($bg_color1) .'"></h2>';
         $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0: years | 1:year | 2:years', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '    <div class="counterDown__timer__in" data-mark="months">';
-        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
-        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0:months | 1:month | 2:months', 'bitstarter').'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . esc_attr($text_color) . '; color:'. esc_attr($bg_color1) .'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . esc_attr($text_color) . '; " data-labels="'.esc_html__('0:months | 1:month | 2:months', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '    <div class="counterDown__timer__in" data-mark="days">';
-        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
-        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0:days | 1:day | 2:days', 'bitstarter').'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . esc_attr($text_color) . '; color:'. esc_attr($bg_color1) .'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . esc_attr($text_color) . '; " data-labels="'.esc_html__('0:days | 1:day | 2:days', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '    <div class="counterDown__timer__in" data-mark="hours">';
-        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. esc_attr($bg_color1) .'"></h2>';
         $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0:hours | 1:hour | 2:hours', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '    <div class="counterDown__timer__in" data-mark="minutes">';
-        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . esc_attr($text_color) . '; color:'. esc_attr($bg_color1) .'"></h2>';
         $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0 :minutes | 1:minute | 2:minutes', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '    <div class="counterDown__timer__in" data-mark="seconds">';
-        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . $text_color . '; color:'. $bg_color1 .'"></h2>';
-        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0 :seconds | 1:second | 2:seconds', 'bitstarter').'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . esc_attr($text_color) . '; color:'.esc_attr( $bg_color1) .'"></h2>';
+        $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . esc_attr($text_color) . '; " data-labels="'.esc_html__('0 :seconds | 1:second | 2:seconds', 'bitstarter').'"></h2>';
         $output .= '    </div>';
         $output .= '</div>';
 
-        $output .= '<div class="counterDown__title " style="color: ' . $text_color . '; ">' . $title1 . '</div>';
+        $output .= '<div class="counterDown__title " style="color: ' . esc_attr($text_color) . '; ">' . $title1 . '</div>';
 
         $output .= '<div class="counterDown__row">';
 
@@ -101,7 +101,7 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
                 $title = '$' . number_format($progress_value);
             }
 
-            $output .=      '<div class="counterDown-s1">  <div class="counterDown-s1__title"  style="color: ' . $text_color . '">' . $title . ' </div> <div class="counterDown-s1__subtitle"  style="color: ' . $text_color . '">' . $subtitle . ' </div>';
+            $output .=      '<div class="counterDown-s1">  <div class="counterDown-s1__title"  style="color: ' . esc_attr($text_color) . '">' . $title . ' </div> <div class="counterDown-s1__subtitle"  style="color: ' . esc_attr($text_color) . '">' . $subtitle . ' </div>';
             $output .=  '</div>';
 
         endif;
@@ -120,7 +120,7 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
 
             }
 
-            $output .=      '<div class="counterDown-s1">  <div class="counterDown-s1__title" style="color: ' . $text_color . '"> ' . $title . ' </div> <div class="counterDown-s1__subtitle" style="color: ' . $text_color . '" >' . $subtitle . ' </div>';
+            $output .=      '<div class="counterDown-s1">  <div class="counterDown-s1__title" style="color: ' . esc_attr($text_color) . '"> ' . $title . ' </div> <div class="counterDown-s1__subtitle" style="color: ' . esc_attr($text_color) . '" >' . $subtitle . ' </div>';
             $output .=  '</div>';
 
         endif;
@@ -156,7 +156,7 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
 
             }
 
-            $output .=      '<div class="counterDown-s2 counterDown-s2--left">  <div class="counterDown-s2__title"  style="color: ' . $text_color . '">' . $title . ' </div> <div class="counterDown-s2__subtitle"  style="color: ' . $text_color . '">' . $subtitle . ' </div>';
+            $output .=      '<div class="counterDown-s2 counterDown-s2--left">  <div class="counterDown-s2__title"  style="color: ' . esc_attr($text_color) . '">' . $title . ' </div> <div class="counterDown-s2__subtitle"  style="color: ' . esc_attr($text_color) . '">' . $subtitle . ' </div>';
             $output .=  '</div>';
 
         endif;
@@ -187,12 +187,12 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
 
             }
 
-            $output .=  '<div class="counterDown-s2 counterDown-s2--right">  <div class="counterDown-s2__title" style="color: ' . $text_color . '"> ' . $title . ' </div> <div class="counterDown-s2__subtitle" style="color: ' . $text_color . '" >' . $subtitle . ' </div>';
+            $output .=  '<div class="counterDown-s2 counterDown-s2--right">  <div class="counterDown-s2__title" style="color: ' . esc_attr($text_color) . '"> ' . $title . ' </div> <div class="counterDown-s2__subtitle" style="color: ' . esc_attr($text_color) . '" >' . $subtitle . ' </div>';
             $output .=  '</div>';
 
         endif;
         if($raised != '' && $start != '' && $stop != '' && is_numeric( $progress_value ) && is_numeric( $start_value ) && is_numeric( $stop_value ) ){
-            $output .= '<div class="counterDown-progress" style="background-color:'. $text_color .'"><div class="counterDown-progress__done" style="width: ' . (int) (($progress_value - $start_value) * 100 / ($stop_value - $start_value) ) . '%; background-color: ' . $progress_color . '"> </div></div>';
+            $output .= '<div class="counterDown-progress" style="background-color:'. $text_color .'"><div class="counterDown-progress__done" style="width: ' . esc_attr((int) (($progress_value - $start_value) * 100 / ($stop_value - $start_value) )) . '%; background-color: ' . esc_attr($progress_color) . '"> </div></div>';
         }
 
         $output .= '</div>';

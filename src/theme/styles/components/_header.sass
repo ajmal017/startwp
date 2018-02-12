@@ -179,16 +179,13 @@ ul.primary-menu
         .children
     > .page_item,
     > .menu-item
-        +rmin(900)
-            display: inline-block
         position: relative
         +rmin(900)
+            display: inline-block
             .header--transparent & > a
                 color: white !important
             .header--transparent &:after
                 color: white !important
-        &:first-child:before
-            content: none
         &.cta
             +rmin(900)
                 border: 2px solid rgba(0, 0, 0, 0.075)

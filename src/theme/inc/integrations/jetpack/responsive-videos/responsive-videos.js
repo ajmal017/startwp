@@ -1,5 +1,4 @@
 ( function( $ ) {
-
 	/**
 	 * A function to help debouncing.
 	 */
@@ -43,7 +42,6 @@
 			var video_element, video_width, video_height, video_ratio, video_wrapper, container_width;
 			
 			video_element = $( this );
-
 
 			if ( ! video_element.attr( 'width' ) || ! video_element.attr( 'height' ) ) {
 				video_element

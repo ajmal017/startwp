@@ -501,3 +501,12 @@ input[type="submit"],
 .comments-count .bitstarter__icon svg{
   fill: #6b7c93;
 }
+
+.frontpage-area { max-width: 1140px; }
+.content-area__wrapper, .page-area__wrapper { max-width: 1140px; }
+.blog .content-area__wrapper, .hero-header__content-area__wrapper { max-width: 1140px; }
+.widget-area__footer, .footer-infoarea { max-width: 1140px; }
+
+.page-template-default .entry-content{
+  margin: 40px 0; 
+}

@@ -150,15 +150,21 @@ if ( ! function_exists('bitstarter_permabutton') ) :
 	}
 endif;
 
+
 if( ! function_exists( 'bitstarter_comments_number' ) ):
 	/** 
 	 * Prints HTML with icon for comments
 	*/
 
 	function bitstarter_comments_number($opacity = 2) {
+		
+		global $wp_filesystem;
+		require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		WP_Filesystem();
+
 		$comment_html  = sprintf(
 		'<span class="comments-count"><i class="bitstarter__icon bitstarter__icon--opacity%3$s ">%1$s</i>%2$s</span>',
-			file_get_contents(locate_template('assets/svg/comment-icon.php')),
+			$wp_filesystem->get_contents(locate_template('assets/svg/comment-icon.php')),
 			get_comments_number_text( __('0','bitstarter'), __('1','bitstarter'), __('%','bitstarter')),
 			$opacity
 		);
@@ -175,11 +181,16 @@ if (!function_exists('bitstarter_likes')) :
 function bitstarter_likes(){
 
 	$post_id = get_the_ID();
+	
+	global $wp_filesystem;
+	require_once( ABSPATH . 'wp-admin/includes/file.php' );
+	WP_Filesystem();
 
 	$html = sprintf(
+	
 		'<span data-post-id="%3$s" class="likes-count %4$s"><i class="bitstarter__icon bitstarter__icon--opacity2 ">%1$s</i>
 		<span class="likes-count__number">%2$s</span></span>',
-		file_get_contents(locate_template('assets/svg/likes-icon.php')),
+		$wp_filesystem->get_contents(locate_template('assets/svg/likes-icon.php')),
 		bitstarter_get_likes_number(),
 		$post_id ,
 		isset($_COOKIE['bitstarter_post_' . $post_id . '_liked'])?'likes-count--active':''
@@ -221,7 +232,7 @@ if ( ! function_exists('bitstarter_blog_style' ) ) :
 		$style = bitstarter_get_option('blog_type_style');
 		
 		if( empty($style) ){
-			echo 'tile';
+			echo 'list';
 		}else{
 			echo $style;
 		}

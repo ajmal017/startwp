@@ -31,7 +31,7 @@ class WPBakeryShortCode_Bitstarter_Calc extends  WPBakeryShortCode
                             <div class="form-inline">
                                 <input tabindex="1" id="bitstarter-calc-cryptoamount" type="number" min="0" step="any" class="convert__value" placeholder="1.00" aria-label="Home bitstarter amount">
                                 <select tabindex="1" id="bitstarter-calc-cryptoname" name="cryptocoin">
-                                    <option title="Bitstarter" value="bitstarter">' . esc_html__('BTC','bitstarter') . '</option>
+                                    <option title="Bitcoin" value="bitstarter">' . esc_html__('BTC','bitstarter') . '</option>
                                     <option title="Ethereum" value="ethereum">' . esc_html__('ETH','bitstarter') . '</option>
                                     <option title="Ripple" value="ripple">' . esc_html__('XRP','bitstarter') . '</option>
                                     <option title="Bitstarter Cash" value="bitstarter-cash">' . esc_html__('BCH','bitstarter') . '</option>

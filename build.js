@@ -17,7 +17,7 @@ const minify = require('rollup-plugin-babel-minify');
 var browserSync = require('browser-sync').create();
 var mysql      = require('mysql');
 
-
+const wpPot = require('wp-pot');
 // Configs ---------------------------------------------------------------------------------------------
 const cssoConfig = {
   restructure: false,
@@ -31,6 +31,7 @@ const babelConfig = {
 };
 
 const funcTable = {
+  "genpot": [genpot],
   "watch": [watch],
   "wpDev": [wpDev],
   "png,jpeg,jpg,svg,woff2,eot,ttf,otf,php,txt,zip,html,xml,pot": [copyStatic],
@@ -232,9 +233,9 @@ async function minifyJs(filename) {
           babelPlugin({
             exclude: 'node_modules/**' // only transpile our source code
           }),
-          // minify({
-          //   comments: false
-          // })
+          minify({
+            comments: false
+          })
         ],
         cache
       });
@@ -446,4 +447,15 @@ function filesWithPatternsDist(regexps) {
       .map(async file => file.substr(4));
   }
   return filesDist.filter(async file => regexps.some(regexp => regexp.test(file))); 
+}
+
+
+function genpot(){
+  console.log('generate pot')
+  wpPot({
+    destFile: './bitstarter.pot',
+    domain: 'bitstarter',
+    package: 'Bitstarter',
+    src: './dist/theme/**/*.php'
+  });
 }

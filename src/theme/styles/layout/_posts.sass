@@ -51,6 +51,9 @@
     flex-flow: column nowrap
     height: 550px
 
+  &.format-quote
+    +r(768) 
+      height: 270px 
   &.format-standard,
   &.format-link 
     .card__toplink--hasPic
@@ -98,45 +101,49 @@
   &.format-link .card__toplink--hasPic:after
     content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAB0klEQVRIS51V0VXCQBCcqUA7UCsQKxArUDrACsAKhArECtQKlAqECpQOoAK1gvHNeYdJuISE/Uk+7mZ2d3b2iAND0imAEYAbAP53vAF4IelvCB6CL8mgTwCOa+6b4Jbkd2cCScMIbuwlgAnJRazIxBMAR66G5KATQcz8NWZ9R3JWrUBSD8AikrQniBl+xLZkwROZpDGABwDz1hVIcrYWdU7SraiNWIWTaS+ypDWAEwAXJD/3EFj8r64EChfIULUkg4xITjM69AG8A9h0aZEJViR7EdwAFnRK0pOzDUkW+RLAYxcCg6SpSeArAH3Pe0bgHyewQ1Dj0JBlJfMceNEjAzu6RFDj0AAUM8xmHqfmPq4NH7WLn0si1zm0IGgJvEKYOuS2DHd2UZND69oiyZo4a8cmLroZSY/zNtjk0Bx4vDmuTk6dL0yQHLokmXodzhcq2woqySY7T35oMlzQoODQK2/FjGm8FhZpFCWVDNeGoPUFSf8OJdMj08jhCgIBgLOqQJlq/JBcB4eS3ph7wwTpUtsV/OfQyrQ0iewe+xGx3a3DzqaseCQ4dG/q8UDajKkKk3i+vfPXTQ7tSuDVa2u7v7nYcWgngnQ4zr0XViKqdWhbgl8SFgqhOo15bwAAAABJRU5ErkJggg==)
   
-  & .card__toplink
-    +r(768)
-      height: 250px
   &__image
-    position: relative
+    position: absolute
     background-size: cover
     background-position: center  
+    background-repeat: no-repeat 
+    object-fit: cover
+    height: 100%
+    width: 100%
     opacity: 0.95
     overflow: hidden
     +tr(transform .5s)
-    .grid--list &
-      height: 100%
-      width: 100%
-    .grid--tile &
-      height: 250px
     .format-quote &
       height: 100%
       z-index: 1
       opacity: .05
+
   &__toplink
+    display: block
+    position: relative
     .grid--list &
-      display: flex
+      display: none
       width: 360px
       flex: 0 0 360px
+      &.card__toplink--hasPic
+        display: flex
       +r(768)
         width: 100%
         flex: 0 0 auto
+    .grid--tile &
+      height: 250px
     .format-quote &
       height: 100%
       width: 100%
       flex: 0 0 100%
     &:hover
       opacity: 1
+    +r(768)
+      height: 250px
+
   &-player
     position: relative
     .card__toplink
-      height: 100%
-      +r(768)
-        height: 250px
+      display: flex
     &__wrapper
       position: absolute
       width: 100%
@@ -323,7 +330,9 @@
       opacity: 1
 
   .permalink .btn
-    margin-bottom: 0 !important
+    margin-bottom: 0
+    +r(768)
+      margin-bottom: 10px
 
   &-meta
     display: flex

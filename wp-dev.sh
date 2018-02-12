@@ -53,7 +53,6 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/ad
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/edit-page.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/group_panel_widget.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/calc.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/custom-elements.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/main.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/system.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/test.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
@@ -127,12 +126,11 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/shortcod
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/template-tags.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/inc 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/widgets.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/inc 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/index.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/languages/bitcoin.pot d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/languages 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/languages/bitstarter.pot d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/languages 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/languages/readme.txt d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/languages 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/page-templates/front_page.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/page-templates 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/page.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/rtl.css d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/screenshort.png d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/screenshot.png d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/search.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/sidebar.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/. 

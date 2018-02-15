@@ -7,6 +7,7 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/archive.php 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/css/admin/customizer.css d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/css/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/css/admin/edit-page.css d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/css/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/css/admin/group_panel_widget.css d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/css/admin 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/css/bundle.css d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/css 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/fonts/fontawesome/fontawesome-webfont.eot d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/fonts/fontawesome 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/fonts/fontawesome/fontawesome-webfont.otf d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/fonts/fontawesome 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/fonts/fontawesome/fontawesome-webfont.ttf d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/fonts/fontawesome 
@@ -52,7 +53,9 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/ad
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/customizer.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/edit-page.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/group_panel_widget.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/admin 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/bundle.min.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/calc.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/custom-elements.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/main.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/system.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/test.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
@@ -109,8 +112,6 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/integrat
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/integrations/jetpack/responsive-videos/responsive-videos.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/inc/integrations/jetpack/responsive-videos 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/integrations/jetpack/responsive-videos/responsive-videos.min.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/inc/integrations/jetpack/responsive-videos 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/integrations/timeline-express.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/inc/integrations 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/integrations/wpml.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/inc/integrations 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/integrations/yoast-seo.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/inc/integrations 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/class-tgm-plugin-activation.php d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/inc/required-plugins 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/languages/tgmpa.pot d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/inc/required-plugins/languages 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/inc/required-plugins/LICENSE.md d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/inc/required-plugins 

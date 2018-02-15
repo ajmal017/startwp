@@ -42,11 +42,11 @@
 				$footer_copyright = bitstarter_get_option('footer_copyright');
 				if ( $footer_copyright ) : ?>
 					<div class="site-copyright-area">
-						<?php echo $footer_copyright; ?>
+						<?php echo wp_kses($footer_copyright, bitstarter_allowed_html()); ?>
 					</div>
 				<?php else: ?>
 					<div class="site-copyright-area">
-						<?php echo  esc_html__('Copyright © 2018 Bitstarter theme. All Rights Reserved.','bitstarter') ?>
+						<?php echo esc_html__('Copyright © 2018 Bitstarter theme. All Rights Reserved.','bitstarter') ?>
 					</div>
 				<?php endif; ?>
 			</div><!-- .site-info -->

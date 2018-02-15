@@ -82,19 +82,19 @@
 			if( $type == 'wp' ) {
 				
 				if (filter_var($url, FILTER_VALIDATE_URL)) {
-					$audio = sprintf('[audio preload="metadata" src="%s"]', $url);
+					$audio = sprintf('[audio preload="metadata" src="%s"]', esc_url( $url ) );
 				}
 
 			} elseif( $type == 'sc') {
 
 				if (filter_var($url, FILTER_VALIDATE_URL)) {
-					$audio = sprintf('[soundcloud  url="%s" %s ]', $url, 'params="color=#ff5500&auto_play=false&visual=true"  iframe="true"');
+					$audio = sprintf('[soundcloud  url="%s" %s ]', esc_url( $url ), 'params="color=#ff5500&auto_play=false&visual=true"  iframe="true"');
 				}
 
 			}
 				
 
-			if($type == 'sc'):
+			if($type == 'sc' &&  $audio !== ''):
 			?>
 
 				<div class="card-player" >
@@ -140,7 +140,7 @@
 			<?php else : ?>
 		
 					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>"/>
+						<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
 					</a>
 
 			<?php endif;
@@ -155,26 +155,28 @@
 			if ($type == 'vi') {
 				if (filter_var($url, FILTER_VALIDATE_URL)) {
 				
-					$video = sprintf('[vimeo %s %s ]', $url, '');
+					$video = sprintf('[vimeo %s %s ]', esc_url( $url ), '');
 				}
 				
 
 			} elseif ($type == 'yt') {
 
 				if (filter_var($url, FILTER_VALIDATE_URL)) {
-					$video = sprintf('[youtube %s%s ]', $url, '&showinfo=0&rel=0');
+					$video = sprintf('[youtube %s%s ]', esc_url( $url ), '&showinfo=0&rel=0');
 				}
 
 			}
-			?>
-			
-			<div class="card-player" > 
-				<a class="card__toplink" href="<?php the_permalink(); ?>">
-					<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
-				</a>
-				<div class="card-player__wrapper"><?php echo do_shortcode( $video ); ?></div>
-			</div>
-			<?php
+			if($video !== '' ):
+				?>
+				<div class="card-player" > 
+					<a class="card__toplink" href="<?php the_permalink(); ?>">
+						<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+					</a>
+					<div class="card-player__wrapper"><?php echo do_shortcode( $video ); ?></div>
+				</div>
+				
+				<?php
+			endif;
 		break;
 
 		// standard
@@ -213,7 +215,7 @@
 				if ( count( $categories ) ) { ?>
 					<ul class="card__links">
 						<?php foreach ( $categories as $category ) { ?>
-							<li><a href="<?php echo esc_sql( get_category_link($category->cat_ID) );?>"><?php echo $category->name;?></a></li>
+							<li><a href="<?php echo esc_attr( get_category_link($category->cat_ID) );?>"><?php echo esc_html($category->name);?></a></li>
 						<?php } ?>
 					</ul>
 				<?php } ?>
@@ -225,13 +227,13 @@
 				if($format == 'quote'){
 				  $c = get_the_excerpt();
 				  if( strpos($c, 'blockquote') > 0 ){
-					  echo $c;
+					  echo wp_kses($c, bitstarter_allowed_html());
 				  }else{
-					echo '<blockquote><strong>' . $c . '</strong></blockquote>';
+					echo '<blockquote><strong>' . wp_kses($c, bitstarter_allowed_html()) . '</strong></blockquote>';
 				  }
 				}else{
 					 $c = get_the_excerpt();
-					 echo '<p>' . $c . '</p>'; 
+					 echo '<p>' .  wp_kses($c, bitstarter_allowed_html()) . '</p>'; 
 				 } ?>
 		</div>
 		<!-- READ MORE-->

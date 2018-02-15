@@ -196,7 +196,7 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
         }
 
         $output .= '</div>';
-        $output .= '<div class="counterDown-contect">' . wpb_js_remove_wpautop($content, true) . '</div>';
+        $output .= '<div class="counterDown-contect">' . wp_kses( wpb_js_remove_wpautop($content, true), bitstarter_allowed_html()) . '</div>';
         $output .= '</div>';
         $output .= '</div>';
 

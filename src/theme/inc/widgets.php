@@ -388,19 +388,19 @@ class Bitstarter_Coinmarketcap extends WP_Widget {
 
 		?>
 			<p>
-				<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'bitstarter') ?></label>
-				<input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr( isset($instance['title'])?$instance['title']:''); ?>" />
-			</p>
+				<label for="<?php echo esc_attr( $this->get_field_id('title') ); ?>"><?php esc_html_e('Title:', 'bitstarter') ?></label>
+				<input type="text" class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" value="<?php echo esc_attr( isset($instance['title'])?$instance['title']:''); ?>" />
+			</p>(
 			<p>
-				<label for="<?php echo $this->get_field_id('currencies'); ?>"><?php esc_html_e('Currencies:', 'bitstarter') ?></label>
-				<select class="widefat" multiple="multiple" id="<?php echo $this->get_field_id('currencies'); ?>" name="<?php echo $this->get_field_name('currencies') . '[]'; ?>"  size="10">
+				<label for="<?php echo esc_attr($this->get_field_id('currencies')); ?>"><?php esc_html_e('Currencies:', 'bitstarter') ?></label>
+				<select class="widefat" multiple="multiple" id="<?php echo esc_attr( $this->get_field_id('currencies') ); ?>" name="<?php echo esc_attr( $this->get_field_name('currencies')) . '[]'; ?>"  size="10">
 					<?php foreach($data as $coin ){ ?>
 						
 						<option 
 							<?php 
 							if(array_key_exists('currencies', $instance )){
-							echo in_array($coin->id ,$instance['currencies']) ? 'selected="selected"' : ''; }?> value="<?php echo $coin->id; ?>">
-							<?php echo $coin->name; ?>
+							echo in_array($coin->id ,$instance['currencies']) ? 'selected="selected"' : ''; }?> value="<?php echo esc_attr($coin->id); ?>">
+							<?php echo esc_html($coin->name); ?>
 						</option>
 
 					<?php } ?>
@@ -478,15 +478,15 @@ class Bitstarter_Footer_Forms_Widget extends WP_Widget
 
 		?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e('Title:', 'bitstarter') ?></label>
-            <input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr($title); ?>" />
+            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php esc_html_e('Title:', 'bitstarter') ?></label>
+            <input type="text" class="widefat" id="<?php echo esc_attr( $this->get_field_id('title')); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" value="<?php echo esc_attr($title); ?>" />
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('contact_form'); ?>"><?php esc_html_e('Select Menu:', 'bitstarter'); ?></label>
-            <select id="<?php echo $this->get_field_id('contact_form'); ?>" name="<?php echo $this->get_field_name('contact_form'); ?>">
+            <label for="<?php echo esc_attr( $this->get_field_id('contact_form') ); ?>"><?php esc_html_e('Select Menu:', 'bitstarter'); ?></label>
+            <select id="<?php echo esc_attr( $this->get_field_id('contact_form') ); ?>" name="<?php echo esc_attr( $this->get_field_name('contact_form') ); ?>">
                 <option value="0"><?php esc_html_e('&mdash; Select &mdash;', 'bitstarter') ?></option>
 				<?php foreach($cf as $item ){ 
-						echo '<option value="' . $item['value'] . '"'
+						echo '<option value="' . esc_attr($item['value']) . '"'
 							. selected($contact_form,  $item['value'], false)
 							. '>' . esc_html($item['name']) . '</option>';
 

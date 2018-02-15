@@ -234,7 +234,7 @@ if ( ! function_exists('bitstarter_blog_style' ) ) :
 		if( empty($style) ){
 			echo 'list';
 		}else{
-			echo $style;
+			echo esc_attr( $style );
 		}
 
 	}
@@ -269,34 +269,6 @@ function bitstarter_categorized_blog() {
 
 
 
-/**
- * @param null $post_id
- * @param int $decimalsdisplays the rating score for the current post
- */
-function display_average_listing_rating( $post_id = null, $decimals = 2 ) {
-
-	if ( empty( $post_id ) ) {
-		global $post;
-		$post_id = $post->ID;
-	}
-
-	global $pixreviews_plugin;
-
-	if ( method_exists( $pixreviews_plugin, 'get_average_rating' ) ) {
-		$rating = $pixreviews_plugin->get_average_rating( $post_id, $decimals );
-	}
-
-	if ( empty( $rating ) ) {
-		return;
-	} ?>
-	<a href="#comments" class="single-rating review_rate display-only" data-pixrating="<?php echo $rating ?>" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
-		<span class="rating-value">(<span itemprop="reviewCount"><?php echo get_comments_number() ?></span>)</span>
-		<meta itemprop="ratingValue" content = "<?php echo $rating ?>">
-	</a>
-	<?php
-}
-
-
 if ( ! function_exists( 'bitstarter_shape_comment' ) ) :
 	/**
 	 * Template for comments and pingbacks.
@@ -311,7 +283,7 @@ if ( ! function_exists( 'bitstarter_shape_comment' ) ) :
 			case 'pingback' :
 			case 'trackback' : ?>
 				<li class="post pingback">
-				<p><?php esc_html_e( 'Pingback:', 'bitstarter' ); ?><?php comment_author_link(); ?><?php edit_comment_link( esc_html__( '(Edit)', 'bitstarter' ), ' ' ); ?></p>
+				<p><?php esc_html_e( 'Pingback: ', 'bitstarter' ); ?><?php comment_author_link(); ?><?php edit_comment_link( esc_html__( '(Edit)', 'bitstarter' ), ' ' ); ?></p>
 				<?php
 				break;
 			default : ?>

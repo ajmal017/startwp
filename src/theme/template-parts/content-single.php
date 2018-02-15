@@ -52,13 +52,13 @@ $has_image = false; ?>
 					if ($type == 'wp') {
 
 						if (filter_var($url, FILTER_VALIDATE_URL)) {
-							$audio = sprintf('[audio preload="metadata" src="%s"]', $url);
+							$audio = sprintf('[audio preload="metadata" src="%s"]', esc_url($url));
 						}
 
 					} elseif ($type == 'sc') {
 
 						if (filter_var($url, FILTER_VALIDATE_URL)) {
-							$audio = sprintf('[soundcloud  url="%s" %s ]', $url, 'params="color=#ff5500&auto_play=false&visual=true"  iframe="true"');
+							$audio = sprintf('[soundcloud  url="%s" %s ]', esc_url($url), 'params="color=#ff5500&auto_play=false&visual=true"  iframe="true"');
 						}
 
 					}
@@ -112,14 +112,14 @@ $has_image = false; ?>
 					if ($type == 'vi') {
 						if (filter_var($url, FILTER_VALIDATE_URL)) {
 
-							$video = sprintf('[vimeo %s %s ]', $url, '');
+							$video = sprintf('[vimeo %s %s ]', esc_url($url), '');
 						}
 
 
 					} elseif ($type == 'yt') {
 
 						if (filter_var($url, FILTER_VALIDATE_URL)) {
-							$video = sprintf('[youtube %s%s ]', $url, '&showinfo=0&rel=0');
+							$video = sprintf('[youtube %s%s ]', esc_url($url), '&showinfo=0&rel=0');
 						}
 
 					}
@@ -141,9 +141,9 @@ $has_image = false; ?>
 							<?php 
 								$c = get_the_excerpt();
 								if( strpos($c, 'blockquote') > 0 ){
-									echo $c;
+									echo wp_kses( $c, bitstarter_allowed_html()) ;
 								}else{
-									echo '<blockquote><strong>' . $c . '</strong></blockquote>';
+									echo '<blockquote><strong>' . wp_kses( $c, bitstarter_allowed_html()) . '</strong></blockquote>';
 								}
 							?>
 						</aside>
@@ -181,7 +181,7 @@ $has_image = false; ?>
 					<ul class="entry-header-categories__links">
 						<?php foreach ( $post_categories as $c ) {
 							$cat = get_category( $c );
-							echo '<li><a class="category-link" href="' . esc_sql( get_category_link( $cat->cat_ID ) ) . '">' . $cat->name . '</a></li>';
+							echo '<li><a class="category-link" href="' . esc_attr( get_category_link( $cat->cat_ID ) ) . '">' . esc_html( $cat->name ) . '</a></li>';
 						} ?>
 					</ul>
 				<?php } ?>

@@ -131,9 +131,29 @@ function bitstarter_gallery_widget_width( $args, $instance ) {
 
 add_filter( 'gallery_widget_content_width', 'bitstarter_gallery_widget_width', 10, 3 );
 
-/**
- * Enqueue scripts and styles.
- */
+function bitstarter_check_cdn(){
+
+	$protocol = ( isset( $_SERVER[ 'HTTPS' ] ) && 'on' == $_SERVER[ 'HTTPS' ] ) ? 'https' : 'http';
+	$cdn  = $protocol . '://cdnjs.cloudflare.com';
+
+	$repository = get_transient( 'check_cdn' );
+
+	if ( 'false' == ( $repository = get_transient( 'check_cdn' ) ) ) {
+		return true;
+	}
+	elseif ( false === $repository ) {
+		$response = wp_remote_head( $cdn );
+		if ( ! is_wp_error( $response ) && 200 == $response[ 'response' ][ 'code' ] ) {
+			set_transient( 'check_cdn', 'true', 60 * 5 );
+			return true;
+		}  else {
+			set_transient( 'check_cdn', 'false', 60 * 5 );
+			return false;
+		}
+	}
+
+}
+
 function bitstarter_scripts() {
 	$theme = wp_get_theme();
 
@@ -157,30 +177,41 @@ function bitstarter_scripts() {
 
 	global $post;
 	$bitstarter_scripts_deps = array('jquery');
-	wp_enqueue_script( 'tween-max', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js', array( 'jquery' ) );
-	$bitstarter_scripts_deps[] = 'tween-max';
-	wp_enqueue_script('imagesloaded', '//unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js', array( 'jquery' ) );
-	$bitstarter_scripts_deps[] = 'imagesloaded';
-	wp_enqueue_script('polyfill', '//cdn.polyfill.io/v2/polyfill.min.js', array( 'jquery' ) );
-	$bitstarter_scripts_deps[] = 'polyfill';
-	wp_enqueue_script( 'scroll-to-plugin', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/ScrollToPlugin.min.js', array( 'jquery' ) );
-	$bitstarter_scripts_deps[] = 'scroll-to-plugin';
-	wp_enqueue_script( 'cssplugin', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/CSSPlugin.min.js', array( 'jquery' ) );
-	$bitstarter_scripts_deps[] = 'cssplugin';
-	wp_enqueue_script( 'mousewheel', '//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js', array( 'jquery' ) );
-	$bitstarter_scripts_deps[] = 'mousewheel';
-	wp_enqueue_script( 'magnific', '//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js', array( 'jquery' ) );
-	$bitstarter_scripts_deps[] = 'magnific';
-	wp_enqueue_script( 'modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array( 'jquery' ) );
-	$bitstarter_scripts_deps[] = 'modernizr';
-	wp_enqueue_script('slick', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js', array( 'jquery' ) );
-	$bitstarter_scripts_deps[] = 'slick';
 
-	wp_enqueue_style( 'slick-style', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css' );
-	//wp_enqueue_style('slick-style-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
+	$is_cdn_available = bitstarter_check_cdn();
 
-	wp_register_script('highcharts', '//code.highcharts.com/highcharts.js', array( 'jquery' ));
-	$bitstarter_scripts_deps[] = 'highcharts';
+	if( $is_cdn_available ) {
+		wp_enqueue_script( 'tween-max', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'tween-max';
+		wp_enqueue_script('imagesloaded', '//unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'imagesloaded';
+		wp_enqueue_script('polyfill', '//cdn.polyfill.io/v2/polyfill.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'polyfill';
+		wp_enqueue_script( 'scroll-to-plugin', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/ScrollToPlugin.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'scroll-to-plugin';
+		wp_enqueue_script( 'cssplugin', '//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/CSSPlugin.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'cssplugin';
+		wp_enqueue_script( 'mousewheel', '//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'mousewheel';
+		wp_enqueue_script( 'magnific', '//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'magnific';
+		wp_enqueue_script( 'modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'modernizr';
+		wp_enqueue_script('slick', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'slick';
+
+		wp_enqueue_style( 'slick-style', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css' );
+		//wp_enqueue_style('slick-style-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
+
+		wp_enqueue_script('highcharts', '//code.highcharts.com/highcharts.js', array( 'jquery' ));
+		$bitstarter_scripts_deps[] = 'highcharts';
+
+	} else {
+		wp_enqueue_style( 'slick-style', get_template_directory_uri() . '/assets/css/bundle.css' );
+
+		wp_enqueue_script( 'bitstarter-bundle', get_template_directory_uri() . '/assets/js/bundle.min.js', array( 'jquery' ));
+		$bitstarter_scripts_deps[] = 'bitstarter-bundle';
+	}
 
 	wp_enqueue_script( 'bitstarter-scripts', get_template_directory_uri() . '/assets/js/main.js', $bitstarter_scripts_deps, $theme->get( 'Version' ), true );
 
@@ -228,8 +259,8 @@ function bitstarter_load_custom_js_header() {
 	if ( ! empty( $custom_js ) ) {
 		//first lets test is the js code is clean or has <script> tags and such
 		//if we have <script> tags than we will not enclose it in anything - raw output
-		if ( strpos( $custom_js, '</script>' ) !== false ) {
-			echo $custom_js . "\n";
+		if ( strpos( $custom_js, '</script>' ) 	!== false ) {
+			echo $custom_js; // cant esc_js
 		} else {
 			echo "<script type=\"text/javascript\">\n;(function($){\n" . $custom_js . "\n})(jQuery);\n</script>\n";
 		}
@@ -242,7 +273,7 @@ function bitstarter_load_custom_js_footer() {
 		//first lets test is the js code is clean or has <script> tags and such
 		//if we have <script> tags than we will not enclose it in anything - raw output
 		if ( strpos( $custom_js, '</script>' ) !== false ) {
-			echo $custom_js . "\n";
+			echo $custom_js . "\n"; // cant esc_js
 		} else {
 			echo "<script type=\"text/javascript\">\n;(function($){\n" . $custom_js . "\n})(jQuery);\n</script>\n";
 		}
@@ -330,3 +361,103 @@ function bitstarter_formats( $init_array ) {
 }
 // Attach callback to 'tiny_mce_before_init'
 add_filter( 'tiny_mce_before_init', 'bitstarter_formats' );
+
+
+function bitstarter_allowed_html() {
+
+	$allowed_tags = array(
+		'a' => array(
+			'class' => array(),
+			'href'  => array(),
+			'rel'   => array(),
+			'title' => array(),
+		),
+		'abbr' => array(
+			'title' => array(),
+		),
+		'b' => array(),
+		'blockquote' => array(
+			'cite'  => array(),
+		),
+		'cite' => array(
+			'title' => array(),
+		),
+		'code' => array(),
+		'del' => array(
+			'datetime' => array(),
+			'title' => array(),
+		),
+		'dd' => array(),
+		'div' => array(
+			'class' => array(),
+			'title' => array(),
+			'style' => array(),
+		),
+		'table'  => array(
+			'class' => array(),
+			'style' => array()
+		),
+		'tbody'  => array(),
+		'td'  => array(
+			'class' => array(),
+			'style' => array()
+		),
+		'tr'  => array(
+			'class' => array(),
+			'style' => array()
+		),
+		'dl' => array(),
+		'dt' => array(),
+		'em' => array(
+			'class' => array(),
+			'style' => array()
+		),
+		'h1' => array(),
+		'h2' => array(),
+		'h3' => array(),
+		'h4' => array(),
+		'h5' => array(),
+		'h6' => array(),
+		'i' => array(
+			'class' => array(),
+			'style' => array()
+		),
+		'img' => array(
+			'alt'    => array(),
+			'class'  => array(),
+			'height' => array(),
+			'src'    => array(),
+			'srcset'    => array(),
+			'width'  => array(),
+		),
+		'li' => array(
+			'class' => array(),
+		),
+		'ol' => array(
+			'class' => array(),
+		),
+		'p' => array(
+			'class' => array(),
+			'style' => array()
+		),
+		'q' => array(
+			'cite' => array(),
+			'title' => array(),
+		),
+		'span' => array(
+			'class' => array(),
+			'title' => array(),
+			'style' => array(),
+		),
+		'strike' => array(),
+		'strong' => array(
+			'class' => array(),
+			'style' => array()
+		),
+		'ul' => array(
+			'class' => array(),
+			'style' => array()
+		)
+	);
+	return $allowed_tags;
+}

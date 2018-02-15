@@ -34,7 +34,7 @@ class WPBakeryShortCode_Bitstarter_Distribution extends  WPBakeryShortCode
             $part = explode('|', $value);
             $percent = preg_replace( '/[^\d]/', '', $part[1] );
             $line_html .= '<div style="background-color: ' . esc_attr($part[0]) . '; width: ' . esc_attr($percent) . '%"> </div>';
-            $line_perc .= '<div style="width: ' . esc_attr($percent) . '%"> <span>' .  $percent . '%</span></div>';
+            $line_perc .= '<div style="width: ' . esc_attr($percent) . '%"> <span>' .  esc_html($percent) . '%</span></div>';
         }
         
         $output .= '<div class="bitstarterDistibution ' . $css_class . '" >';

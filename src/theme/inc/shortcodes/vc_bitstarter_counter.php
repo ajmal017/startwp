@@ -30,51 +30,15 @@ class WPBakeryShortCode_Bitstarter_Counter extends  WPBakeryShortCode
         if( empty( $percentage ) && $layout != 'text' )
             return $output;
 
-        $output .= '<div class="bitstarter-counter wpb_content_element bitstarter-counter--'. $layout .' ' .$css_class. '" data-percentage="'. $percentage .'" data-bg-color="'. $counter_bg_color .'" data-active-color="'. $counter_active_color .'" data-type="'. $layout .'"  style="color: '.$text_color.'">';
+        $output .= '<div class="bitstarter-counter wpb_content_element bitstarter-counter--'. esc_attr(  $layout ) . ' ' . esc_attr( $css_class). '" data-percentage="'. esc_attr( $percentage ) .'" data-bg-color="'. esc_attr( $counter_bg_color ) .'" data-active-color="'. esc_attr( $counter_active_color ) .'" data-type="'. esc_attr( $layout ) .'"  style="color: '. esc_attr( $text_color ) .'">';
 
-        if($layout == 'pie'):
-
-            $output .= '<div class="bitstarter-counter__wrap">';
-            $output .= '    <div class="bitstarter-counter-holder__square"></div>';
-            $output .= '    <div class="bitstarter-counter__holder">';
-            $output .= '        <svg width="400" height="400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">';
-            $output .= '            <circle stroke-width="10" stroke="'. $counter_bg_color.'" fill="none" cx="200" cy="200" r="195" class="part"/>';
-            $output .= '            <circle stroke-width="11" stroke="'.$counter_active_color.'" fill="none" cx="200" cy="200" r="195" class="part active"/>';
-            $output .= '        </svg>';
-            $output .= '    </div>';
-            $output .= '    <div class="bitstarter-counter-label__wrap">';
-            $output .= '        <div class="bitstarter-counter-label__wrap__data">' . preg_replace( '#([0-9]+)#', "<span data-number=\"$1\" class=\"label__number\">0</span>", esc_html($label) ) . '</div>';
-            $output .= '    </div>';
-            $output .= '</div>';
-            $output .= '<div class="bitstarter-counter__description">' . esc_html( $desc ) . '</div>';
-
-        elseif($layout == 'linear'):
-
-            $output .= '<div class="bitstarter-counter__description">' . esc_html( $desc ) . '</div>';
-            $output .= '<div class="bitstarter-counter__wrap">';
-            $output .= '    <div class="bitstarter-counter__holder">';
-
-            $output .= '        <svg width="400" height="10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">';
-            $output .= '            <line stroke-width="10" stroke="'.$counter_bg_color.'" fill="none" x1="0" y1="5" x2="400" y2="5" class="part"/>';
-            $output .= '            <line stroke-width="10" stroke="'.$counter_active_color.'" fill="none" x1="0" y1="5" x2="400" y2="5" class="part active"/>';
-            $output .= '        </svg>';
-            $output .= '    </div>';
-            $output .= '    <div class="bitstarter-counter-label__wrap">';
-            $output .= '        <div class="bitstarter-counter-label__wrap__data">' . preg_replace( '#([0-9]+)#', "<span data-number=\"$1\" class=\"label__number\">0</span>", esc_html($label) ) . '</div>';
-            $output .= '    </div>';
-            $output .= '</div>';
-
-        else:
-
-            $output .= '<div class="bitstarter-counter__wrap">';
-            $output .= '<div class="bitstarter-counter__image">' .wp_get_attachment_image( $image, 'full') . '</div>';
-            $output .= '    <div class="bitstarter-counter-label__wrap">';
-            $output .= '        <div class="bitstarter-counter-label__wrap__data" style="color:'. esc_attr($number_color).'">' . preg_replace( '#([0-9]+)#', "<span data-number=\"$1\" class=\"label__number\">0</span>", esc_html($label) ) . '</div>';
-            $output .= '    </div>';
-            $output .= '</div>';
-            $output .= '<div class="bitstarter-counter__description"  style="color:'.esc_attr($text_color) .'">' . esc_html( $desc ) . '</div>';
-
-        endif;
+        $output .= '<div class="bitstarter-counter__wrap">';
+        $output .= '<div class="bitstarter-counter__image">' .wp_get_attachment_image( $image, 'full') . '</div>';
+        $output .= '    <div class="bitstarter-counter-label__wrap">';
+        $output .= '        <div class="bitstarter-counter-label__wrap__data" style="color:'. esc_attr($number_color).'">' . preg_replace( '#([0-9]+)#', "<span data-number=\"$1\" class=\"label__number\">0</span>", esc_html($label) ) . '</div>';
+        $output .= '    </div>';
+        $output .= '</div>';
+        $output .= '<div class="bitstarter-counter__description"  style="color:'.esc_attr($text_color) .'">' . esc_html( $desc ) . '</div>';
 
         $output .= '</div>';
 

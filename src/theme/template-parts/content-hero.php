@@ -119,7 +119,7 @@
                         $showcats = array_slice($categories, 0, 5);
 
                         foreach ( $showcats as $category ): ?>
-                        <li><a href="<?php echo esc_sql( get_category_link( $category->cat_ID ) ); ?>"><?php echo $category->cat_name; ?></a></li>
+                        <li><a href="<?php echo esc_attr( get_category_link( $category->cat_ID ) ); ?>"><?php echo esc_html($category->cat_name); ?></a></li>
                         <?php endforeach;
 
                         echo '<span class="hero-category__list__more">&bull;&bull;&bull;</span>';
@@ -129,7 +129,7 @@
                             $showcats = array_slice($categories,5);
 
                             foreach ( $showcats as $category ): ?>
-                            <li><a href="<?php echo esc_sql( get_category_link( $category->cat_ID ) ); ?>"><?php echo $category->cat_name; ?></a></li>
+                            <li><a href="<?php echo esc_attr( get_category_link( $category->cat_ID ) ); ?>"><?php echo esc_html($category->cat_name); ?></a></li>
                             <?php endforeach;
 
                         echo '</div>';
@@ -137,7 +137,7 @@
                     else:
                         
                     foreach ( $categories as $category ): ?>
-                        <li><a href="<?php echo esc_sql( get_category_link( $category->cat_ID ) ); ?>"><?php echo $category->cat_name; ?></a></li>
+                        <li><a href="<?php echo esc_attr( get_category_link( $category->cat_ID ) ); ?>"><?php echo esc_html($category->cat_name); ?></a></li>
                     <?php endforeach;
 
                     endif;

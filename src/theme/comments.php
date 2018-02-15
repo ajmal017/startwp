@@ -31,7 +31,7 @@ if ( post_password_required() ) {
 		<div class="comments-header">
 		<h4 class="comments-title"><?php
 
-			echo esc_html('Comments', 'bitstarter');
+			echo esc_html__('Comments', 'bitstarter');
 			
 		?></h4>
 

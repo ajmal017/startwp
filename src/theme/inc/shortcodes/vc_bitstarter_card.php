@@ -42,7 +42,7 @@ class WPBakeryShortCode_Bitstarter_Card extends  WPBakeryShortCode
         style="box-shadow: 0 20px 80px rgba(' . esc_attr(implode(',', $this->hex2rgb(str_replace('#','',$shadow)))) . ', 0.4); background-image: linear-gradient(134deg, ' . esc_attr($bg_color1) . ' 0%, ' . esc_attr($bg_color2) . ' 100%)"
         >';
                 
-        $output .= '<div class="bitstarterCard__title" style="color: ' . esc_attr($title_color) . '"><span>' . $title . '</span></div>';
+        $output .= '<div class="bitstarterCard__title" style="color: ' . esc_attr($title_color) . '"><span>' . wp_kses( $title, bitstarter_allowed_html()) . '</span></div>';
     
         $output .= '<div class="bitstarterCard__content" style="border-color: ' . esc_attr($line_color) . '">' . wpb_js_remove_wpautop($content, true) . '</div>';
 

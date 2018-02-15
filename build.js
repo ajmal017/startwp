@@ -34,7 +34,7 @@ const funcTable = {
   "genpot": [genpot],
   "watch": [watch],
   "wpDev": [wpDev],
-  "png,jpeg,jpg,svg,woff2,eot,ttf,otf,php,txt,zip,html,xml,pot": [copyStatic],
+  "png,jpeg,jpg,svg,woff2,eot,ttf,otf,php,txt,zip,html,xml,pot,js": [copyStatic],
   "js": [minifyJs],
   "css": [minifyCss],
   "sass,scss": [handleSass],

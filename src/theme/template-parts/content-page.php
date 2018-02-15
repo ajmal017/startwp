@@ -11,10 +11,17 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
+	<?php
+		$content = get_the_content();
+		$css = '';
+		if ( has_shortcode( $content  , 'vc_row' ) ) {
+			$css = 'shortcode';
+		}
+	?>
 
-	<div class="entry-content">
+	<div class="entry-content <?php echo $css; ?>">
 		<?php
-			the_content();
+			echo do_shortcode($content);
 			wp_link_pages( array(
 				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bitstarter' ),
 				'after'  => '</div>',

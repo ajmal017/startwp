@@ -573,7 +573,7 @@ msgid " "
 msgstr ""
 
 #:  inc/template-tags.php:303
-msgid "Pingback:"
+msgid "Pingback: "
 msgstr ""
 
 #:  inc/template-tags.php:303,  inc/template-tags.php:327

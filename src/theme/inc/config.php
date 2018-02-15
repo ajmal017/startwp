@@ -338,7 +338,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 						'blog_type_style' => array(
 							'type' => 'radio_image',
 							'label' => esc_html__('Blog Postcards Layout', 'bitstarter'),
-							'default' => 'tile',
+							'default' => 'list',
 							'choices' => array(
 								'tile' => get_template_directory_uri() . '/assets/img/tile.png',
 								'list' => get_template_directory_uri() . '/assets/img/list.png'

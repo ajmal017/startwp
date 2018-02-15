@@ -11,6 +11,11 @@
   position: relative;
 }
 
+.edit-link {
+	overflow: hidden;
+	margin: 1px;
+}
+
 .edit-link > a {
   float: right;
 }

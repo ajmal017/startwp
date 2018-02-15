@@ -47,11 +47,11 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
         endif;
 
         $output .= '<div class="team '.$css_class.' wpb_content_element"><div class="team__in ' . esc_attr($extra_class) . '" style="box-shadow: 0 20px 26px 10px rgba(' . esc_attr($shadow_color) . ',.12); background: ' . esc_attr($bg_color) . '">';
-        $output .= '<div class="team__picture" style="box-shadow: 0 20px 26px rgba(' . $shadow_color . ',.2)">' . wp_get_attachment_image( $image, 'full') . '</div>';
+        $output .= '<div class="team__picture" style="box-shadow: 0 20px 26px rgba(' .  esc_attr($shadow_color) . ',.2)">' . wp_get_attachment_image( $image, 'full') . '</div>';
 
         $output .= '<div class="team-info">';
         
-        $output .=      '<h5 class="team-info__name">' . $name . '</h5>';
+        $output .=      '<h5 class="team-info__name">' . wp_kses($name, bitstarter_allowed_html()) . '</h5>';
         $output .=      '<h5 class="team-info__position" style="color: ' . esc_attr($position_color) . '">' . $position . '</h5>';
 
         
@@ -79,7 +79,7 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
         endif;
         $output .= '</div>';
         
-        $output .= '<div class="team__excerpt">' . $excerpt . '</div>';
+        $output .= '<div class="team__excerpt">' . wp_kses($excerpt, bitstarter_allowed_html()) . '</div>';
 
         $output .= '</div>';
         $output .= '</div>';

@@ -25,7 +25,7 @@ class WPBakeryShortCode_Bitstarter_Calc extends  WPBakeryShortCode
 
 
         $output .= '<div id="bitstarter-calc" class="wpb_content_element bitstarter-calc ' . $css_class . '"><div class="bitstarter-calc__in">';
-        $output .= '<h5 class="bitstarter-calc__header">'. $header .'</h5>';
+        $output .= '<h5 class="bitstarter-calc__header">'. wp_kses( $header, bitstarter_allowed_html()) .'</h5>';
         $output .= '<div class="bitstarter-calc__entry">
                         <div class="bitstarter-calc__entry__coin">
                             <div class="form-inline">

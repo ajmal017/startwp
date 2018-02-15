@@ -105,7 +105,11 @@ class Bitstarter_WPCOM_social_media_icons_widget extends WP_Widget {
 			'facebook_username'   => '',
 			'twitter_username'    => '',
 			'linkedin_username'   => '',
-			'instagram_username'  => ''
+			'instagram_username'  => '',
+			'discord_username'  => '',
+			'github_username'  => '',
+			'telegram_username'  => ''
+
 		);
 		
 		global $wp_filesystem;
@@ -116,7 +120,10 @@ class Bitstarter_WPCOM_social_media_icons_widget extends WP_Widget {
 			'facebook'   => array( 'Facebook', 'https://www.facebook.com/%s/',  $wp_filesystem->get_contents(locate_template('assets/svg/social-fb.php', false, false ))),
 			'twitter'    => array( 'Twitter', 'https://twitter.com/%s/',  $wp_filesystem->get_contents(locate_template('assets/svg/social-tw.php', false, false ))),
 			'linkedin'   => array( 'LinkedIn', 'https://www.linkedin.com/in/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-in.php', false, false ))),
-			'instagram'  => array( 'Instagram', 'https://www.instagram.com/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-ig.php', false, false )))
+			'instagram'  => array( 'Instagram', 'https://www.instagram.com/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-ig.php', false, false ))),
+			'discord'  => array( 'Discord', 'https://www.discord.gg/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-dis.php', false, false ))),
+			'github'  => array( 'Github', 'https://www.github.com/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-git.php', false, false ))),
+			'telegram'  => array( 'Telegram', 'https://www.telegram.me/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-tel.php', false, false )))
 		);
 
 	}

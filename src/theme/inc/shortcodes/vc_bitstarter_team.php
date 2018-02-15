@@ -19,7 +19,7 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
      */
     public function content($atts, $content = null)
     {
-        $css = $shadow_color = $bg_color = $image = $name = $position = $excerpt = $position_color = $fb = $in ='';
+        $css = $shadow_color = $bg_color = $image = $name = $position = $excerpt = $position_color = $fb = $in = $tw = '';
 
 
         extract(shortcode_atts(array(
@@ -32,7 +32,8 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
             'shadow_color'  => '#474e65',
             'bg_color'      => '#f6f9fc',
             'fb'            => '',
-            'in'            => ''
+            'in'            => '',
+            'tw'            => ''
         ), $atts));
 
         $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
@@ -68,6 +69,10 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
                 
                 if( !empty($in) ):
                     $output .= '<li><a href="' . esc_url( $in ) . '"><i class="bitstarter__icon ">' .  $wp_filesystem->get_contents(locate_template('assets/svg/sc-team-in.php')) . '</i></a></li>';
+                endif;
+
+                if( !empty($tw) ):
+                    $output .= '<li><a href="' . esc_url( $tw ) . '"><i class="bitstarter__icon ">' .  $wp_filesystem->get_contents(locate_template('assets/svg/sc-team-tw.php')) . '</i></a></li>';
                 endif;
 
             $output .= '</ul>';
@@ -142,6 +147,12 @@ $opts = array(
             'type' => 'textfield',
             'heading' => esc_html__( 'Linkedin (optional)', 'bitstarter' ),
             'param_name' => 'in',
+            'group' => esc_html__( 'Social networks', 'bitstarter' ),
+        ),
+        array(
+            'type' => 'textfield',
+            'heading' => esc_html__( 'Twitter (optional)', 'bitstarter' ),
+            'param_name' => 'tw',
             'group' => esc_html__( 'Social networks', 'bitstarter' ),
         ),
         array(

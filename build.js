@@ -254,39 +254,8 @@ async function minifyJs(filename) {
 
       return  { code, map, name }
     }) 
-    //.map(async file => Object.assign(file, {code: file.contents, map: ''}))
-    // .map(async file => {
-    //   const dir = path.dirname(file.name);
-    //   await mkdirAll(`dist/${dir}`);
-    //   await fs.writeFile(`dist/${file.name}`, file.code + `\n//# sourceMappingURL=${path.basename(file.name)}.map`);
-    //   await fs.writeFile(`dist/${file.name}.map`, JSON.stringify(file.map));
-    // })
     .array;
-  // const trans = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
-  //   .map(async file => ({ name: file, contents: await fs.readFile(`src/${file}`) }))
-  //   .map(async file => Object.assign(file, { contents: file.contents.toString('utf-8') }))
-  //   .map(async file => {
-  //     for (const [key, val] of Object.entries(templateData)) {
-  //       file.contents = file.contents.replace(`{%${key}%}`, val);
-  //     }
-  //     return file;
-  //   })
-  //   .map(async file => {
-  //     const { code } = babel.transform(file.contents, { plugins: [require('babel-plugin-transform-es2015-modules-systemjs')] })
-  //     file.contents = code;
-  //     file.name = `${path.dirname(file.name)}/systemjs/${path.basename(file.name)}`;
-  //     return file;
-  //   })
-  //   .map(async file => Object.assign(file, { code, map } = babel.transform(file.contents, { presets: ["babili"], sourceMaps: true, sourceMapTarget: file.name, sourceType: "script", sourceRoot: './../' })))
-  //   // .map(async file => Object.assign(file, {code: file.contents, map: ''}))
-  //   .map(async file => {
-  //     const dir = path.dirname(file.name);
-  //     await mkdirAll(`dist/${dir}`);
-  //     await fs.writeFile(`dist/${file.name}`, file.code + `\n//# sourceMappingURL=${path.basename(file.name)}.map`);
-  //     await fs.writeFile(`dist/${file.name}.map`, JSON.stringify(file.map));
-  //   })
-  //   .array;
-
+  
   console.timeEnd('minifyJs')
   return await Promise.all([orig]);
 }

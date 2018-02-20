@@ -1,6 +1,6 @@
 {
   "name": "WPT",
-  "version": "1.0.115",
+  "version": "1.0.120",
   "description": "Wordpress, JS, Compile",
   "main": "index.js",
   "author": "IONDIGITAL",
@@ -41,6 +41,7 @@
     "@webcomponents/custom-elements": "^1.0.4",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-es2015-modules-systemjs": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-latest": "^6.24.1",
     "babili": "^0.1.4",
     "csso": "^3.2.0",

@@ -1058,7 +1058,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'color',
-									'selector' => '.form-control:placeholder, input:placeholder'
+									'selector' => '.form-control::placeholder, input::placeholder'
 								),
 								array(
 									'property' => 'color',
@@ -1067,8 +1067,8 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'color',
-									'selector' => '.form-control:focus:placeholder,
-									input:focus:placeholder',
+									'selector' => '.form-control:focus::placeholder,
+									input:focus::placeholder',
 									'callback_filter ' => 'bitstarter_customify_lighter_callback'
 								),
 								array(

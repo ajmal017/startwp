@@ -296,7 +296,7 @@
 			//queue the calls
 			ajax_import_theme_options(resultcontainer, this_data);
 			ajax_import_widgets(resultcontainer, this_data);
-			ajax_import_posts_pages_stepped(resultcontainer, this_data);
+		    ajax_import_posts_pages_stepped(resultcontainer, this_data);
 
 			return false;
 		} );

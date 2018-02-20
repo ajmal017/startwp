@@ -26,8 +26,9 @@
     <div class="hero-header__background">
 
         <?php if ( ! empty( $has_image ) ) { 
-            $hero_image_srcset  = wp_get_attachment_image_srcset( $the_random_hero->ID ); 
-            echo '<img class="hero-header__background__img"  src="' . $has_image[0] . '" srcset="' . $hero_image_srcset . '"/>';
+            $hero_image_srcset  = wp_get_attachment_image_srcset( $the_random_hero->ID );
+            $hero_image_sizes =  wp_get_attachment_image_sizes($the_random_hero->ID, array(1200, 800));
+            echo '<img class="hero-header__background__img" alt="hero" src="' . $has_image[0] . '"  srcset="' . $hero_image_srcset . '" sizes="' . $hero_image_sizes  . '"/>';
         } ?>
 
         <?php if ( bitstarter_get_option( 'site_blogheroarea_gradover', false ) == true ):?>

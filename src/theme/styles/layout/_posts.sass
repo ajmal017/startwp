@@ -32,8 +32,9 @@
     &.postcard
       box-shadow: 0 16px 20px rgba(50, 50, 93, 0.02)
       +tr(box-shadow .5s)
-      &:hover
-        box-shadow: 0 16px 40px rgba(50, 50, 93, 0.12)
+      +rmin(769)
+        &:hover
+          box-shadow: 0 16px 40px rgba(50, 50, 93, 0.12)
 
 .card
   display: flex
@@ -88,14 +89,15 @@
         transform: translateY(-100%)
         opacity: 0
         z-index: 11
-    &:hover .card__toplink--hasPic:before
-      opacity: 0.7
-    &:hover .card__toplink--hasPic:after
-      opacity: 1
-      transform: translateY(0)
-    &:hover .card__toplink--hasPic .card__image
-      +tr(transform .5s)
-      transform: scale(1.1)
+    +rmin(769)
+      &:hover .card__toplink--hasPic:before
+        opacity: 0.7
+      &:hover .card__toplink--hasPic:after
+        opacity: 1
+        transform: translateY(0)
+      &:hover .card__toplink--hasPic .card__image
+        +tr(transform .5s)
+        transform: scale(1.1)
   &.format-standard .card__toplink--hasPic:after
     content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAARElEQVQ4T2NkIAL8////P0gZIyMjIyHlBBWADBg1EG8wjoYh9uAhKdnAFBNKsMTKM1LdQGJsJsnLowZiDYHRMKRvaQMAGvdQDXktn2AAAAAASUVORK5CYII=)
   &.format-link .card__toplink--hasPic:after
@@ -135,8 +137,9 @@
       height: 100%
       width: 100%
       flex: 0 0 100%
-    &:hover
-      opacity: 1
+    +rmin(769)
+      &:hover
+        opacity: 1
     +r(768)
       height: 250px
 
@@ -277,7 +280,8 @@
           color: white
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
           &:hover
-            opacity: .8
+            +rmin(769)
+              opacity: .8
   &__excerpt
     overflow: hidden
     //margin-bottom: rhythm(.5)

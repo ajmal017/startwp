@@ -53,19 +53,20 @@
 				echo '</div>';
 			else:
 				if (has_post_thumbnail()) :
-	
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image');
-
-					$image_srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id());
+		
+					$attachid = get_post_thumbnail_id();
+					$image = wp_get_attachment_image_src($attachid, 'bitstarter-card-image');
+					$image_srcset = wp_get_attachment_image_srcset($attachid);
+					$image_sizes = wp_get_attachment_image_sizes($attachid, 'bitstarter-card-image');
 				?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>" />
+					<img class="card__image" alt="card__image" src="<?php echo $image[0]; ?>"  <?php if ($image_srcset != ''): ?> srcset="<?php echo $image_srcset; ?>" sizes="<?php echo $image_sizes; ?>" <?php endif; ?> />
 				</a>
 
 				<?php else : ?>
 
-					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+					<a class="card__toplink card__toplink--placeholder" href="<?php the_permalink(); ?>">
+						<img class="card__image" alt="card__image" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
 					</a>
 
 				<?php endif; 
@@ -98,8 +99,8 @@
 			?>
 
 				<div class="card-player" >
-					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+					<a class="card__toplink card__toplink--placeholder" href="<?php the_permalink(); ?>">
+						<img class="card__image" alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
 						
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--sc"><?php echo do_shortcode($audio); ?></div>
@@ -107,40 +108,41 @@
 
 			<?php elseif (has_post_thumbnail() && $type == 'wp') :
 
-				$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image');
-
-				$image_srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id());
+				$attachid = get_post_thumbnail_id();
+				$image = wp_get_attachment_image_src($attachid, 'bitstarter-card-image');
+				$image_srcset = wp_get_attachment_image_srcset($attachid);
+				$image_sizes = wp_get_attachment_image_sizes($attachid, 'bitstarter-card-image');
 				
 				?>
 				<div class="card-player" >
 					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-						<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>" />
+						<img class="card__image" alt="card__image" src="<?php echo $image[0]; ?>"   <?php if ($image_srcset != ''): ?> srcset="<?php echo $image_srcset; ?>"  sizes="<?php echo $image_sizes; ?>"<?php endif;?> />
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 				</div>
 			<?php elseif($type == 'wp') : ?>
 				<div class="card-player" >
 					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>"/>
+						<img class="card__image" alt="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>"/>
 						
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 				</div>
 			<?php elseif( has_post_thumbnail() ): 
-
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image');
-
-					$image_srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id());
+					$attachid = get_post_thumbnail_id();
+					$image = wp_get_attachment_image_src($attachid, 'bitstarter-card-image');
+					$image_srcset = wp_get_attachment_image_srcset($attachid);
+					$image_sizes = wp_get_attachment_image_sizes($attachid, 'bitstarter-card-image');
 
 				?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>"/>
+					<img class="card__image" alt="card__image" src="<?php echo $image[0]; ?>"  <?php if ($image_srcset != ''): ?> srcset="<?php echo $image_srcset; ?>" sizes="<?php echo $image_sizes; ?>"<?php endif;?>/>
 				</a>
 
 			<?php else : ?>
 		
-					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+					<a class="card__toplink card__toplink--placeholder" href="<?php the_permalink(); ?>">
+						<img class="card__image "  alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
 					</a>
 
 			<?php endif;
@@ -169,8 +171,8 @@
 			if($video !== '' ):
 				?>
 				<div class="card-player" > 
-					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+					<a class="card__toplink card__toplink--placeholder" href="<?php the_permalink(); ?>">
+						<img class="card__image" alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
 					</a>
 					<div class="card-player__wrapper"><?php echo do_shortcode( $video ); ?></div>
 				</div>
@@ -183,20 +185,23 @@
 		default:
 			if (has_post_thumbnail()) :
 				
-					$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'bitstarter-card-image');
+					$attachid = get_post_thumbnail_id();
+					$image = wp_get_attachment_image_src($attachid, 'bitstarter-card-image');
+					$image_srcset = wp_get_attachment_image_srcset($attachid);
+					$image_sizes = wp_get_attachment_image_sizes($attachid, 'bitstarter-card-image');
 
-					$image_srcset = wp_get_attachment_image_srcset(get_post_thumbnail_id());
-					
+					if( is_array($image) && !is_wp_error( $image )):	
 				?>
-				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<img class="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>"/>
-				</a>
+					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
+					<img class="card__image" alt="card__image" src="<?php echo $image[0]; ?>" <?php if ($image_srcset != ''): ?> srcset="<?php echo $image_srcset; ?>" sizes="<?php echo $image_sizes; ?>"<?php endif;?>/>
+					</a>
 
-			<?php else : 
+				<?php endif;
+			else : 
 				?>
 
-				<a class="card__toplink" href="<?php the_permalink(); ?>">
-					<img class="card__image"  src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+				<a class="card__toplink card__toplink--placeholder" href="<?php the_permalink(); ?>">
+					<img class="card__image " alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
 				</a>
 
 			<?php endif; 
@@ -223,17 +228,17 @@
 		<?php } ?>
 		<?php the_title( sprintf( '<h2 class="card__title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );?>
 		<div class="card__excerpt">
-			<?php 
+			<?php
 				if($format == 'quote'){
 				  $c = get_the_excerpt();
-				  if( strpos($c, 'blockquote') > 0 ){
-					  echo wp_kses($c, bitstarter_allowed_html());
+				  if( strpos($c , 'blockquote') > 0 ){
+					  echo wp_kses($c , bitstarter_allowed_html());
 				  }else{
-					echo '<blockquote><strong>' . wp_kses($c, bitstarter_allowed_html()) . '</strong></blockquote>';
+					echo '<blockquote><strong>' . wp_kses($c , bitstarter_allowed_html()) . '</strong></blockquote>';
 				  }
 				}else{
-					 $c = get_the_excerpt();
-					 echo '<p>' .  wp_kses($c, bitstarter_allowed_html()) . '</p>'; 
+					$c  = get_the_excerpt();
+					echo '<p>' .  wp_kses($c , bitstarter_allowed_html()) . '</p>'; 
 				 } ?>
 		</div>
 		<!-- READ MORE-->

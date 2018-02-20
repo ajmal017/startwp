@@ -47,8 +47,14 @@
         margin: 0 auto
     .wp-caption-text
         text-align: center
-    +rmin(900)
 
+
+.alignnone
+    margin-bottom: 3.125rem
+    margin-top: 3.125rem
+    max-width: 100%
+    img
+        max-width: 100%
 
 @media not screen and (min-width: 900px)
     figure.aligncenter,
@@ -60,12 +66,13 @@
 
 .aligncenter
     text-align: center
+    display: inline-block
+    clear: both
 
+figure.aligncenter
+    display: block  
 
 @media only screen and (min-width: 1200px)
-    .aligncenter
-        margin-left: -200px
-        margin-right: -200px
     
     
     .single-post .alignleft
@@ -99,3 +106,7 @@
 .blog .aligncenter,
 .archive .aligncenter
     margin: 0 auto
+
+
+.page-links
+    clear: both

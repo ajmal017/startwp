@@ -213,6 +213,9 @@ function bitstarter_scripts() {
 		$bitstarter_scripts_deps[] = 'bitstarter-bundle';
 	}
 
+	wp_enqueue_script( 'bitstarter-polyfill', get_template_directory_uri() . '/assets/js/polyfill.js' );
+	$bitstarter_scripts_deps[] = 'bitstarter-polyfill';
+
 	wp_enqueue_script( 'bitstarter-scripts', get_template_directory_uri() . '/assets/js/main.js', $bitstarter_scripts_deps, $theme->get( 'Version' ), true );
 
 	wp_localize_script( 'jquery', 'BitstarterParams', array(
@@ -322,45 +325,6 @@ require get_template_directory() . '/inc/required-plugins/required-plugins.php';
 
 
 
-// Callback function to insert 'styleselect' into the $buttons array
-function bitstarter_mce_buttons( $buttons ) {
-	array_unshift( $buttons, 'styleselect' );
-	return $buttons;
-}
-// Register our callback to the appropriate filter
-add_filter('mce_buttons_2', 'bitstarter_mce_buttons');
-
-// Callback function to filter the MCE settings
-function bitstarter_formats( $init_array ) {
-	// Define the style_formats array
-	$style_formats = array(
-		// Each array child is a format with it's own settings
-		array(
-			'title' => 'Intro',
-			'inline' => 'span',
-			'classes' => 'intro',
-			'wrapper' => true
-		),
-		array(
-			'title' => 'Two Columns',
-			'block' => 'div',
-			'classes' => 'twocolumn',
-			'wrapper' => true
-		),
-		array(
-			'title' => 'Separator',
-			'block' => 'hr',
-			'classes' => 'clear'
-		),
-	);
-	// Insert the array, JSON ENCODED, into 'style_formats'
-	$init_array['style_formats'] = json_encode( $style_formats );
-
-	return $init_array;
-
-}
-// Attach callback to 'tiny_mce_before_init'
-add_filter( 'tiny_mce_before_init', 'bitstarter_formats' );
 
 
 function bitstarter_allowed_html() {

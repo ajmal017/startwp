@@ -27,15 +27,17 @@ $has_image = false; ?>
 					echo '<div class="post-gallery__slider js-gallery__slider">';
 					foreach ($images_id as $image_id) {
 
-						$image = wp_get_attachment_image_src($image_id, $image_size);
+						$image = wp_get_attachment_image_src($image_id, 'bitstarter-featured-image');
+						$image_sizes = wp_get_attachment_image_sizes($image_id, 'bitstarter-featured-image');
 
 						printf(
-							'<img class="post-gallery__item" src="%s" width="%s" height="%s" srcset="%s" alt="%s">',
+							'<img class="post-gallery__item" src="%s" width="%s" height="%s" srcset="%s" alt="%s" sizes="%s">',
 							$image[0],
 							$image[1],
 							$image[2],
-							wp_get_attachment_image_srcset($image_id, $image_size),
-							get_post_meta($image_id, '_wp_attachment_image_alt', true)
+							wp_get_attachment_image_srcset($image_id, 'bitstarter-featured-image'),
+							get_post_meta($image_id, '_wp_attachment_image_alt', true) || 'post',
+							$image_sizes
 						);
 
 					}
@@ -76,7 +78,7 @@ $has_image = false; ?>
 
 							$image_id = get_post_thumbnail_id();
 							$image = wp_get_attachment_image_src($image_id, 'large');
-
+							$image_sizes = wp_get_attachment_image_sizes($image_id, 'bitstarter-featured-image');
 							
 							printf(
 								'<img class="post__image" src="%s" width="%s" height="%s" srcset="%s" alt="%s">',
@@ -84,7 +86,7 @@ $has_image = false; ?>
 								$image[1],
 								$image[2],
 								wp_get_attachment_image_srcset($image_id, 'large'),
-								get_post_meta($image_id, '_wp_attachment_image_alt', true)
+								get_post_meta($image_id, '_wp_attachment_image_alt', true) || 'post'
 							);
 							?>
 						
@@ -155,15 +157,16 @@ $has_image = false; ?>
 
 						$image_id = get_post_thumbnail_id();
 						$image = wp_get_attachment_image_src($image_id, 'large');
-
+						$image_sizes = wp_get_attachment_image_sizes($image_id, 'bitstarter-featured-image');
 
 							printf(
-								'<img class="post__image" src="%s" width="%s" height="%s" srcset="%s" alt="%s">',
+								'<img class="post__image" src="%s" width="%s" height="%s" srcset="%s" alt="%s" sizes="%s">',
 								$image[0],
 								$image[1],
 								$image[2],
 								wp_get_attachment_image_srcset($image_id, 'large'),
-								get_post_meta($image_id, '_wp_attachment_image_alt', true)
+								get_post_meta($image_id, '_wp_attachment_image_alt', true) || 'post',
+								$image_sizes
 							);
 
 					endif;
@@ -185,7 +188,7 @@ $has_image = false; ?>
 						} ?>
 					</ul>
 				<?php } ?>
-			</div><!-- .entry-header__categories -->
+			</div><!-- .entry-header-categories -->
 		</div><!-- .entry-header__content -->
 		<?php the_title( '<h3 class="entry-title">', '</h3>' ); ?>
 
@@ -217,7 +220,7 @@ $has_image = false; ?>
 
 		?> </div> <?php
 
-		wp_link_pages( );
+		wp_link_pages();
 		?>
 	</div><!-- .entry-content -->
 </article><!-- #post-## -->

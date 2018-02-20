@@ -148,7 +148,8 @@
         margin: 0
         padding: 0 
         list-style: none
-        white-space: nowrap;
+        white-space: nowrap
+        margin-left: 20px
         li
           display: inline-block
           margin-left: 5px
@@ -193,6 +194,10 @@
         height: 350px
         .card__toplink
           flex: 0 0 180px
+          &--placeholder
+            display: none
+            & + .card__content .card__title a
+              display: inline
         .card-gallery__item,
         .card-player
           height: 180px !important

@@ -53,8 +53,15 @@ ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/ad
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/customizer.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/edit-page.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/admin/group_panel_widget.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/admin 
-ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/bundle.min.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/calc.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/expand.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/fallbacks/CSSPlugin.min.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/fallbacks 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/fallbacks/Highcharts.min.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/fallbacks 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/fallbacks/imagesLoaded.min.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/fallbacks 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/fallbacks/jquery.mousewheel.min.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/fallbacks 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/fallbacks/scroll-to-plugin.min.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/fallbacks 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/fallbacks/slick.min.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/fallbacks 
+ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/fallbacks/tween-max.min.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js/fallbacks 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/main.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/polyfill.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/assets/js/system.js d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/assets/js 

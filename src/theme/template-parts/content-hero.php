@@ -15,8 +15,8 @@
     $has_image       = false;	
 
     if ( ( empty( $the_random_hero ) || property_exists( $the_random_hero, 'post_mime_type' ) ) && is_object( $the_random_hero ) && property_exists( $the_random_hero, 'post_mime_type' ) && strpos( $the_random_hero->post_mime_type, 'image' ) !== false ) {
-            $has_image = wp_get_attachment_image_src( $the_random_hero->ID );
-        } 
+            $has_image = wp_get_attachment_image_src( $the_random_hero->ID, 'full' );
+        }
 ?>
 
 <header class="hero-header<?php 
@@ -26,8 +26,8 @@
     <div class="hero-header__background">
 
         <?php if ( ! empty( $has_image ) ) { 
-            $hero_image_srcset  = wp_get_attachment_image_srcset( $the_random_hero->ID );
-            $hero_image_sizes =  wp_get_attachment_image_sizes($the_random_hero->ID, array(1200, 800));
+            $hero_image_srcset  = wp_get_attachment_image_srcset( $the_random_hero->ID, 'full');
+            $hero_image_sizes =  wp_get_attachment_image_sizes($the_random_hero->ID, 'full');
             echo '<img class="hero-header__background__img" alt="hero" src="' . $has_image[0] . '"  srcset="' . $hero_image_srcset . '" sizes="' . $hero_image_sizes  . '"/>';
         } ?>
 
@@ -91,6 +91,7 @@
                     <?php if( ! have_posts() ) : ?>	
                         <?php get_template_part( 'template-parts/content', 'none' ); ?>
                     <?php endif; ?>
+
                 </div>
             <?php } elseif ( is_404()  ) { ?>
 
@@ -99,13 +100,12 @@
                 <h1 class="hero-title"><?php esc_html_e( '404', 'bitstarter' ); ?></h1>
                 <?php get_template_part( 'template-parts/content', 'none' ); ?>
                
-               
             </div>
 
             <?php } else { ?>
 
 
-            
+                
                 <h1 class="hero-title"><?php echo get_the_title($page_for_posts); ?></h1>
             
             <?php } ?>
@@ -114,8 +114,9 @@
             if( bitstarter_categorized_blog() && !is_category() && !is_archive() && !is_search() && !is_404()):
                 $categories = get_categories();
                 if( $categories ):
-                    echo '<ul class="hero-category__list">';
-                    if( count($categories) > 5 ):
+                    $cats_num_more_than_five = count($categories) > 5 ;
+                    echo '<ul class="hero-category__list ' . ($cats_num_more_than_five ? 'hero-category__list--extended' : 'hero-category__list--simple') . '">';
+                    if( $cats_num_more_than_five ):
                        
                         $showcats = array_slice($categories, 0, 5);
 
@@ -127,7 +128,7 @@
 
                         echo '<div class="hero-category__list__additional">';
                             
-                            $showcats = array_slice($categories,5);
+                            $showcats = array_slice($categories, 5);
 
                             foreach ( $showcats as $category ): ?>
                             <li><a href="<?php echo esc_attr( get_category_link( $category->cat_ID ) ); ?>"><?php echo esc_html($category->cat_name); ?></a></li>

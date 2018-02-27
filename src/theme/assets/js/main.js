@@ -1,13 +1,12 @@
 import "./calc.js"
 import { _formatCurrency } from "./calc.js"
+import "./expand.js"
 
 (function($, undefined) {
     "use strict";
     /**
      * Shared variables
      */
-
-
     var ua = navigator.userAgent.toLowerCase(),
         platform = navigator.platform.toLowerCase(),
         $window = $(window),
@@ -61,34 +60,6 @@ import { _formatCurrency } from "./calc.js"
 
         globalDebug = false,
         $reviewsParent = null;
-
-
-
-    $('.js-widget-gallery').magnificPopup({
-        delegate: '.listing-gallery__item', // child items selector, by clicking on it popup will open
-        type: 'image',
-        image: {
-            titleSrc: function(item) {
-                var output = '';
-
-                output += item.el.find('img').attr('caption');
-                output += '<span class="mfp-description">' + item.el.find('img').attr('description') + '</span>';
-
-                return output;
-            }
-        },
-        gallery: {
-            enabled: true,
-            tCounter: '<span class="mfp-counter">%curr%/%total%</span>',
-            arrowMarkup: '<div class="gallery-arrow  gallery-arrow-%dir%  is--ready">' + $('.arrow-icon-svg').html() + '</div>'
-        }
-    });
-
-    $('.listing-gallery__all').on('click', function(e) {
-        e.preventDefault();
-        $('.js-widget-gallery').magnificPopup('open');
-    });
-
 
 
 
@@ -177,9 +148,6 @@ import { _formatCurrency } from "./calc.js"
 
         detectLongMenu();
         categories();
-
-
-        $reviewsParent = $('.widget_listing_comments').parent();
 
     }
      
@@ -963,7 +931,7 @@ import { _formatCurrency } from "./calc.js"
             categories();
 
 
-            if (Modernizr.touchevents) {
+            if ('ontouchstart' in document.documentElement) {
                 if (windowWidth < 900) {
                     HandleSubmenusOnTouch.initSidebarMenu();
                 } else {
@@ -1112,7 +1080,7 @@ import { _formatCurrency } from "./calc.js"
 
     // Set the height of the single listing map
     function categories() {
-        if (windowWidth > 900) {
+        
             function slideToggleProgress(){
                 var height = $('.hero-header__background').outerHeight();
                 $('.hero-header__overlay1 svg rect').css({'height': height + 'px'});
@@ -1124,14 +1092,11 @@ import { _formatCurrency } from "./calc.js"
 
                 $('.hero-category__list__additional').slideToggle({
                     duration: 400,
-                    progress: slideToggleProgress,
-                    complete: function () {
-                      console.log('animation completed');
-                    }
+                    progress: slideToggleProgress
                 });
              
             });
-        }
+        
     }
 
 
@@ -1385,7 +1350,7 @@ import { _formatCurrency } from "./calc.js"
 
     // Check if a sub menu's height is bigger that windows's width
     function handleLongSubMenus() {
-        if (Modernizr.touchevents) {
+        if ('ontouchstart' in document.documentElement) {
             return;
         }
 

@@ -219,9 +219,26 @@
 
 				if ( count( $categories ) ) { ?>
 					<ul class="card__links">
-						<?php foreach ( $categories as $category ) { ?>
+						<?php $category = array_shift($categories); ?>
 							<li><a href="<?php echo esc_attr( get_category_link($category->cat_ID) );?>"><?php echo esc_html($category->name);?></a></li>
-						<?php } ?>
+							<li>
+								<?php if ( count( $categories ) ) { ?>
+								<nav class="card-menu js-card-menu">
+									<div class="card-menu__contents js-card-menu-contents">
+										<button class="card-menu__toggle js-card-menu-toggle">
+											<span class="card-menu__title">
+											<?php echo esc_html__( 'More categories', 'bitstarter' ); ?></span>
+											<span class="card-menu__points js-card-menu-points">&bull;&bull;&bull;</span>
+										</button>
+										<ul class="card-menu__items js-card-menu-items">
+											<?php foreach ($categories as $category) { ?>
+												<li><a href="<?php echo esc_attr( get_category_link($category->cat_ID) );?>"><?php echo esc_html($category->name);?></a></li>
+											<?php } ?>
+										</ul>
+									</div>
+								</nav>
+								<?php } ?>
+							</li>
 					</ul>
 				<?php } ?>
 			</div><!-- .card__categories -->

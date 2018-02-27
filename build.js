@@ -39,7 +39,8 @@ const funcTable = {
   "css": [minifyCss],
   "sass,scss": [handleSass],
   "default": [noop],
-  "siteMap": [createSiteMap]
+  "siteMap": [createSiteMap],
+  "serve": [serve]
 }
 
 const templateData = {
@@ -233,9 +234,9 @@ async function minifyJs(filename) {
           babelPlugin({
             exclude: 'node_modules/**' // only transpile our source code
           }),
-          minify({
-            comments: false
-          })
+          // minify({
+          //   comments: false
+          // })
         ],
         cache
       });

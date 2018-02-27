@@ -275,7 +275,7 @@ add_action('widgets_init', 'bitstarter_register_widget_areas' );
 function bitstarter_sidebar(){
 	// Output the sidebar.php
 	global $post;
-	$sidebar = bitstarter_get_option('blog_sidebar');
+	$sidebar = bitstarter_get_option('blog_sidebar', 'sidebar__right');
 	$show_on_posts_page = true;
 
 
@@ -342,7 +342,7 @@ class Bitstarter_Coinmarketcap extends WP_Widget {
 					</li>',
 					'https://api.coinmarketcap.com/v1/ticker/'. trim($coin) . '/',
 					$coin,
-					'https://files.coinmarketcap.com/static/img/coins/64x64/' . $coin . '.png'
+					'https://files.coinmarketcap.com/static/img/coins_legacy/64x64/' . $coin . '.png'
 
 				);
 			}
@@ -390,7 +390,7 @@ class Bitstarter_Coinmarketcap extends WP_Widget {
 			<p>
 				<label for="<?php echo esc_attr( $this->get_field_id('title') ); ?>"><?php esc_html_e('Title:', 'bitstarter') ?></label>
 				<input type="text" class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" value="<?php echo esc_attr( isset($instance['title'])?$instance['title']:''); ?>" />
-			</p>(
+			</p>
 			<p>
 				<label for="<?php echo esc_attr($this->get_field_id('currencies')); ?>"><?php esc_html_e('Currencies:', 'bitstarter') ?></label>
 				<select class="widefat" multiple="multiple" id="<?php echo esc_attr( $this->get_field_id('currencies') ); ?>" name="<?php echo esc_attr( $this->get_field_name('currencies')) . '[]'; ?>"  size="10">

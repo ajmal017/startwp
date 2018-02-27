@@ -42,17 +42,17 @@ if ( ! function_exists( 'bitstarter_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails', array( 'page', 'post' ));
 
-		// Used for Listing Cards
+		// Used for Cards
 		// Max Width of 450px
 		add_image_size( 'bitstarter-card-image', 700, 500, true);
 
-		// Used for Single Listing carousel images
+		// Used for Single carousel images
 		// Max Height of 800px
 		add_image_size('bitstarter-carousel-image', 9999, 800, false );
 
-		// Used for Full Width (fill) images on Pages and Listings
-		// Max Width of 2700px
-		add_image_size('bitstarter-featured-image', 2700, 9999, false );
+		// Used for Full Width (fill) images on Pages
+		// Max Width of 1920px
+		add_image_size('bitstarter-featured-image', 1920, 9999, true );
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
@@ -133,7 +133,7 @@ add_filter( 'gallery_widget_content_width', 'bitstarter_gallery_widget_width', 1
 
 function bitstarter_check_cdn(){
 
-	$protocol = ( isset( $_SERVER[ 'HTTPS' ] ) && 'on' == $_SERVER[ 'HTTPS' ] ) ? 'https' : 'http';
+	$protocol = is_ssl()  ? 'https' : 'http';
 	$cdn  = $protocol . '://cdnjs.cloudflare.com';
 
 	$repository = get_transient( 'check_cdn' );
@@ -154,16 +154,28 @@ function bitstarter_check_cdn(){
 
 }
 
+function bitstarter_fonts_url() {
+    $font_url = '';
+    /*
+    Translators: If there are characters in your language that are not supported
+    by chosen font(s), translate this to 'off'. Do not translate into your own language.
+     */
+    if ( 'off' !== _x( 'on', 'Google font: on or off', 'bitstarter' ) ) {
+        $font_url = add_query_arg( 'family', urlencode( 'Noto Sans:400,400italic,700italic,700&subset=latin,latin-ext' ), "//fonts.googleapis.com/css" );
+    }
+    return $font_url;
+}
+
+
 function bitstarter_scripts() {
 	$theme = wp_get_theme();
-
 
 	$main_style_deps = array();
 
 	//only enqueue the de default font if Customify is not present
 	if ( ! class_exists( 'PixCustomifyPlugin' ) ) {
-		wp_enqueue_style( 'bitstarter-default-fonts', 'https://fonts.googleapis.com/css?family=Noto+Sans:400,300,600,700' );
-		wp_enqueue_style( 'bitstarter-default-fonts', 'https://fonts.googleapis.com/css?family=Noto+Sans:400,700' );
+		wp_enqueue_style( 'bitstarter-default-fonts', bitstarter_fonts_url(), array(), '1.0.0');
+
 		$main_style_deps[] = 'bitstarter-default-fonts';
 		
 		wp_enqueue_style( 'bitstarter-default-theme', get_template_directory_uri() . '/styles/theme.css'  );
@@ -193,10 +205,7 @@ function bitstarter_scripts() {
 		$bitstarter_scripts_deps[] = 'cssplugin';
 		wp_enqueue_script( 'mousewheel', '//cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js', array( 'jquery' ) );
 		$bitstarter_scripts_deps[] = 'mousewheel';
-		wp_enqueue_script( 'magnific', '//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js', array( 'jquery' ) );
-		$bitstarter_scripts_deps[] = 'magnific';
-		wp_enqueue_script( 'modernizr', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array( 'jquery' ) );
-		$bitstarter_scripts_deps[] = 'modernizr';
+
 		wp_enqueue_script('slick', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js', array( 'jquery' ) );
 		$bitstarter_scripts_deps[] = 'slick';
 
@@ -207,10 +216,29 @@ function bitstarter_scripts() {
 		$bitstarter_scripts_deps[] = 'highcharts';
 
 	} else {
+
+		wp_enqueue_script( 'tween-max', get_template_directory_uri() . '/assets/js/fallbacks/tween-max.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'tween-max';
+		
+		wp_enqueue_script('imagesloaded', get_template_directory_uri() . '/assets/js/fallbacks/imagesLoaded.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'imagesloaded';
+
+		wp_enqueue_script( 'scroll-to-plugin', get_template_directory_uri() . '/assets/js/fallbacks/scroll-to-plugin.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'scroll-to-plugin';
+
+		wp_enqueue_script( 'cssplugin', get_template_directory_uri() . '/assets/js/fallbacks/CSSPlugin.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'cssplugin';
+
+		wp_enqueue_script( 'mousewheel', get_template_directory_uri() . '/assets/js/fallbacks/jquery.mousewheel.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'mousewheel';
+
+		wp_enqueue_script('slick', get_template_directory_uri() . '/assets/js/fallbacks/slick.min.js', array( 'jquery' ) );
+		$bitstarter_scripts_deps[] = 'slick';
+
 		wp_enqueue_style( 'slick-style', get_template_directory_uri() . '/assets/css/bundle.css' );
 
-		wp_enqueue_script( 'bitstarter-bundle', get_template_directory_uri() . '/assets/js/bundle.min.js', array( 'jquery' ));
-		$bitstarter_scripts_deps[] = 'bitstarter-bundle';
+		wp_enqueue_script('highcharts', get_template_directory_uri() . '/assets/js/fallbacks/Highcharts.min.js', array( 'jquery' ));
+		$bitstarter_scripts_deps[] = 'highcharts';
 	}
 
 	wp_enqueue_script( 'bitstarter-polyfill', get_template_directory_uri() . '/assets/js/polyfill.js' );

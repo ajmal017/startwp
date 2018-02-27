@@ -9,7 +9,7 @@
     background-size: cover
     text-align: center
     overflow: hidden
-    background: black
+    background: #3A8FF4
     z-index: 1
     &__overlay1,
     &__overlay2,
@@ -28,7 +28,7 @@
         background-size: cover
         width: 100%
         overflow: hidden
-        padding: rem(110px / 2) rem(30px) rem(30px)
+        padding: rem(110px / 1.5) rem(30px) rem(30px)
         +r(900)
             padding: rem(110px / 2) rem(30px) rem(30px)
         body.header--transparent &
@@ -57,11 +57,12 @@
     color: inherit
     z-index: 10
     +r(900)
-        height: rem(42px)
-        overflow-x: auto
         margin-top: rem(4px)
-        overflow-y: hidden
-        white-space: nowrap
+        &--simple
+            overflow-x: auto
+            white-space: nowrap
+            height: rem(42px)
+            overflow-y: hidden
     &__more
         display: inline-block
         vertical-align: bottom

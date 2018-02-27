@@ -60,6 +60,7 @@
   display: flex
   justify-content: space-between
   padding: 40px 0 0
+  flex-wrap: nowrap
   a
       display: inline-block
       vertical-align: middle
@@ -69,6 +70,10 @@
       line-height: 40px
       letter-spacing: 0.56px
       padding: 0 18px
+      max-width: 213px
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
       +tr(all .5s)
       &:hover,
       &:focus

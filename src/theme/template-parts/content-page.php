@@ -13,14 +13,19 @@
 
 	<?php
 		$content = get_the_content();
-		$css = '';
+		$css = $title = '';
 		if ( has_shortcode( $content  , 'vc_row' ) ) {
 			$css = 'shortcode';
+		}else{
+			$title = get_the_title();
 		}
 	?>
 
 	<div class="entry-content <?php echo $css; ?>">
 		<?php
+			if( !empty($title) ){
+				echo '<h1>' . $title . '</h1>';
+			}
 			echo do_shortcode($content);
 			wp_link_pages( array(
 				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'bitstarter' ),

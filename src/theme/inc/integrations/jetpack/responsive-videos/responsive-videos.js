@@ -95,6 +95,3 @@
 	$( document ).on( 'post-load', responsive_videos );
 
 } )( jQuery );
-
-
-

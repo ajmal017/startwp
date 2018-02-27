@@ -1,8 +1,19 @@
 .search 
-  .hero-header__content-area__wrapper
-    flex-flow: column
-    padding: 10px
-    text-align: left
-    margin: 0 auto
-.search-no-results  .content-area
-    padding: 0 !important
+    .hero-header__content-area__wrapper
+        flex-flow: column
+        padding: 12px
+        text-align: left
+        margin: 0 auto
+    &.search-no-results  
+        .content-area
+            padding: 0 !important
+            margin-top: 0 !important
+            margin-bottom: 0 !important
+        .site-content
+            display: flex
+            flex: 1 1 100%
+            .hero-header
+                display: flex
+                flex: 1 1 100%
+                justify-content: center
+                align-items: center

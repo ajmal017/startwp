@@ -209,9 +209,12 @@ $has_image = false; ?>
 
 				bitstarter_comments_number();
 
-				bitstarter_likes();
+				if( class_exists('Bitstarter_importer') ){
+
+					bitstarter_likes();
 				
-				get_template_part('template-parts/social-share')
+					get_template_part('template-parts/social-share');
+				}
 
 			?> </div> <?php
 		?> <hr/> <?php

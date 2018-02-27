@@ -347,7 +347,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 						'blog_sidebar' => array(
 							'type' => 'radio_image',
 							'label' => esc_html__('Blog Sidebar', 'bitstarter'),
-							'default' => 'sidebar__none',
+							'default' => 'sidebar__right',
 							'choices' => array(
 								'sidebar__left' => get_template_directory_uri() . '/assets/img/sidebar_left.png',
 								'sidebar__none' => get_template_directory_uri() . '/assets/img/sidebar_none.png',
@@ -676,7 +676,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 									'property' => 'background-color',
 									'selector' => '
 										.blog, .archive, .single .site-content,
-										.error404 .entry-header, .search-no-results .entry-header',
+										.error404 .entry-header, .search-no-results .entry-header, .search',
 								),
 								array(
 									'property' => 'color',
@@ -1025,7 +1025,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								array(
 									'property' => 'color',
 									'selector' => 'a:not(.btn), #wp-calendar #today, body .widget_tag_cloud .tagcloud a, .widget_recent_entries span.post-date,
-									 .site .widget a:not(.tag-cloud-link):hover,  .site .widget a:not(.tag-cloud-link):focus, .single-post .entry-content .tags-links a',
+									 .site .widget a:not(.tag-cloud-link):hover,  .site .widget a:not(.tag-cloud-link):focus, .single-post .entry-content .tags-links a, .card-menu__points',
 								),
 								array(
 									'property' => 'border-top-color',
@@ -1054,7 +1054,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'background-color',
-									'selector' => 'html body .mejs-controls .mejs-time-rail .mejs-time-current '
+									'selector' => 'html body .mejs-controls .mejs-time-rail .mejs-time-current, '
 								),
 								array(
 									'property' => 'color',
@@ -1073,7 +1073,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'border-color',
-									'selector' => 'input, textarea',
+									'selector' => 'input, textarea,  .card-menu--expanded',
 									'callback_filter ' => 'bitstarter_customify_lighter_callback'
 								),
 								array(
@@ -1339,7 +1339,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 							'type'        => 'range',
 							'label'       => __( 'Font Size', 'bitstarter' ),
 							'live'        => true,
-							'default'     => 17,
+							'default'     => 22,
 							'input_attrs' => array(
 								'min'          => 10,
 								'max'          => 40,

@@ -166,7 +166,6 @@ if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
 		 * Let's add these settings into WordPress's options db
 		 */
 
-		// First, Pixtypes
 		$types_options = get_option( 'pixtypes_themes_settings' );
 		if ( empty( $types_options ) ) {
 			$types_options = array();

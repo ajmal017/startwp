@@ -18,7 +18,7 @@ get_header();
 	<main id="main" class="site-main" role="main">
 		<?php if(have_posts()) : ?>								
 					<div class="postcards">
-						<div class="grid grid--<?php echo esc_attr( bitstarter_get_option('blog_type_style') ); ?>" id="posts-container">
+						<div class="grid grid--<?php echo bitstarter_blog_style(); ?>" id="posts-container">
 						<?php /* Start the Loop */ ?>
 						<?php while ( have_posts() ) : the_post(); ?>
 							<div class="grid__item  postcard">

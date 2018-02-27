@@ -1,5 +1,32 @@
 <wpml-config>
     <admin-texts>
-   
+        <key name="bitstarter_options">
+            <key name="footer_copyright"/>
+        </key>
+        <key name="widget_bitstarter_socials">
+            <key name="3">
+                <key name="facebook_username" />
+                <key name="twitter_username" />
+                <key name="linkedin_username"/>
+                <key name="instagram_username" />
+                <key name="discord_username" />
+                <key name="github_username" />
+                <key name="telegram_username" />
+            </key>
+        </key>
+        <key name="widget_bitstarter_coinmarketcap">
+            <key name="2">
+                <key name="title" />
+                <key name="currencies" />
+            </key>
+        </key>
+        <key name="widget_bitstarter_footer_form">
+            <key name="2">
+                <key name="title" />
+                <key name="contact_form" />
+            </key>
+        </key>
     </admin-texts>
 </wpml-config>
+
+

@@ -40,11 +40,11 @@ function bitstarter_body_classes( $classes ) {
 	$show_on_posts_page = true;
 	if (is_home()) {
 		$show_on_posts_page = false;
-		$show_on_posts_page = bitstarter_get_option('blog_sidebar_posts');
+		$show_on_posts_page = bitstarter_get_option('blog_sidebar_posts', 'sidebar__right');
 	}
 
-	$sidebar = bitstarter_get_option('blog_sidebar', 'sidebar__right');
-	if( isset( $sidebar ) && 'sidebar__none' != $sidebar && $show_on_posts_page ){
+	$sidebar = bitstarter_get_option('blog_sidebar', 'sidebar__none');
+	if( isset( $sidebar ) && $sidebar != 'sidebar__none' && $show_on_posts_page ){
 		$classes[] = $sidebar;
 	}
 

@@ -74,7 +74,7 @@ if ( ! function_exists( 'bitstarter_setup' ) ) :
 		add_theme_support( 'custom-logo' );
 
 		/*
-		 * No support for Post Formats.
+		 * Support for Post Formats.
 		 * See https://developer.wordpress.org/themes/functionality/post-formats/
 		 */
 		add_theme_support( 'post-formats', array('gallery','audio', 'quote', 'video', 'link') );
@@ -84,10 +84,6 @@ if ( ! function_exists( 'bitstarter_setup' ) ) :
 
 		remove_post_type_support( 'page', 'thumbnail' );
 		remove_post_type_support( 'page', 'subtitles' ); 
-
-		// custom javascript handlers - make sure it is the last one added
-		add_action( 'wp_head', 'bitstarter_load_custom_js_header', 999 );
-		add_action( 'wp_footer', 'bitstarter_load_custom_js_footer', 999 );
 
 		/*
 		 * Add editor custom style to make it look more like the frontend
@@ -210,7 +206,6 @@ function bitstarter_scripts() {
 		$bitstarter_scripts_deps[] = 'slick';
 
 		wp_enqueue_style( 'slick-style', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css' );
-		//wp_enqueue_style('slick-style-theme', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
 
 		wp_enqueue_script('highcharts', '//code.highcharts.com/highcharts.js', array( 'jquery' ));
 		$bitstarter_scripts_deps[] = 'highcharts';
@@ -253,9 +248,6 @@ function bitstarter_scripts() {
 			),
 		'login_url' => rtrim( esc_url( wp_login_url() ) , '/')
 	) ); 
-
-
-
 }
 
 
@@ -280,41 +272,6 @@ function bitstarter_admin_scripts() {
 
 add_action( 'admin_enqueue_scripts', 'bitstarter_admin_scripts' );
 
-
-/**
- * Load custom javascript set by theme options
- * The function is executed on wp_enqueue_scripts
- */
-function bitstarter_load_custom_js_header() {
-	$custom_js = bitstarter_get_option( 'custom_js' );
-	if ( ! empty( $custom_js ) ) {
-		//first lets test is the js code is clean or has <script> tags and such
-		//if we have <script> tags than we will not enclose it in anything - raw output
-		if ( strpos( $custom_js, '</script>' ) 	!== false ) {
-			echo $custom_js; // cant esc_js
-		} else {
-			echo "<script type=\"text/javascript\">\n;(function($){\n" . $custom_js . "\n})(jQuery);\n</script>\n";
-		}
-	}
-}
-
-function bitstarter_load_custom_js_footer() {
-	$custom_js = bitstarter_get_option( 'custom_js_footer' );
-	if ( ! empty( $custom_js ) ) {
-		//first lets test is the js code is clean or has <script> tags and such
-		//if we have <script> tags than we will not enclose it in anything - raw output
-		if ( strpos( $custom_js, '</script>' ) !== false ) {
-			echo $custom_js . "\n"; // cant esc_js
-		} else {
-			echo "<script type=\"text/javascript\">\n;(function($){\n" . $custom_js . "\n})(jQuery);\n</script>\n";
-		}
-	}
-}
-
-/**
- * Implement the Custom Header feature.
- */
-// require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -384,6 +341,7 @@ function bitstarter_allowed_html() {
 			'class' => array(),
 			'title' => array(),
 			'style' => array(),
+			'data-slider' => array()
 		),
 		'table'  => array(
 			'class' => array(),
@@ -430,16 +388,39 @@ function bitstarter_allowed_html() {
 		),
 		'p' => array(
 			'class' => array(),
-			'style' => array()
+			'style' => array(),
+			'data-bind' => array()
 		),
 		'q' => array(
 			'cite' => array(),
 			'title' => array(),
 		),
+		'embed' => array(
+			'data-ratio' => array(),
+			'width' => array(),
+			'data-width' => array(),
+			'height' => array(),
+			'data-height' => array()
+		),
+		'iframe' => array(
+			'data-ratio' => array(),
+			'width' => array(),
+			'data-width' => array(),
+			'height' => array(),
+			'data-height' => array()
+		),
+		'object' => array(
+			'data-ratio' => array(),
+			'width' => array(),
+			'data-width' => array(),
+			'height' => array(),
+			'data-height' => array()
+		),
 		'span' => array(
 			'class' => array(),
 			'title' => array(),
 			'style' => array(),
+			'data-post-id' => array()
 		),
 		'strike' => array(),
 		'strong' => array(
@@ -449,7 +430,34 @@ function bitstarter_allowed_html() {
 		'ul' => array(
 			'class' => array(),
 			'style' => array()
-		)
+		),
+		'svg' => array(
+			'width' => array(),
+			'height' => array(),
+			'version' => array(),
+			'viewBox' => array(),
+			'xmlns' => array(),
+			'xmlns:xlink' => array()
+		),
+		'path' => array(
+			'd' => array(),
+			'transform' => array(),
+			'fill' => array(),
+			'style' => array(),
+			'fill-rule' => array(),
+			'id' => array(),
+		),
+		'g' => array(
+			'transform' => array(),
+			'fill' => array(),
+			'opacity' => array(),
+			'stroke' => array(),
+			'stroke-width' => array(),
+			'fill-rule' => array(),
+			'style' => array(),
+			'id' => array(),
+		),
+		'defs' => array()
 	);
 	return $allowed_tags;
 }

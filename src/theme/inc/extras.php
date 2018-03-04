@@ -85,7 +85,7 @@ if ( ! function_exists( 'bitstarter_display_image' ) ) {
 					//all good
 				} elseif ( false !== ( $svg_code = get_transient( md5( $url ) ) ) ) {
 					//now try to get the svg code from cache
-					echo $svg_code;
+					echo wp_kses($svg_code, bitstarter_allowed_html());
 				} else {
 
 					$svg_code = $wp_filesystem->get_contents( $url );
@@ -93,7 +93,7 @@ if ( ! function_exists( 'bitstarter_display_image' ) ) {
 					if ( ! empty( $svg_code ) ) {
 						set_transient( md5( $url ), $svg_code, 12 * HOUR_IN_SECONDS );
 
-						echo $svg_code;
+						echo wp_kses($svg_code, bitstarter_allowed_html());
 					}
 				}
 
@@ -106,7 +106,7 @@ if ( ! function_exists( 'bitstarter_display_image' ) ) {
 				echo '<img src="' . $url . '"' . $class . '/>';
 
 			} else {
-				echo $url;
+				echo esc_url( $url );
 			}
 		}
 	}
@@ -382,6 +382,15 @@ function bitstarter_get_related_posts(){
 	return $posts;
 }
 
+
+
+function bitstarter_get_likes_number() {
+
+	$likes = get_post_meta(get_the_ID(), 'post_likes', true);
+
+	return $likes;
+}
+
 /**
  * Modify the output for our custom User Menu items
  */
@@ -558,69 +567,6 @@ class Bitstarter_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 } //Bitstarter_Walker_Nav_Menu
 
-function archive_wpml_language_switcher() {
-	// a functions to remove the footer	language switcher added by WPML plugin
-	global $post;
-	global $icl_language_switcher;
-
-	if ( ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'jobs' ) )
-		|| is_search()
-		|| is_tax( array( 'job_listing_category', 'job_listing_tag', 'job_listing_region' ) )
-	) {
-		remove_action( 'wp_footer', array( $icl_language_switcher , 'language_selector_footer' ), 19 );
-	}
-}
-
-add_action('wp_footer', 'archive_wpml_language_switcher', 11);
-
-//
-
-function bitstarter_get_likes_number() {
-
-	$likes = get_post_meta(get_the_ID(), 'post_likes', true);
-
-	return $likes;
-}
-
-//
-
-function bitstarter_set_likes_number(){
-
-
-
-	$post_id = isset($_POST['ID'])?$_POST['ID']:null;
-
-		if(!$post_id)
-			wp_send_json_error();
-	
-		$data = array('cookie' => $_COOKIE['bitstarter_post_' . $post_id . '_liked']);
-	
-		if(empty($_COOKIE['bitstarter_post_' . $post_id . '_liked'])) {
-			$liked = get_post_meta($post_id, 'post_likes', true);
-			$liked = intval($liked) + 1;
-	
-			update_post_meta($post_id, 'post_likes', $liked);
-			
-	
-			setcookie('bitstarter_post_' . $post_id . '_liked', true, (time() + 24 * 3600 * 1000), SITECOOKIEPATH );
-			$data['liked'] = true;
-		} else {
-			$liked = get_post_meta($post_id, 'post_likes', true);
-			$liked = intval($liked) - 1;
-			$liked = $liked < 0?0:$liked;
-	
-			update_post_meta($post_id, 'post_likes', $liked);
-	
-			setcookie('bitstarter_post_' . $post_id . '_liked', false, (time() + 24 * 3600 * 1000), SITECOOKIEPATH );
-			$data['liked'] = false;
-		}
-	
-		wp_send_json_success($data);
-
-}
-
-add_action('wp_ajax_bitstarter_set_likes_number', 'bitstarter_set_likes_number');
-add_action('wp_ajax_nopriv_bitstarter_set_likes_number', 'bitstarter_set_likes_number');
 
 
 add_filter('comment_form_fields', 'bitstarter_reorder_comment_fields' );

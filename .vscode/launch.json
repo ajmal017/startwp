@@ -1,18 +1,21 @@
 {
         "version": "0.2.0",
         "configurations": [
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceRoot}"
-        },
             {
                 "type": "node",
                 "request": "launch",
-                "name": "Launch Program",
-                "program": "${file}"
-            }
+                "name": "Debug Unit Tests",
+                "port": 9230,
+                "runtimeArgs": [
+                  "--inspect=9230",
+                  "build",
+                  "watch"
+                ],
+                "runtimeExecutable": null,
+                "env": {
+                  "BABEL_ENV": "testing"
+                },
+                "restart": true
+              }
         ]
     }

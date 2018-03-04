@@ -40,7 +40,8 @@ const funcTable = {
   "sass,scss": [handleSass],
   "default": [noop],
   "siteMap": [createSiteMap],
-  "serve": [serve]
+  "serve": [serve],
+  "clean": [() => { rmdirAll(path.resolve('./dist/')); }]
 }
 
 const templateData = {
@@ -96,30 +97,52 @@ function watch(){
 
   fs.watch('./src', { recursive: true }, debounce(async (eventType, filename) => {
     let task = filename.split(/\.(.{2,4}$)/);
-
+   
     switch (eventType) {
       case "rename":
         files = filesDist = null;
-        if(fs.existsSync(`./src/${filename.split('\\').join('/')}`)) { // win bug
-        
-          console.log('\x1b[36m%s\x1b[0m', 'create');
-          await call(task[task.length - 2], filename)
-  
-        }else{
-  
-          console.log('\x1b[36m%s\x1b[0m', 'delete');
-          try{
-            await fs.unlink(`./dist/${filename.split('\\').join('/')}`);  // win bug
+
+        if(fs.existsSync(path.resolve(`./src/${filename}`))) {
+          if(fs.statSync(path.resolve(`./src/${filename}`)).isDirectory()){
+            // It is a directory
+            console.log('\x1b[36m%s\x1b[0m', 'create/rename dir');
+            rmdirAll(path.resolve(`./dist/${filename}`));
+            await copyStatic();
+          }else{
+            // File
+            console.log('\x1b[36m%s\x1b[0m', 'create');
+            await call(task[task.length - 2], filename)
           }
-          catch(err) { }
+
+        }else{
+          
+          if(fs.statSync(path.resolve(`./dist/${filename}`)).isDirectory()){
+            console.log('\x1b[36m%s\x1b[0m', 'delete dir');
+            rmdirAll(path.resolve(`./dist/${filename}`));
+          }else{
+
+            console.log('\x1b[36m%s\x1b[0m', 'delete');
+            try{
+              await fs.unlink(`./dist/${filename.split('\\').join('/')}`);  // win bug
+            }
+            catch(err) { }
+          }
+
         }
         
         call('wpDev');
-
         break;
+
       case "change":
-        
-        call(task[task.length - 2 ], filename)
+        if(!fs.statSync(path.resolve(`./src/${filename}`)).isDirectory()){
+          //if its file
+          call(task[task.length - 2 ], filename)
+        }else{
+          // Here was changed in directory, so renew
+          rmdirAll(path.resolve(`./dist/${filename}`));
+          await copyStatic();
+          call('wpDev');
+        }
         break;
     
       default:
@@ -263,18 +286,17 @@ async function minifyJs(filename) {
 
 
 // Link files with folder in wordpress
-
 async function wpDev() {
   console.log('\x1b[36m%s\x1b[40m', 'Linking ...');  
   let paths = await filesWithPatternsDist([/theme\/.*\..{2,4}$/])
     .map(async filePath => {
-      return `ln -f d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/${filePath.substr(7)} d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/${path.dirname(filePath.substr(7))} \n`
+      return `ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/${filePath.substr(7)} d:/OSPanel/domains/wp/wp-content/themes/bitstarter/${path.dirname(filePath.substr(7))} \n`
     })
     .array;
-  let pre = `rm -rf d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/
-             mkdir d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter
+  let pre = `rm -rf d:/OSPanel/domains/wp/wp-content/themes/bitstarter/
+             mkdir d:/OSPanel/domains/wp/wp-content/themes/bitstarter
               
-            ln -fs d:/OpenServer/domains/wordpress/wp-content/startwp/dist/theme/* d:/OpenServer/domains/wordpress/wp-content/themes/bitstarter/ \n`; // hack to create dir
+            ln -fs d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/* d:/OSPanel/domains/wp/wp-content/themes/bitstarter/ \n`; // hack to create dir
 
   await fs.writeFile('wp-dev.sh', paths.reduce((acc, val) => acc.concat(val), pre));
   const { stdout, stderr } = await exec('sh wp-dev.sh');
@@ -343,6 +365,20 @@ async function mkdirAll(dir) {
     return newDir;
   }, Promise.resolve(''));
 }
+
+function rmdirAll(dir) {
+  if (fs.existsSync(dir)) {
+    fs.readdirSync(dir).forEach(function(file, index){
+      var curPath = path.join(dir, file);
+      if (fs.lstatSync(curPath).isDirectory()) { // recurse
+        rmdirAll(curPath);
+      } else { // delete file
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(dir);
+  }
+};
 
 function flatten(arr) {
   return Array.prototype.concat.apply([], arr);

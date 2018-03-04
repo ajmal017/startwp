@@ -28,7 +28,7 @@
         background-size: cover
         width: 100%
         overflow: hidden
-        padding: rem(110px / 1.5) rem(30px) rem(30px)
+        padding: rem(110px / 2.5) rem(30px) rem(30px)
         +r(900)
             padding: rem(110px / 2) rem(30px) rem(30px)
         body.header--transparent &
@@ -44,7 +44,8 @@
             width: 100%
             height: 100%
             object-fit: cover
-
+    &.has__categories .hero-header__background
+        padding: rem(110px / 2) rem(30px) rem(30px)
     .hero-header__content
         z-index: 20
 /**
@@ -82,7 +83,8 @@
         a 
             display: inline-block
             vertical-align: middle
-            font-size: rem(11px)
+            font-size: rem(13px)
+            line-height: 20px
             font-weight: 600
             padding: rem(6px) rem(20px)
             color: inherit

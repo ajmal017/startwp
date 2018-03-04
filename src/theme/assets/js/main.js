@@ -116,17 +116,6 @@ import "./expand.js"
             });
         };
 
-        $('.job_filters').bindFirst('click', '.reset', function() {
-            $('.active-tags').empty();
-            $('.tags-select').find(':selected').each(function(i, obj) {
-                $(obj).attr('selected', false);
-            });
-            $('.tags-select').trigger("chosen:updated");
-
-            $('input[name="search_keywords"]').each(function(i, obj) {
-                $(obj).val('').trigger('chosen:updated');
-            });
-        });
 
     }); 
 
@@ -176,105 +165,6 @@ import "./expand.js"
 
     })(jQuery)
 
-
-    
-    const Likes = (function($) {
-        function init(){
-            var stop = false; 
-            $(".likes-count").click(function(event) {
-                event.preventDefault();
-                if(stop) return
-                var $this = $(this);
-                $this.addClass('bitstarter__icon--anim');
-                stop = true;
-                $.post(BitstarterParams.ajax.url, {
-                    action: BitstarterParams.ajax.likes_action,
-                    ID: $this.data("post-id")
-                }).done(function(response) {
-                    stop = false
-                    if (response.data.liked) {
-                        $this.addClass("likes-count--active");
-
-                        var n = $this.find(".likes-count__number").text() || 0;
-
-                        if( !isNaN(n) ) $this.find(".likes-count__number").text(parseInt(n) + 1);
-                    } else {
-                        $this.removeClass("likes-count--active");
-
-                        var n = $this.find(".likes-count__number").text() || 0
-                        if(!isNaN(n)) $this
-                            .find(".likes-count__number")
-                            .text(parseInt(n) <= 0 ? 0 : parseInt(n) - 1);
-                    }
-                    $this.removeClass('bitstarter__icon--anim');
-                }).fail( _ => {
-                    stop = false;
-                    $this.removeClass('bitstarter__icon--anim');
-                });
-            });
-        }
-
-        return {
-            init: init
-        }
-    })(jQuery);
-
-
-    const Share = (function($) {
-        function init(){
-            var shareServices = {
-                twitter: function() {
-                    window.open('http://twitter.com/intent/tweet?text=' + jQuery("h2.text-title").text() + ' ' + window.location,
-                        "twitterWindow",
-                        "width=650,height=350");
-                    return false;
-                },
-
-                // Facebook
-
-                facebook: function(){
-                    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href),
-                        'facebookWindow',
-                        'width=650,height=350');
-                    return false;
-                },
-
-                // Pinterest
-
-                pinterest: function(){
-                    window.open('http://pinterest.com/pin/create/bookmarklet/?description=' + jQuery("h2.text-title").text() + ' ' + encodeURIComponent(location.href),
-                        'pinterestWindow',
-                        'width=750,height=430, resizable=1');
-                    return false;
-                },
-
-                // Google Plus
-
-                google: function(){
-                    window.open('https://plus.google.com/share?url=' + encodeURIComponent(location.href),
-                        'googleWindow',
-                        'width=500,height=500');
-                    return false;
-                }
-            }
-
-            $('.entry-share__links').on('click', 'a', function(e){
-                e.preventDefault();
-                var $href = $(e.currentTarget),
-                    service = $href.data('share');
-
-                if( typeof shareServices[service] === 'function'){
-                    shareServices[service]();
-                }
-            })
-
-
-        }
-        
-        return {
-            init: init
-        }
-    })(jQuery);
 
     const BitstarterPlot = (function($, Highcharts) {
         
@@ -881,15 +771,12 @@ import "./expand.js"
 
         
         Sliders.init();
-        Likes.init();
-        Share.init();
         BitstarterPlot.init();
         Coinmarketcap.init();
         BitstarterSlider.init();
         Counter.init();
         CounterDown.init();
 
-        tooltipTrigger();
         keepSubmenusInViewport(); 
         $('.js-menu-trigger').on('touchstart click', toggleMenu);
 
@@ -1003,7 +890,7 @@ import "./expand.js"
      * Handler for the back to top button
      */
     function scrollToTop() {
-        $('a[href="#top"]').click(function(event) {
+        $('a[href="#top"]').on('click', function(event) {
             event.preventDefault();
             event.stopPropagation();
 
@@ -1116,15 +1003,6 @@ import "./expand.js"
         }
     }
 
-    function tooltipTrigger() {
-        $('.js-tooltip-trigger').on('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            $(this).parent().toggleClass('active');
-
-        });
-    }
 
 
     // Detect the submenus that exceed the viewport

@@ -80,24 +80,26 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 						),
 					)
 				),
-				'custom_js'   => array(
-					'title'   => esc_html__( 'Custom JavaScript', 'bitstarter' ),
+				'blogoptions'     => array(
+					'title'   => esc_html__( 'Blog Options', 'bitstarter' ),
 					'options' => array(
-						'custom_js'        => array(
-							'type'        => 'ace_editor',
-							'label'       => esc_html__( 'Header', 'bitstarter' ),
-							'desc'        => esc_html__( 'Easily add Custom Javascript code. This code will be loaded in the <head> section.', 'bitstarter' ),
-							'editor_type' => 'javascript',
+						'prevnextpost' => array(
+							'type' => 'checkbox',
+							'default' => false,
+							'label' => esc_html__('Enable pagination on post pages?', 'bitstarter')
 						),
-						'custom_js_footer' => array(
-							'type'        => 'ace_editor',
-							'label'       => esc_html__( 'Footer', 'bitstarter' ),
-							'desc'        => esc_html__( 'You can paste here your Google Analytics tracking code (or for what matters any tracking code) and we will put it on every page.', 'bitstarter' ),
-							'editor_type' => 'javascript',
+						'likes' => array(
+							'type' => 'checkbox',
+							'default' => true,
+							'label' => esc_html__('Enable likes on post pages?', 'bitstarter')
 						),
+						'shares' => array(
+							'type' => 'checkbox',
+							'default' => true,
+							'label' => esc_html__('Enable shares on post pages?', 'bitstarter')
+						)
 					)
 				),
-
 				'import_demo_data' => array(
 					'title'       => __( 'Demo Data', 'bitstarter' ),
 					'description' => esc_html__( 'If you would like to have a "ready to go" website as the Bitstarter\'s demo page here is the button', 'bitstarter' ),

@@ -28,9 +28,9 @@ function bitstarter_register_required_plugins() {
 	//
 	$plugins = array(
 		array(
-			'name'      => 'Bitstarter Importer',
-			'slug'      => 'bitstarter-importer',
-			'source'    => get_template_directory() . '/inc/required-plugins/bitstarter-plugin/bitstarter-importer.zip',
+			'name'      => 'Bitstarter Core',
+			'slug'      => 'bitstarter-core',
+			'source'    => get_template_directory() . '/inc/required-plugins/bitstarter-plugin/bitstarter-core.zip',
 			'required'  => true,
 		),
 

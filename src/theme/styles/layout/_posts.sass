@@ -149,6 +149,8 @@
 
   &-player
     position: relative
+    .grid--list &
+      width: 360px
     .card__toplink
       display: flex
     &__wrapper
@@ -255,12 +257,14 @@
       width: 100%
     .grid--list &
       width: 100%
-      flex: 0 1 auto
+      flex: 0 1000 auto
       & > *
         width: 100%
     .format-quote &
       height: 100%
       position: absolute
+      top: 0
+      left: 0
   &__categories
     margin-bottom: 0px
     position: relative

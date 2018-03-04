@@ -510,9 +510,12 @@ input[type="submit"],
 .widget-area__footer, .footer-infoarea { max-width: 1140px; }
 
 .page-template-default .entry-content{
-  margin: 10px 0; 
+  margin: 10px 0;
 }
 
+.page-template-default .entry-content p{
+  white-space: pre-line;
+}
 
 .site-branding img{max-height: 32px}.site-header__in { max-width: 1140px; }
 .frontpage-area { max-width: 1140px; }
@@ -546,7 +549,7 @@ ul.primary-menu ul .menu-item-has-children { color: #6b7c93; }
 .hero-category__list li { border-radius: 20px; }
 html,
 .single .content-area { background-color: #FFFFFF; }
-.blog, .archive, .single, .search, .site-content,
+.blog, .archive, .single, .search,
 .error404 .entry-header, .search-no-results .entry-header { background-color: #f6f9fc; }
 body .widget_tag_cloud .tagcloud a:hover, .single-post .entry-content .tags-links a:hover { color: #f6f9fc; }
 .page-title,
@@ -667,6 +670,10 @@ ul.primary-menu > .menu-item > a { padding-right: 20px; }
  }
 @media not screen and (min-width: 900px) { .primary-menu ul .children, ul.primary-menu .sub-menu{background-color: #e2e5e8} }
 
+
+
+
+
 .card.format-quote{
   background-color: #3A8FF4;
 }
@@ -681,3 +688,4 @@ ul.primary-menu > .menu-item > a { padding-right: 20px; }
 .single .post-navigation{
   display: none;
 }
+

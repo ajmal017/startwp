@@ -7,7 +7,7 @@
  * @package Bitstarter
  */
 
-?>
+?> 
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -18,10 +18,11 @@
 			$css = 'shortcode';
 		}else{
 			$title = get_the_title();
+			$content = '<p>' . $content . '</p>';
 		}
 	?>
 
-	<div class="entry-content <?php echo $css; ?>">
+	<div class="entry-content <?php echo esc_attr($css); ?>">
 		<?php
 			if( !empty($title) ){
 				echo '<h1>' . $title . '</h1>';

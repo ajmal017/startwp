@@ -69,7 +69,7 @@ if ( ! function_exists( 'bitstarter_display_logo' ) ) {
 				) )
 			);
 
-			echo $html;
+			echo wp_kses( $html, bitstarter_allowed_html());
 		}
 		// or else display the regular logo
 		elseif ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
@@ -145,7 +145,8 @@ if ( ! function_exists('bitstarter_permabutton') ) :
 		$btn = '<div class="permalink" ><a class="'. $settings['classes'] . '" href="' . get_permalink() .'">';
 		$btn .= $settings['title'];
 		$btn .= '</a></div>';
-		echo $btn;
+
+		echo wp_kses( $btn, bitstarter_allowed_html()); 
 
 	}
 endif;
@@ -168,7 +169,7 @@ if( ! function_exists( 'bitstarter_comments_number' ) ):
 			get_comments_number_text( __('0','bitstarter'), __('1','bitstarter'), __('%','bitstarter')),
 			$opacity
 		);
-		echo $comment_html;
+		echo wp_kses( $comment_html, bitstarter_allowed_html());
 	}
 
 endif;
@@ -196,7 +197,7 @@ function bitstarter_likes(){
 		isset($_COOKIE['bitstarter_post_' . $post_id . '_liked'])?'likes-count--active':''
 	);
 
-	echo $html;
+	echo wp_kses( $html, bitstarter_allowed_html());
 }
 
 endif;

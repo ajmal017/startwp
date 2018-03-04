@@ -58,15 +58,7 @@
 		/**
 		 * On page template change hide the Featured Image box since we show the Hero one
 		 */
-		// $('#page_template').on('change', function () {
-		// 	if ( $('select#page_template').val() == 'page-templates/front_page.php' ) {
-		// 		//hide the Featured Image box
-		// 		$('#postimagediv').hide();
-		// 	} else {
-		// 		//show the Featured Image box otherwise
-		// 		$('#postimagediv').show();
-		// 	}
-		// });
+
 		if( $('#page_template').length > 0 ){
 			$('#postimagediv').hide();
 		}

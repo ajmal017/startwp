@@ -57,7 +57,7 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
         
         $output .= '<div class="counterDown__title " style="color: ' . esc_attr($text_color) . '; ">' . $title . '</div>';
 
-        $output .= '<div class="counterDown__timer " style="color:'. esc_attr($bg_color1) .'" data-date="' . esc_attr($date) . ' ' . esc_attr($time) . ':00">';
+        $output .= '<div class="counterDown__timer " style="color:'. esc_attr($bg_color1) .'" data-date="' . esc_attr($date) . 'T' . esc_attr($time) . ':00">';
         $output .= '    <div class="counterDown__timer__in" data-mark="years">';
         $output .= '        <h2 class="counterDown__timer__datatime" style="background-color:' . esc_attr($text_color) . '; color:'. esc_attr($bg_color1) .'"></h2>';
         $output .= '        <h2 class="counterDown__timer__datamark" style="color:' . $text_color . '; " data-labels="'.esc_html__('0: years | 1:year | 2:years', 'bitstarter').'"></h2>';

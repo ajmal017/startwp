@@ -209,11 +209,14 @@ $has_image = false; ?>
 
 				bitstarter_comments_number();
 
-				if( class_exists('Bitstarter_importer') ){
+				if( class_exists('Bitstarter_Core') ){
+					if ( bitstarter_get_option('likes', true) ){
+						bitstarter_likes();
+					}
 
-					bitstarter_likes();
-				
-					get_template_part('template-parts/social-share');
+					if ( bitstarter_get_option('shares', true) ){
+						get_template_part('template-parts/social-share');
+					}
 				}
 
 			?> </div> <?php
@@ -222,8 +225,9 @@ $has_image = false; ?>
 		bitstarter_tags();
 
 		?> </div> <?php
-
-		wp_link_pages();
+		
+			wp_link_pages();
+			
 		?>
 	</div><!-- .entry-content -->
 </article><!-- #post-## -->

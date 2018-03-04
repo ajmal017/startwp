@@ -320,29 +320,19 @@ class Bitstarter_Coinmarketcap extends WP_Widget {
 
 
 		$output = '';
-
+   
 		if( is_array( $currencies ) ){
 
 			$output .= "<ul class='widget-coinmarketcap' id='coinmarketcap' >";
 			foreach( $currencies as $coin ){
 
-				// $response = wp_remote_get('https://api.coinmarketcap.com/v1/ticker/' . trim($coin) );
-				
-				// if( is_wp_error($response) || $response['response']['code'] !== 200 ){
-				// 	continue;
-				// }
-				// $data =  json_decode($response['body']);
-				// if( !is_array($data) ){
-				// 	continue;
-				// }
-
 				$output .= sprintf(
 					'<li class="widget-coinmarketcap__item "  data-url="%1$s" ><img class="widget-coinmarketcap__icon" alt="%2$s" src="%3$s" /> <span class="widget-coinmarketcap__name"> </span> <span class="widget-coinmarketcap__space"> </span>
 					<span class="widget-coinmarketcap__price"></span>
 					</li>',
-					'https://api.coinmarketcap.com/v1/ticker/'. trim($coin) . '/',
-					$coin,
-					'https://files.coinmarketcap.com/static/img/coins_legacy/64x64/' . $coin . '.png'
+					esc_url('https://api.coinmarketcap.com/v1/ticker/'.  trim($coin) . '/'),
+					esc_attr( $coin ),
+					esc_url('https://files.coinmarketcap.com/static/img/coins_legacy/64x64/' . $coin . '.png')
 
 				);
 			}
@@ -351,7 +341,7 @@ class Bitstarter_Coinmarketcap extends WP_Widget {
 		
 		}
 
-		echo $output;
+		echo  $output;
 
 		echo $args['after_widget'];
 
@@ -443,7 +433,7 @@ class Bitstarter_Footer_Forms_Widget extends WP_Widget
 		
 		$output = do_shortcode('[contact-form-7 id="'. $contact_form.'"]');
 
-		echo $output;
+		echo wp_kses( $output, bitstarter_allowed_html());
 
 		echo $args['after_widget'];
 

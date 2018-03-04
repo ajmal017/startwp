@@ -60,7 +60,7 @@
 					$image_sizes = wp_get_attachment_image_sizes($attachid, 'bitstarter-card-image');
 				?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<img class="card__image" alt="card__image" src="<?php echo $image[0]; ?>"  <?php if ($image_srcset != ''): ?> srcset="<?php echo $image_srcset; ?>" sizes="<?php echo $image_sizes; ?>" <?php endif; ?> />
+					<img class="card__image" alt="card__image" src="<?php echo esc_attr( $image[0] ); ?>"  <?php if ($image_srcset != ''): ?> srcset="<?php echo esc_attr($image_srcset); ?>" sizes="<?php echo esc_attr($image_sizes); ?>" <?php endif; ?> />
 				</a>
 
 				<?php else : ?>
@@ -116,14 +116,14 @@
 				?>
 				<div class="card-player" >
 					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-						<img class="card__image" alt="card__image" src="<?php echo $image[0]; ?>"   <?php if ($image_srcset != ''): ?> srcset="<?php echo $image_srcset; ?>"  sizes="<?php echo $image_sizes; ?>"<?php endif;?> />
+						<img class="card__image" alt="card__image" src="<?php echo esc_attr( $image[0] ); ?>"   <?php if ($image_srcset != ''): ?> srcset="<?php echo esc_attr( $image_srcset ); ?>"  sizes="<?php echo esc_attr( $image_sizes ); ?>"<?php endif;?> />
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
 				</div>
 			<?php elseif($type == 'wp') : ?>
 				<div class="card-player" >
 					<a class="card__toplink" href="<?php the_permalink(); ?>">
-						<img class="card__image" alt="card__image" src="<?php echo $image[0]; ?>" srcset="<?php echo $image_srcset; ?>"/>
+						<img class="card__image" alt="card__image" src="<?php echo esc_attr( $image[0] ); ?>" srcset="<?php echo esc_attr( $image_srcset ); ?>"/>
 						
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--wp"><?php echo do_shortcode($audio); ?></div>
@@ -136,7 +136,7 @@
 
 				?>
 				<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<img class="card__image" alt="card__image" src="<?php echo $image[0]; ?>"  <?php if ($image_srcset != ''): ?> srcset="<?php echo $image_srcset; ?>" sizes="<?php echo $image_sizes; ?>"<?php endif;?>/>
+					<img class="card__image" alt="card__image" src="<?php echo esc_attr( $image[0] ); ?>"  <?php if ($image_srcset != ''): ?> srcset="<?php echo esc_attr( $image_srcset ); ?>" sizes="<?php echo esc_attr( $image_sizes ); ?>"<?php endif;?>/>
 				</a>
 
 			<?php else : ?>
@@ -193,7 +193,7 @@
 					if( is_array($image) && !is_wp_error( $image )):	
 				?>
 					<a class="card__toplink card__toplink--hasPic" href="<?php the_permalink(); ?>">
-					<img class="card__image" alt="card__image" src="<?php echo $image[0]; ?>" <?php if ($image_srcset != ''): ?> srcset="<?php echo $image_srcset; ?>" sizes="<?php echo $image_sizes; ?>"<?php endif;?>/>
+					<img class="card__image" alt="card__image" src="<?php echo esc_attr( $image[0] ); ?>" <?php if ($image_srcset != ''): ?> srcset="<?php echo esc_attr( $image_srcset ); ?>" sizes="<?php echo esc_attr( $image_sizes ); ?>"<?php endif;?>/>
 					</a>
 
 				<?php endif;
@@ -277,4 +277,4 @@
 	</div>
 	<!-- .card__content -->
 </article><!-- #post-## -->
-
+ 

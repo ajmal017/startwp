@@ -431,9 +431,7 @@ class Bitstarter_Footer_Forms_Widget extends WP_Widget
 			echo $args['before_title'] . $title . $args['after_title'];
 		endif;
 		
-		$output = do_shortcode('[contact-form-7 id="'. $contact_form.'"]');
-
-		echo wp_kses( $output, bitstarter_allowed_html());
+		echo do_shortcode('[contact-form-7 id="'. $contact_form.'"]');
 
 		echo $args['after_widget'];
 

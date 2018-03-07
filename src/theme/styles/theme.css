@@ -373,7 +373,7 @@ textarea {
   border-top-color: #ababab;
 }
 hr {
-  background-color: #ababab;
+  background-color: #6b7c93;
 }
 .site-header .site-title {
   font-size: 22px;
@@ -617,11 +617,10 @@ a:not(.btn), #wp-calendar #today, body .widget_tag_cloud .tagcloud a, .widget_re
 .description, .entry-meta a, .page .entry-meta a,
 .card-meta { color: #8fa0ad; }
 html body .mejs-controls .mejs-time-rail .mejs-time-current { background-color: #8fa0ad; }
+
 .form-control::placeholder, input::placeholder { color: #8fa0ad; }
 .form-control, input, textarea{color: #7b8c99}.form-control:focus::placeholder,
-input:focus::placeholder { color: #8fa0ad; }
-input, textarea { border-color: #8fa0ad; }
-.description_tooltip { color: #8fa0ad; }
+input:focus::placeholder{color: #c1d2df}input, textarea, .card-menu--expanded{border-color: #c1d2df}.description_tooltip { color: #8fa0ad; }
 .site-header { border-bottom-color: #ABABAB; }
 .site-footer { border-top-color: #ABABAB; }
 hr { background-color: #ABABAB; }
@@ -688,4 +687,6 @@ ul.primary-menu > .menu-item > a { padding-right: 20px; }
 .single .post-navigation{
   display: none;
 }
+
+.rss-date{ color: #22dfb5;}
 

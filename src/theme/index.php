@@ -15,7 +15,11 @@
 get_header();
 ?>
 
-<?php get_template_part( 'template-parts/content', 'hero' ); ?>	
+<?php 
+	if(!( is_front_page() && is_home() )) {
+		get_template_part( 'template-parts/content', 'hero' ); 
+	}
+?>	
 
 
 <div class="content-area__wrapper">

@@ -16,7 +16,7 @@ if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
 		 * These settings will be needed when the theme will get active
 		 * Careful with the first setup, most of them will go in the clients database and they will be stored there
 		 */
-		$pixtypes_conf_settings = array(
+		$iondigital_conf_settings = array(
 			'first_activation' => true,
 			'metaboxes'        => array(
 				'bitstarter_page_background' => array(
@@ -156,7 +156,6 @@ if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
 					
 				)
 			)
-
 			)
 		);
 
@@ -166,13 +165,13 @@ if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
 		 * Let's add these settings into WordPress's options db
 		 */
 
-		$types_options = get_option( 'pixtypes_themes_settings' );
+		$types_options = get_option( 'iondigital_themes_settings' );
 		if ( empty( $types_options ) ) {
 			$types_options = array();
 		}
 
-		$types_options['bitstarter_pixtypes_theme'] = $pixtypes_conf_settings;
-		update_option( 'pixtypes_themes_settings', $types_options );
+		$types_options['bitstarter_iondigital_theme'] = $iondigital_conf_settings;
+		update_option( 'iondigital_themes_settings', $types_options );
 
 
 		// add defaults widgets
@@ -184,8 +183,6 @@ if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
 
 			// prepare the default widgets
 	
-
-
 			$current_widgets['sidebar-1']         = array(
 				'bitstarter_coinmarketcap-4',
 				'custom_html-2',
@@ -224,45 +221,84 @@ if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
 endif; // end bitstarter_config_getting_active
 
 
+// bitstarter core requires these things 
 add_action( 'after_switch_theme', 'bitstarter_config_getting_active' );
 
 
-// pixtypes requires these things 
-if ( ! class_exists( 'wpgrade' ) ) :
-	class wpgrade {
-		static function shortname() {
-			return 'bitstarter';
-		}
+// if ( ! class_exists( 'wpgrade' ) ) :
+// 	class wpgrade {
+// 		static function shortname() {
+// 			return 'bitstarter';
+// 		}
 
-		/** @var WP_Theme */
-		protected static $theme_data = null;
+// 		/** @var WP_Theme */
+// 		protected static $theme_data = null;
 
-		/**
-		 * @return WP_Theme
-		 */
-		static function themedata() {
-			if ( self::$theme_data === null ) {
-				if ( is_child_theme() ) {
-					$theme_name       = get_template();
-					self::$theme_data = wp_get_theme( $theme_name );
-				} else {
-					self::$theme_data = wp_get_theme();
-				}
+// 		/**
+// 		 * @return WP_Theme
+// 		 */
+// 		static function themedata() {
+// 			if ( self::$theme_data === null ) {
+// 				if ( is_child_theme() ) {
+// 					$theme_name       = get_template();
+// 					self::$theme_data = wp_get_theme( $theme_name );
+// 				} else {
+// 					self::$theme_data = wp_get_theme();
+// 				}
+// 			}
+
+// 			return self::$theme_data;
+// 		}
+
+// 		/**
+// 		 * @return string
+// 		 */
+// 		static function themeversion() {
+// 			return wpgrade::themedata()->Version;
+// 		}
+// 	}
+
+// 	function wpgrade_callback_geting_active() {
+// 		bitstarter_config_getting_active();
+// 	}
+
+	
+// endif;
+class ThemeConfig {
+	static function shortname() {
+		return 'bitstarter';
+	}
+
+	static function setup() {
+		return 'bitstarter_config_getting_active';
+	}
+
+	/** @var WP_Theme */
+	protected static $theme_data = null;
+
+
+
+	/**
+	 * @return WP_Theme
+	 */
+	static function themedata() {
+		if ( self::$theme_data === null ) {
+			if ( is_child_theme() ) {
+				$theme_name       = get_template();
+				self::$theme_data = wp_get_theme( $theme_name );
+			} else {
+				self::$theme_data = wp_get_theme();
 			}
-
-			return self::$theme_data;
 		}
 
-		/**
-		 * @return string
-		 */
-		static function themeversion() {
-			return wpgrade::themedata()->Version;
-		}
+		return self::$theme_data;
 	}
 
-	function wpgrade_callback_geting_active() {
-		bitstarter_config_getting_active();
+	/**
+	 * @return string
+	 */
+	static function themeversion() {
+		return ThemeConfig::themedata()->Version;
 	}
 
-endif;
+}

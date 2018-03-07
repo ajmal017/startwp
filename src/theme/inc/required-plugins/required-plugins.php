@@ -33,12 +33,6 @@ function bitstarter_register_required_plugins() {
 			'source'    => get_template_directory() . '/inc/required-plugins/bitstarter-plugin/bitstarter-core.zip',
 			'required'  => true,
 		),
-
-		array(
-			'name'               => 'PixTypes',
-			'slug'               => 'pixtypes',
-			'required'           => true
-		),
 		array(
 			'name'               => 'Customify',
 			'slug'               => 'customify',

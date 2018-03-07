@@ -161,7 +161,8 @@
 
       li.menu-item a 
         @extend %li-style
-      
+  .sub-menu
+    margin-left: 10px
     
 .widget_media_image
   img
@@ -208,10 +209,10 @@
     li 
       a 
         @extend %li-style
-      
       span.post-date 
         display: block
         background-color: transparent
+        font-size: 14px
       
     
   
@@ -228,8 +229,16 @@
       a 
         @extend %li-style
       
-    
-  
+  .rss-date
+    display: block
+    font-size: 14px
+  .rssSummary
+    font-size: 14px
+  cite
+    font-size: 14px
+    font-style: normal
+    font-weight: 700
+
 
 .widget_tag_cloud 
   .tagcloud 

@@ -57,18 +57,21 @@
         max-width: 100%
         height: auto
 
-@media not screen and (min-width: 900px)
-    figure.aligncenter,
-    figure.alignnone
-        margin-left: 0
-        margin-right: 0
-    
 
+figure.aligncenter,
+figure.alignnone
+    margin-left: auto
+    margin-right: auto
 
 .aligncenter
     text-align: center
     display: inline-block
     clear: both
+    
+span.aligncenter,
+span.alignleft,
+span.alignright
+    width: 100%
 
 figure.aligncenter
     display: block  

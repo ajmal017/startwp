@@ -90,8 +90,6 @@ input[type="file"]
     border: 0
 
 
-
-
 button
     outline: none
     -webkit-tap-highlight-color: rgba(0,0,0,0)
@@ -158,10 +156,10 @@ input,
 select,
 textarea
     background: white
-    border: 1px solid rgba(0, 0, 0, 0.075) 
+    border: 1px solid rgba(0, 0, 0, 0.075)
     border-radius: 3px
     box-shadow: none
-    font-size: 14.95px
+    font-size: 14px
     line-height: normal
     -webkit-appearance: none
     appearance: none
@@ -191,9 +189,9 @@ select
     padding-bottom: 0px 
 
 
-label 
+label
     color: #484848
-    font-size: 14.95px
+    font-size: 14px
     font-weight: 400 
     line-height: 1.67
 
@@ -201,11 +199,13 @@ label
 input[type="checkbox"] 
     border: 1px solid rgba(0, 0, 0, 0.075) 
     cursor: pointer
-    height: 22px !important
+    height: 18px !important
     position: relative
     vertical-align: middle
-    width: 22px !important
+    width: 18px !important
     -webkit-appearance: none !important
+    outline: none
+
 
 input[type="checkbox"]:checked:before 
     content: "✔"
@@ -215,9 +215,6 @@ input[type="checkbox"]:checked:before
     -webkit-transform: translateX(-50%) translateY(-50%)
     -ms-transform: translateX(-50%) translateY(-50%)
     transform: translateX(-50%) translateY(-50%)
-
-input[type="checkbox"]:focus 
-    border-color: #484848
 
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -348,6 +345,9 @@ input[type=number]::-webkit-outer-spin-button
  *   Contact Form 7
  */
 .wpcf7 
+    display: flex
+    align-content: center
+    justify-content: center
     p 
         position: relative
 

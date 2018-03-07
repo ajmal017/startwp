@@ -736,6 +736,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 									'property' => 'border-color',
 									'selector' => 'input[type="checkbox"]:focus,
 													.package__btn.package__btn:hover',
+									'callback_filter' => 'bitstarter_customify_lighter_callback'
 								),
 								array(
 									'property' => 'background',
@@ -744,8 +745,12 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'fill',
-									'selector' => '.entry-share__links svg'				
-								)
+									'selector' => '.entry-share__links svg'
+								),
+								array(
+									'property' => 'background-color',
+									'selector' => 'hr'
+								),
 							)
 						),
 						'buttons_color'        => array(
@@ -1027,7 +1032,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								array(
 									'property' => 'color',
 									'selector' => 'a:not(.btn), #wp-calendar #today, body .widget_tag_cloud .tagcloud a, .widget_recent_entries span.post-date,
-									 .site .widget a:not(.tag-cloud-link):hover,  .site .widget a:not(.tag-cloud-link):focus, .single-post .entry-content .tags-links a, .card-menu__points',
+									 .site .widget a:not(.tag-cloud-link):hover,  .site .widget a:not(.tag-cloud-link):focus, .single-post .entry-content .tags-links a, .card-menu__points, input[type="checkbox"]:checked:before, .rss-date',
 								),
 								array(
 									'property' => 'border-top-color',
@@ -1071,12 +1076,12 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 									'property' => 'color',
 									'selector' => '.form-control:focus::placeholder,
 									input:focus::placeholder',
-									'callback_filter ' => 'bitstarter_customify_lighter_callback'
+									'callback_filter' => 'bitstarter_customify_lighter_callback'
 								),
 								array(
 									'property' => 'border-color',
-									'selector' => 'input, textarea,  .card-menu--expanded',
-									'callback_filter ' => 'bitstarter_customify_lighter_callback'
+									'selector' => 'input, textarea, .card-menu--expanded',
+									'callback_filter' => 'bitstarter_customify_lighter_callback'
 								),
 								array(
 									'property' => 'color',
@@ -1097,10 +1102,6 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								array(
 									'property' => 'border-top-color',
 									'selector' => '.site-footer'
-								),
-								array(
-									'property' => 'background-color',
-									'selector' => 'hr'
 								),
 								array(
 									'property' => 'box-shadow',
@@ -1700,9 +1701,9 @@ if ( ! function_exists( 'bitstarter_customify_darker_callback' ) ) {
 
 if ( ! function_exists( 'bitstarter_customify_lighter_callback' ) ) {
 	function bitstarter_customify_lighter_callback( $value, $selector, $property, $unit ) {
-		$lighenValue = -100;
+		$lighenValue = -50;
 		if ( $value == '#ffffff' ) {
-			$lighenValue = -100;
+			$lighenValue = -50;
 		} // #FFFFFF -> #F9F9F9
 		$output = $selector . '{' . $property . ': ' . bitstarter_color_darken( $value, $lighenValue ) . '}';
 
@@ -1782,14 +1783,7 @@ if ( ! function_exists( 'bitstarter_update_header_height' ) ) {
 }
 
 function bitstarter_update_header_height_customizer_preview() {
-	/**
-	 * The WP-Job-Manager ajax requsets captures this output for some reason, which is wrong
-	 * But also WP-Job-Manager defines the DOING_AJAX constant too late for the customizer preview hook
-	 * As solution we can check the request uri if it contains a `/jm-ajax/`.It is definetly a job manager ajax request
-	 */
-	if ( strpos( $_SERVER['REQUEST_URI'], '/jm-ajax/' ) !== false ) {
-		return;
-	} ?>
+	?>
 	<script type="text/javascript">
 
 		function bitstarter_update_header_height( value, selector, property, unit ) {

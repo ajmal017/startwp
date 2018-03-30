@@ -108,9 +108,9 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 						'import_demodata_button' => array(
 							'title' => 'Import',
 							'type'  => 'html',
-							'html'  => '<input type="hidden" name="Bitstarter-nonce-import-posts-pages" value="' . wp_create_nonce( 'Bitstarter_nonce_import_demo_posts_pages' ) . '" />
-										<input type="hidden" name="Bitstarter-nonce-import-theme-options" value="' . wp_create_nonce( 'Bitstarter_nonce_import_demo_theme_options' ) . '" />
-										<input type="hidden" name="Bitstarter-nonce-import-widgets" value="' . wp_create_nonce( 'Bitstarter_nonce_import_demo_widgets' ) . '" />
+							'html'  => '<input type="hidden" name="Bitstarter-nonce-import-posts-pages" value="' . wp_create_nonce( 'Iondigital_nonce_import_demo_posts_pages' ) . '" />
+										<input type="hidden" name="Bitstarter-nonce-import-theme-options" value="' . wp_create_nonce( 'Iondigital_nonce_import_demo_theme_options' ) . '" />
+										<input type="hidden" name="Bitstarter-nonce-import-widgets" value="' . wp_create_nonce( 'Iondigital_nonce_import_demo_widgets' ) . '" />
 										<input type="hidden" name="Bitstarter_import_ajax_url" value="' . admin_url( "admin-ajax.php" ) . '" />' .
 							           '<span class="description customize-control-description">' . esc_html__( '(Note: We cannot serve you the original images due the ', 'bitstarter' ) . '<strong>&copy;</strong>)</span></br>' .
 							           '<a href="#" class="button button-primary" id="Bitstarter_import_demodata_button" style="width: 70%; text-align: center; padding: 10px; display: inline-block; height: auto;  margin: 0 15% 10% 15%;">

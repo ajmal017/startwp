@@ -135,7 +135,7 @@ class ModelEntry {
             });
     }
 
-    /**
+    /** 
      * Initialize model. Sets up listeners for ensuring internal consistency.
      */
     _initModel() {

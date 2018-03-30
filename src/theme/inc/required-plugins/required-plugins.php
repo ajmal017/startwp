@@ -28,9 +28,9 @@ function bitstarter_register_required_plugins() {
 	//
 	$plugins = array(
 		array(
-			'name'      => 'Bitstarter Core',
-			'slug'      => 'bitstarter-core',
-			'source'    => get_template_directory() . '/inc/required-plugins/bitstarter-plugin/bitstarter-core.zip',
+			'name'      => 'Iondigital Kit',
+			'slug'      => 'iondigital-kit',
+			'source'    => get_template_directory() . '/inc/required-plugins/bitstarter-plugin/iondigital-kit.zip',
 			'required'  => true,
 		),
 		array(

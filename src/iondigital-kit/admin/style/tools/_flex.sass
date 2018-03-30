@@ -1,0 +1,217 @@
+ /* 9.0 - Flex Classes */
+$base-gap: 6px
+.f
+	display: -webkit-flex
+	display: -webkit-box
+	display: -moz-flex
+	display: -moz-box
+	display: -ms-flexbox
+	display: flex
+	flex-wrap: nowrap
+	&-init
+		> *
+			flex: 0 1 auto
+	&-fill
+		> *
+			flex: 1 1 auto
+	&-noflex
+		> *
+			flex: 0 0 auto
+	&-wrap
+		flex-wrap: wrap
+	&-row
+		flex-direction: row
+	&-col
+		flex-direction: column
+	&-gap
+		@for $i from 1 through 20
+			&-#{$i}
+				$half-gap: $base-gap * $i * 0.5
+
+				margin-left: - $half-gap
+				margin-right: - $half-gap
+				> *
+					margin-left: $half-gap
+					margin-right: $half-gap
+	&-v-gap
+		@for $i from 1 through 20
+			&-#{$i}
+				$gap: $base-gap * $i
+				> *:first-child
+					margin-top: 0
+				> *:last-child
+					margin-bottom: 0
+				> *
+					margin-top: $gap
+					margin-bottom: $gap
+
+
+=flex-alignment($base : '.f-align')
+  #{$base}-1-1,
+  #{$base}-1-2,
+  #{$base}-1-3
+    justify-content: flex-start
+
+  #{$base}-2-1,
+  #{$base}-2-2,
+  #{$base}-2-3
+    justify-content: center
+
+  #{$base}-3-1,
+  #{$base}-3-2,
+  #{$base}-3-3
+    justify-content: flex-end
+
+  #{$base}-13-1,
+  #{$base}-13-2,
+  #{$base}-13-3
+    justify-content: space-between
+
+  #{$base}-1-1,
+  #{$base}-2-1,
+  #{$base}-3-1
+    align-items: flex-start
+
+  #{$base}-1-2,
+  #{$base}-2-2,
+  #{$base}-3-2
+    align-items: center
+
+  #{$base}-1-22,
+  #{$base}-2-22,
+  #{$base}-3-22
+    align-items: baseline
+
+  #{$base}-1-3,
+  #{$base}-2-3,
+  #{$base}-3-3
+    align-items: flex-end
+
+  #{$base}-1-33,
+  #{$base}-2-33,
+  #{$base}-3-33
+    align-items: stretch
+
++flex-alignment()
+
+
+.u
+	// margins and paddings
+	@for $i from 0 through 10
+		$gap: $base-gap * $i
+		&-mt-#{$i},
+		&-my-#{$i},
+		&-m-#{$i}
+			margin-top: $gap
+
+		&-mb-#{$i},
+		&-my-#{$i},
+		&-m-#{$i}
+			margin-bottom: $gap
+
+		&-ml-#{$i},
+		&-mx-#{$i},
+		&-m-#{$i}
+			margin-left: $gap
+
+		&-mr-#{$i},
+		&-mx-#{$i},
+		&-m-#{$i}
+			margin-right: $gap
+
+		&-pt-#{$i},
+		&-py-#{$i},
+		&-p-#{$i}
+			padding-top: $gap
+
+		&-pb-#{$i},
+		&-py-#{$i},
+		&-p-#{$i}
+			padding-bottom: $gap
+
+		&-pl-#{$i},
+		&-px-#{$i},
+		&-p-#{$i}
+			padding-left: $gap
+
+		&-pr-#{$i},
+		&-px-#{$i},
+		&-p-#{$i}
+			padding-right: $gap
+
+	&-mx-auto
+		margin-left: auto
+		margin-right: auto
+
+  // text utitlites
+	&-text
+
+		&-nowrap
+			white-space: nowrap
+
+		&-upper
+			text-transform: uppercase
+
+		&-capital
+			text-transform: capitalize
+
+		&-right
+			text-align: right
+
+		&-center
+			text-align: center
+
+		&-left
+			text-align: left
+		
+		&-undecor
+			text-decoration: none
+
+
+
+	@each $prop in (block, inline-block, inline) 
+		&-#{$prop}
+			display: #{$prop}
+
+
+// Extra small devices (portrait phones, less than 576px)
+.only-xs
+	display: none
+// Small devices (landscape phones, 576px and up)
+.only-sm
+	display: none
+
+// Medium devices (tablets, 768px and up)
+.only-md
+	display: none
+
+// Large devices (desktops, 900px and up)
+.only-lg
+	display: none
+
+// Extra large devices (large desktops, 1200px and up)
+.only-xl
+	display: none
+
+
+
+
+@media (max-width: 575px)
+	.only-xs
+		display: block
+
+@media (min-width: 576px) and (max-width: 767px) 
+	.only-sm
+		display: block
+
+@media (min-width: 768px) and (max-width: 899px) 
+	.only-md
+		display: block
+
+@media (min-width: 900px) and (max-width: 1199px)
+	.only-lg
+		display: block
+
+@media (min-width: 1200px)
+	.only-xl
+		display: block

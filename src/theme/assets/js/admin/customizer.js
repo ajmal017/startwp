@@ -138,7 +138,7 @@
 				type: "POST",
 				url: this_data.ajaxUrl,
 				data: {
-					action: 'Bitstarter_ajax_import_posts_pages',
+					action: 'Iondigital_ajax_import_posts_pages',
 					_wpnonce: this_data.nonceImportPostsPages,
 					_wp_http_referer: this_data.ref,
 					step_number: stepNumber,
@@ -183,7 +183,7 @@
 			type: "POST",
 			url: this_data.ajaxUrl,
 			data: {
-				action: 'Bitstarter_ajax_import_theme_options',
+				action: 'Iondigital_ajax_import_theme_options',
 				_wpnonce: this_data.nonceImportThemeOptions,
 				_wp_http_referer: this_data.ref
 			}
@@ -217,7 +217,7 @@
 			type: "POST",
 			url: this_data.ajaxUrl,
 			data: {
-				action: 'Bitstarter_ajax_import_widgets',
+				action: 'Iondigital_ajax_import_widgets',
 				_wpnonce: this_data.nonceImportWidgets,
 				_wp_http_referer: this_data.ref
 			}

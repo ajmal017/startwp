@@ -192,7 +192,7 @@ if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
 				'categories-3',
 				'tag_cloud-2'
 			);
-			$current_widgets['footer-widget-area-social']         = array(
+			$current_widgets['footer-widget-area-social'] = array(
 				'wpcom_social_media_icons_widget-2'
 			);
 			$current_widgets['footer-widget-area-1']     = array(
@@ -215,6 +215,8 @@ if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
 
 			update_option( 'widget_nav_menu', array('5'=> array('title' => 'INFORMATION','nav_menu'=> 22),'_multiwidget' => 1 ));
 
+			update_option( 'widget_text', array('1'=> array(), '_multiwidget' => 1 ));
+
 		}
 		
 	}
@@ -225,80 +227,41 @@ endif; // end bitstarter_config_getting_active
 add_action( 'after_switch_theme', 'bitstarter_config_getting_active' );
 
 
-// if ( ! class_exists( 'wpgrade' ) ) :
-// 	class wpgrade {
-// 		static function shortname() {
-// 			return 'bitstarter';
-// 		}
+// class ThemeConfig {
+// 	static function shortname() {
+// 		return 'bitstarter';
+// 	}
 
-// 		/** @var WP_Theme */
-// 		protected static $theme_data = null;
+// 	static function setup() {
+// 		return 'bitstarter_config_getting_active';
+// 	}
 
-// 		/**
-// 		 * @return WP_Theme
-// 		 */
-// 		static function themedata() {
-// 			if ( self::$theme_data === null ) {
-// 				if ( is_child_theme() ) {
-// 					$theme_name       = get_template();
-// 					self::$theme_data = wp_get_theme( $theme_name );
-// 				} else {
-// 					self::$theme_data = wp_get_theme();
-// 				}
+// 	/** @var WP_Theme */
+// 	protected static $theme_data = null;
+
+
+
+// 	/**
+// 	 * @return WP_Theme
+// 	 */
+// 	static function themedata() {
+// 		if ( self::$theme_data === null ) {
+// 			if ( is_child_theme() ) {
+// 				$theme_name       = get_template();
+// 				self::$theme_data = wp_get_theme( $theme_name );
+// 			} else {
+// 				self::$theme_data = wp_get_theme();
 // 			}
-
-// 			return self::$theme_data;
 // 		}
 
-// 		/**
-// 		 * @return string
-// 		 */
-// 		static function themeversion() {
-// 			return wpgrade::themedata()->Version;
-// 		}
+// 		return self::$theme_data;
 // 	}
 
-// 	function wpgrade_callback_geting_active() {
-// 		bitstarter_config_getting_active();
+// 	/**
+// 	 * @return string
+// 	 */
+// 	static function themeversion() {
+// 		return ThemeConfig::themedata()->Version;
 // 	}
 
-	
-// endif;
-class ThemeConfig {
-	static function shortname() {
-		return 'bitstarter';
-	}
-
-	static function setup() {
-		return 'bitstarter_config_getting_active';
-	}
-
-	/** @var WP_Theme */
-	protected static $theme_data = null;
-
-
-
-	/**
-	 * @return WP_Theme
-	 */
-	static function themedata() {
-		if ( self::$theme_data === null ) {
-			if ( is_child_theme() ) {
-				$theme_name       = get_template();
-				self::$theme_data = wp_get_theme( $theme_name );
-			} else {
-				self::$theme_data = wp_get_theme();
-			}
-		}
-
-		return self::$theme_data;
-	}
-
-	/**
-	 * @return string
-	 */
-	static function themeversion() {
-		return ThemeConfig::themedata()->Version;
-	}
-
-}
+// }

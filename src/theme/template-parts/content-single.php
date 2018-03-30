@@ -209,13 +209,13 @@ $has_image = false; ?>
 
 				bitstarter_comments_number();
 
-				if( class_exists('Bitstarter_Core') ){
+				if( class_exists('IodigitalThemeFunction') ){
 					if ( bitstarter_get_option('likes', true) ){
-						bitstarter_likes();
+						IodigitalThemeFunction::likes();
 					}
 
 					if ( bitstarter_get_option('shares', true) ){
-						get_template_part('template-parts/social-share');
+						IodigitalThemeFunction::share();
 					}
 				}
 

@@ -12,7 +12,8 @@ const rollup = require('rollup');
 const babelPlugin = require('rollup-plugin-babel');
 const resolve = require('rollup-plugin-node-resolve');
 const minify = require('rollup-plugin-babel-minify');
-
+const commonjs = require('rollup-plugin-commonjs');
+const replace = require('rollup-plugin-replace');
 
 var browserSync = require('browser-sync').create();
 var mysql      = require('mysql');
@@ -223,14 +224,28 @@ async function handleSass() {
     })
     .map(async file => {
       for (const [key, val] of Object.entries(templateData)) {
-        file.contents = file.contents.css.toString().replace(`{%${key}%}`, val);
+        file.contents = await file.contents.css.toString().replace(`{%${key}%}`, val);
       }
-      await fs.writeFile(`dist/theme/${path.basename(file.name).split('.')[0]}.css`, file.contents);
+
+
+      let fileInfo = path.parse(file.name);
+      
+      if(fileInfo.dir === 'theme/styles' && (fileInfo.name === "style" || fileInfo.name === "editor-style" || fileInfo.name === "rtl")){
+        // this is theme's style.css
+        await mkdirAll(`dist/theme`)
+        await fs.writeFile(`dist/theme/${path.basename(file.name).split('.')[0]}.css`, file.contents);
+      }else{
+        // change last dir(like style, scss or sass) to css folder
+        console.log(`dist/${fileInfo.dir.substr(0, fileInfo.dir.lastIndexOf("/"))}/${fileInfo.name}.css`);
+        await mkdirAll(`dist/${fileInfo.dir.substr(0, fileInfo.dir.lastIndexOf("/"))}/css`)
+        await fs.writeFile(`dist/${fileInfo.dir.substr(0, fileInfo.dir.lastIndexOf("/"))}/css/${fileInfo.name}.css`, file.contents);
+      }
+
       return file
       
     }).array.catch(err => {
       console.log('\x1b[31m','CSS');
-      console.log(err.formatted)
+      console.log(err)
       console.log('\x1b[37m');
     })
 
@@ -241,38 +256,81 @@ async function handleSass() {
 
 
 var cache;
+var deps = {};
+var depsAlt = {};
 async function minifyJs(filename) {
   console.time('minifyJs');
-  console.log(filename)
+
   const orig = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
     .map(async file  => {
-      const name = file;
-      //if(filename && filename.split('\\').join('/') != name) return
-
+      let name = file;
+      if(filename && filename.split('\\').join('/') != name) return
+      if(deps[name]){
+        name = deps[name];
+        console.log(deps)
+      }
       console.log('bundling... \n %s', path.parse(name).name)
       const bundle = await rollup.rollup({
         input: `src/${name}`, 
         plugins: [
-          resolve(),
+          resolve({
+            browser: true,
+            jsnext: true,
+            main: true
+          }),
           babelPlugin({
             exclude: 'node_modules/**' // only transpile our source code
           }),
+          commonjs({
+            ignoreGlobal: false
+          }),
+          replace({
+            'process.env.NODE_ENV': JSON.stringify( 'development' )
+          })
           // minify({
           //   comments: false
           // })
         ],
-        cache
+        cache,
+        onwarn: function (message) {
+          // Suppress this error message... there are hundreds of them. Angular team says to ignore it.
+          // https://github.com/rollup/rollup/wiki/Troubleshooting#this-is-undefined
+          if (/The 'this' keyword is equivalent to 'undefined' at the top level of an ES module, and has been rewritten/.test(message)) {
+              return;
+          }
+          console.error(message);
+        }
       });
 
       cache = bundle;
+
+      if(!!filename && !depsAlt[file]){
+
+        bundle.modules.filter(o => o.id.includes(path.basename(filename)))[0]['dependencies'].map(pathFile => {
+          depsAlt[file] = true;
+          let indexOfCorrectPath = pathFile.split('\\').join('/').indexOf('src/');
+          if( indexOfCorrectPath > 0 ){
+            deps[ pathFile.split('\\').join('/').substr(indexOfCorrectPath + 4) ] =  file;
+            depsAlt[file] = [ pathFile.split('\\').join('/').substr(indexOfCorrectPath + 4) ];
+          }
+
+        })
+      }
+
       let outputOptions = {
         format: 'iife',
         globals: {
-          jquery: '$'
+          jquery: '$',
+          React: 'React',
+          ReactDOM: 'ReactDOM'
         },
         file: `dist/${name}`,
+        sourcemap: true,
         name: path.parse(name).name.split('-').join('_')
       };
+
+  
+
       const { code, map } = await bundle.generate(outputOptions);
       await bundle.write(outputOptions);
 
@@ -288,15 +346,28 @@ async function minifyJs(filename) {
 // Link files with folder in wordpress
 async function wpDev() {
   console.log('\x1b[36m%s\x1b[40m', 'Linking ...');  
-  let paths = await filesWithPatternsDist([/theme\/.*\..{2,4}$/])
+  let pathsTheme = await filesWithPatternsDist([/theme\/.*\..{2,4}$/])
     .map(async filePath => {
       return `ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/${filePath.substr(7)} d:/OSPanel/domains/wp/wp-content/themes/bitstarter/${path.dirname(filePath.substr(7))} \n`
     })
     .array;
+
+    let pathsPlugin = await filesWithPatternsDist([/iondigital-kit\/.*\..{2,4}$/])
+    .map(async filePath => {
+      return `ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist${filePath} d:/OSPanel/domains/wp/wp-content/plugins${path.dirname(filePath)} \n`
+    })
+    .array;
+
+  let paths = [...pathsTheme , ...pathsPlugin];
   let pre = `rm -rf d:/OSPanel/domains/wp/wp-content/themes/bitstarter/
              mkdir d:/OSPanel/domains/wp/wp-content/themes/bitstarter
+
+             rm -rf d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/
+             mkdir d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit
               
-            ln -fs d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/* d:/OSPanel/domains/wp/wp-content/themes/bitstarter/ \n`; // hack to create dir
+            ln -fs d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/* d:/OSPanel/domains/wp/wp-content/themes/bitstarter/ 
+
+            ln -fs d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/* d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/ \n`; // hack to create dir
 
   await fs.writeFile('wp-dev.sh', paths.reduce((acc, val) => acc.concat(val), pre));
   const { stdout, stderr } = await exec('sh wp-dev.sh');

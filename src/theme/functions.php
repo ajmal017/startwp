@@ -7,6 +7,9 @@
  * @package Bitstarter
  */
 
+
+
+
 if ( ! function_exists( 'bitstarter_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -54,6 +57,43 @@ if ( ! function_exists( 'bitstarter_setup' ) ) :
 		// Max Width of 1920px
 		add_image_size('bitstarter-featured-image', 1920, 9999, true );
 
+		// Iondigital Core
+
+		function bitstarter_themedata() {
+				
+			if ( is_child_theme() ) {
+				$theme_name  = get_template();
+				$theme_data = wp_get_theme( $theme_name );
+			} else {
+				$theme_data = wp_get_theme();
+			}
+			
+			return $theme_data;
+		}
+
+		add_theme_support( 'iondigital_kit',  array(
+			'theme_config' => array(
+				'active' => true,
+				'shortname' => 'bitstarter',
+				'setup' => 'bitstarter_config_getting_active',
+				'theme_data' => bitstarter_themedata()
+			),
+			'importer' => array(
+				'active' => true,
+				'import_filepath' => get_template_directory() . '/inc/demo-data/demo_data',
+			),
+			'share_servises' => array(
+				'facebook' => 'assets/svg/fb-icon.php',
+				'twitter' => 'assets/svg/tw-icon.php',
+				'google' => 'assets/svg/goog-icon.php',
+				'pinterest' => 'assets/svg/pntr-icon.php',
+			),
+			'likes' => array(
+				'icon' => 'assets/svg/likes-icon.php' 
+			)
+		));
+		
+	
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'primary'            => esc_html__( 'Primary Menu', 'bitstarter' )
@@ -158,7 +198,8 @@ function bitstarter_fonts_url() {
      */
     if ( 'off' !== _x( 'on', 'Google font: on or off', 'bitstarter' ) ) {
         $font_url = add_query_arg( 'family', urlencode( 'Noto Sans:400,400italic,700italic,700&subset=latin,latin-ext' ), "//fonts.googleapis.com/css" );
-    }
+	}
+	
     return $font_url;
 }
 
@@ -241,10 +282,10 @@ function bitstarter_scripts() {
 
 	wp_enqueue_script( 'bitstarter-scripts', get_template_directory_uri() . '/assets/js/main.js', $bitstarter_scripts_deps, $theme->get( 'Version' ), true );
 
-	wp_localize_script( 'jquery', 'BitstarterParams', array(
+	wp_localize_script( 'jquery', 'IondigitalThemeParams', array(
 		'ajax' => array (
 				'url' => admin_url('admin-ajax.php'),
-				'likes_action' => 'bitstarter_set_likes_number'
+				'likes_action' => 'Iondigital_set_likes_number'
 			),
 		'login_url' => rtrim( esc_url( wp_login_url() ) , '/')
 	) ); 
@@ -463,4 +504,3 @@ function bitstarter_allowed_html() {
 	);
 	return $allowed_tags;
 }
-

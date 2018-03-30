@@ -332,7 +332,7 @@ class Bitstarter_Coinmarketcap extends WP_Widget {
 					</li>',
 					esc_url('https://api.coinmarketcap.com/v1/ticker/'.  trim($coin) . '/'),
 					esc_attr( $coin ),
-					esc_url('https://files.coinmarketcap.com/static/img/coins_legacy/64x64/' . $coin . '.png')
+					esc_url( get_template_directory_uri() . '/assets/img/coins/' . $coin . '.png')
 
 				);
 			}

@@ -4,6 +4,22 @@
  * Extend VC Empty Space
  */
 
+vc_remove_param( "vc_empty_space", "height" );
+vc_remove_param( "vc_empty_space", "el_id" );
+
+$attributes = array(
+    'type' => 'bitstarter_responsive_param',
+    'heading' => esc_html__( 'Responsive Options', 'bitstarter' ),
+    'param_name' => 'bitstarter_responsive_height',
+    'params' => array(
+        'height' => array(
+            'type' => 'size',
+            'heading' => esc_html__( 'Height', 'bitstarter'),
+        ),
+    ),
+    'description' => esc_html__( 'Adjust block height for different screen sizes.', 'bitstarter' )
+);
+vc_add_param( 'vc_empty_space', $attributes );
 
 $attributes = array(
     'type' => 'bitstarter_helptext',
@@ -27,9 +43,11 @@ $attributes = array(
                     esc_html__( 'only-xl', 'bitstarter' ),
                     esc_html__( 'Extra large devices (large desktops, 1200px and up)', 'bitstarter' ),
                     esc_html__( 'Put some css class(e.g. only-sm) in the Extra class name field above, in case you have to add many class separate them by empty space', 'bitstarter' )
-                    )
+                )
 );
-vc_add_param( 'vc_empty_space', $attributes );
+//vc_add_param( 'vc_empty_space', $attributes );
+
+
 
 
 /**

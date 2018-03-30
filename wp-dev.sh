@@ -25,6 +25,8 @@ ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/fonts/open-sans
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/fonts/roboto/roboto-v16-latin-regular.eot d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/fonts/roboto 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/fonts/roboto/roboto-v16-latin-regular.svg d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/fonts/roboto 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/fonts/roboto/roboto-v16-latin-regular.ttf d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/fonts/roboto 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/img/3-layers.png d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/img 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/img/avatar.png d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/img 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/img/list.png d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/img 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/img/pattern.png d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/img 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/img/select-arrow.svg d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/img 
@@ -51,7 +53,9 @@ ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/admin/admin-
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/admin/customizer_preview.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/admin/customizer.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/admin/edit-page.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/admin 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/admin/responsive_param.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/calc.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/custom-elements.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/expand.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/fallbacks/CSSPlugin.min.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/fallbacks 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/fallbacks/Highcharts.min.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/fallbacks 
@@ -114,6 +118,8 @@ ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/required-plugins/v
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/shortcodes/extend_vc.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/shortcodes 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/shortcodes/init.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/shortcodes 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/shortcodes/params/vc_helptext.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/shortcodes/params 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/shortcodes/params/vc_responsive_param.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/shortcodes/params 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/shortcodes/params/vc_responsive_param.tpl.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/shortcodes/params 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/shortcodes/vc_bitstarter_blog.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/shortcodes 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/shortcodes/vc_bitstarter_calc.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/shortcodes 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/shortcodes/vc_bitstarter_card.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/shortcodes 
@@ -147,4 +153,5 @@ ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/template-parts/content
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/template-parts/content.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/template-parts 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/template-parts/related-posts.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/template-parts 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/template-parts/social-share.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/template-parts 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/vc_templates/vc_empty_space.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/vc_templates 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/wpml-config.xml d:/OSPanel/domains/wp/wp-content/themes/bitstarter/. 

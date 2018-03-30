@@ -113,7 +113,7 @@ ul.primary-menu li.current_page_item a {
 }
 
 .hero-header{
-  background-color: #3A8FF4 !important;
+  background-color: #15467f !important;
 }
 .hero-header__content {
   color: #fff;
@@ -220,7 +220,7 @@ input[type="submit"],
 .no-results .clear-results-btn,
 .card__links li a,
 html body .mejs-container, html body .mejs-container .mejs-controls, html body .mejs-embed, html body .mejs-embed body, .entry-header-categories__links li a, .site .bitstarter__slider .slick-arrow, .coin-circle div {
-  background-color: #22dfb5;
+  background-color: #4F70F1;
 }
 
 .btn,
@@ -275,21 +275,21 @@ input[type="submit"] {
 .posted-by:focus,
 .card-gallery__slider .slick-arrow,
 .single-post .slick-arrow {
-  color: #22dfb5;
+  color: #4F70F1;
 }
 .format-standard.card .card__toplink:before,
 .format-link.card .card__toplink:before,
 .card .card__sticky {
-  background-color: #22dfb5;
+  background-color: #4F70F1;
 }
 .format-quote .card__toplink,
 .entry-featured__qoute__bkgrnd {
-  background-color: #22dfb5;
+  background-color: #4F70F1;
 }
 .grid--tile .bitstarter__icon use,
 .single-post .likes-count .bitstarter__icon use,
 .single-post .comments-count .bitstarter__icon use {
-  fill: #22dfb5;
+  fill: #4F70F1;
 }
 .site-footer {
   background: #f9f9f9;
@@ -307,20 +307,20 @@ html body .mejs-container .mejs-controls,
 html body .mejs-embed,
 html body .mejs-embed body,
 .entry-header-categories__links li a {
-  background-color: #22dfb5;
+  background-color: #4F70F1;
 }
 
 *::selection,
 *::-moz-selection {
-  background: #22dfb5;
+  background: #4F70F1;
 }
 body .widget_tag_cloud .tagcloud a:hover,
 .single-post .entry-content .tags-links a:hover {
-  background: #22dfb5;
+  background: #4F70F1;
 }
 body .widget_tag_cloud .tagcloud a,
 .single-post .entry-content .tags-links a {
-  border-color: #22dfb5;
+  border-color: #4F70F1;
 }
 a:not(.btn),
 #wp-calendar #today,
@@ -329,14 +329,14 @@ body .widget_tag_cloud .tagcloud a,
 .site .widget a:not(.tag-cloud-link):hover,
 .site .widget a:not(.tag-cloud-link):focus,
 .single-post .entry-content .tags-links a {
-  color: #22dfb5;
+  color: #4F70F1;
 }
 .page-template-front_page .is--active .search-field-wrapper.has--menu:after,
 ul.secondary-menu > .menu-item.menu-item-has-children > .sub-menu:after,
 .search_jobs--frontpage
   .chosen-with-drop.chosen-container-active
   .chosen-single:after {
-  border-top-color: #22dfb5;
+  border-top-color: #4F70F1;
 }
 .description,
 .entry-meta a,
@@ -565,9 +565,9 @@ label, html, body, body .site .widget a,
 input[type="checkbox"]:focus,
 .package__btn.package__btn:hover { border-color: #6b7c93; }
 .widget-sidebar-title:after{background: #cfe0f7}.entry-share__links svg { fill: #6b7c93; }
-.btn, input[type="submit"] { background-color: #22dfb5; }
-.btn, input[type="submit"], .site button.vc_general.vc_btn3-style-custom, .nav-links a { box-shadow: 0 2px 6px rgba(34,223,181, 0.4);} .btn:hover, input[type="submit"]:hover, .site button.vc_general.vc_btn3-style-custom:hover, input[type="submit"]:focus,button.vc_general.vc_btn3-style-custom:active,  .nav-links a:hover,  .nav-links a:focus { box-shadow: 0 4px 20px rgba(34,223,181, 0.8);} .package__btn.package__btn { color: #22dfb5; }
-.heart.is--bookmarked #hearshape { fill: #22dfb5; }
+.btn, input[type="submit"] { background-color: #4F70F1; }
+.btn, input[type="submit"], .site button.vc_general.vc_btn3-style-custom, .nav-links a { box-shadow: 0 2px 6px rgba(79, 112, 241, 0.4);} .btn:hover, input[type="submit"]:hover, .site button.vc_general.vc_btn3-style-custom:hover, input[type="submit"]:focus,button.vc_general.vc_btn3-style-custom:active,  .nav-links a:hover,  .nav-links a:focus { box-shadow: 0 4px 20px rgba(79, 112, 241, 0.8);} .package__btn.package__btn { color: #4F70F1; }
+.heart.is--bookmarked #hearshape { fill: #4F70F1; }
 .btn, input[type="submit"] { color: #ffffff; }
 .nav-links a { background-color: #ffffff; }
 .card { background-color: #FFFFFF; }
@@ -590,30 +590,30 @@ input[type="checkbox"]:focus,
 .posted-by:hover,
 .posted-by:focus,
 .card-gallery__slider .slick-arrow,
-.single-post .slick-arrow { color: #22dfb5; }
+.single-post .slick-arrow { color: #4F70F1; }
 .format-standard.card .card__toplink:before,
 .format-link.card .card__toplink:before,
-.card .card__sticky { background-color: #22dfb5; }
-.format-quote .card__toplink, .entry-featured__qoute__bkgrnd { background-color: rgba(34,223,181, .95);} .grid--tile .bitstarter__icon path,
+.card .card__sticky { background-color: #4F70F1; }
+.format-quote .card__toplink, .entry-featured__qoute__bkgrnd { background-color: rgba(79, 112, 241, .95);} .grid--tile .bitstarter__icon path,
 .grid--list .bitstarter__icon path,
 .single-post .likes-count .bitstarter__icon path, 
-.single-post .comments-count .bitstarter__icon path { fill: #22dfb5; }
+.single-post .comments-count .bitstarter__icon path { fill: #4F70F1; }
 .site-footer { background: #f6f9fc; }
 .widget--footer { color: #6b7c93; }
 .widget_bitstarter_socials use,.widget_bitstarter_socials path { fill: #6b7c93; }
 .site-copyright-area, .footer-infoarea .social-info { color: #6b7c93; }
 .card__links li a,
-html body .mejs-container, html body .mejs-container .mejs-controls, html body .mejs-embed, html body .mejs-embed body, .entry-header-categories__links li a, .site .bitstarter__slider .slick-arrow, .coin-circle div { background-color: #22dfb5; }
+html body .mejs-container, html body .mejs-container .mejs-controls, html body .mejs-embed, html body .mejs-embed body, .entry-header-categories__links li a, .site .bitstarter__slider .slick-arrow, .coin-circle div { background-color: #4F70F1; }
 progress::-webkit-progress-bar,
-progress::-moz-progress-bar, progress::-webkit-progress-value { background: #22dfb5; }
-body .widget_tag_cloud .tagcloud a:hover, .single-post .entry-content .tags-links a:hover { background: #22dfb5; }
-body .widget_tag_cloud .tagcloud a, .single-post .entry-content .tags-links a { border-color: #22dfb5; }
+progress::-moz-progress-bar, progress::-webkit-progress-value { background: #4F70F1; }
+body .widget_tag_cloud .tagcloud a:hover, .single-post .entry-content .tags-links a:hover { background: #4F70F1; }
+body .widget_tag_cloud .tagcloud a, .single-post .entry-content .tags-links a { border-color: #4F70F1; }
 a:not(.btn), #wp-calendar #today, body .widget_tag_cloud .tagcloud a, .widget_recent_entries span.post-date,
- .site .widget a:not(.tag-cloud-link):hover,  .site .widget a:not(.tag-cloud-link):focus, .single-post .entry-content .tags-links a { color: #22dfb5; }
+ .site .widget a:not(.tag-cloud-link):hover,  .site .widget a:not(.tag-cloud-link):focus, .single-post .entry-content .tags-links a { color: #4F70F1; }
 .page-template-front_page .is--active .search-field-wrapper.has--menu:after,
                 ul.secondary-menu > .menu-item.menu-item-has-children > .sub-menu:after,
-                .search_jobs--frontpage .chosen-with-drop.chosen-container-active .chosen-single:after { border-top-color: #22dfb5; }
-.highcharts-markers path { fill: #22dfb5; }
+                .search_jobs--frontpage .chosen-with-drop.chosen-container-active .chosen-single:after { border-top-color: #4F70F1; }
+.highcharts-markers path { fill: #4F70F1; }
 .description, .entry-meta a, .page .entry-meta a,
 .card-meta { color: #8fa0ad; }
 html body .mejs-controls .mejs-time-rail .mejs-time-current { background-color: #8fa0ad; }
@@ -681,12 +681,12 @@ ul.primary-menu > .menu-item > a { padding-right: 20px; }
   border-color: #8fa0ad;
 }
 .card-menu__points{
-  color:  #22dfb5;
+  color:  #4F70F1;
 }
 
 .single .post-navigation{
   display: none;
 }
 
-.rss-date{ color: #22dfb5;}
+.rss-date{ color: #4F70F1;}
 

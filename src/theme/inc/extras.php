@@ -596,6 +596,6 @@ function bitstarter_reorder_comment_fields( $fields ){
  * 
  * @return string unique id   
 */
-function bitstarter_get_unique_id() {
-    return mt_rand(1000,9000) . '_' . mt_rand(1000,9999);
+function bitstarter_get_unique_id($start = '') {
+    return $start . mt_rand(1000,9000) . '_' . mt_rand(1000,9999);
 }

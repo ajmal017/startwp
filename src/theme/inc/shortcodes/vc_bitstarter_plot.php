@@ -26,11 +26,11 @@ class WPBakeryShortCode_BitstarterPlot extends  WPBakeryShortCode{
 
         $output = '<div class="bitstarter-shortcode__plot" style="height: 340px">
                     <div id="bitstarter-plot" class="bitstarter-shortcode__plot__in" style="height: 300px; width: 100%;"></div>';
-        $output .= '<button class="bitstarter-shortcode__plot-change__timeframe" data-timeframe="7day">'. esc_html('7 day','bitstarter') . '</button>';
-        $output .= '<button class="bitstarter-shortcode__plot-change__timeframe" data-timeframe="1month">' . esc_html('1 month','bitstarter') . '</button>';
-        $output .= '<button class="bitstarter-shortcode__plot-change__timeframe" data-timeframe="3month">' . esc_html('3 month','bitstarter') . '</button>';
-        $output .= '<button class="bitstarter-shortcode__plot-change__timeframe" data-timeframe="1year">' . esc_html('1 year','bitstarter') . '</button>';
-        $output .= '<button class="bitstarter-shortcode__plot-change__timeframe active" data-timeframe="all">' . esc_html('All time','bitstarter') . '</button>';
+        $output .= '<button class="bitstarter-shortcode__plot-change__timeframe" data-timeframe="7day">'. esc_html__('7 day','bitstarter') . '</button>';
+        $output .= '<button class="bitstarter-shortcode__plot-change__timeframe" data-timeframe="1month">' . esc_html__('1 month','bitstarter') . '</button>';
+        $output .= '<button class="bitstarter-shortcode__plot-change__timeframe" data-timeframe="3month">' . esc_html__('3 month','bitstarter') . '</button>';
+        $output .= '<button class="bitstarter-shortcode__plot-change__timeframe" data-timeframe="1year">' . esc_html__('1 year','bitstarter') . '</button>';
+        $output .= '<button class="bitstarter-shortcode__plot-change__timeframe active" data-timeframe="all">' . esc_html__('All time','bitstarter') . '</button>';
 
         $output .=  '</div>';
 

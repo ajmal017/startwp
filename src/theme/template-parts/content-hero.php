@@ -97,7 +97,7 @@
 
             <div class="hero-header__content-area__wrapper hero-header__content--404 ">
                
-                <h1 class="hero-title"><?php esc_html_e( '404', 'bitstarter' ); ?></h1>
+                <h1 class="hero-title title-404"><?php esc_html_e( '404', 'bitstarter' ); ?></h1>
                 <?php get_template_part( 'template-parts/content', 'none' ); ?>
                
             </div>

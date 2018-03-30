@@ -766,7 +766,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								array(
 									'property' => 'box-shadow',
 									'unit' => '0 2px 6px|0.4',
-									'selector' => '.btn, input[type="submit"], .site button.vc_general.vc_btn3-style-custom, .nav-links a ',
+									'selector' => '.btn, input[type="submit"], .site button.vc_general.vc_btn3-style-custom, a.vc_general.vc_btn3-style-custom, .nav-links a ',
 									'callback_filter' => 'bitstarter_box_shadow'
 								),
 								array(
@@ -1080,7 +1080,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'border-color',
-									'selector' => 'input, textarea, .card-menu--expanded',
+									'selector' => 'input, textarea, .card-menu--expanded, fieldset',
 									'callback_filter' => 'bitstarter_customify_lighter_callback'
 								),
 								array(

@@ -457,7 +457,10 @@ function bitstarter_allowed_html() {
 			'style' => array(),
 			'id' => array(),
 		),
-		'defs' => array()
+		'defs' => array(),
+		'fieldset' => array(),
+		'legend' => array()
 	);
 	return $allowed_tags;
 }
+

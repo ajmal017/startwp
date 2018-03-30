@@ -59,7 +59,7 @@ class ModelEntry {
     listen(listener) {
       this._listeners.push(listener);
     }
-  
+    
     /**
      * Detach a listener from this entry.
      * @param {function(val)} listener The listening function to detach.

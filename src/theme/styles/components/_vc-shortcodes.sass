@@ -42,6 +42,7 @@
 
     .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel-title>a,
     .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel-body > div
+        margin-top: 11px
         padding-left: 80px !important
 
     .vc_tta.vc_tta-accordion.vc_tta-style-outline .vc_tta-panel .vc_tta-panel-heading:focus, 
@@ -54,6 +55,9 @@
         color: inherit !important
         border-color:  inherit !important
 
+    .vc_tta.vc_tta-accordion br
+        display: none
+        
     // TimeLine shortcode
     .cd-timeline-icon-link:hover
         opacity: 1 !important
@@ -501,7 +505,9 @@
             transform: rotate(-90deg)
 
     &__content
-        padding: 10px 35px 
+        padding: 17px 35px 4px
+        +r(768)
+            padding: 17px 35px
         margin-left: 65px
         border-left: 2px solid
     .bitstarterCard__content table

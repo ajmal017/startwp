@@ -6,6 +6,7 @@ if(class_exists('WPBakeryShortCode' )) {
 
 function bitstarter_init_vc_params(){
     include_once( get_template_directory() . '/inc/shortcodes/params/vc_helptext.php' );
+    include_once( get_template_directory() . '/inc/shortcodes/params/vc_responsive_param.php' );
 }
 
 function bitstarter_init_vc_shortcodes(){

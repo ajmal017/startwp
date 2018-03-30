@@ -9,9 +9,17 @@
             padding: 0 !important
             margin-top: 0 !important
             margin-bottom: 0 !important
+        .hero-header__background
+            display: flex
+            flex-direction: column
+            justify-content: center
+       
         .site-content
             display: flex
             flex: 1 1 100%
+            .entry-content
+                +rmin(768)
+                    width: 60%
             .hero-header
                 display: flex
                 flex: 1 1 100%

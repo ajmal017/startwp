@@ -138,8 +138,17 @@ import "./expand.js"
         detectLongMenu();
         categories();
 
+        if( $('body').hasClass('error404') || $('body').hasClass('search-no-results'))
+            fixHeader()
+
     }
      
+    function fixHeader(){
+        
+        var height = $('.site').height() - $('.site-header').height() - $('.site-footer').height();
+        console.log(height)
+        $('.hero-header__background').css('height', height + 'px');
+    }
 
     const Sliders = (function($){
         const defaultSettings = {
@@ -321,7 +330,7 @@ import "./expand.js"
                     maxLenght = 800, 
                     initialLenght =  data.length, all =0,
                     redundant = (data.length - maxLenght);
-
+ 
 
                 if (initialLenght > maxLenght ){
                     for(var i = 0; i < initialLenght-1; i++){
@@ -502,15 +511,13 @@ import "./expand.js"
                     update(); 
                 }
 
-                $window.on('wheel', function(e) {
+                $window.on('scroll', function(e) {
                     const deltaY = e.originalEvent && e.originalEvent.deltaY;
                     const direction = (deltaY < 0) ? 'up' : 'down';
                     if( _self.blocked ) return
                     _self.elemOffset = _self.$elem.offset(); // perf?
 
-
                     if(direction === 'down' && window.scrollY + window.outerHeight * 0.9 > _self.elemOffset.top){
-                    
                         update(); 
                     }   
                     if(direction === 'up' && window.scrollY + window.outerHeight * 0.1 < _self.elemOffset.top){
@@ -811,7 +818,7 @@ import "./expand.js"
     }
 
     function eventHandlers() {
-        $window.on('debouncedresize', function() {
+        $window.on('resize', function() {
             browserSize();
             detectLongMenu();
             
@@ -825,6 +832,7 @@ import "./expand.js"
                     // HandleSubmenusOnTouch.initHorizontalMenu();
                 }
             }
+
         });
 
         $window.on('scroll', function() {

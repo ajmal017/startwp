@@ -81,6 +81,14 @@ if ( ! function_exists( 'bitstarter_setup' ) ) :
 			'importer' => array(
 				'active' => true,
 				'import_filepath' => get_template_directory() . '/inc/demo-data/demo_data',
+				'import_info' => array(
+					'bitstarter' => array(
+                        'title' => 'Main',
+                        'description' => 'Our main demo.',
+                        'link' => 'http://bitstarter.iondigi.com/',
+                        'img' => get_template_directory_uri() . '/inc/demo-data/bitstarter.png'
+                    ),
+				)
 			),
 			'share_servises' => array(
 				'facebook' => 'assets/svg/fb-icon.php',

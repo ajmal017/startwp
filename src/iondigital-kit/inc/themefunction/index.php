@@ -154,7 +154,7 @@ if( !class_exists('IodigitalThemeFunction') ){
             echo  $html;
         }
 
-        public static function get_instance() {
+        public static function instance() {
 
             // If the single instance hasn't been set, set it now.
             if ( null == self::$instance ) {

@@ -432,12 +432,12 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'background-color',
-									'media'    => 'not screen and (min-width: 900px)',
-									'selector' => '.menu-wrapper',
+									'media'    => '(max-width: 900px)',
+									'selector' => '.menu-wrapper'
 								),
 								array(
 									'property' => 'background-color',
-									'media'    => 'not screen and (min-width: 900px)',
+									'media'    => 'screen and (max-width: 900px)',
 									'selector' => '.primary-menu ul .children, ul.primary-menu .sub-menu',
 									'callback_filter' => 'bitstarter_customify_darker_callback'
 								),
@@ -1105,7 +1105,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'box-shadow',
-									'unit' => '0 1px 40px|0.6',
+									'unit' => '0 16px 40px|0.6',
 									'selector' => '.bitstarter-shadow',
 									'callback_filter' => 'bitstarter_box_shadow'
 								)
@@ -1222,8 +1222,465 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 					)
 				),
 
+				
+				// $H1
+				'h1' => array(
+					'title'   => esc_html__( 'H1', 'bitstarter' ),
+					'options' => array(
+						'h1_font'           => array(
+							'type'             => 'typography',
+							'label'            => esc_html__( 'H1 Font', 'bitstarter' ),
+							'selector'         => 'h1',
+							'load_all_weights' => false,
+							'default'          => array( 'Noto Sans', '300' ),
+							'recommended'      => $recommended_headings_fonts
+						),
+						// Font Size
+						'h1_font_size'      => array(
+							'type'        => 'range',
+							'label'       => __( 'Font Size', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 40,
+							'input_attrs' => array(
+								'min'          => 20,
+								'max'          => 60,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'font-size',
+									'selector' => 'h1',
+									'unit'     => 'px',
+								)
+							)
+						),
+
+						// Text Transform
+						'h1_transform' => array(
+							'label'   => __( 'Text Transform', 'bitstarter' ),
+							'live'    => true,
+							'type'    => 'select',
+							'choices' => array(
+								'none'       => 'None',
+								'capitalize' => 'Capitalize',
+								'uppercase'  => 'Uppercase',
+								'lowercase'  => 'Lowercase',
+							),
+							'default' => 'None',
+							'css'     => array(
+								array(
+									'property' => 'text-transform',
+									'selector' => 'h1',
+								)
+							)
+						),
+
+						// Letter Spacing
+						'h1_letter-spacing' => array(
+							'type'        => 'range',
+							'label'       => __( 'Letter Spacing', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 0,
+							'input_attrs' => array(
+								'min'          => - 2,
+								'max'          => 20,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'letter-spacing',
+									'selector' => 'h1',
+									'unit'     => 'px',
+								)
+							)
+						),
+					)
+				),
+
+				// $H2
+				'h2' => array(
+					'title'   => esc_html__( 'H2', 'bitstarter' ),
+					'options' => array(
+						'h2_font'           => array(
+							'type'             => 'typography',
+							'label'            => esc_html__( 'H2 Font', 'bitstarter' ),
+							'selector'         => 'h2',
+							'load_all_weights' => false,
+							'default'          => array(
+								'type'        => 'google',
+								'font_family' => 'Noto Sans'
+							),
+							'recommended'      => $recommended_headings_fonts
+						),
+						// Font Size
+						'h2_font_size'      => array(
+							'type'        => 'range',
+							'label'       => __( 'Font Size', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 30,
+							'input_attrs' => array(
+								'min'          => 20,
+								'max'          => 50,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'font-size',
+									'selector' => 'h2',
+									'unit'     => 'px',
+								)
+							)
+						),
+
+						// Text Transform
+						'h2_transform' => array(
+							'label'   => __( 'Text Transform', 'bitstarter' ),
+							'live'    => true,
+							'type'    => 'select',
+							'choices' => array(
+								'none'       => 'None',
+								'capitalize' => 'Capitalize',
+								'uppercase'  => 'Uppercase',
+								'lowercase'  => 'Lowercase',
+							),
+							'default' => 'None',
+							'css'     => array(
+								array(
+									'property' => 'text-transform',
+									'selector' => 'h2',
+								)
+							)
+						),
+
+						// Letter Spacing
+						'h2_letter-spacing' => array(
+							'type'        => 'range',
+							'label'       => __( 'Letter Spacing', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 0,
+							'input_attrs' => array(
+								'min'          => - 2,
+								'max'          => 20,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'letter-spacing',
+									'selector' => 'h2',
+									'unit'     => 'px',
+								)
+							)
+						),
+					)
+				),
+
+				'h3' => array(
+					'title'   => esc_html__( 'H3', 'bitstarter' ),
+					'options' => array(
+						'h3_font'           => array(
+							'type'             => 'typography',
+							'label'            => esc_html__( 'H3 Font', 'bitstarter' ),
+							'selector'         => 'h3',
+							'load_all_weights' => false,
+							'default'          => array( 'Noto Sans', '700' ),
+							'recommended'      => $recommended_headings_fonts
+						),
+						// Font Size
+						'h3_font_size'      => array(
+							'type'        => 'range',
+							'label'       => __( 'Font Size', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 26,
+							'input_attrs' => array(
+								'min'          => 15,
+								'max'          => 40,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'font-size',
+									'selector' => 'h3',
+									'unit'     => 'px',
+								)
+							)
+						),
+
+						// Text Transform
+						'h3_transform' => array(
+							'label'   => __( 'Text Transform', 'bitstarter' ),
+							'live'    => true,
+							'type'    => 'select',
+							'choices' => array(
+								'none'       => 'None',
+								'capitalize' => 'Capitalize',
+								'uppercase'  => 'Uppercase',
+								'lowercase'  => 'Lowercase',
+							),
+							'default' => 'None',
+							'css'     => array(
+								array(
+									'property' => 'text-transform',
+									'selector' => 'h3',
+								)
+							)
+						),
+
+						// Letter Spacing
+						'h3_letter-spacing' => array(
+							'type'        => 'range',
+							'label'       => __( 'Letter Spacing', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 0,
+							'input_attrs' => array(
+								'min'          => - 2,
+								'max'          => 20,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'letter-spacing',
+									'selector' => 'h3',
+									'unit'     => 'px',
+								)
+							)
+						),
+					)
+				),
+
+				'h4' => array(
+					'title'   => esc_html__( 'H4', 'bitstarter' ),
+					'options' => array(
+						'h4_font'           => array(
+							'type'             => 'typography',
+							'label'            => esc_html__( 'H4 Font', 'bitstarter' ),
+							'selector'         => 'h4',
+							'load_all_weights' => false,
+							'default'          => array( 'Noto Sans', '700' ),
+							'recommended'      => $recommended_headings_fonts
+						),
+						// Font Size
+						'h4_font_size'      => array(
+							'type'        => 'range',
+							'label'       => __( 'Font Size', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 22,
+							'input_attrs' => array(
+								'min'          => 15,
+								'max'          => 40,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'font-size',
+									'selector' => 'h4',
+									'unit'     => 'px',
+								)
+							)
+						),
+
+						// Text Transform
+						'h4_transform' => array(
+							'label'   => __( 'Text Transform', 'bitstarter' ),
+							'live'    => true,
+							'type'    => 'select',
+							'choices' => array(
+								'none'       => 'None',
+								'capitalize' => 'Capitalize',
+								'uppercase'  => 'Uppercase',
+								'lowercase'  => 'Lowercase',
+							),
+							'default' => 'None',
+							'css'     => array(
+								array(
+									'property' => 'text-transform',
+									'selector' => 'h4',
+								)
+							)
+						),
+
+						// Letter Spacing
+						'h4_letter-spacing' => array(
+							'type'        => 'range',
+							'label'       => __( 'Letter Spacing', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 0,
+							'input_attrs' => array(
+								'min'          => - 2,
+								'max'          => 20,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'letter-spacing',
+									'selector' => 'h4',
+									'unit'     => 'px',
+								)
+							)
+						),
+					)
+				),
+
+				'h5' => array(
+					'title'   => esc_html__( 'H5', 'bitstarter' ),
+					'options' => array(
+						'h5_font'           => array(
+							'type'             => 'typography',
+							'label'            => esc_html__( 'H5 Font', 'bitstarter' ),
+							'selector'         => 'h5',
+							'load_all_weights' => false,
+							'default'          => array( 'Noto Sans', '700' ),
+							'recommended'      => $recommended_headings_fonts
+						),
+						// Font Size
+						'h5_font_size'      => array(
+							'type'        => 'range',
+							'label'       => __( 'Font Size', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 17,
+							'input_attrs' => array(
+								'min'          => 10,
+								'max'          => 30,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'font-size',
+									'selector' => 'h5',
+									'unit'     => 'px',
+								)
+							)
+						),
+
+						// Text Transform
+						'h5_transform' => array(
+							'label'   => __( 'Text Transform', 'bitstarter' ),
+							'live'    => true,
+							'type'    => 'select',
+							'choices' => array(
+								'none'       => 'None',
+								'capitalize' => 'Capitalize',
+								'uppercase'  => 'Uppercase',
+								'lowercase'  => 'Lowercase',
+							),
+							'default' => 'None',
+							'css'     => array(
+								array(
+									'property' => 'text-transform',
+									'selector' => 'h5',
+								)
+							)
+						),
+
+						// Letter Spacing
+						'h5_letter-spacing' => array(
+							'type'        => 'range',
+							'label'       => __( 'Letter Spacing', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 0,
+							'input_attrs' => array(
+								'min'          => - 2,
+								'max'          => 20,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'letter-spacing',
+									'selector' => 'h5',
+									'unit'     => 'px',
+								)
+							)
+						),
+					)
+				),
+
+				'h6' => array(
+					'title'   => esc_html__( 'H6', 'bitstarter' ),
+					'options' => array(
+						'h6_font'           => array(
+							'type'             => 'typography',
+							'label'            => esc_html__( 'H6 Font', 'bitstarter' ),
+							'selector'         => 'h6',
+							'load_all_weights' => false,
+							'default'          => array( 'Noto Sans', '400' ),
+							'recommended'      => $recommended_headings_fonts
+						),
+						// Font Size
+						'h6_font_size'      => array(
+							'type'        => 'range',
+							'label'       => __( 'Font Size', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 14,
+							'input_attrs' => array(
+								'min'          => 7,
+								'max'          => 20,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'font-size',
+									'selector' => 'h6',
+									'unit'     => 'px',
+								)
+							)
+						),
+
+						// Text Transform
+						'h6_transform' => array(
+							'label'   => __( 'Text Transform', 'bitstarter' ),
+							'live'    => true,
+							'type'    => 'select',
+							'choices' => array(
+								'none'       => 'None',
+								'capitalize' => 'Capitalize',
+								'uppercase'  => 'Uppercase',
+								'lowercase'  => 'Lowercase',
+							),
+							'default' => 'None',
+							'css'     => array(
+								array(
+									'property' => 'text-transform',
+									'selector' => 'h6',
+								)
+							)
+						),
+
+						// Letter Spacing
+						'h6_letter-spacing' => array(
+							'type'        => 'range',
+							'label'       => __( 'Letter Spacing', 'bitstarter' ),
+							'live'        => true,
+							'default'     => 0,
+							'input_attrs' => array(
+								'min'          => - 2,
+								'max'          => 20,
+								'step'         => 1,
+								'data-preview' => true
+							),
+							'css'         => array(
+								array(
+									'property' => 'letter-spacing',
+									'selector' => 'h6',
+									'unit'     => 'px',
+								)
+							)
+						),
+					)
+				),
+
+				
 				// $Headings
-				'page_titles_font_test' => array(
+				'page_titles_font' => array(
 					'title'   => esc_html__( 'Blog Titles', 'bitstarter' ),
 					'options' => array(
 						'page_titles_font' => array(
@@ -1232,8 +1689,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 							'selector'         => '
 									.entry-title,
 									.widget-sidebar-title,
-									.widget-footer-title,
-									h1,h2,h3,h4,h5,h6',
+									.widget-footer-title',
 							'load_all_weights' => false,
 							'subsets'          => true,
 							'default'          => array( 
@@ -1261,14 +1717,13 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 									'selector' => '
 									.entry-title,
 									.widget-sidebar-title,
-									.widget-footer-title,
-									h1,h2,h3,h4,h5,h6',
+									.widget-footer-title',
 								)
 							)
 						),
 					)
 				),
-
+				
 				'page_subtitles_font' => array(
 					'title'   => esc_html__( 'Blog Subtitles', 'bitstarter' ),
 					'options' => array(

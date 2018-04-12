@@ -142,7 +142,8 @@
 					_wpnonce: this_data.nonceImportPostsPages,
 					_wp_http_referer: this_data.ref,
 					step_number: stepNumber,
-					number_of_steps: numberOfSteps
+					number_of_steps: numberOfSteps,
+					from: 'customizer'
 				}
 			} )
 				.fail( function( response ) {
@@ -185,7 +186,8 @@
 			data: {
 				action: 'Iondigital_ajax_import_theme_options',
 				_wpnonce: this_data.nonceImportThemeOptions,
-				_wp_http_referer: this_data.ref
+				_wp_http_referer: this_data.ref,
+				from: 'customizer'
 			}
 		} )
 			.fail( function( response ) {
@@ -219,7 +221,8 @@
 			data: {
 				action: 'Iondigital_ajax_import_widgets',
 				_wpnonce: this_data.nonceImportWidgets,
-				_wp_http_referer: this_data.ref
+				_wp_http_referer: this_data.ref,
+				from: 'customizer'
 			}
 		} )
 			.fail( function() {

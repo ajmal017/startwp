@@ -28,12 +28,6 @@ function bitstarter_register_required_plugins() {
 	//
 	$plugins = array(
 		array(
-			'name'      => 'Iondigital Kit',
-			'slug'      => 'iondigital-kit',
-			'source'    => get_template_directory() . '/inc/required-plugins/bitstarter-plugin/iondigital-kit.zip',
-			'required'  => true,
-		),
-		array(
 			'name'               => 'Customify',
 			'slug'               => 'customify',
 			'required'           => true
@@ -62,8 +56,14 @@ function bitstarter_register_required_plugins() {
 			'slug'      => 'js_composer',
 			'source'    => get_template_directory() . '/inc/required-plugins/visual-composer/js_composer.zip',
 			'required'  => true,
+		),
+
+		array(
+			'name'      => 'Iondigital Kit',
+			'slug'      => 'iondigital-kit',
+			'source'    => get_template_directory() . '/inc/required-plugins/bitstarter-plugin/iondigital-kit.zip',
+			'required'  => true,
 		)
-		
 	);
 
 	$config = array(

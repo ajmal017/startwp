@@ -462,8 +462,6 @@ class Iondigital_import extends Iondigital_WP_Import {
 			return false;
 		}
 
-		var_dump($theme_options);
-
 		if ( ! empty( $theme_options ) ) {
 			$imported_options = json_decode( htmlspecialchars_decode( base64_decode( $theme_options ) ), true );
 

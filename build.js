@@ -42,6 +42,7 @@ const funcTable = {
   "default": [noop],
   "siteMap": [createSiteMap],
   "serve": [serve],
+  "delete": [rmdirAll],
   "clean": [() => { rmdirAll(path.resolve('./dist/')); }]
 }
 
@@ -52,17 +53,18 @@ const templateData = {
 
 if (process.argv.length > 2) { 
   // With params
-  call(process.argv.slice(2));
+  
+  call(...process.argv.slice(2));
 
 }else{
   // Standard build
   Promise.all([
     copyStatic(),
-    copySystemJS(),
-    copyCustomElements(),
     handleSass(),
     minifyCss(),
     minifyJs(),
+    copyReactJS(),
+    copyReactDom(),
   ])
     .then(_ => console.log('Done All'))
     .catch(err => console.log(err.stack, '\nError while building'));
@@ -70,16 +72,16 @@ if (process.argv.length > 2) {
 
 // Build Func ------------------------------------------------------------------------------------------
 
-async function call(task, ... opt) {
+async function call(task, ...opt) {
   console.time('task');
-  
+
   fnStack = funcTable['default'];
   Object.entries(funcTable).map(item => {
     if(item[0].split(/(\,)/).some(extComp => task.includes(extComp))){
       fnStack = item[1];
     }
   })
-
+ 
   await fnStack.reduce(async (p, fn) => {
     await p;
     return fn(...opt); 
@@ -109,6 +111,11 @@ function watch(){
             console.log('\x1b[36m%s\x1b[0m', 'create/rename dir');
             rmdirAll(path.resolve(`./dist/${filename}`));
             await copyStatic();
+            await handleSass();
+            await minifyCss();
+            await minifyJs();
+            await copyReactJS();
+            await copyReactDom();
           }else{
             // File
             console.log('\x1b[36m%s\x1b[0m', 'create');
@@ -130,8 +137,7 @@ function watch(){
           }
 
         }
-        
-        call('wpDev');
+        debounce(wpDev, 5000)(1);
         break;
 
       case "change":
@@ -142,7 +148,12 @@ function watch(){
           // Here was changed in directory, so renew
           rmdirAll(path.resolve(`./dist/${filename}`));
           await copyStatic();
-          call('wpDev');
+          await handleSass();
+          await minifyCss();
+          await minifyJs();
+          await copyReactJS();
+          await copyReactDom();
+          debounce(wpDev, 5000)(2);
         }
         break;
     
@@ -167,24 +178,26 @@ async function copyStatic() {
   console.timeEnd('copyStatic')
 }
 
-async function copySystemJS() {
-  console.time('copySystemJS');
-  const file = await fs.readFile('./node_modules/systemjs/dist/system-production.js');
+async function copyReactJS() {
+  console.time('copyReactJS');
+  const file = await fs.readFile('./node_modules/react/umd/react.development.js');
   const contents = file.toString('utf-8');
   const { code } = babel.transform(contents, babelConfig);
-  const SystemJsDir = 'dist/theme/assets/js/system.js';
-  await mkdirAll(path.dirname(SystemJsDir));
-  await fs.writeFile(`${path.dirname(SystemJsDir)}/${path.basename(SystemJsDir)}`, code);
-  console.timeEnd('copySystemJS')
+  const copyReactJSDir = 'dist/iondigital-kit/admin/js/react.js';
+  await mkdirAll(path.dirname(copyReactJSDir));
+  await fs.writeFile(`${path.dirname(copyReactJSDir)}/${path.basename(copyReactJSDir)}`, code);
+  console.timeEnd('copyReactJS')
 }
 
-async function copyCustomElements() {
-  console.time('copyCustomElements');
-  const file = await fs.readFile('./node_modules/@webcomponents/custom-elements/custom-elements.min.js');
+async function copyReactDom() {
+  console.time('copyReactDom');
+  const file = await fs.readFile('./node_modules/react-dom/umd/react-dom.development.js');
   const contents = file.toString('utf-8');
   const { code } = babel.transform(contents, babelConfig);
-  await fs.writeFile('dist/theme/assets/js/custom-elements.js', code);
-  console.timeEnd('copyCustomElements')
+  const copyReactJSDir = 'dist/iondigital-kit/admin/js/react-dom.js';
+  await mkdirAll(path.dirname(copyReactJSDir));
+  await fs.writeFile(`${path.dirname(copyReactJSDir)}/${path.basename(copyReactJSDir)}`, code);
+  console.timeEnd('copyReactDom')
 }
 
 
@@ -321,8 +334,7 @@ async function minifyJs(filename) {
         format: 'iife',
         globals: {
           jquery: '$',
-          React: 'React',
-          ReactDOM: 'ReactDOM'
+          react: 'React'
         },
         file: `dist/${name}`,
         sourcemap: true,
@@ -344,7 +356,11 @@ async function minifyJs(filename) {
 
 
 // Link files with folder in wordpress
+let wpDevBusy = false;
 async function wpDev() {
+  if(wpDevBusy)
+    return
+  wpDevBusy = true;
   console.log('\x1b[36m%s\x1b[40m', 'Linking ...');  
   let pathsTheme = await filesWithPatternsDist([/theme\/.*\..{2,4}$/])
     .map(async filePath => {
@@ -372,7 +388,7 @@ async function wpDev() {
   await fs.writeFile('wp-dev.sh', paths.reduce((acc, val) => acc.concat(val), pre));
   const { stdout, stderr } = await exec('sh wp-dev.sh');
   if (stderr) console.log('stderr:', stderr);
-
+  wpDevBusy = false
 } 
 
 
@@ -437,18 +453,20 @@ async function mkdirAll(dir) {
   }, Promise.resolve(''));
 }
 
-function rmdirAll(dir) {
-  if (fs.existsSync(dir)) {
-    fs.readdirSync(dir).forEach(function(file, index){
+async function rmdirAll(dir) {
+  
+    let sub = await fs.readdir(dir);
+    await Promise.all(sub.map( async(file) => {
       var curPath = path.join(dir, file);
-      if (fs.lstatSync(curPath).isDirectory()) { // recurse
-        rmdirAll(curPath);
+      let stat = await fs.lstat(curPath);
+      if (stat.isDirectory()) { // recurse
+        await rmdirAll(curPath);        
       } else { // delete file
-        fs.unlinkSync(curPath);
+        await fs.unlink(curPath);
       }
-    });
-    fs.rmdirSync(dir);
-  }
+    }));
+    await fs.rmdir(dir);
+  
 };
 
 function flatten(arr) {

@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "npm version --no-git-tag-version -f patch && node build.js",
-    "watch": "node build watch",
+    "watch": "node --max-old-space-size=8192 build watch",
     "copy-static": "node build.js copyStatic",
     "watch-js": "node build.js watchJS",
     "watch-css": "node build.js watchCSS",
@@ -16,29 +16,6 @@
   },
   "resolutions": {
     "rollup-plugin-commonjs": "8.3.0"
-  },
-  "watch": {
-    "watch-static": {
-      "patterns": [
-        "src/**/*",
-        "build.js"
-      ],
-      "extensions": "php,json,html"
-    },
-    "watch-css": {
-      "patterns": [
-        "src/**/*",
-        "build.js"
-      ],
-      "extensions": "css,sass,scss"
-    },
-    "watch-js": {
-      "patterns": [
-        "src/**/*",
-        "build.js"
-      ],
-      "extensions": "js"
-    }
   },
   "dependencies": {
     "@webcomponents/custom-elements": "^1.0.4",

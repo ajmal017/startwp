@@ -44,7 +44,7 @@ if( !class_exists( 'Iondigital_Kit' ) ) {
 		 */
 		protected $wp_support = '4.6';
 		
-		protected $minimalRequiredPhpVersion  = '5.6';
+		protected $minimalRequiredPhpVersion  = '5.5';
 
 		protected static $theme_support;
 
@@ -65,8 +65,6 @@ if( !class_exists( 'Iondigital_Kit' ) ) {
 		public function get_language_domain() {
 			return $this->language_domain;
 		}
-
-
 
 		/**
 		 * This method adds other methods to specific hooks within WordPress.
@@ -95,41 +93,39 @@ if( !class_exists( 'Iondigital_Kit' ) ) {
 		}
 
 		private function load_modules() {
+
+
 		
 			require_once( plugin_dir_path( __FILE__ ) . 'metabox.php' );
-		
+			
 			$metabox = Enhanced::get_instance(  $this->get_plugin_version() );
 			register_activation_hook( __FILE__ , array( 'Enhanced', 'activate' ) );
-
+			
+			
 			
 			/**
 			 * The class responsible for defining all logic that occurs in the admin area.
 			 */
 			require_once( plugin_dir_path( __FILE__ ) . 'admin/class-admin.php');
-
+			
+			
 			$admin = Iondigital_Admin::instance( array(
 				'version' => $this->get_plugin_version(),
 				'plugin_name' => $this->get_plugin_name(),
 				'language_domain' => $this->get_language_domain()
 			));
-
-	
-			require_once( plugin_dir_path( __FILE__ ) . 'inc/themefunction/index.php');
-			$itf = IodigitalThemeFunction::get_instance();
 			
+			require_once( plugin_dir_path( __FILE__ ) . 'admin/class-data.php');
+					
+			require_once( plugin_dir_path( __FILE__ ) . 'inc/import/class-import.php' );
+
+			require_once( plugin_dir_path( __FILE__ ) . 'inc/themefunction/index.php');
+			$itf = IodigitalThemeFunction::instance();
 	
 		}
 
 		public function register_hooks() {
 			
-	
-			add_action( 'wp_ajax_Iondigital_ajax_import_widgets', array($this, 'Iondigital_ajax_import_widgets') );
-
-			add_action( 'wp_ajax_Iondigital_ajax_import_posts_pages',  array($this, 'Iondigital_ajax_import_posts_pages') );
-
-			add_action( 'wp_ajax_Iondigital_ajax_import_theme_options',  array($this, 'Iondigital_ajax_import_theme_options'));
-				
-
 			add_action( 'wp_enqueue_scripts', array($this, 'enqueue_scripts') );
 			
 		}
@@ -144,7 +140,7 @@ if( !class_exists( 'Iondigital_Kit' ) ) {
 	     *
 	     * @return    object    A single instance of this class.
 	     */
-	    public static function get_instance() {
+	    public static function instance() {
 
 		    // If the single instance hasn't been set, set it now.
 		    if ( null == self::$instance ) {
@@ -153,116 +149,6 @@ if( !class_exists( 'Iondigital_Kit' ) ) {
 
 		    return self::$instance;
 	    }
-
-
-		public function Iondigital_ajax_import_posts_pages() {
-
-			
-			$theme_support =  $this::set_theme_support();
-
-			$import_filepath = '';
-			if( is_array( $theme_support['importer']) && ! empty($theme_support['importer']['import_filepath'])){
-
-				$import_filepath =  $theme_support['importer']['import_filepath'];
-			}
-
-
-			// initialize the step importing
-			$stepNumber    = 1;
-			$numberOfSteps = 1;
-
-			// get the data sent by the ajax call regarding the current step
-			// and total number of steps
-			if ( ! empty( $_REQUEST['step_number'] ) ) {
-				$stepNumber = $_REQUEST['step_number'];
-			}
-
-			if ( ! empty( $_REQUEST['number_of_steps'] ) ) {
-				$numberOfSteps = $_REQUEST['number_of_steps'];
-			}
-
-			$response = array(
-				'what'         => 'import_posts_pages',
-				'action'       => 'import_submit',
-				'id'           => 'true',
-				'supplemental' => array(
-					'stepNumber'    => $stepNumber,
-					'numberOfSteps' => $numberOfSteps,
-				)
-			);
-
-			// check if user is allowed to save and if its his intention with
-			// a nonce check
-			if ( function_exists( 'check_ajax_referer' ) ) {
-				check_ajax_referer( 'Iondigital_nonce_import_demo_posts_pages' );
-			}
-
-			require_once( plugin_dir_path( __FILE__ ) . 'inc/import/import-demo-posts-pages.php' );
-
-			$response = new WP_Ajax_Response( $response );
-			$response->send();
-		}
-
-		
-		public function Iondigital_ajax_import_theme_options() {
-
-	
-			$theme_support = $this::set_theme_support();
-
-			$import_filepath = '';
-			if( is_array( $theme_support['importer']) && ! empty($theme_support['importer']['import_filepath'])){
-
-				$import_filepath =  $theme_support['importer']['import_filepath'];
-			}
-
-
-			$response = array(
-				'what'   => 'import_theme_options',
-				'action' => 'import_submit',
-				'id'     => 'true',
-			);
-
-			// check if user is allowed to save and if its his intention with
-			// a nonce check
-			if ( function_exists( 'check_ajax_referer' ) ) {
-				check_ajax_referer( 'Iondigital_nonce_import_demo_theme_options' );
-			}
-			
-			require_once( plugin_dir_path( __FILE__ ) . 'inc/import/import-demo-theme-options.php' );
-
-			$response = new WP_Ajax_Response( $response );
-			$response->send();
-		}
-
-		public function Iondigital_ajax_import_widgets() {
-	
-			$theme_support = $this::set_theme_support();
-
-			$import_filepath = '';
-
-			if( is_array( $theme_support['importer']) && ! empty($theme_support['importer']['import_filepath'])){
-				
-				$import_filepath =  $theme_support['importer']['import_filepath'];
-			}
-			
-			$response = array(
-				'what'   => 'import_widgets',
-				'action' => 'import_submit',
-				'id'     => 'true',
-			);
-
-			// check if user is allowed to save and if its his intention with
-			// a nonce check
-			if ( function_exists( 'check_ajax_referer' ) ) {
-				check_ajax_referer( 'Iondigital_nonce_import_demo_widgets' );
-			}
-
-			require_once( plugin_dir_path( __FILE__ ) . 'inc/import/import-demo-widgets.php' );
-
-			$response = new WP_Ajax_Response( $response );
-			$response->send();
-		}
-
 
 		/**
 		 * Register the JavaScript.
@@ -352,7 +238,10 @@ if( !class_exists( 'Iondigital_Kit' ) ) {
 	}
 
     // Instantiate the class
-    $iondigital_kit = Iondigital_Kit::get_instance();
-
+	$iondigital_kit = Iondigital_Kit::instance();
+	
+	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-admin.php');
+	require_once( plugin_dir_path( __FILE__ ) . 'inc/import/class-import.php' );
+	Iondigital_Demo_Content::instance( $iondigital_kit );
 
 }

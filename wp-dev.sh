@@ -168,7 +168,6 @@ ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/admin/edit-p
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/admin/edit-page.js.map d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/admin/responsive_param.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/admin 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/admin/responsive_param.js.map d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/admin 
-ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/custom-elements.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/fallbacks/CSSPlugin.min.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/fallbacks 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/fallbacks/Highcharts.min.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/fallbacks 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/fallbacks/imagesLoaded.min.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js/fallbacks 
@@ -180,7 +179,6 @@ ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/main.js d:/O
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/main.js.map d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/polyfill.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/polyfill.js.map d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js 
-ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/js/system.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/js 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/svg/close-icon-svg.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/svg 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/svg/comment-icon.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/svg 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/assets/svg/common.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/assets/svg 
@@ -212,8 +210,10 @@ ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/activation.php d:/
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/config.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/custom-header.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/customizer.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/demo-data/bitstarter.png d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/demo-data 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/demo-data/demo_data.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/demo-data 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/demo-data/demo_data.xml d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/demo-data 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/demo-data/forit.png d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/demo-data 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/extras.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/integrations.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/integrations/jetpack.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/integrations 
@@ -223,7 +223,7 @@ ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/integrations/jetpa
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/integrations/jetpack/responsive-videos/responsive-videos.js.map d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/integrations/jetpack/responsive-videos 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/integrations/jetpack/responsive-videos/responsive-videos.min.js d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/integrations/jetpack/responsive-videos 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/integrations/timeline-express.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/integrations 
-ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/required-plugins/bitstarter-plugin/bitstarter-core.zip d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/required-plugins/bitstarter-plugin 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/required-plugins/bitstarter-plugin/iondigital-kit.zip d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/required-plugins/bitstarter-plugin 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/required-plugins/class-tgm-plugin-activation.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/required-plugins 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/required-plugins/languages/bitstarter.pot d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/required-plugins/languages 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/inc/required-plugins/LICENSE.md d:/OSPanel/domains/wp/wp-content/themes/bitstarter/inc/required-plugins 
@@ -272,14 +272,18 @@ ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/template-parts/related
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/vc_templates/vc_empty_space.php d:/OSPanel/domains/wp/wp-content/themes/bitstarter/vc_templates 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/wpml-config.xml d:/OSPanel/domains/wp/wp-content/themes/bitstarter/. 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/class-admin.php d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/class-data.php d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/css/iondigital_kit_dashboard.css d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/css 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/images/ION_logo.png d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/images 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/images/ion.png d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/images 
-ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/js/_importer.js d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/js 
-ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/js/_importer.js.map d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/js 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/images/ok.svg d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/images 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/js/_import.js d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/js 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/js/_import.js.map d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/js 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/js/dashboard.js d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/js 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/js/dashboard.js.map d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/js 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/js/react-dom.js d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/js 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/js/react.js d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/js 
-ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/admin/js/react.js.map d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/admin/js 
+ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/inc/import/class-import.php d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/inc/import 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/inc/import/import-demo-posts-pages.php d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/inc/import 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/inc/import/import-demo-theme-options.php d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/inc/import 
 ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/inc/import/import-demo-widgets.php d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/inc/import 

@@ -52,7 +52,7 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
         $output .= '<div class="team-info">';
         
         $output .=      '<h5 class="team-info__name">' . wp_kses($name, bitstarter_allowed_html()) . '</h5>';
-        $output .=      '<h5 class="team-info__position" style="color: ' . esc_attr($position_color) . '">' . $position . '</h5>';
+        $output .=      '<p class="team-info__position" style="color: ' . esc_attr($position_color) . '">' . $position . '</p>';
 
         
         if( !empty($fb) || !empty($in) ):

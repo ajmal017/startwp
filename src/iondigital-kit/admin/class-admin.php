@@ -15,13 +15,14 @@ class Iondigital_Admin {
     protected $plugin_name;
 
     protected $admin_option = 'iondigital_kit_option';
-
     /**
-	 * The lowest supported WordPress adn PHP version
-	 */
+     * The lowest supported WordPress adn PHP version
+    */
     protected $wp_support = '4.6';
     
-    protected $minimalRequiredPhpVersion  = '5.6';
+    protected $language_domain = 'iondigital_kit';
+
+    protected $minimalRequiredPhpVersion  = '5.5';
 
     public function __construct($info){
         if( is_array($info) ){
@@ -44,10 +45,10 @@ class Iondigital_Admin {
      */
     public function init() {
         
-        // init hooks 
+        // init hooks
         add_action( 'admin_init', array( 'Iondigital_Admin', 'set_theme_support' ), 11 );
 
-        add_action( 'admin_init', array( $this, 'admin_redirects' ), 15 );
+        add_action( 'admin_init', array( $this, 'admin_redirects' ), 1);
         
 		add_action( 'admin_menu', array( $this, 'add_iondigital_kit_menu' ) );
 
@@ -59,6 +60,7 @@ class Iondigital_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
     }
+
 
         /**
      * Register the stylesheets for the admin area.
@@ -97,14 +99,18 @@ class Iondigital_Admin {
            
             wp_enqueue_script( 'updates' );
 
-            wp_enqueue_script( 'react', '//unpkg.com/react/umd/react.development.js' );
+            // wp_enqueue_script( 'react', '//unpkg.com/react/umd/react.development.js' );
 
-            wp_enqueue_script( 'react-dom', '//unpkg.com/react-dom/umd/react-dom.development.js', array('react'));
+            // wp_enqueue_script( 'react-dom', '//unpkg.com/react-dom/umd/react-dom.development.js', array('react'));
+
+            wp_enqueue_script( 'iondigital-react', plugin_dir_url( 'iondigital-kit/admin/js/react.js' ) . 'react.js', array(), $this->version, true );
+
+            wp_enqueue_script( 'iondigital-reactdom', plugin_dir_url( 'iondigital-kit/admin/js/react-dom.js' ) . 'react-dom.js', array('iondigital-react'), $this->version, true );
 
             wp_enqueue_script( 'iondigital-admin', plugin_dir_url( 'iondigital-kit/admin/js/dashboard.js' ) . 'dashboard.js', array(
                 'jquery',
                 'wp-util',
-                'react-dom'
+               'iondigital-reactdom'
             ), $this->version, true );
 
             $this->localize_js_data();
@@ -132,6 +138,8 @@ class Iondigital_Admin {
         $current_user = _wp_get_current_user();
         $theme_config = array();
 
+        $rest = get_option('iondigital_rest');
+
         if ( class_exists( 'TGM_Plugin_Activation' ) ) {
             $theme_config['pluginManager']['tgmpaPlugins'] = self::localize_tgmpa_data();
         }
@@ -140,25 +148,73 @@ class Iondigital_Admin {
         self::$theme_support['hasIondigitalTheme'] = self::has_iondigital_theme();
 
         $import_data = array (
-            'import_failed' => esc_html__( 'The import didn\'t work completely!', 'bitstarter') . '<br/>' . esc_html__( 'Check out the errors given. You might want to try reloading the page and try again.', 'bitstarter'),
-            'import_confirm' => esc_html__( 'Importing the demo data will overwrite your current site content and options. Proceed anyway?', 'bitstarter'),
-            'import_phew' => esc_html__( 'Phew...that was a hard one!', 'bitstarter'),
-            'import_success_note' => esc_html__( 'The demo data was imported without a glitch! Awesome! ', 'bitstarter') . '<br/><br/>',
-            'import_success_reload' => esc_html__( '<i>We have reloaded the page on the right, so you can see the brand new data!</i>', 'bitstarter'),
-            'import_success_warning' => '<p>' . esc_html__( 'Remember to update the passwords and roles of imported users.', 'bitstarter') . '</p><br/>',
-            'import_all_done' => esc_html__( "All done!", 'bitstarter'),
-            'import_working' => esc_html__( "Working...", 'bitstarter'),
-            'import_widgets_failed' => esc_html__( "The setting up of the demo widgets failed...", 'bitstarter'),
-            'import_widgets_error' => esc_html__( 'The setting up of the demo widgets failed', 'bitstarter') . '</i><br />' . esc_html__( 'The script returned the following message', 'bitstarter'),
-            'import_widgets_done' => esc_html__( 'Finished setting up the demo widgets...', 'bitstarter'),
-            'import_theme_options_failed' => esc_html__( "The importing of the theme options has failed...", 'bitstarter'),
-            'import_theme_options_error' => esc_html__( 'The importing of the theme options has failed', 'bitstarter') . '</i><br />' . esc_html__( 'The script returned the following message', 'bitstarter'),
-            'import_theme_options_done' => esc_html__( 'Finished importing the demo theme options...', 'bitstarter'),
-            'import_posts_failed' => esc_html__( "The importing of the theme options has failed...", 'bitstarter'),
-            'import_posts_step' => esc_html__( 'Importing posts | Step', 'bitstarter'),
-            'import_error' =>  esc_html__( "Error:", 'bitstarter'),
-            'import_try_reload' =>  esc_html__( "You can reload the page and try again.", 'bitstarter'),
+            'import_failed' => esc_html__( 'The import didn\'t work completely!', $this->language_domain) . '<br/>' . esc_html__( 'Check out the errors given. You might want to try reloading the page and try again.', $this->language_domain),
+            'import_confirm' => esc_html__( 'Importing the demo data will overwrite your current site content and options. Proceed anyway?', $this->language_domain),
+            'import_phew' => esc_html__( 'That was a hard one!', $this->language_domain),
+            'import_success_note' => esc_html__( 'The demo data was imported without a glitch! Awesome! ', $this->language_domain) . '<br/><br/>',
+            'import_success_reload' => esc_html__( '<i>We have reloaded the page on the right, so you can see the brand new data!</i>', $this->language_domain),
+            'import_success_warning' => '<p>' . esc_html__( 'Remember to update the passwords and roles of imported users.', $this->language_domain) . '</p><br/>',
+            'import_all_done' => esc_html__( "All done!", $this->language_domain),
+            'import_working' => esc_html__( "Working...", $this->language_domain),
+            'import_widgets_failed' => esc_html__( "The setting up of the demo widgets failed...", $this->language_domain),
+            'import_widgets_error' => esc_html__( 'The setting up of the demo widgets failed', $this->language_domain) . '</i><br />' . esc_html__( 'The script returned the following message', $this->language_domain),
+            'import_widgets_done' => esc_html__( 'Finished setting up the demo widgets...', $this->language_domain),
+            'import_theme_options_failed' => esc_html__( "The importing of the theme options has failed...", $this->language_domain),
+            'import_theme_options_error' => esc_html__( 'The importing of the theme options has failed', $this->language_domain) . '</i><br />' . esc_html__( 'The script returned the following message', $this->language_domain),
+            'import_theme_options_done' => esc_html__( 'Finished importing the demo theme options...', $this->language_domain),
+            'import_posts_failed' => esc_html__( "The importing of the theme options has failed...", $this->language_domain),
+            'import_posts_step' => esc_html__( 'Importing posts | Step', $this->language_domain),
+            'import_error' =>  esc_html__( "Error:", $this->language_domain),
+            'import_try_reload' =>  esc_html__( "You can reload the page and try again.", $this->language_domain),
+            'import_try_reload' =>  esc_html__( "You can reload the page and try again.", $this->language_domain),
+            'import_wait' => esc_html("Please wait a few minutes (between 1 and 3 minutes usually, but depending on your hosting it can take longer) and ", $this->language_domain) . '<strong>' . esc_html("don't reload the page ", $this->language_domain) . "</strong>" . esc_html("You will be notified as soon as the import has finished!", $this->language_domain) . "<br/><br/>"
         );
+
+        $customize_url =  admin_url('customize.php');;
+        if( function_exists('rwmb_meta') ){
+            $customize_url = admin_url('admin.php?page=theme-options');
+        }
+
+        $dashboard = array(
+            'general' => array(
+                'title' => esc_html__('General', $this->language_domain),
+                'h2' => esc_html__('Thank your for your choice.
+                ', $this->language_domain),
+                'text1' => esc_html__('This setup helps you to get started and configure the website in style and make it shine.
+                ', $this->language_domain),
+                'text2' => esc_html__('To get started with %Theme% theme you need to install and activate plugin(s):', $this->language_domain),
+                'table' => array(
+                    esc_html__('Plugin', $this->language_domain),
+                    esc_html__('Version', $this->language_domain),
+                    esc_html__('Installed', $this->language_domain),
+                    esc_html__('Activated', $this->language_domain),
+                    esc_html__('Up to date', $this->language_domain),
+                    esc_html__('Required', $this->language_domain),
+                ),
+                'btn_install' => __('Install & Activate plugins', $this->language_domain),
+                'text3' => '<p>' . esc_html__('To get your site looks like demo click on button below:', $this->language_domain) . '</p>
+                <h5>' . esc_html__('⚠️ WooCommerce plugin should be installed before importing content , if you plan yo use it .', $this->language_domain) . '</h5>
+                <h5>' . esc_html__('⚠️ Revolution slider plugin has its own demo import in the plugin and files for importing is in the theme.', $this->language_domain) . '</h5>', 
+                'btn_import' => esc_html__('Import demo data', $this->language_domain)
+            ),
+            'customizations' => array(
+                'title' => esc_html__('Customizations', $this->language_domain),
+                'h2' => esc_html__('Customizations', $this->language_domain),
+                'text1' => esc_html__('We created a options system to easily make handy color changes, spacing adjustments and balancing fonts, each step bringing you closer to a striking result.', $this->language_domain),
+                'btn' => esc_html__('Customize', $this->language_domain),
+                'link' => $customize_url
+            ),
+            'system' => array(
+                'title' => esc_html__('System Status', $this->language_domain),
+                'h2' => esc_html__('System Status', $this->language_domain),
+                'table' => array( 
+                     't1' => esc_html__('WordPress Install Data', $this->language_domain),
+                     't2' => esc_html__('System Data', $this->language_domain)
+                )
+            )
+        );
+
+        
 
         // Use camelCase since this is going to JS!!!
         $localized_data = array(
@@ -167,7 +223,7 @@ class Iondigital_Admin {
             'themeConfig'   => $theme_config,
             'wpRest'        => array(
                 'root'          => esc_url_raw( rest_url() ),
-                'base'          => esc_url_raw( rest_url() . 'pixcare/v1/' ),
+                'base'          => esc_url_raw( rest_url() . 'iondigital/v1/' ),
                 //'endpoint'      => self::$internalApiEndpoints,
                 'nonce'         => wp_create_nonce( 'wp_rest' ),
                 'iondigital_nonce' => wp_create_nonce( 'iondigital_rest' ),
@@ -184,7 +240,8 @@ class Iondigital_Admin {
                 'nonceImportWidgets' => wp_create_nonce( 'Iondigital_nonce_import_demo_widgets' ),
                 'nonceImportThemeOptions' => wp_create_nonce( 'Iondigital_nonce_import_demo_theme_options' ),
                 'nonceImportPostsPages' => wp_create_nonce( 'Iondigital_nonce_import_demo_posts_pages' ),
-                'import_data' => $import_data
+                'import_data' => $import_data,
+                'import_step' => isset($rest["stepnumber"]) ? $rest["stepnumber"] : (self::$theme_support['theme_name'] == "Brooks" ? 140 : 10)
             ),
             'user'          => array(
                 'name'   => ( empty( $current_user->display_name ) ? $current_user->user_login : $current_user->display_name ),
@@ -196,6 +253,12 @@ class Iondigital_Admin {
             ),
             'themeMod'      => array(),
             'version'       => $this->version,
+            'assets' => array(
+                'logo' => plugin_dir_url( __FILE__ ) .'images/ION_logo.png',
+                'validate' => plugin_dir_url( __FILE__ ) .'images/ok.svg'
+            ),
+            'dashboard' => $dashboard,
+            'systemData' => Iondigital_Data::get_system_status_data()
         );
 
         /*
@@ -392,6 +455,7 @@ class Iondigital_Admin {
             return self::$theme_support;
         }
 
+        
         $config = self::validate_theme_supports( reset( $config ) );
 	    if ( empty( $config ) ) {
 		    self::$theme_support = array();
@@ -400,9 +464,15 @@ class Iondigital_Admin {
 
         // Update the current theme_support
         self::$theme_support = $config;
-        return self::$theme_support;
+        return $config;
     }
 
+    public static function get_theme_support() {
+        if ( empty( self::$theme_support ) ) {
+            self::set_theme_support();
+        }
+        return self::$theme_support;
+    }
 
     /**
      * @param array $config
@@ -415,8 +485,8 @@ class Iondigital_Admin {
         if ( empty( $config['is_iondigital_theme'] ) ) {
             $config['is_iondigital_theme'] = self::is_iondigital_theme();
         }
-        // Complete the config with theme details
-        /** @var WP_Theme $theme */
+
+
         $theme = wp_get_theme();
         $parent = $theme->parent();
         if ( is_child_theme() && ! empty( $parent ) ) {
@@ -453,12 +523,15 @@ class Iondigital_Admin {
 
         $plugin_version = get_option( 'iondigital_kit_version' );
        
-        // if ( empty( $plugin_version ) ) {
-        //     // Yay this is a fresh install and we are not on a setup page, just go there already.
-        //     wp_redirect( admin_url( 'index.php?page=pixelgrade_care-setup-wizard' ) );
-        //     exit;
-        // }
+        if ( empty( $plugin_version ) ) {
+            
+            $plugin_version = update_option( 'iondigital_kit_version', $this->version );
+
+            wp_redirect( admin_url( 'admin.php?page=iondigital_kit' ) );
+            exit;
+        }
     }
+
 
     	/**
 	 * Determine if the current theme is one of ours.
@@ -515,7 +588,7 @@ class Iondigital_Admin {
             'iondigital_kit_options_page',
         ) );
 
-        add_submenu_page( 'iondigital_kit', 'Дополнительная страница инструментов', 'Название инструмента', 'manage_options', 'my-custom-submenu-page', 'my_custom_submenu_page_callback' ); 
+        // add_submenu_page( 'iondigital_kit', 'Дополнительная страница инструментов', 'Название инструмента', 'manage_options', 'my-custom-submenu-page', 'my_custom_submenu_page_callback' ); 
 
         function my_custom_submenu_page_callback() {
             // контент страницы
@@ -563,21 +636,6 @@ class Iondigital_Admin {
                 '<p><a href="' . esc_url( admin_url( 'index.php?page=iondigital_kit-setup-wizard' ) ) . '" class="button button-primary">' . esc_html__( 'Setup Iondigital Kit', 'iondigital_kit' ) . '</a></p>',
         ) );
     }
-
-    /**
-     * Main Iondigital_Admin Instance
-     *
-     * Ensures only one instance of Iondigital_Admin is loaded or can be loaded.
-     *
-     * @return Iondigital_Admin 
-     */
-    public static function instance( $info ) {
-        if ( is_null( self::$instance ) ) {
-            self::$instance = new self( $info );
-        }
-        return self::$instance;
-    } // End instance().
-
 
     function is_wp_compatible() {
 		global $wp_version;
@@ -635,7 +693,14 @@ class Iondigital_Admin {
 				<br/>' . __( 'Your server\'s PHP version: ', 'iondigital_kit' ) . '<strong>' . phpversion() . '</strong>
 				</div>';
 		echo wp_kses( $html, $allowed );
-	}
+    }
+    
+    public static function instance( $info ) {
+        if ( is_null( self::$instance ) ) {
+            self::$instance = new self( $info );
+        }
+        return self::$instance;
+    }
 
 
     /**

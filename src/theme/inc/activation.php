@@ -7,7 +7,6 @@
  */
 
 
-
 if ( ! function_exists( 'bitstarter_config_getting_active' ) ) :
 	function bitstarter_config_getting_active() {
 

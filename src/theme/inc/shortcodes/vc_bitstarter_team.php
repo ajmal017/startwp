@@ -11,7 +11,7 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
         $r = hexdec($r); $g = hexdec($g); $b = hexdec($b);
         return array($r, $g, $b);
     }
-    
+
     /**
      * @param $atts
      * @param null $content

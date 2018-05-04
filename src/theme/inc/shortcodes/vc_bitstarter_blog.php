@@ -22,13 +22,13 @@ class WPBakeryShortCode_Bitstarter_Blog extends  WPBakeryShortCode
 
         $output = '';
         
-        if(strpos($data_query, 'size')){
+        if(! strpos($data_query, 'size')){
             $data_query .= '|size:3';
         }
-        if(strpos($data_query, 'order_by')){
+        if(! strpos($data_query, 'order_by')){
             $data_query .= '|order_by:date';
         }
-        if(strpos($data_query, 'order')){
+        if(! strpos($data_query, 'order')){
             $data_query .= '|order:ASC';
         }
 

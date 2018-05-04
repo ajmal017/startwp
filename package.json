@@ -25,6 +25,7 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babili": "^0.1.4",
+    "chokidar": "^2.0.3",
     "csso": "^3.2.0",
     "from-xml": "^0.1.6",
     "glob": "^7.1.2",

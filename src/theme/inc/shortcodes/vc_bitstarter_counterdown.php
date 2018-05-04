@@ -19,7 +19,7 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
      */
     public function content($atts, $content = null)
     {
-        $css = $title = $title1 = $bg_color1 = $time = $date = $position  = $text_color = $shadow_color = $raised = $bakers = $start = $stop = $progress_color = '';
+        $css = $title = $title1 = $bg_color1 = $time = $date = $position  = $text_color = $shadow_color = $raised = $bakers = $start = $stop = $progress_color = $currency = '';
 
 
         extract(shortcode_atts(array(
@@ -35,8 +35,9 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
             'bakers' => '8756 | bakers',
             'start' => '2000000 | Softcap in just 10 hours',
             'stop' => '20000000 | Hardcup',
-            'progress_color' => '#0de8e8'
-        ), $atts));
+            'progress_color' => '#0de8e8',
+            'currency' => '$'
+         ), $atts));
 
 
 
@@ -93,12 +94,12 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
             $subtitle = '';
             if( ($pos = strpos($raised, '|')) > 0 ){
                 $progress_value = trim(substr($raised, 0, $pos));
-                $title = '$' . number_format($progress_value); 
+                $title = $currency . number_format($progress_value); 
                 $subtitle = substr($raised, $pos + 1); 
             
             }else{
                 $progress_value = trim($raised);
-                $title = '$' . number_format($progress_value);
+                $title = $currency . number_format($progress_value);
             }
 
             $output .=      '<div class="counterDown-s1">  <div class="counterDown-s1__title"  style="color: ' . esc_attr($text_color) . '">' . $title . ' </div> <div class="counterDown-s1__subtitle"  style="color: ' . esc_attr($text_color) . '">' . $subtitle . ' </div>';
@@ -138,10 +139,13 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
 
                 if( strlen($start_value) > 6 ){
                     $start_value_html = substr($start_value, 0, -6) . 'M';
-                }elseif( strlen($start_value) > 2 ){
+                }elseif( strlen($start_value) > 3 ){
                     $start_value_html = substr($start_value, 0, -3) . 'K';
-                } 
-                $title = '$' . $start_value_html; 
+                }else{
+                    $start_value_html = $start_value;
+                }
+
+                $title = $currency . $start_value_html; 
                 $subtitle = substr($start, $pos + 1); 
             
             }else{
@@ -149,10 +153,12 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
                 $start_value = trim(substr($start, 0, $pos));
                 if( strlen($start_value) > 6 ){
                     $start_value_html = substr($start_value, 0, -6) . 'M';
-                }elseif( strlen($start_value) > 2 ){
+                }elseif( strlen($start_value) > 3 ){
                     $start_value_html = substr($start_value, 0, -3) . 'K';
-                } 
-                $title = '$' . $start_value_html; 
+                }else{
+                    $start_value_html = $start_value;
+                }
+                $title = $currency . $start_value_html; 
 
             }
 
@@ -169,10 +175,13 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
                 $stop_value = trim(substr($stop, 0, $pos));
                 if( strlen($stop_value) > 6 ){
                     $stop_value_html = substr($stop_value, 0, -6) . 'M';
-                }elseif( strlen($stop_value) > 2 ){
+                }elseif( strlen($stop_value) > 3 ){
                     $stop_value_html = substr($stop_value, 0, -3) . 'K';
-                } 
-                $title = '$' . $stop_value_html; 
+                }else{
+                    $stop_value_html = $stop_value;
+                }
+
+                $title = $currency . $stop_value_html; 
                 $subtitle = substr($start, $pos + 1);
             
             }else{
@@ -180,10 +189,12 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
                 $stop_value = trim(substr($stop, 0, $pos));
                 if( strlen($stop_value) > 6 ){
                     $stop_value_html = substr($stop_value, 0, -6) . 'M';
-                }elseif( strlen($stop_value) > 2 ){
+                }elseif( strlen($stop_value) > 3 ){
                     $stop_value_html = substr($stop_value, 0, -3) . 'K';
-                } 
-                $title = '$' . $stop_value_html; 
+                }else{
+                    $stop_value_html = $stop_value;
+                }
+                $title = $currency . $stop_value_html;
 
             }
 
@@ -194,7 +205,7 @@ class WPBakeryShortCode_Bitstarter_CounterDown extends  WPBakeryShortCode
         if($raised != '' && $start != '' && $stop != '' && is_numeric( $progress_value ) && is_numeric( $start_value ) && is_numeric( $stop_value ) ){
             $output .= '<div class="counterDown-progress" style="background-color:'. $text_color .'"><div class="counterDown-progress__done" style="width: ' . esc_attr((int) (($progress_value - $start_value) * 100 / ($stop_value - $start_value) )) . '%; background-color: ' . esc_attr($progress_color) . '"> </div></div>';
         }
-
+        
         $output .= '</div>';
         $output .= '<div class="counterDown-contect">' . wp_kses( wpb_js_remove_wpautop($content, true), bitstarter_allowed_html()) . '</div>';
         $output .= '</div>';
@@ -259,7 +270,7 @@ $opts = array(
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Raised amount in dollars, also after " | " mark, you may denote subtitle', 'bitstarter' ),
+            'heading' => esc_html__( 'Raised amount, also after " | " mark, you may denote subtitle', 'bitstarter' ),
             'value' => esc_html__('19564867 | raised', 'bitstarter'),
             'param_name' => 'raised'
         ),
@@ -271,15 +282,21 @@ $opts = array(
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Start progress from, in dollars, also after " | " mark, you may denote subtitle', 'bitstarter'),
+            'heading' => esc_html__( 'Start progress from, also after " | " mark, you may denote subtitle', 'bitstarter'),
             'value' => esc_html__('2000000 | Softcap in just 10 hours', 'bitstarter'),
             'param_name' => 'start'
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Stop progress till, in dollars, also after " | " mark, you may denote subtitle', 'bitstarter'),
+            'heading' => esc_html__( 'Stop progress till, also after " | " mark, you may denote subtitle', 'bitstarter'),
             'value' => esc_html__('20000000 | Hardcup', 'bitstarter'),
             'param_name' => 'stop'
+        ),
+        array(
+            'type' => 'textfield',
+            'heading' => esc_html__( 'Your currency', 'bitstarter'),
+            'value' => esc_html__('$', 'bitstarter'),
+            'param_name' => 'currency'
         ),
         array(
             'type' => 'colorpicker',

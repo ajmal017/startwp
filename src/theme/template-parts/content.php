@@ -66,7 +66,7 @@
 				<?php else : ?>
 
 					<a class="card__toplink card__toplink--placeholder" href="<?php the_permalink(); ?>">
-						<img class="card__image" alt="card__image" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+						<img class="card__image" alt="card__image" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png"/>
 					</a>
 
 				<?php endif; 
@@ -100,7 +100,7 @@
 
 				<div class="card-player" >
 					<a class="card__toplink card__toplink--placeholder" href="<?php the_permalink(); ?>">
-						<img class="card__image" alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+						<img class="card__image" alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png"/>
 						
 					</a>
 					<div class="card-player__wrapper card-player__wrapper--sc"><?php echo do_shortcode($audio); ?></div>
@@ -142,7 +142,7 @@
 			<?php else : ?>
 		
 					<a class="card__toplink card__toplink--placeholder" href="<?php the_permalink(); ?>">
-						<img class="card__image "  alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+						<img class="card__image "  alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png"/>
 					</a>
 
 			<?php endif;
@@ -172,7 +172,7 @@
 				?>
 				<div class="card-player" > 
 					<a class="card__toplink card__toplink--placeholder" href="<?php the_permalink(); ?>">
-						<img class="card__image" alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+						<img class="card__image" alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png"/>
 					</a>
 					<div class="card-player__wrapper"><?php echo do_shortcode( $video ); ?></div>
 				</div>
@@ -201,7 +201,7 @@
 				?>
 
 				<a class="card__toplink card__toplink--placeholder" href="<?php the_permalink(); ?>">
-					<img class="card__image " alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png')"/>
+					<img class="card__image " alt="placeholder" src="<?php echo get_template_directory_uri(); ?>/assets/img/pattern.png"/>
 				</a>
 
 			<?php endif; 

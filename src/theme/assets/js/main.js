@@ -2,11 +2,12 @@ import "./_calc.js"
 import { _formatCurrency } from "./_calc.js"
 import "./_expand.js"
 
-(function($, undefined) {
+(function($) {
     "use strict";
     /**
      * Shared variables
      */ 
+
     var ua = navigator.userAgent.toLowerCase(),
         platform = navigator.platform.toLowerCase(),
         $window = $(window),

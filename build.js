@@ -19,6 +19,10 @@ var browserSync = require('browser-sync').create();
 var mysql      = require('mysql');
 
 const wpPot = require('wp-pot');
+
+var chokidar = require('chokidar');
+
+
 // Configs ---------------------------------------------------------------------------------------------
 const cssoConfig = {
   restructure: false,
@@ -96,86 +100,153 @@ async function call(task, ...opt) {
   return Promise.resolve()
 }
 
+
+
 function watch(){
 
-  fs.watch('./src', { recursive: true }, debounce(async (eventType, filename) => {
-    let task = filename.split(/\.(.{2,4}$)/);
-   
-    switch (eventType) {
-      case "rename":
-        files = filesDist = null;
+  var watcher = chokidar.watch('./src');
+  var log = console.log;
+  watcher
+  .on('change', async pathToFile => {
+    let parsedFilePath =  path.parse(pathToFile);
+    taskByExt = parsedFilePath.ext.substr(1);
 
-        if(fs.existsSync(path.resolve(`./src/${filename}`))) {
-          if(fs.statSync(path.resolve(`./src/${filename}`)).isDirectory()){
-            // It is a directory
-            console.log('\x1b[36m%s\x1b[0m', 'create/rename dir');
-            rmdirAll(path.resolve(`./dist/${filename}`));
-            await copyStatic();
-            await handleSass();
-            await minifyCss();
-            await minifyJs();
-            await copyReactJS();
-            await copyReactDom();
-          }else{
-            // File
-            console.log('\x1b[36m%s\x1b[0m', 'create');
-            await call(task[task.length - 2], filename)
-          }
+    await call(taskByExt, pathToFile.substr(4));
+  })
+  .on('unlink', async pathToFile => {
+    files = filesDist = null;
+    let parsedFilePath =  path.parse(pathToFile);
+    deleteFile = path.resolve(path.resolve(parsedFilePath.dir).replace('src','dist') + '/' + parsedFilePath.base);
+    let isDelete = await fs.exists(deleteFile);
+    if(isDelete)
+    await fs.unlink(deleteFile);
+  })
+  .on('unlinkDir', async pathToDir => {
+    files = filesDist = null;
+    let parsedDirPath =  path.parse(pathToDir);
+    deleteDir = path.resolve(path.resolve(parsedDirPath.dir).replace('src','dist') + '/' + parsedDirPath.base);
 
-        }else{
-          
-          if(fs.statSync(path.resolve(`./dist/${filename}`)).isDirectory()){
-            console.log('\x1b[36m%s\x1b[0m', 'delete dir');
-            rmdirAll(path.resolve(`./dist/${filename}`));
-          }else{
+    await rmdirAll(deleteDir);
+  })
+  .on('error', error => log(`Watcher error: ${error}`))
+  .on('ready', () => {
+    log('Initial scan complete. Ready for changes');
 
-            console.log('\x1b[36m%s\x1b[0m', 'delete');
-            try{
-              await fs.unlink(`./dist/${filename.split('\\').join('/')}`);  // win bug
-            }
-            catch(err) { }
-          }
-
-        }
-        debounce(wpDev, 5000)(1);
-        break;
-
-      case "change":
-        if(!fs.statSync(path.resolve(`./src/${filename}`)).isDirectory()){
-          //if its file
-          call(task[task.length - 2 ], filename)
-        }else{
-          // Here was changed in directory, so renew
-          rmdirAll(path.resolve(`./dist/${filename}`));
-          await copyStatic();
-          await handleSass();
-          await minifyCss();
-          await minifyJs();
-          await copyReactJS();
-          await copyReactDom();
-          debounce(wpDev, 5000)(2);
-        }
-        break;
+    watcher.on('add', async pathToFile => {
+      files = filesDist = null;
+      let parsedFilePath =  path.parse(pathToFile);
+      taskByExt = parsedFilePath.ext.substr(1);
     
-      default:
-        break;
-    }
+      await call(taskByExt, parsedFile.substr(4));
+    })
+  
+    watcher.on('addDir', async pathToDir => {
+      files = filesDist = null;
+      await copyStatic();
+      await handleSass();
+      await minifyCss();
+      await minifyJs();
+      await copyReactJS();
+      await copyReactDom();
+      debounce(wpDev, 5000)(2);
+    })
+  });
 
-  },500));
+
+  // fs.watch('./src', { recursive: true }, debounce(async (eventType, filename) => {
+  //   let task = filename.split(/\.(.{2,4}$)/);
+   
+  //   switch (eventType) {
+  //     case "rename":
+  //       files = filesDist = null;
+
+  //       if(fs.existsSync(path.resolve(`./src/${filename}`))) {
+  //         if(fs.statSync(path.resolve(`./src/${filename}`)).isDirectory()){
+  //           // It is a directory
+  //           console.log('\x1b[36m%s\x1b[0m', 'create/rename dir');
+  //           rmdirAll(path.resolve(`./dist/${filename}`));
+  //           await copyStatic();
+  //           await handleSass();
+  //           await minifyCss();
+  //           await minifyJs();
+  //           await copyReactJS();
+  //           await copyReactDom();
+  //         }else{
+  //           // File
+  //           console.log('\x1b[36m%s\x1b[0m', 'create');
+  //           await call(task[task.length - 2], filename)
+  //         }
+
+  //       }else{
+          
+  //         if(fs.statSync(path.resolve(`./dist/${filename}`)).isDirectory()){
+  //           console.log('\x1b[36m%s\x1b[0m', 'delete dir');
+  //           rmdirAll(path.resolve(`./dist/${filename}`));
+  //         }else{
+
+  //           console.log('\x1b[36m%s\x1b[0m', 'delete');
+  //           try{
+  //             await fs.unlink(`./dist/${filename.split('\\').join('/')}`);  // win bug
+  //           }
+  //           catch(err) { }
+  //         }
+
+  //       }
+  //       debounce(wpDev, 5000)(1);
+  //       break;
+
+  //     case "change":
+  //       if(!fs.statSync(path.resolve(`./src/${filename}`)).isDirectory()){
+  //         //if its file
+  //         call(task[task.length - 2 ], filename)
+  //       }else{
+  //         // Here was changed in directory, so renew
+  //         rmdirAll(path.resolve(`./dist/${filename}`));
+  //         await copyStatic();
+  //         await handleSass();
+  //         await minifyCss();
+  //         await minifyJs();
+  //         await copyReactJS();
+  //         await copyReactDom();
+  //         debounce(wpDev, 5000)(2);
+  //       }
+  //       break;
+    
+  //     default:
+  //       break;
+  //   }
+
+  // },500));
 
   return Promise.resolve();
 
 }
 
 
-// Tast Funcs -----------------------------------------------------------------------------------------
+// Task Funcs -----------------------------------------------------------------------------------------
 
 async function copyStatic() {
-  console.time('copyStatic');
-  await filesWithPatterns([/\.php$/i, /\.htaccess$/i, /\.(png|jpe?g|svg)$/i, /\.(woff?2|eot|ttf|otf)$/i, /\.xml$/i, /\.txt$/i, /\.zip$/i, /\.html$/i, /\.md$/i, /\.pot$/i, , /\.min\.js$/i])
-    .map(async file => copy(`src/${file}`, `dist/${file}`))
-    .array || Promise.resolve(); 
-  console.timeEnd('copyStatic')
+  await console.time('copyStatic');
+
+  await filesWithPatterns([/\.php$/i, /\.htaccess$/i, /\.(png|jpe?g|svg)$/i, /\.(woff?2|eot|ttf|otf)$/i, /\.xml$/i, /\.txt$/i, /\.zip$/i, /\.html$/i, /\.md$/i, /\.pot$/i,/\.min\.js$/i])
+    .map(async file => {
+      if(file.endsWith('.min.js')){
+        let contents = await fs.readFile(`src/${file}`);
+        contents = contents.toString('utf-8');
+        for (const [key, val] of Object.entries(templateData)) {
+          contents = contents.replace(`{%${key}%}`, val);
+        }
+        
+        await mkdirAll(path.dirname(`dist/${file}`));
+        await fs.writeFile(`dist/${file}`, `${contents}`);
+      
+      }else{
+        copy(`src/${file}`, `dist/${file}`);
+      }
+    })
+    .array  
+
+    await console.timeEnd('copyStatic')
 }
 
 async function copyReactJS() {
@@ -274,13 +345,13 @@ var depsAlt = {};
 async function minifyJs(filename) {
   console.time('minifyJs');
 
-  const orig = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
+  let files1 = filesWithPatterns([/^(?:(?!\.min\.js$).)*\.js$/i])
     .map(async file  => {
       let name = file;
       if(filename && filename.split('\\').join('/') != name) return
       if(deps[name]){
         name = deps[name];
-        console.log(deps)
+     //   console.log(deps)
       }
       console.log('bundling... \n %s', path.parse(name).name)
       const bundle = await rollup.rollup({
@@ -348,10 +419,26 @@ async function minifyJs(filename) {
 
       return  { code, map, name }
     }) 
-    .array;
+    .array || Promise.resolve();
+
+
+    const files2 = await filesWithPatterns([/\.min\.js$/i])
+    .map(async file => {
+      
+        let contents = await fs.readFile(`src/${file}`);
+        contents = contents.toString('utf-8');
+        for (const [key, val] of Object.entries(templateData)) {
+          contents = contents.replace(`{%${key}%}`, val);
+        }
+        
+        await mkdirAll(path.dirname(`dist/${file}`));
+        await fs.writeFile(`dist/${file}`, `${contents}`);
+    
+    })
+    .array || Promise.resolve(); 
   
   console.timeEnd('minifyJs')
-  return await Promise.all([orig]);
+  return await Promise.all([files1 , files2]);
 }
 
 
@@ -364,26 +451,26 @@ async function wpDev() {
   console.log('\x1b[36m%s\x1b[40m', 'Linking ...');  
   let pathsTheme = await filesWithPatternsDist([/theme\/.*\..{2,4}$/])
     .map(async filePath => {
-      return `ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/${filePath.substr(7)} d:/OSPanel/domains/wp/wp-content/themes/bitstarter/${path.dirname(filePath.substr(7))} \n`
+      return `ln -f d:/OSPanel/domains/localhost/wp-content/startwp/dist/theme/${filePath.substr(7)} d:/OSPanel/domains/localhost/wp-content/themes/bitstarter/${path.dirname(filePath.substr(7))} \n`
     })
     .array;
 
     let pathsPlugin = await filesWithPatternsDist([/iondigital-kit\/.*\..{2,4}$/])
     .map(async filePath => {
-      return `ln -f d:/OSPanel/domains/wp/wp-content/startwp/dist${filePath} d:/OSPanel/domains/wp/wp-content/plugins${path.dirname(filePath)} \n`
+      return `ln -f d:/OSPanel/domains/localhost/wp-content/startwp/dist${filePath} d:/OSPanel/domains/localhost/wp-content/plugins${path.dirname(filePath)} \n`
     })
     .array;
 
   let paths = [...pathsTheme , ...pathsPlugin];
-  let pre = `rm -rf d:/OSPanel/domains/wp/wp-content/themes/bitstarter/
-             mkdir d:/OSPanel/domains/wp/wp-content/themes/bitstarter
+  let pre = `rm -rf d:/OSPanel/domains/localhost/wp-content/themes/bitstarter/
+             mkdir d:/OSPanel/domains/localhost/wp-content/themes/bitstarter
 
-             rm -rf d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/
-             mkdir d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit
+             rm -rf d:/OSPanel/domains/localhost/wp-content/plugins/iondigital-kit/
+             mkdir d:/OSPanel/domains/localhost/wp-content/plugins/iondigital-kit
               
-            ln -fs d:/OSPanel/domains/wp/wp-content/startwp/dist/theme/* d:/OSPanel/domains/wp/wp-content/themes/bitstarter/ 
+            ln -fs d:/OSPanel/domains/localhost/wp-content/startwp/dist/theme/* d:/OSPanel/domains/localhost/wp-content/themes/bitstarter/ 
 
-            ln -fs d:/OSPanel/domains/wp/wp-content/startwp/dist/iondigital-kit/* d:/OSPanel/domains/wp/wp-content/plugins/iondigital-kit/ \n`; // hack to create dir
+            ln -fs d:/OSPanel/domains/localhost/wp-content/startwp/dist/iondigital-kit/* d:/OSPanel/domains/localhost/wp-content/plugins/iondigital-kit/ \n`; // hack to create dir
 
   await fs.writeFile('wp-dev.sh', paths.reduce((acc, val) => acc.concat(val), pre));
   const { stdout, stderr } = await exec('sh wp-dev.sh');

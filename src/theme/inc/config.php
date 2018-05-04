@@ -1105,7 +1105,7 @@ if ( ! function_exists( 'bitstarter_add_customify_options' ) ) :
 								),
 								array(
 									'property' => 'box-shadow',
-									'unit' => '0 16px 40px|0.6',
+									'unit' => '0 16px 40px|0.6', 
 									'selector' => '.bitstarter-shadow',
 									'callback_filter' => 'bitstarter_box_shadow'
 								)

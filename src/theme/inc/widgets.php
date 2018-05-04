@@ -108,7 +108,9 @@ class Bitstarter_WPCOM_social_media_icons_widget extends WP_Widget {
 			'instagram_username'  => '',
 			'discord_username'  => '',
 			'github_username'  => '',
-			'telegram_username'  => ''
+			'telegram_username'  => '',
+			'bitcointalk_username' => '',
+			'medium_username' => ''
 
 		);
 		
@@ -123,7 +125,9 @@ class Bitstarter_WPCOM_social_media_icons_widget extends WP_Widget {
 			'instagram'  => array( 'Instagram', 'https://www.instagram.com/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-ig.php', false, false ))),
 			'discord'  => array( 'Discord', 'https://www.discord.gg/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-dis.php', false, false ))),
 			'github'  => array( 'Github', 'https://www.github.com/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-git.php', false, false ))),
-			'telegram'  => array( 'Telegram', 'https://www.telegram.me/%s/',   $wp_filesystem->get_contents(locate_template('assets/svg/social-tel.php', false, false )))
+			'telegram'  => array( 'Telegram', 'https://www.telegram.me/%s/',  $wp_filesystem->get_contents(locate_template('assets/svg/social-tel.php', false, false ))),
+			'bitcointalk' => array( 'BitcoinTalk', 'https://bitcointalk.org/%s/',  $wp_filesystem->get_contents(locate_template('assets/svg/social-bct.php', false, false ))),
+			'medium' => array( 'Medium', 'https://medium.com/%s/',  $wp_filesystem->get_contents(locate_template('assets/svg/social-md.php', false, false ))),
 		);
 
 	}

@@ -15,6 +15,17 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<link rel="manifest" href="<?php echo pwa_theme_get_manifest_path(); ?>">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="application-name" content="<?php bloginfo( 'name' ); ?>">
+<meta name="apple-mobile-web-app-title" content="<?php bloginfo( 'name' ); ?>">
+<meta name="theme-color" content="#FFF8F7">
+<meta name="msapplication-navbutton-color" content="#FFF8F7">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="msapplication-starturl" content="/">
+<link rel="icon" type="image/jpeg" sizes="512x512" href="<?php echo get_site_icon_url(); ?>">
+<link rel="apple-touch-icon" type="image/jpeg" sizes="512x512" href="<?php echo get_site_icon_url(); ?>">
 
 <?php wp_head(); ?>
 </head>

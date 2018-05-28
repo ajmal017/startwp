@@ -47,7 +47,7 @@ $opts = array(
     'params'	=> array(
         array(
             'type' => 'css_editor',
-            'heading' => esc_html__( 'Css', 'bitstarter' ),
+            'hфeading' => esc_html__( 'Css', 'bitstarter' ),
             'param_name' => 'css',
             'group' => esc_html__( 'Design options', 'bitstarter' ),
         ),

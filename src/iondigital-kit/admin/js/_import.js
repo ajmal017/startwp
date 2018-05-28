@@ -23,7 +23,7 @@ export default class Importer extends React.Component {
 		this.toogleArea = this.toogleArea.bind(this);
 		this.ajax_import_options = this.ajax_import_options.bind(this);
 		this.ajax_import_posts = this.ajax_import_posts.bind(this);
-		this.state = { output: '', activateLoading: false, error: false, stepNumber: iondigital.importer["import_step"], expanded: false };
+		this.state = { output: '', activateLoading: false, error: false, stepNumber: iondigital.importer["import_step"], expanded: false, catchError: '' };
 		
 	}
 	
@@ -54,17 +54,79 @@ export default class Importer extends React.Component {
                 let {value, done} = generator.next();
 
                 if(!done){
-                    return Promise.resolve(value).then(next)
-                    .then( () => subscribe(next, complete, error))
-                    .catch(err => error(err))
+                    return value.then(next, () => subscribe(next, complete, error))
+					.then( () => subscribe(next, complete, error), _ => {})
+                    .catch(err => {  console.error(err)})
                 }
                 else{
-                    return Promise.resolve(complete())
+                    return Promise.resolve(complete)
                 }
             }
 
             return subscribe;
-        }
+		}
+		
+
+		this.retryRequest = (request, step) => {
+			let requests = [];
+			let that = this;
+			Array.from({length: 5}).map( (_, idx, arr) => { 
+				if(idx === arr.length - 1){
+					requests.push(request.bind(that, false)) 
+				} 
+				requests.push(request) 
+			})
+			const queueAjaxRetryRequest = new Queue(requests);
+
+			//this is the ajax queue
+			const iterator = (genFunc) => {
+
+				const generator = genFunc();
+				const _void = () => undefined;
+				
+				const subscribe = (next, complete, error = _void) => {
+
+					let {value, done} = generator.next();
+
+					if(!done){
+						return value.then(next)
+						.then( (val) => val , () => new Promise( resolve => setTimeout( _ => {
+							resolve(subscribe(next, complete, error));
+						}, 3000)))
+						//.catch(err => { console.error(err)})
+					}
+					else{
+						complete();
+						return Promise.reject()
+					}
+				}
+
+				return subscribe;
+			}
+
+			const stream$ = iterator(function* () {
+					for(let q of queueAjaxRetryRequest){
+						yield q();
+					}
+			});
+
+			return stream$(val => new Promise( (res, rej) => {
+					if(val.status == 500){
+						rej(val);
+					}else{
+						res(val);
+					}
+				})
+				,() => {
+					that.setState({'error': true});
+					that.setState({'output': that.state.output + '<i>' + iondigital.importer.import_data.import_posts_step + ' ' + step + ' of ' + that.state.stepNumber + '</i><i style="font-size: 10px; color: red;">Imported partially with Internal Server Error</i><br />'
+					});
+				}
+			)
+			
+		}
+
+
 
     }
 
@@ -74,7 +136,7 @@ export default class Importer extends React.Component {
 		let that = this;
 		Array.from({length: this.state.stepNumber}).map(( _ , idx) => {
 			let stepNumber = idx + 1;
-			const request = () => {
+			const request = (attachments = true) => {
 				let url = this.ajaxUrl, 
 					info = {
 						method: "POST",
@@ -82,7 +144,7 @@ export default class Importer extends React.Component {
 						headers: {
 							'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
 						},
-						body: 'action=Iondigital_ajax_import_posts_pages&_wpnonce='+ this.nonceImportPostsPages + '&step_number=' + stepNumber + '&number_of_steps=' + this.state.stepNumber  + '&filename=' + filename,
+						body: 'action=Iondigital_ajax_import_posts_pages&_wpnonce='+ this.nonceImportPostsPages + '&step_number=' + stepNumber + '&number_of_steps=' + this.state.stepNumber  + '&filename=' + filename + '&attachments=' + attachments,
 						credentials: 'same-origin'
 					};
 
@@ -94,43 +156,44 @@ export default class Importer extends React.Component {
 	
 		const queueAjaxImportPages = new Queue(requests);
 
-			const stream$ = this.Iterator(function* () {
+		const stream$ = this.Iterator(function* () {
+				var chachedLastRequest = null;
+				var i = 0;
+
 				for(let q of queueAjaxImportPages){
+					chachedLastRequest = q;
 					if( typeof q === 'function'){
 						q = q();
 					}
-					yield q; // If this is a promise, the execution will wait until resolved to continue
-					
+					i++;
+					yield q.then(data => {
+						if(data.status == 500 ){
+							return that.retryRequest(chachedLastRequest, i);
+						}
+						return data
+					})
+					 // If this is a promise, the execution will wait until resolved to continue
 				}
 			});
 
-			var decoder = new TextDecoder();
 
 			return stream$(val => {
-				if (val.status != 200 ){
-					this.setState({error: true});
-					this.setState({output: this.state.output + '<i style="color:red">' + val.statusText + '</i><br/>' })
-				}
-				let reader = val.body.getReader();
-				return reader.read().then(result => {
-					
-					let json = decoder.decode(result.value || new Uint8Array, {
-						stream: false
-					});
+				console.log(val);
 	
-					let resp = JSON.parse(json);
+				return val.json().then(resp => {
+
 					try {
 						
 						let id = resp['data']['id'],
 							lastOutput = that.state['output'],
 							translation = iondigital.importer.import_data;
 
-						if(id && !id['errors']){
+						if(id && (typeof id == "boolean")){
 							that.setState({'output': lastOutput + '<i>' + translation.import_posts_step + ' ' + resp['data']['supplemental'].stepNumber + ' of ' + resp['data']['supplemental'].numberOfSteps + '</i><br />'
 							+ '<i style="display: none;"> Response Data: ' + resp['data'].data + '</i><br />'
-							});
+							}); 
 
-						}else if(id['errors'] && id.errors[Object.keys(id.errors)[0]]){
+						}else if(id['errors'] &&  (typeof id == "object") && id.errors[Object.keys(id.errors)[0]]){
 							that.setState({'output': lastOutput + '<i style="color:red">' + translation.import_posts_failed + '</i><br />' + translation.import_error + ' ' + id.errors[Object.keys(id.errors)[0]][0]
 							});
 							that.setState({error: true});
@@ -142,8 +205,8 @@ export default class Importer extends React.Component {
 	
 					} catch (error) {
 						
-						that.setState({'output': lastOutput + '<i style="color:red">' + v.import_posts_failed + ' ' + translation.import_try_reload + ' </i><br />' });
-						that.setState({error: true});
+					 	that.setState({'output': lastOutput + '<i style="color:red">' + v.import_posts_failed + ' ' + translation.import_try_reload + ' </i><br />' });
+					 	that.setState({error: true, catchError: '<i style="color:red">Catch an Error during runtime.</i>'});
 					}
 	
 				})
@@ -173,14 +236,24 @@ export default class Importer extends React.Component {
 
         const queueAjaxImportThemeOptions = new Queue([request]);
 
-        const stream$ = this.Iterator(function* () {
-            for(let q of queueAjaxImportThemeOptions){
+		const stream$ = this.Iterator(function* () {
+			var chachedLastRequest = null;
+			var i = 0;
+
+			for(let q of queueAjaxImportThemeOptions){
+				chachedLastRequest = q;
 				if( typeof q === 'function'){
 					q = q();
 				}
-
-				yield q; // If this is a promise, the execution will wait until resolved to continue
-            }
+				i++;
+				yield q.then(data => {
+					if(data.status == 500 ){
+						return that.retryRequest(chachedLastRequest, i);
+					}
+					return data
+				})
+				 // If this is a promise, the execution will wait until resolved to continue
+			}
 		});
 
 		var decoder = new TextDecoder();
@@ -191,22 +264,14 @@ export default class Importer extends React.Component {
 				this.setState({error: true});
 				this.setState({output: this.state.output + '<i style="color:red">' + val.statusText + '</i><br/>' })
 			}
-
-			let reader = val.body.getReader();
-			return reader.read().then(result => {
-
-				let json = decoder.decode(result.value || new Uint8Array, {
-					stream: false
-				});
-
-				let resp = JSON.parse(json);
+			return val.json().then(resp => {
 				try {
 					
 					let id = resp['data']['id'],
 						lastOutput = that.state['output'],
 						translation = iondigital.importer.import_data;
 
-					if(id && !id['errors']){
+					if(id && (typeof id == "boolean")){
 						that.setState({'output': lastOutput + '<i>' + translation.import_theme_options_done + '</i><br />'
 						+ '<i style="display: none;" > Response Data: ' + resp['data'].data + '</i><br />' });
 					}else if(id['errors'] && id.errors[Object.keys(id.errors)[0]]){
@@ -222,7 +287,7 @@ export default class Importer extends React.Component {
 				} catch (error) {
 					
 					that.setState({'output': lastOutput + '<i style="color:red">' + translation.import_theme_options_failed + '</i><br />' });
-					that.setState({error: true});
+					that.setState({error: true, catchError: '<i style="color:red">Catch an Error during runtime.</i>'});
 				}
 
 			})
@@ -253,18 +318,26 @@ export default class Importer extends React.Component {
 
         const queueAjaxImportWidgets = new Queue([request]);
 
-        const stream$ = this.Iterator(function* () {
-            for(let q of queueAjaxImportWidgets){
+		const stream$ = this.Iterator(function* () {
+			var chachedLastRequest = null;
+			var i = 0;
+
+			for(let q of queueAjaxImportWidgets){
+				chachedLastRequest = q;
 				if( typeof q === 'function'){
 					q = q();
 				}
-				
-				yield q; //If this is a promise, the execution will wait until resolved to continue
-				
-            }
+				i++;
+				yield q.then(data => {
+					if(data.status == 500 ){
+						return that.retryRequest(chachedLastRequest, i);
+					}
+					return data
+				})
+				 // If this is a promise, the execution will wait until resolved to continue
+			}
 		});
 		
-		var decoder = new TextDecoder();
 
         return stream$(val => {
 
@@ -273,22 +346,14 @@ export default class Importer extends React.Component {
 				this.setState({output: this.state.output + '<i style="color:red">' + val.statusText + '</i><br/>' })
 			}
 
-			let reader = val.body.getReader();
-			return reader.read().then(result => {
-
-				let json = decoder.decode(result.value || new Uint8Array, {
-					stream: false
-				});
-
-				let resp = JSON.parse(json);
-
+			return val.json().then(resp => {
 				try {
 					
 					let id = resp['data']['id'],
 						lastOutput = that.state['output'],
 						translation = iondigital.importer.import_data;
 			
-					if(id && !id['errors']){
+					if(id && (typeof id == "boolean")){
 						that.setState({'output': lastOutput + '<i>' + translation.import_widgets_done + '</i><br />' +
 						'<i style="display: none;" > Response Data: ' + resp['data'].data + '</i><br />' });
 					}else if(id['errors'] && id.errors[Object.keys(id.errors)[0]]){
@@ -304,6 +369,8 @@ export default class Importer extends React.Component {
 				} catch (error) {
 					
 					that.setState({'output': lastOutput + '<i style="color:red">' + translation.import_widgets_failed + '</i><br />' });
+
+					that.setState({error: true, catchError: '<i style="color:red">Catch an Error during runtime.</i>'});
 				}
 
 			})
@@ -319,7 +386,7 @@ export default class Importer extends React.Component {
 
 			if ( activate == false ) return false;
 			
-			this.setState({activateLoading: activate})
+			this.setState({activateLoading: !!activate, importingFile: filename})
 			try{
 				//queue the calls
 				await this.ajax_widget(filename);
@@ -331,11 +398,13 @@ export default class Importer extends React.Component {
 					this.setState({output: this.state.output + '<h3>' + iondigital.importer.import_data.import_phew + '</h3><br /><p>' + iondigital.importer.import_data.import_success_note + iondigital.importer.import_data.import_success_warning + '</p>' })
 				
 				}else{
-					this.setState({output: this.state.output + '<p>	&#x2110; Try to increase "PHP Max Execution Time" or number of importing steps at "More options" above.'});
+					this.setState({output: this.state.output + '<p>	&#x2110; Try to increase "PHP Max Execution Time"(180 sec is optimal, 30 sec(default) is not working) or/and number of importing steps at "More options" above.'});
 				}
+				this.setState({activateLoading: false});
 
 			}catch(err){
 				this.setState({output: this.state.output + '<i style="color:red">' + err + '</i><br/>' })
+				this.setState({activateLoading: false});
 			}
 
 		})
@@ -368,7 +437,7 @@ export default class Importer extends React.Component {
 	}
 
     render() {
-		let { output, activateLoading, stepNumber, expanded } = this.state; 
+		let { output, activateLoading, stepNumber, expanded, catchError, error, importingFile } = this.state; 
         return (
 			<div className="Ion-importer"> 
 				<div dangerouslySetInnerHTML={{ __html: iondigital.dashboard.general['text3'] }}/>
@@ -382,7 +451,7 @@ export default class Importer extends React.Component {
 								<h3 className="Ion-importer-info__title">{info['title']}</h3>
 								<p className="Ion-importer-info__description">{info['description']}</p>
 								<a className="Ion-importer-info__link" href={info['link']} target="_blank">🔗 Demo</a>
-								<p className="Ion-importer-info__btn"><button id={`Ion-import-demodata-button-#{filename}`}  className="btn btn-primary" onClick={this.startImport(filename)}> {iondigital.dashboard.general['btn_import']} </button></p>
+								<p className="Ion-importer-info__btn"><button id={`Ion-import-demodata-button-${filename}`}  className={`btn btn-primary ${filename == importingFile && activateLoading ? 'animate ': ''} ${activateLoading ? 'noClick': ''}`} onClick={this.startImport(filename)}> {iondigital.dashboard.general['btn_import']} </button></p>
 							</div>
 						</div>
 					)
@@ -406,7 +475,7 @@ export default class Importer extends React.Component {
 				</div>
 				}
 				<div dangerouslySetInnerHTML={{ __html: output }} />
-
+				{error && <div dangerouslySetInnerHTML={{ __html: catchError }} />}
 			</div>
 		)
     }

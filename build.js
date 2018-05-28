@@ -134,10 +134,10 @@ function watch(){
 
     watcher.on('add', async pathToFile => {
       files = filesDist = null;
-      let parsedFilePath =  path.parse(pathToFile);
+      let parsedFilePath =  path.parse(pathToFile),
       taskByExt = parsedFilePath.ext.substr(1);
     
-      await call(taskByExt, parsedFile.substr(4));
+      await call(taskByExt, parsedFilePath.base);
     })
   
     watcher.on('addDir', async pathToDir => {

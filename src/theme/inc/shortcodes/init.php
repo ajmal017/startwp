@@ -25,5 +25,4 @@ function bitstarter_init_vc_shortcodes(){
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitstarter_mark.php' );
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitstarter_distribution.php' );
     include_once( get_template_directory() . '/inc/shortcodes/vc_bitstarter_counterdown.php' );
-
 }

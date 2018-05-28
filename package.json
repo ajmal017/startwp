@@ -1,6 +1,6 @@
 {
   "name": "WPT",
-  "version": "1.0.149",
+  "version": "1.0.155",
   "description": "Wordpress, JS, Compile",
   "main": "index.js",
   "author": "IONDIGITAL",
@@ -12,6 +12,7 @@
     "watch-js": "node build.js watchJS",
     "watch-css": "node build.js watchCSS",
     "watch-static": "node build.js copyStatic",
+    "start": "yarn run build && yarn run watch",
     "wp-dev": "node build.js wpDev"
   },
   "resolutions": {

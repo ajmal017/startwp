@@ -241,7 +241,7 @@ class Iondigital_Admin {
                 'nonceImportThemeOptions' => wp_create_nonce( 'Iondigital_nonce_import_demo_theme_options' ),
                 'nonceImportPostsPages' => wp_create_nonce( 'Iondigital_nonce_import_demo_posts_pages' ),
                 'import_data' => $import_data,
-                'import_step' => isset($rest["stepnumber"]) ? $rest["stepnumber"] : (self::$theme_support['theme_name'] == "Brooks" ? 140 : 10)
+                'import_step' => isset($rest["stepnumber"]) ? $rest["stepnumber"] : (self::$theme_support['theme_name'] == "Brooks" ? 240 : 10)
             ),
             'user'          => array(
                 'name'   => ( empty( $current_user->display_name ) ? $current_user->user_login : $current_user->display_name ),

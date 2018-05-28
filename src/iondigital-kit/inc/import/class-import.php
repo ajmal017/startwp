@@ -19,17 +19,20 @@ class Iondigital_Demo_Content{
     }
 
     public function add_rest_api(){
+
         register_rest_route( 'iondigital/v1', '/stepnumber', array(
 			'methods'             => WP_REST_Server::CREATABLE, // POST
 			'callback'            => array( $this, 'stepnumber' ),
 			'permission_callback' => array( $this, 'permission_nonce_callback' ),
-		) );
+        ) );
+
     }
 
     public function stepnumber($request){
+
         $params = $request->get_params();
         $rest = array(
-            "stepnumber" => $params["valu   e"]
+            "stepnumber" => $params["value"]
         );
         update_option( 'iondigital_rest', $rest);
         return rest_ensure_response( array(
@@ -93,7 +96,7 @@ class Iondigital_Demo_Content{
         // initialize the step importing
         $stepNumber    = 1;
         $numberOfSteps = 1;
-
+        $attachments = true;
         // get the data sent by the ajax call regarding the current step
         // and total number of steps
         if ( ! empty( $_REQUEST['step_number'] ) ) {
@@ -102,6 +105,10 @@ class Iondigital_Demo_Content{
 
         if ( ! empty( $_REQUEST['number_of_steps'] ) ) {
             $numberOfSteps = $_REQUEST['number_of_steps'];
+        }
+
+        if ( ! empty( $_REQUEST['attachments'] ) ) {
+            $attachments = $_REQUEST['attachments'];
         }
 
         $response = array(
@@ -170,11 +177,9 @@ class Iondigital_Demo_Content{
     }
 
     public function Iondigital_ajax_import_widgets() {
-
         
         $theme_support = $this->config;
         
-
         $import_filepath = '';
 
         if( is_array( $theme_support['importer']) && ! empty($theme_support['importer']['import_filepath'])){

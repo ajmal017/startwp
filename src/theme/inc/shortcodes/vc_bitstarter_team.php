@@ -42,7 +42,7 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
         $shadow_color = implode(',', $this->hex2rgb(str_replace('#','',$shadow_color)));
 
         $extra_class = '';
-        if(!empty($excerpt)):
+        if(!empty($content)):
             $extra_class = 'team__in--excerpt';
         endif;
 
@@ -55,7 +55,7 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
         $output .=      '<p class="team-info__position" style="color: ' . esc_attr($position_color) . '">' . $position . '</p>';
 
         
-        if( !empty($fb) || !empty($in) ):
+        if( !empty($fb) || !empty($in) || !empty($tw) ):
 
             global $wp_filesystem;
             require_once( ABSPATH . 'wp-admin/includes/file.php' );
@@ -79,7 +79,7 @@ class WPBakeryShortCode_Bitstarter_Team extends  WPBakeryShortCode
         endif;
         $output .= '</div>';
         
-        $output .= '<div class="team__excerpt">' . wp_kses($excerpt, bitstarter_allowed_html()) . '</div>';
+        $output .= '<div class="team__excerpt">' . wp_kses($content, bitstarter_allowed_html()) . '</div>';
 
         $output .= '</div>';
         $output .= '</div>';
@@ -124,6 +124,12 @@ $opts = array(
             'type' => 'textarea',
             'heading' => esc_html__( 'Excerpt', 'bitstarter' ),
             'param_name' => 'excerpt',
+        ),
+        array(
+            'type' => 'textarea_html',
+            'holder' => 'div',
+            'heading' => esc_html__( 'Content', 'bitstarter' ),
+            'param_name' => 'content'
         ),
         array(
             'type' => 'colorpicker',

@@ -236,6 +236,14 @@ class Iondigital_import extends Iondigital_WP_Import {
 
 					$comment_post_ID = $post_id = $this->process_attachment( $postdata, $remote_url );
 				} else {
+					/// fix terms ids
+					$postdata['post_content'] = preg_replace_callback(
+						'/terms\=\"([^\|]*)\|[^\"]*\"/m',
+						array($this, 'fix_id_term_content'),
+						$postdata['post_content']
+					);
+					/// end
+
 					$comment_post_ID = $post_id = wp_insert_post( $postdata, true );
 					do_action( 'wp_import_insert_post', $post_id, $original_post_ID, $postdata, $post );
 				}
@@ -385,6 +393,13 @@ class Iondigital_import extends Iondigital_WP_Import {
 			}
 		}
 		unset( $currentPosts );
+	}
+
+	/**
+	 * Fix ids callback 
+	 */
+	function fix_id_term_content($matches){
+		return str_replace($matches[1], $this->processed_terms[$matches[1]], $matches[0]);
 	}
 
 	/**

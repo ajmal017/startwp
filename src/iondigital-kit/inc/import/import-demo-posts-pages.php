@@ -42,7 +42,7 @@ if ( $Iondigital_importerError !== false ) {
 	} else {
 		ob_start();
 		$wp_import                    = new Iondigital_import();
-		$wp_import->fetch_attachments = true;
+		$wp_import->fetch_attachments = $attachments;
 		$response['id']               = $wp_import->import_posts_pages( $import_filepath . '.xml', $import_filepath . '.php', $response['supplemental']['stepNumber'], $response['supplemental']['numberOfSteps'] );
 		//after the last step we assign the menus to the proper locations
 		if ( $response['supplemental']['stepNumber'] == 1 ) {

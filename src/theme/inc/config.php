@@ -2105,7 +2105,7 @@ if ( ! function_exists( 'bitstarter_getRGB' ) ) {
 		// Calculate straight from rbg
 
 
-		if( count($color) > 3){
+		if( strlen($color) > 3){
 
 			$r = hexdec( $color[1] . $color[2] );
 			$g = hexdec( $color[3] . $color[4] );
